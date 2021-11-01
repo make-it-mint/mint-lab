@@ -68,13 +68,12 @@ class MainApp:
         #old_tag
         repo = git.Repo(self.REPO_PATH)
         current_tag = repo.git.describe('--tags')
-        print(type(current_tag))
         repo.git.checkout('main')
         repo.remotes.origin.pull()
         tags = sorted(repo.tags, key=lambda t: t.commit.committed_datetime)
         selected_tag = tags[tag_idx]
         if not current_tag==str(selected_tag):
-            print(f"Checkout new Version: {type(selected_tag)}")
+            print(f"Changed from Version: {current_tag} to new Version: {selected_tag}")
             repo.git.checkout(str(selected_tag))
         else:
             print(f"Already checked out Version: {selected_tag}")    
