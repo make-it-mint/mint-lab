@@ -1,0 +1,5 @@
+{'project_list_header': 'Projects',
+                'box_header':'Lab Kits',
+                'bt_exit':'Stop',
+                'bt_next':'Next',
+                'bt_back':'Back'}

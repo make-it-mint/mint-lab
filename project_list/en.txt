@@ -1,0 +1,6 @@
+[['Ultrasonic', 'project_logo.png', 'yellow', 'ultrasonic'],
+['Solar', 'project_logo.png', 'green', 'solar'],
+['Electricity', 'project_logo.png', 'blue', 'electricity'],
+['Weight', 'project_logo.png', 'white', 'weight'],
+['Temperature', 'project_logo.png', 'light blue', 'temperature'],
+['Controller', 'project_logo.png', 'ivory2', 'controller']]
