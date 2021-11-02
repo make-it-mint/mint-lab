@@ -1,40 +1,47 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Fri Feb 19 07:52:26 2021
 
 @author: felix
 """
-from tkinter import  Tk, Label, Button, Listbox, END, Text, Scrollbar, Frame, N,S,E,W, LEFT, RIGHT, BOTTOM, TOP, X, Y, Checkbutton, IntVar, messagebox, PhotoImage
+from tkinter import  Tk, Label, Button, Listbox, END, Text, Scrollbar, Frame, N,S,E,W, LEFT, RIGHT, BOTTOM, TOP, X, Y, Checkbutton, IntVar, messagebox, PhotoImage, Menu
 from PIL import Image, ImageTk
 import math
 import projects_ui
 import codecs
 import ast
-
+import os
+import git
 class MainApp:
     
     
     DEF_FONT = 'Helvetica 18'
     FONT_B = 'Helvetica 18 bold'
     FONT_L = 'Helvetica 32'
+    REPO_PATH = os.path.dirname(os.path.abspath(__file__))
     
     def __init__(self, name = 'main', columns = 3, language = 'de'):
         self._language = language
-        self._sys_content = self._load_data('sys_language', self._language)
+        self._sys_content = self._load_data(os.path.join(self.REPO_PATH,'sys_language'), self._language)
         self._name = name
-        self._content = self._load_data('project_list', self._language)
+        self._content = self._load_data(os.path.join(self.REPO_PATH,'project_list'), self._language)
         self._main_menu = self._setup_root()
         self._num_col = columns
         self._num_rows = math.ceil(len(self._content)/self._num_col)
-        self._widgets = {'label':{}, 'button':{},'listbox':{},'checkbutton':{},'text':{},'scrollbar':{}, 'frame':{} , 'radiobutton':{}, 'plot':{}}
+        self._widgets = {'label':{}, 'button':{},'listbox':{},'checkbutton':{},'text':{},'scrollbar':{}, 'frame':{} , 'radiobutton':{}, 'plot':{}, 'menu':{}}
         self.create_main_ui()
+        self._set_menubar()
         
     def start_app(self):
         self._main_menu.mainloop()
         
+                
+            
+        
     def _load_data(self, data_type, language = 'de'):
     
-        path = '%s/%s.txt'%(data_type, language)
+        path = f'{data_type}/{language}.txt'
         #print(path)
         with codecs.open(path, encoding='utf8') as f:
             lines = f.readlines()
@@ -52,7 +59,47 @@ class MainApp:
         main_menu.attributes("-fullscreen", True)
         main_menu.grid_columnconfigure(0, weight = 1)
         main_menu.grid_rowconfigure(0, weight = 1)
+        main_menu.title("MINT Lab")
+        
         return main_menu
+    
+    
+    def _update_repo(self, tag_idx=-1):
+        #old_tag
+        repo = git.Repo(self.REPO_PATH)
+        current_tag = repo.git.describe('--tags')
+        repo.git.checkout('main')
+        repo.remotes.origin.pull()
+        tags = sorted(repo.tags, key=lambda t: t.commit.committed_datetime)
+        selected_tag = tags[tag_idx]
+        if not current_tag==str(selected_tag):
+            print(f"Changed from Version: {current_tag} to new Version: {selected_tag}")
+            repo.git.checkout(str(selected_tag))
+        else:
+            print(f"Already checked out Version: {selected_tag}")    
+    
+    def _set_menubar(self):
+        menubar=Menu(self._main_menu)
+        
+        file_menu=Menu(menubar)
+        file_menu.add_command(label="Beenden", command=lambda:self._main_menu.destroy())
+        
+        menubar.add_cascade(label="Datei", menu=file_menu)
+        
+        
+        update_menu=Menu(menubar)
+        update_menu.add_command(label="Update MINT Lab", command=self._update_repo)
+        update_menu.add_command(label="Update Betriebssystem")
+        update_menu.add_command(label="Betriebssystem Updateinfos")
+        
+        menubar.add_cascade(label="Updates", menu=update_menu)
+        
+        self._main_menu.config(menu=menubar)
+        
+        self._widgets['menu'].update({'main_menubar':menubar})
+        
+        
+        
     
     def _setup_main_frame(self):
         
@@ -71,11 +118,13 @@ class MainApp:
         self._widgets['frame'].update({'project_frame': project_frame})
         
         
-        sys_buttons = Frame(self._widgets['frame']['main_frame'],
-                           borderwidth = 1)
-        sys_buttons.grid(row = 0, column = 0, sticky = 'nsew')
-        sys_buttons.grid_columnconfigure(0, weight = 1)
-        self._widgets['frame'].update({'main_sys_buttons': sys_buttons})
+# =============================================================================
+#         sys_buttons = Frame(self._widgets['frame']['main_frame'],
+#                            borderwidth = 1)
+#         sys_buttons.grid(row = 0, column = 0, sticky = 'nsew')
+#         sys_buttons.grid_columnconfigure(0, weight = 1)
+#         self._widgets['frame'].update({'main_sys_buttons': sys_buttons})
+# =============================================================================
         
         
         projects = Frame(self._widgets['frame']['main_frame'])
@@ -92,17 +141,15 @@ class MainApp:
         self._setup_main_frame()
         
         
-        bt_close = Button(self._widgets['frame']['main_sys_buttons'],
-                          text = self._sys_content['bt_exit'],
-                          font = MainApp.FONT_B,
-                          bg = 'red',
-                          command = lambda: self._main_menu.destroy())
-        bt_close.grid(row = 0, column = 0, sticky = 'nsew')
-        self._widgets['button'].update({'main_exit': bt_close})
-        
-        
-        
-        
+# =============================================================================
+#         bt_close = Button(self._widgets['frame']['main_sys_buttons'],
+#                           text = self._sys_content['bt_exit'],
+#                           font = MainApp.FONT_B,
+#                           bg = 'red',
+#                           command = lambda: self._main_menu.destroy())
+#         bt_close.grid(row = 0, column = 0, sticky = 'nsew')
+#         self._widgets['button'].update({'main_exit': bt_close})
+# =============================================================================
         
         
         
@@ -122,7 +169,8 @@ class MainApp:
         for idx, entry in enumerate(self._content):
             cur_row = int(idx/self._num_col)
             cur_col = int(idx % self._num_col)
-            loaded_img = Image.open(entry[3] + '/' + entry[1])
+            image_path = f"{self.REPO_PATH}/{entry[3]}/{entry[1]}"
+            loaded_img = Image.open(image_path)
             
             scaled = self._scale_img(loaded_img, aim_height, aim_width)
             img = ImageTk.PhotoImage(scaled)
