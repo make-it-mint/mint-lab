@@ -1,5 +1,0 @@
-{'project_list_header': 'Projekte',
-                'box_header':'Laborkits',
-                'bt_exit':'Stop',
-                'bt_next':'Weiter',
-                'bt_back':'Zurück'}

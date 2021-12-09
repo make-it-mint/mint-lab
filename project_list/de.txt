@@ -1,6 +1,0 @@
-[['Ultraschall', 'project_logo.png', 'yellow', 'ultrasonic'],
-['Solar', 'project_logo.png', 'green', 'solar'],
-['Elektrizität', 'project_logo.png', 'blue', 'electricity'],
-['Gewicht', 'project_logo.png', 'white', 'weight'],
-['Temperatur', 'project_logo.png', 'light blue', 'temperature'],
-['Controller', 'project_logo.png', 'ivory2', 'controller']]

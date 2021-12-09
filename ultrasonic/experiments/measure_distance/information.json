@@ -1,0 +1,42 @@
+{
+    "setup":{
+        "image":"setup.png",
+        "de":{
+            "material":[
+                "1x HC-SR04 Ultraschall Sensor",
+                "Jumperkabel",
+                "2x LED",
+                "1x Widerstand 330 Ohm",
+                "1x Widerstand 470 Ohm",
+                "2x Widerstand 100 Ohm"
+            ]
+        },
+        "en":{
+            "material":[
+                "1x HC-SR04 Ultrasonic Sensor",
+                "Jumpercable",
+                "2x LED",
+                "1x Resistor 330 Ohm",
+                "1x Resistor 470 Ohm"
+            ]
+        }
+    },
+    "information":{
+        "image":"ultrasonic.gif",
+        "de":[
+            "Hier kommt die Beschreibung des Projekts hin"
+        ],
+        "en":[
+            "This is where the Projectdescription will be"
+        ]
+    },
+    "experiment":{
+        "de":{
+            "name":"Distanz Messen"
+
+        },
+        "en":{
+            "name":"Measure Distance"
+        }
+    }
+}

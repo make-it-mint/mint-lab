@@ -1,0 +1,26 @@
+{
+    "experiments":[
+        {
+            "path":"experiments/measure_distance",
+            "de":{
+                "name":"Distanz Messen",
+                "description":"Einfaches Experiment zum Messen von Abständen. Medien können angepasst werden"
+            },
+            "en":{
+                "name":"Measure Distance",
+                "description":"Einfaches Experiment zum Messen von Abständen. Medien können angepasst werden"
+            }
+        },
+        {
+            "path":"experiments/react_to_movement",
+            "de":{
+                "name":"Auf Bewegung Reagieren",
+                "description":"In diesem Experiment wird Ultraschall als Bewegungssensorik verwendet. Sobald jemand den Überwachungsbereich Betritt, leuchtet eine LED auf, um dies anzuzeigen"
+            },
+            "en":{
+                "name":"React To Movement",
+                "description":"Einfaches Experiment zum Messen von Abständen. Medien können angepasst werden"
+            }
+        }
+    ]
+}
