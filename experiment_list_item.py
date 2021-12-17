@@ -38,11 +38,29 @@ class ExperimentOverview(QFrame):
         self._language = language
 
         self.layout.addWidget(QLabel(experiment),0,0)
-        self.layout.addWidget(QLabel(description),1,0)
+
+        button = QToolButton()
+        image_path = f"{experiment_path}/logo.png"
+        button.setIcon(QIcon(image_path))
+        
+        button.setSizePolicy(
+            QSizePolicy.Preferred,
+            QSizePolicy.Expanding,
+        )
+        button.setIconSize(QSize(button.size().width()-100, button.size().height()-40))
+        button.setStyleSheet(
+            f"""
+            border-radius: 20px;
+            """)
+
+        button.clicked.connect(self.start_experiment)
+        self.layout.addWidget(button,1,0)
+
+
+        self.layout.addWidget(QLabel(description),2,0)
 
         button = QPushButton("Start Experiment")
-        button.clicked.connect(self.start_experiment)
-        self.layout.addWidget(button,0,1,2,1)
+        
 
         self.layout.setColumnStretch(0,5)
         self.layout.setColumnStretch(1,1)

@@ -32,7 +32,18 @@
     },
     "experiment":{
         "de":{
-            "name":"Distanz Messen"
+            "name":"Distanz Messen",
+            "formula-img":"formula_de.png",
+            "speed":{
+                "Luft":330,
+                "Waser":1200,
+                "Stahl":3400,
+                "Holz":80,
+                "Sonstige":0
+            },
+            "distance":"Aktuelle Distanz",
+            "medium":"Mediums"
+            
 
         },
         "en":{

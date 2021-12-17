@@ -4,7 +4,7 @@
             "path":"experiments/measure_distance",
             "de":{
                 "name":"Distanz Messen",
-                "description":"Einfaches Experiment zum Messen von Abständen. Medien können angepasst werden"
+                "description":"Einfaches Experiment zum Messen von Abständen in unterschiedlichen Materialien"
             },
             "en":{
                 "name":"Measure Distance",

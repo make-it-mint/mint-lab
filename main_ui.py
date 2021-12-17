@@ -162,11 +162,16 @@ class MainApp(QMainWindow):
         
     def show_experiment_list(self, path):
         self.current_list_frame = QFrame()
-        self.current_list_layout = QVBoxLayout(self.current_list_frame)
+        self.current_list_layout = QGridLayout(self.current_list_frame)
         self._experiment_list_layout.addWidget(self.current_list_frame,0,0)
 
         experiments = json.load(open(f"{path}/experiments.json"))["experiments"]
-        for row, experiment in enumerate(experiments):
+        num_rows = 0
+        num_columns = 3
+        for idx, experiment in enumerate(experiments):
+            num_rows += 1
+            row = int(math.floor(idx/num_columns))
+            column = int(idx % num_columns)
             experiment_name = experiment[self._language]["name"]
             experiment_description = experiment[self._language]["description"]
             experiment_path = f"{path}/{experiment['path']}"
@@ -179,8 +184,18 @@ class MainApp(QMainWindow):
                 windows=self._widgets['windows'],
                 )
 
-            self.current_list_layout.addWidget(experiment)
-            #self.current_list_layout.setRowStretch(row,0)
+            self.current_list_layout.addWidget(experiment, row, column)
+
+        for row in range(num_rows + 1):
+            if row < num_rows:
+                self.current_list_layout.setRowStretch(row,0)
+            else:
+                self.current_list_layout.setRowStretch(row,1)
+
+        for column in range(num_columns):
+            self.current_list_layout.setColumnStretch(column,1)
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
