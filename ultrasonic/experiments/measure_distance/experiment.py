@@ -5,9 +5,12 @@ import sys, os, json
 from PyQt5.QtWidgets import * 
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import * 
+import RPi.GPIO as GPIO
+import time
+import threading
 
 
-class Experiment(QFrame):
+class Experiment(QWidget):
 
     DIRECTORY_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -109,72 +112,198 @@ class Experiment(QFrame):
         
 
     def fill_experiment(self, content:dict):
-        layout = self.tabs["experiment"]["layout"]
+        self.experiment_is_running = False
+        self.experiment_layout = self.tabs["experiment"]["layout"]
         
-        medium_group=QGroupBox(content[self.language]['medium'])
-        medium_layout=QVBoxLayout()
-        for idx, (k, v) in enumerate(content[self.language]['speed'].items()):
-            radio = QRadioButton(f"{k}(~{v} m/s")
-            if idx == 0:
-                radio.setChecked(True)
-            medium_layout.addWidget(radio)
+        self.experiment_medium_speed(parent=self.experiment_layout, content=content)
 
-        custom_speed = QLineEdit()
-        #custom_speed.text()
-        medium_layout.addWidget(custom_speed)
-
-        medium_group.setLayout(medium_layout)
-
-        layout.addWidget(medium_group,0,0,3,2)
-
+        self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
 
         formula = QLabel("THIS IS WHERE THE FORMULA WILL GO")
         interactive_formula = QLabel("THIS IS WHERE THE INTERACTIVE FORMULA WILL GO")
 
-        layout.addWidget(formula,0,2)
-        layout.addWidget(interactive_formula,1,2)
+        self.experiment_layout.addWidget(formula,0,2)
+        self.experiment_layout.addWidget(interactive_formula,1,2)
 
-        start_experiment = QPushButton("START EXPERIMENT")
-        layout.addWidget(start_experiment,2,2)
+        self.start_experiment = QPushButton("START EXPERIMENT")
+        
+        self.experiment_layout.addWidget(start_experiment,2,2)
 
 
+        
+
+        
+
+
+    def start_stop_experiment(self):
+        if self.experiment_is_running == False:
+            self.experiment_is_running = True
+            self.start_experiment.setText("STOP EXPERIMENT")
+            threading.Thread(target = self.run_experiment).start()
+            
+        else:
+            self.experiment_is_running = False
+            self.start_experiment.setText("START EXPERIMENT")
+
+    def experiment_led_threshholds_and_distance(self, parent, content):
         #Widgets for Blue LED
-        slider_blue = QSlider(Qt.Horizontal)
-        slider_blue.setMinimum(0)
-        slider_blue.setMaximum(10)
-        slider_blue.setValue(3)
-        slider_blue.setTickPosition(QSlider.TicksBelow)
-        slider_blue.setTickInterval(1)
+        self.slider_blue = QSlider(Qt.Horizontal)
+        self.slider_blue.setMinimum(0)
+        self.slider_blue.setMaximum(10)
+        self.slider_blue.setValue(3)
+        self.slider_blue.setTickPosition(QSlider.TicksBelow)
+        self.slider_blue.setTickInterval(1)
         label_blue = QLabel("Blau")
-        label_blue_distance = QLabel(f"{slider_blue.value()} cm")
+        self.label_blue_distance = QLabel(f"{self.slider_blue.value()} cm")
 
-        layout.addWidget(label_blue,3,0)
-        layout.addWidget(label_blue_distance,3,1)
-        layout.addWidget(slider_blue,3,2)
+        parent.addWidget(label_blue,3,0)
+        parent.addWidget(self.label_blue_distance,3,1)
+        parent.addWidget(self.slider_blue,3,2)
 
 
         #Widgets for current distane
-        current_distance = QProgressBar()
-        current_distance.setMaximum(100)
-        current_distance.setMinimum(0)
-        current_distance.setValue(20)
-        label_distance = QLabel(f"Aktuelle Distanz:\n{current_distance.value()} cm")
-        layout.addWidget(current_distance,4,2,1,2)
-        layout.addWidget(label_distance,4,0,1,2)
+        self.current_distance = QProgressBar()
+        self.current_distance.setMaximum(100)
+        self.current_distance.setMinimum(0)
+        self.current_distance.setValue(20)
+        self.current_distance.setTextVisible(False)
+        self.label_distance = QLabel(f"Aktuelle Distanz:\n{self.current_distance.value()} cm")
+        parent.addWidget(self.current_distance,4,2,1,2)
+        parent.addWidget(self.label_distance,4,0,1,2)
 
         #Widgets for Red LED
-        slider_red = QSlider(Qt.Horizontal)
-        slider_red.setMinimum(0)
-        slider_red.setMaximum(10)
-        slider_red.setValue(1)
-        slider_red.setTickPosition(QSlider.TicksBelow)
-        slider_red.setTickInterval(1)
+        self.slider_red = QSlider(Qt.Horizontal)
+        self.slider_red.setMinimum(0)
+        self.slider_red.setMaximum(10)
+        self.slider_red.setValue(1)
+        self.slider_red.setTickPosition(QSlider.TicksBelow)
+        self.slider_red.setTickInterval(1)
         label_red = QLabel("Rot")
-        label_red_distance = QLabel(f"{slider_red.value()} cm")
+        self.label_red_distance = QLabel(f"{self.slider_red.value()} cm")
 
-        layout.addWidget(label_red,5,0)
-        layout.addWidget(label_red_distance,5,1)
-        layout.addWidget(slider_red,5,2)
+        parent.addWidget(label_red,5,0)
+        parent.addWidget(self.label_red_distance,5,1)
+        parent.addWidget(self.slider_red,5,2)
 
 
+    def experiment_medium_speed(self, parent, content):
+        self.medium_group=QGroupBox(content[self.language]['medium'])
+        self.medium_widgets = []
+        medium_layout=QVBoxLayout()
+        for idx, (k, v) in enumerate(content[self.language]['speed'].items()):
+            radio = QRadioButton(f"{k}(~ {v} m/s)")
+            if idx == 0:
+                radio.setChecked(True)
+            medium_layout.addWidget(radio)
+            self.medium_widgets.append(radio)
+
+        self.custom_speed = QLineEdit()
+        #custom_speed.text()
+        medium_layout.addWidget(self.custom_speed)
+
+        self.medium_group.setLayout(medium_layout)
+
+        parent.addWidget(self.medium_group,0,0,3,2)
+
+
+    def measure_distance(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO_TRIGGER = 18
+        GPIO_ECHO = 24
+        GPIO_LED_KURZ = 26
+        GPIO_LED_LANG = 5
+
+        
+        GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+        GPIO.setup(GPIO_ECHO,GPIO.IN)
+        GPIO.setup(GPIO_LED_KURZ, GPIO.OUT)
+        GPIO.setup(GPIO_LED_LANG, GPIO.OUT)
+        
+        GPIO.output(GPIO_LED_KURZ, GPIO.LOW)
+        GPIO.output(GPIO_LED_LANG,GPIO.LOW)
+        
+        GPIO.output(GPIO_TRIGGER,True)
+        
+        time.sleep(.00001)
+        GPIO.output(GPIO_TRIGGER, False)
+        
+        StartTime = time.time()
+        StopTime = time.time()
+        
+        while GPIO.input(GPIO_ECHO) == 0:
+            StartTime = time.time()
+            
+        while GPIO.input(GPIO_ECHO) == 1:
+            StopTime = time.time()
+            
+        
+        TimeElapsed = StopTime - StartTime
+        
+        distance = (TimeElapsed * self.speed_of_sound*100)/2
+        
+        if distance < self.slider_red.value():
+            GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
+        elif distance > self.slider_blue.value():
+            GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
+            
+        return distance
+
+
+
+
+    def cleanup_pins(self):
+        GPIO.cleanup()
+
+
+    def check_selected_medium(self):
+
+        speed = None
+
+        for medium in self.medium_widgets:
+            if medium.isChecked():
+                text = medium.text()
+                try:
+                    speed = text.split()[1]
+
+                except:
+                    speed = self.custom_speed.text()
+
+                try:
+                    speed = int(speed)
+
+                except ValueError:
+                    print("Custom Value is not a Number")
+                    speed = None
+                
+                break
+        
+        return speed
+
+
+
+    def run_experiment(self):
+    
+        try:
+            while self.experiment_is_running:
+                self.speed_of_sound = self.check_selected_medium()
+                distance = self.measure_distance()
+                self.update_ui(distance=distance)
+                time.sleep(1)
+            
+            print("Measure stopped by Button Click")
+            self.cleanup_pins()
+            
+        except KeyboardInterrupt:
+            print("Measurement stopped by User")
+            self.cleanup_pins()
+
+
+    def update_ui(self, distance):
+        self.label_distance.setText(f"{round(distance,2)} cm")
+        bar = self.current_distance
+
+        if distance < bar.maximum():
+            bar.setValue(distance)
+        elif distance >= bar.maximum():
+            bar.setValue(int(bar.maximum()))
 
