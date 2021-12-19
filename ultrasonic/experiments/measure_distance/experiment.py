@@ -5,10 +5,10 @@ import sys, os, json
 from PyQt5.QtWidgets import * 
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import * 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
 import threading
-
+import random
 
 class Experiment(QWidget):
 
@@ -44,10 +44,10 @@ class Experiment(QWidget):
             current_layout = QGridLayout(current_tab)
             tabs_widget.addTab(current_tab ,v)
             self.tabs.update({k:{"widget":current_tab,"layout":current_layout}})
-            print(v)
+
 
         self.layout.addWidget(tabs_widget)
-        print(self.tabs)
+
         self.fill_experiment_setup(content=experiment_content["setup"])
         self.fill_experiment_info(content=experiment_content["information"])
         self.fill_experiment(content=experiment_content["experiment"])
@@ -126,8 +126,9 @@ class Experiment(QWidget):
         self.experiment_layout.addWidget(interactive_formula,1,2)
 
         self.start_experiment = QPushButton("START EXPERIMENT")
+        self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
-        self.experiment_layout.addWidget(start_experiment,2,2)
+        self.experiment_layout.addWidget(self.start_experiment,2,2)
 
 
         
@@ -136,14 +137,29 @@ class Experiment(QWidget):
 
 
     def start_stop_experiment(self):
+
         if self.experiment_is_running == False:
             self.experiment_is_running = True
             self.start_experiment.setText("STOP EXPERIMENT")
-            threading.Thread(target = self.run_experiment).start()
+
+            self.Experiment_Thread = QThread()
+            self.running_experiment = Running_Experiment()
+            self.running_experiment.speed_of_sound = self.check_selected_medium()
+            self.running_experiment.experiment_is_running = self.experiment_is_running
+
+            self.running_experiment.moveToThread(self.Experiment_Thread)
+            self.Experiment_Thread.started.connect(self.running_experiment.run)
+            self.running_experiment.distance.connect(self.update_ui)
+
+            self.Experiment_Thread.start()
             
         else:
             self.experiment_is_running = False
+            self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.Experiment_Thread.terminate()
             self.start_experiment.setText("START EXPERIMENT")
+
+
 
     def experiment_led_threshholds_and_distance(self, parent, content):
         #Widgets for Blue LED
@@ -204,55 +220,7 @@ class Experiment(QWidget):
         self.medium_group.setLayout(medium_layout)
 
         parent.addWidget(self.medium_group,0,0,3,2)
-
-
-    def measure_distance(self):
-        GPIO.setmode(GPIO.BCM)
-        GPIO_TRIGGER = 18
-        GPIO_ECHO = 24
-        GPIO_LED_KURZ = 26
-        GPIO_LED_LANG = 5
-
-        
-        GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-        GPIO.setup(GPIO_ECHO,GPIO.IN)
-        GPIO.setup(GPIO_LED_KURZ, GPIO.OUT)
-        GPIO.setup(GPIO_LED_LANG, GPIO.OUT)
-        
-        GPIO.output(GPIO_LED_KURZ, GPIO.LOW)
-        GPIO.output(GPIO_LED_LANG,GPIO.LOW)
-        
-        GPIO.output(GPIO_TRIGGER,True)
-        
-        time.sleep(.00001)
-        GPIO.output(GPIO_TRIGGER, False)
-        
-        StartTime = time.time()
-        StopTime = time.time()
-        
-        while GPIO.input(GPIO_ECHO) == 0:
-            StartTime = time.time()
-            
-        while GPIO.input(GPIO_ECHO) == 1:
-            StopTime = time.time()
-            
-        
-        TimeElapsed = StopTime - StartTime
-        
-        distance = (TimeElapsed * self.speed_of_sound*100)/2
-        
-        if distance < self.slider_red.value():
-            GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
-        elif distance > self.slider_blue.value():
-            GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
-            
-        return distance
-
-
-
-
-    def cleanup_pins(self):
-        GPIO.cleanup()
+ 
 
 
     def check_selected_medium(self):
@@ -279,23 +247,7 @@ class Experiment(QWidget):
         
         return speed
 
-
-
-    def run_experiment(self):
-    
-        try:
-            while self.experiment_is_running:
-                self.speed_of_sound = self.check_selected_medium()
-                distance = self.measure_distance()
-                self.update_ui(distance=distance)
-                time.sleep(1)
-            
-            print("Measure stopped by Button Click")
-            self.cleanup_pins()
-            
-        except KeyboardInterrupt:
-            print("Measurement stopped by User")
-            self.cleanup_pins()
+        
 
 
     def update_ui(self, distance):
@@ -307,3 +259,75 @@ class Experiment(QWidget):
         elif distance >= bar.maximum():
             bar.setValue(int(bar.maximum()))
 
+
+
+class Running_Experiment(QObject):
+    distance = pyqtSignal(float)
+    experiment_is_running = True
+    speed_of_sound = None
+
+    def run(self):
+        try:
+            while self.experiment_is_running:
+                if self.speed_of_sound is None:
+                    break
+
+                self.distance.emit(self.measure_distance())
+                time.sleep(1)
+            
+            print("Measure stopped by Button Click")
+            self.cleanup_pins()
+            
+        except (Exception, KeyboardInterrupt) as e:
+            print(e)
+            print("Measurement stopped by User")
+            self.cleanup_pins()
+
+    def cleanup_pins(self):
+        #GPIO.cleanup()
+        pass
+
+
+    def measure_distance(self):
+
+        distance = random.randint(2,40)
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO_TRIGGER = 18
+        # GPIO_ECHO = 24
+        # GPIO_LED_KURZ = 26
+        # GPIO_LED_LANG = 5
+
+        
+        # GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+        # GPIO.setup(GPIO_ECHO,GPIO.IN)
+        # GPIO.setup(GPIO_LED_KURZ, GPIO.OUT)
+        # GPIO.setup(GPIO_LED_LANG, GPIO.OUT)
+        
+        # GPIO.output(GPIO_LED_KURZ, GPIO.LOW)
+        # GPIO.output(GPIO_LED_LANG,GPIO.LOW)
+        
+        # GPIO.output(GPIO_TRIGGER,True)
+        
+        # time.sleep(.00001)
+        # GPIO.output(GPIO_TRIGGER, False)
+        
+        # StartTime = time.time()
+        # StopTime = time.time()
+        
+        # while GPIO.input(GPIO_ECHO) == 0:
+        #     StartTime = time.time()
+            
+        # while GPIO.input(GPIO_ECHO) == 1:
+        #     StopTime = time.time()
+            
+        
+        # TimeElapsed = StopTime - StartTime
+        
+        # distance = (TimeElapsed * self.speed_of_sound*100)/2
+        
+        # if distance < self.slider_red.value():
+        #     GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
+        # elif distance > self.slider_blue.value():
+        #     GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
+            
+        return distance
