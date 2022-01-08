@@ -37,7 +37,25 @@ class ExperimentOverview(QFrame):
         self._experiment_path = experiment_path
         self._language = language
 
-        self.layout.addWidget(QLabel(experiment),0,0)
+        
+        self.setStyleSheet(
+            """
+            QFrame{
+            border: 5px solid black;
+            border-radius: 20px;
+            }
+            QLabel{
+                border: 0px;
+            }
+            QToolButton{
+                border-radius: 5px;
+            }
+            """)
+
+        header =QLabel(experiment)
+        header.setWordWrap(True)
+        header.setFont(QFont("Helvetica", 32, QFont.Bold, italic=False))
+        self.layout.addWidget(header,0,0,alignment=Qt.AlignCenter)
 
         button = QToolButton()
         image_path = f"{experiment_path}/logo.png"
@@ -47,19 +65,17 @@ class ExperimentOverview(QFrame):
             QSizePolicy.Preferred,
             QSizePolicy.Expanding,
         )
-        button.setIconSize(QSize(button.size().width()-100, button.size().height()-40))
-        button.setStyleSheet(
-            f"""
-            border-radius: 20px;
-            """)
+        button.setIconSize(QSize(button.size().width(), button.size().height()-40))
+        
+        
 
         button.clicked.connect(self.start_experiment)
-        self.layout.addWidget(button,1,0)
+        self.layout.addWidget(button,1,0, alignment=Qt.AlignCenter)
 
-
-        self.layout.addWidget(QLabel(description),2,0)
-
-        button = QPushButton("Start Experiment")
+        # desc =QLabel(description)
+        # desc.setWordWrap(True)
+        # desc.setFont(QFont("Helvetica", 22, QFont.Normal, italic=False))
+        # self.layout.addWidget(desc,2,0,alignment=Qt.AlignCenter)
         
 
         self.layout.setColumnStretch(0,5)
@@ -70,9 +86,15 @@ class ExperimentOverview(QFrame):
 
 
     def start_experiment(self):
-        self.program_windows['experiment_list']['widget'].hide()
-        self.program_windows['experiment']['widget'].show()
-        spec = importlib.util.spec_from_file_location("module.name", f"{self._experiment_path}/experiment.py")
-        experiment_module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(experiment_module)
-        experiment_module.Experiment(language = self._language, program_windows=self.program_windows)
+        try:
+            self.program_windows['experiment_list']['widget'].hide()
+            self.program_windows['experiment']['widget'].show()
+            spec = importlib.util.spec_from_file_location("module.name", f"{self._experiment_path}/experiment.py")
+            experiment_module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(experiment_module)
+            experiment_module.Experiment(language = self._language, program_windows=self.program_windows)
+        except Exception as e:
+            #print(e)
+            self.program_windows["experiment"]["widget"].hide()
+            self.program_windows["experiment_list"]["widget"].show()
+            QMessageBox.about(self,"Achtung","Keine Daten verfügbar")

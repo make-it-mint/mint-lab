@@ -12,13 +12,13 @@
             }
         },
         {
-            "path":"experiments/react_to_movement",
+            "path":"experiments/parking",
             "de":{
-                "name":"Auf Bewegung Reagieren",
+                "name":"Parksensor",
                 "description":"In diesem Experiment wird Ultraschall als Bewegungssensorik verwendet. Sobald jemand den Überwachungsbereich Betritt, leuchtet eine LED auf, um dies anzuzeigen"
             },
             "en":{
-                "name":"React To Movement",
+                "name":"Parking Sensor",
                 "description":"Einfaches Experiment zum Messen von Abständen. Medien können angepasst werden"
             }
         }

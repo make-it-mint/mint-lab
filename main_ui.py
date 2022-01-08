@@ -150,19 +150,65 @@ class MainApp(QMainWindow):
             print(f"Already checked out Version: {selected_tag}")    
         
     def _open_experiment_list(self, experiment_type):
-        #try:
-        self.menu_frame.hide()
-        self.experiment_list_frame.show()
-        self.show_experiment_list(path=f"{self.REPO_PATH}/{experiment_type}")
-        # except Exception as e:
-        #     print(e)
-        #     #messagebox.showinfo("Achtung","Keine Daten verfügbar")
-        #     return
+        try:
+            self.menu_frame.hide()
+            self.experiment_list_frame.show()
+            self.show_experiment_list(path=f"{self.REPO_PATH}/{experiment_type}",experiment_type=experiment_type)
+        except Exception as e:
+            self.menu_frame.show()
+            self.experiment_list_frame.hide()
+            self.clear_layout(self._experiment_list_layout)
+            #print(e)
+            QMessageBox.about(self,"Achtung","Keine Daten verfügbar")
+            return
 
-        
-    def show_experiment_list(self, path):
+
+
+    def clear_layout(self, layout):
+        while layout.count():
+            child = layout.takeAt(0)
+            if child.widget() is not None:
+                child.widget().deleteLater()
+            elif child.layout() is not None:
+                self.clearLayout(child.layout())
+
+
+
+    def _return_to_menu(self):
+        self.experiment_list_frame.hide()
+        self.menu_frame.show()
+        self.current_list_frame.deleteLater()
+
+    def show_experiment_list(self, path, experiment_type):
         self.current_list_frame = QFrame()
         self.current_list_layout = QGridLayout(self.current_list_frame)
+
+        #Header
+        back_button=QPushButton(" X ")
+        back_button.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
+        back_button.clicked.connect(self._return_to_menu)
+        back_button.setStyleSheet(
+                """
+                QPushButton {
+                background-color: red;
+                border: 2px solid black;
+                border-radius: 25px;
+                }
+                """)
+        self.current_list_layout.addWidget(back_button,0,0)
+
+        header =QLabel(self._projects[experiment_type]["name"][self._language])
+        header.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
+        self.current_list_layout.addWidget(header,0,1)
+
+        self.current_list_layout.setColumnStretch(0,0)
+        self.current_list_layout.setColumnStretch(1,1)
+
+        #List
+        current_experiments_frame = QFrame()
+        current_experiments_layout = QGridLayout(current_experiments_frame)
+        self.current_list_layout.addWidget(current_experiments_frame,1,0,1,2)
+
         self._experiment_list_layout.addWidget(self.current_list_frame,0,0)
 
         experiments = json.load(open(f"{path}/experiments.json"))["experiments"]
@@ -184,16 +230,18 @@ class MainApp(QMainWindow):
                 windows=self._widgets['windows'],
                 )
 
-            self.current_list_layout.addWidget(experiment, row, column)
+            
+
+            current_experiments_layout.addWidget(experiment, row, column)
 
         for row in range(num_rows + 1):
             if row < num_rows:
-                self.current_list_layout.setRowStretch(row,0)
+                current_experiments_layout.setRowStretch(row,0)
             else:
-                self.current_list_layout.setRowStretch(row,1)
+                current_experiments_layout.setRowStretch(row,1)
 
         for column in range(num_columns):
-            self.current_list_layout.setColumnStretch(column,1)
+            current_experiments_layout.setColumnStretch(column,1)
 
 
 

@@ -4,8 +4,9 @@
         "name":"Deutsch",
         "material":"Material",
         "experiment_tabs":{
-            "setup":"Aufbau",
             "information":"Info",
+            "material":"Material",
+            "setup":"Aufbau",
             "experiment":"Experiment"
         }
     },
@@ -14,8 +15,9 @@
         "name":"English",
         "material":"Material",
         "experiment_tabs":{
-            "setup":"Setup",
             "information":"Info",
+            "material":"Material",
+            "setup":"Setup",
             "experiment":"Experiment"
         }
     }

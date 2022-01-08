@@ -21,40 +21,68 @@ class Experiment(QWidget):
         parent_layout=self.program_windows['experiment']['layout']
         
 
-        widget=QWidget()
-        self.layout=QVBoxLayout()
-        widget.setLayout(self.layout)
+        self.widget=QWidget()
+        self.layout=QGridLayout()
+        self.widget.setLayout(self.layout)
 
-        parent_layout.addWidget(widget)
+        parent_layout.addWidget(self.widget)
 
         self.language = language
         sys_content = json.load(open(f"sys_language.json"))[self.language]
         experiment_content = json.load(open(f"{self.DIRECTORY_PATH}/information.json"))
 
+        back_button=QPushButton(" X ")
+        back_button.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
+        back_button.clicked.connect(self._return_to_experiment_list)
+        back_button.setStyleSheet(
+                """
+                QPushButton {
+                background-color: red;
+                border: 2px solid black;
+                border-radius: 25px;
+                }
+                """)
+        self.layout.addWidget(back_button,0,0)
+
         header =QLabel(experiment_content["experiment"][self.language]["name"])
-        self.layout.addWidget(header)
+        header.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
+        self.layout.addWidget(header,0,1)
+
+        self.layout.setColumnStretch(0,0)
+        self.layout.setColumnStretch(1,1)
         
+        self.tabs_widget = QTabWidget()
+        self.tabs_widget.setTabPosition(QTabWidget.North)
+        #self.tabs_widget.setMovable(True)
         
-        tabs_widget = QTabWidget()
-        tabs_widget.setTabPosition(QTabWidget.North)
-        tabs_widget.setMovable(True)
         self.tabs={}
         for k,v in sys_content["experiment_tabs"].items():
             current_tab = QFrame()
             current_layout = QGridLayout(current_tab)
-            tabs_widget.addTab(current_tab ,v)
+            self.tabs_widget.addTab(current_tab ,v)
             self.tabs.update({k:{"widget":current_tab,"layout":current_layout}})
 
 
-        self.layout.addWidget(tabs_widget)
+        self.layout.addWidget(self.tabs_widget,1,0,1,2)
 
+        self.fill_experiment_material(content=experiment_content["setup"])
         self.fill_experiment_setup(content=experiment_content["setup"])
         self.fill_experiment_info(content=experiment_content["information"])
         self.fill_experiment(content=experiment_content["experiment"])
 
 
-    def fill_experiment_setup(self, content:dict):
-        layout = self.tabs["setup"]["layout"]
+    def _return_to_experiment_list(self):
+        if self.experiment_is_running:
+            QMessageBox.about(self,"Achtung","Experiment stoppen, bevor das Fenster geschlossen werden kann")
+        else:
+            self.program_windows["experiment"]["widget"].hide()
+            self.program_windows["experiment_list"]["widget"].show()
+            self.widget.deleteLater()
+
+
+
+    def fill_experiment_material(self, content:dict):
+        layout = self.tabs["material"]["layout"]
 
         material = ""
         for idx, item in enumerate(content[self.language]["material"]):
@@ -63,21 +91,26 @@ class Experiment(QWidget):
                 material += f"\n"
 
         material_label = QLabel(material)
+        material_label.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
         layout.addWidget(material_label,0,0)
 
 
+
+    def fill_experiment_setup(self, content:dict):
+        layout = self.tabs["setup"]["layout"]
+        layout.setColumnStretch(0,1)
+        layout.setRowStretch(0,0)
         
         img_path=os.path.join(self.DIRECTORY_PATH,content["image"])
-        pic = QLabel()
-        pic.setPixmap(QPixmap(img_path))
+
+        image = QPixmap(img_path)
+        label = QLabel()
+        label.setPixmap(image.scaledToWidth(int(self.tabs_widget.size().width()*2)))
         
-        pic.setSizePolicy(
-                QSizePolicy.Expanding,
-                QSizePolicy.Expanding,
-        )
-        layout.addWidget(pic, 1,0)
-        layout.setRowStretch(0,0)
-        layout.setRowStretch(1,1)
+
+        layout.addWidget(label, 0,0,alignment=Qt.AlignCenter)
+
+        
 
 
 
@@ -89,9 +122,11 @@ class Experiment(QWidget):
         for idx, item in enumerate(content[self.language]):
             info += item
             if idx < len(content[self.language])-1:
-                info += f"\n"
+                info += f"\n\n"
 
         material_label = QLabel(info)
+        material_label.setWordWrap(True)
+        material_label.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
         layout.addWidget(material_label, 0, 0)
 
 
@@ -118,18 +153,22 @@ class Experiment(QWidget):
         self.experiment_medium_speed(parent=self.experiment_layout, content=content)
 
         self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
+        image = QPixmap(f"{self.DIRECTORY_PATH}/formula.png")
+        formula = QLabel()
+        formula.setPixmap(image.scaledToWidth(formula.size().width()))
 
-        formula = QLabel("THIS IS WHERE THE FORMULA WILL GO")
-        interactive_formula = QLabel("THIS IS WHERE THE INTERACTIVE FORMULA WILL GO")
-
-        self.experiment_layout.addWidget(formula,0,2)
-        self.experiment_layout.addWidget(interactive_formula,1,2)
+        self.experiment_layout.addWidget(formula,0,1,alignment=Qt.AlignCenter)
 
         self.start_experiment = QPushButton("START EXPERIMENT")
         self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
-        self.experiment_layout.addWidget(self.start_experiment,2,2)
+        self.experiment_layout.addWidget(self.start_experiment,1,1)
 
+        self.experiment_layout.setRowStretch(0,2)
+        self.experiment_layout.setRowStretch(1,4)
+        self.experiment_layout.setRowStretch(2,3)
+        self.experiment_layout.setColumnStretch(0,1)
+        self.experiment_layout.setColumnStretch(1,3)
 
         
 
@@ -156,50 +195,98 @@ class Experiment(QWidget):
         else:
             self.experiment_is_running = False
             self.running_experiment.experiment_is_running = self.experiment_is_running
-            self.Experiment_Thread.terminate()
+            self.Experiment_Thread.exit()
             self.start_experiment.setText("START EXPERIMENT")
 
 
 
     def experiment_led_threshholds_and_distance(self, parent, content):
+        self.interactive_icons_frame =QFrame()
+        self.interactive_icons_layout = QGridLayout()
+        self.interactive_icons_frame.setLayout(self.interactive_icons_layout)
         #Widgets for Blue LED
         self.slider_blue = QSlider(Qt.Horizontal)
         self.slider_blue.setMinimum(0)
-        self.slider_blue.setMaximum(10)
+        self.slider_blue.setMaximum(30)
         self.slider_blue.setValue(3)
         self.slider_blue.setTickPosition(QSlider.TicksBelow)
-        self.slider_blue.setTickInterval(1)
-        label_blue = QLabel("Blau")
-        self.label_blue_distance = QLabel(f"{self.slider_blue.value()} cm")
+        self.slider_blue.setTickInterval(0.1)
+        self.slider_blue.valueChanged.connect(self.blue_value_changed)
 
-        parent.addWidget(label_blue,3,0)
-        parent.addWidget(self.label_blue_distance,3,1)
-        parent.addWidget(self.slider_blue,3,2)
+        self.label_blue = QLabel(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
+        self.label_blue.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
+        self.label_blue_led = QLabel()
+        self.label_blue_led.setSizePolicy(
+                QSizePolicy.Expanding,
+                QSizePolicy.Expanding,
+            )
+        self.label_blue_led.setStyleSheet(
+                """
+                background-color: transparent;
+                """)
+
+        self.interactive_icons_layout.addWidget(self.label_blue,0,0,1,2)
+        self.interactive_icons_layout.addWidget(self.label_blue_led,1,0)
+        self.interactive_icons_layout.addWidget(self.slider_blue,1,1)
 
 
-        #Widgets for current distane
+        #Widgets for current distance
         self.current_distance = QProgressBar()
-        self.current_distance.setMaximum(100)
+        self.current_distance.setMaximum(30)
         self.current_distance.setMinimum(0)
-        self.current_distance.setValue(20)
+        self.current_distance.setValue(0)
         self.current_distance.setTextVisible(False)
-        self.label_distance = QLabel(f"Aktuelle Distanz:\n{self.current_distance.value()} cm")
-        parent.addWidget(self.current_distance,4,2,1,2)
-        parent.addWidget(self.label_distance,4,0,1,2)
+        self.current_distance.setSizePolicy(
+                QSizePolicy.Expanding,
+                QSizePolicy.Expanding,
+            )
+        self.label_distance = QLabel(f"Aktuelle Distanz: {self.current_distance.value()} cm")
+        self.label_distance.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
+        self.interactive_icons_layout.addWidget(self.current_distance,3,1)
+        self.interactive_icons_layout.addWidget(self.label_distance,2,0,1,2)
 
         #Widgets for Red LED
         self.slider_red = QSlider(Qt.Horizontal)
         self.slider_red.setMinimum(0)
-        self.slider_red.setMaximum(10)
+        self.slider_red.setMaximum(30)
         self.slider_red.setValue(1)
         self.slider_red.setTickPosition(QSlider.TicksBelow)
         self.slider_red.setTickInterval(1)
-        label_red = QLabel("Rot")
-        self.label_red_distance = QLabel(f"{self.slider_red.value()} cm")
+        self.slider_red.valueChanged.connect(self.red_value_changed)
+        
+        self.label_red = QLabel(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
+        self.label_red.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
+        self.label_red_led = QLabel()
+        self.label_red_led.setSizePolicy(
+                QSizePolicy.Expanding,
+                QSizePolicy.Expanding,
+            )
+        self.label_red_led.setStyleSheet(
+                """
+                background-color: transparent;
+                """)
 
-        parent.addWidget(label_red,5,0)
-        parent.addWidget(self.label_red_distance,5,1)
-        parent.addWidget(self.slider_red,5,2)
+        self.interactive_icons_layout.addWidget(self.label_red,4,0,1,2)
+        self.interactive_icons_layout.addWidget(self.label_red_led,5,0)
+        self.interactive_icons_layout.addWidget(self.slider_red,5,1)
+
+        self.interactive_icons_layout.setColumnStretch(0,1)
+        self.interactive_icons_layout.setColumnStretch(1,20)
+        self.interactive_icons_layout.setRowStretch(0,0)
+        self.interactive_icons_layout.setRowStretch(1,1)
+        self.interactive_icons_layout.setRowStretch(2,0)
+        self.interactive_icons_layout.setRowStretch(3,1)
+        self.interactive_icons_layout.setRowStretch(4,0)
+        self.interactive_icons_layout.setRowStretch(5,1)
+
+        parent.addWidget(self.interactive_icons_frame,2,0,1,2)
+
+
+    def red_value_changed(self):
+        self.label_red.setText(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
+
+    def blue_value_changed(self):
+        self.label_blue.setText(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
 
 
     def experiment_medium_speed(self, parent, content):
@@ -208,6 +295,7 @@ class Experiment(QWidget):
         medium_layout=QVBoxLayout()
         for idx, (k, v) in enumerate(content[self.language]['speed'].items()):
             radio = QRadioButton(f"{k}(~ {v} m/s)")
+            radio.setFont(QFont("Helvetica", 18, QFont.Normal, italic=False))
             if idx == 0:
                 radio.setChecked(True)
             medium_layout.addWidget(radio)
@@ -219,7 +307,7 @@ class Experiment(QWidget):
 
         self.medium_group.setLayout(medium_layout)
 
-        parent.addWidget(self.medium_group,0,0,3,2)
+        parent.addWidget(self.medium_group,0,0,2,1)
  
 
 
@@ -231,17 +319,18 @@ class Experiment(QWidget):
             if medium.isChecked():
                 text = medium.text()
                 try:
-                    speed = text.split()[1]
+                    speed = int(text.split()[1])
 
                 except:
-                    speed = self.custom_speed.text()
+                    
 
-                try:
-                    speed = int(speed)
+                    try:
+                        speed = int(self.custom_speed.text())
 
-                except ValueError:
-                    print("Custom Value is not a Number")
-                    speed = None
+                    except ValueError:
+                        QMessageBox.about(self,"Error","Eigener Wert ist keine ganze Zahl (Integer)")
+                        #print("Custom Value is not a Number")
+                        speed = None
                 
                 break
         
@@ -251,8 +340,30 @@ class Experiment(QWidget):
 
 
     def update_ui(self, distance):
-        self.label_distance.setText(f"{round(distance,2)} cm")
+        self.label_distance.setText(f"Aktuelle Distanz: {round(distance,2)} cm")
         bar = self.current_distance
+
+        if distance <= self.slider_blue.value():
+            self.label_blue_led.setStyleSheet(
+                """
+                background-color: blue;
+                """)
+        else:
+            self.label_blue_led.setStyleSheet(
+                """
+                background-color: transparent;
+                """)
+
+        if distance <= self.slider_red.value():
+            self.label_red_led.setStyleSheet(
+                """
+                background-color: red;
+                """)
+        else:
+            self.label_red_led.setStyleSheet(
+                """
+                background-color: transparent;
+                """)
 
         if distance < bar.maximum():
             bar.setValue(distance)
