@@ -13,7 +13,7 @@ import math
 import git
 import json
 import experiment_list_item as item
-from PyQt5.QtWidgets import * 
+from PyQt5.QtWidgets import *
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import * 
 

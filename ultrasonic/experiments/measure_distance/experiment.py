@@ -5,7 +5,7 @@ import sys, os, json
 from PyQt5.QtWidgets import * 
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import * 
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import threading
 import random
@@ -185,6 +185,8 @@ class Experiment(QWidget):
             self.running_experiment = Running_Experiment()
             self.running_experiment.speed_of_sound = self.check_selected_medium()
             self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.running_experiment.threshold_red = self.slider_red.value()
+            self.running_experiment.threshold_blue = self.slider_blue.value()
 
             self.running_experiment.moveToThread(self.Experiment_Thread)
             self.Experiment_Thread.started.connect(self.running_experiment.run)
@@ -284,9 +286,17 @@ class Experiment(QWidget):
 
     def red_value_changed(self):
         self.label_red.setText(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
+        try:
+            self.running_experiment.threshold_red = self.slider_red.value()
+        except:
+            pass
 
     def blue_value_changed(self):
         self.label_blue.setText(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
+        try:
+            self.running_experiment.threshold_blue = self.slider_blue.value()
+        except:
+            pass
 
 
     def experiment_medium_speed(self, parent, content):
@@ -376,6 +386,8 @@ class Running_Experiment(QObject):
     distance = pyqtSignal(float)
     experiment_is_running = True
     speed_of_sound = None
+    threshold_red = 0
+    threshold_blue = 0
 
     def run(self):
         try:
@@ -395,50 +407,50 @@ class Running_Experiment(QObject):
             self.cleanup_pins()
 
     def cleanup_pins(self):
-        #GPIO.cleanup()
+        GPIO.cleanup()
         pass
 
 
     def measure_distance(self):
 
-        distance = random.randint(2,40)
-        # GPIO.setmode(GPIO.BCM)
-        # GPIO_TRIGGER = 18
-        # GPIO_ECHO = 24
-        # GPIO_LED_KURZ = 26
-        # GPIO_LED_LANG = 5
+        #distance = random.randint(2,40)
+        GPIO.setmode(GPIO.BCM)
+        GPIO_TRIGGER = 18
+        GPIO_ECHO = 24
+        GPIO_LED_KURZ = 26
+        GPIO_LED_LANG = 5
 
         
-        # GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-        # GPIO.setup(GPIO_ECHO,GPIO.IN)
-        # GPIO.setup(GPIO_LED_KURZ, GPIO.OUT)
-        # GPIO.setup(GPIO_LED_LANG, GPIO.OUT)
+        GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+        GPIO.setup(GPIO_ECHO,GPIO.IN)
+        GPIO.setup(GPIO_LED_KURZ, GPIO.OUT)
+        GPIO.setup(GPIO_LED_LANG, GPIO.OUT)
         
-        # GPIO.output(GPIO_LED_KURZ, GPIO.LOW)
-        # GPIO.output(GPIO_LED_LANG,GPIO.LOW)
+        GPIO.output(GPIO_LED_KURZ, GPIO.LOW)
+        GPIO.output(GPIO_LED_LANG,GPIO.LOW)
         
-        # GPIO.output(GPIO_TRIGGER,True)
+        GPIO.output(GPIO_TRIGGER,True)
         
-        # time.sleep(.00001)
-        # GPIO.output(GPIO_TRIGGER, False)
+        time.sleep(.00001)
+        GPIO.output(GPIO_TRIGGER, False)
         
-        # StartTime = time.time()
-        # StopTime = time.time()
+        StartTime = time.time()
+        StopTime = time.time()
         
-        # while GPIO.input(GPIO_ECHO) == 0:
-        #     StartTime = time.time()
+        while GPIO.input(GPIO_ECHO) == 0:
+            StartTime = time.time()
             
-        # while GPIO.input(GPIO_ECHO) == 1:
-        #     StopTime = time.time()
+        while GPIO.input(GPIO_ECHO) == 1:
+            StopTime = time.time()
             
         
-        # TimeElapsed = StopTime - StartTime
+        TimeElapsed = StopTime - StartTime
         
-        # distance = (TimeElapsed * self.speed_of_sound*100)/2
+        distance = (TimeElapsed * self.speed_of_sound*100)/2
         
-        # if distance < self.slider_red.value():
-        #     GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
-        # elif distance > self.slider_blue.value():
-        #     GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
+        if distance <= self.threshold_red:
+            GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
+        if distance <= self.threshold_blue:
+            GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
             
         return distance
