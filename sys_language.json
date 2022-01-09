@@ -1,0 +1,24 @@
+{
+    "de":{
+        "icon":"None",
+        "name":"Deutsch",
+        "material":"Material",
+        "experiment_tabs":{
+            "information":"Info",
+            "material":"Material",
+            "setup":"Aufbau",
+            "experiment":"Experiment"
+        }
+    },
+    "en":{
+        "icon":"None",
+        "name":"English",
+        "material":"Material",
+        "experiment_tabs":{
+            "information":"Info",
+            "material":"Material",
+            "setup":"Setup",
+            "experiment":"Experiment"
+        }
+    }
+}
