@@ -41,10 +41,10 @@
             "name":"Distanz Messen",
             "formula-img":"formula_de.png",
             "speed":{
-                "Luft":330,
-                "Waser":1200,
-                "Stahl":3400,
-                "Holz":80,
+                "Luft":343,
+                "Waser":1440,
+                "Stahl":5100,
+                "Tanne":5600,
                 "Sonstige":"DEIN WERT"
             },
             "distance":"Aktuelle Distanz",

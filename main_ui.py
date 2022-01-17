@@ -50,17 +50,12 @@ class MainApp(QMainWindow):
         menu_bar.addMenu(file_menu)
 
         update_menu = QMenu("&Update", self)
-        update_menu.addAction("Update Repo", self._update_repo)
-        update_menu.addAction("Update Betriebssystem",self.update_os)
+        update_menu.addAction("Update Software", self._update_repo)
         menu_bar.addMenu(update_menu)
 
     def exit_app(self):
         self.close()
         print("Beenden")
-
-
-    def update_os(self):
-        print("Update OS")
 
     
     def _setup_root(self):

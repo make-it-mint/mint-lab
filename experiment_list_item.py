@@ -86,15 +86,16 @@ class ExperimentOverview(QFrame):
 
 
     def start_experiment(self):
+
         try:
             self.program_windows['experiment_list']['widget'].hide()
             self.program_windows['experiment']['widget'].show()
             spec = importlib.util.spec_from_file_location("module.name", f"{self._experiment_path}/experiment.py")
             experiment_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(experiment_module)
-            experiment_module.Experiment(language = self._language, program_windows=self.program_windows)
+            experiment_module.Experiment(language = self._language, program_windows=self.program_windows, path = os.path.dirname(__file__))
         except Exception as e:
             #print(e)
             self.program_windows["experiment"]["widget"].hide()
             self.program_windows["experiment_list"]["widget"].show()
-            QMessageBox.about(self,"Achtung","Keine Daten verfügbar")
+            QMessageBox.about(self,"Achtung",f"Keine Daten verfügbar")

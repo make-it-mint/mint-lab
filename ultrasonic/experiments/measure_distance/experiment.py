@@ -14,9 +14,10 @@ class Experiment(QWidget):
 
     DIRECTORY_PATH = os.path.dirname(os.path.abspath(__file__))
 
-    def __init__(self, language, program_windows):
+    def __init__(self, language, program_windows, path):
         super().__init__()
         
+        root_directory_path=path
         self.program_windows=program_windows
         parent_layout=self.program_windows['experiment']['layout']
         
@@ -28,7 +29,7 @@ class Experiment(QWidget):
         parent_layout.addWidget(self.widget)
 
         self.language = language
-        sys_content = json.load(open(f"sys_language.json"))[self.language]
+        sys_content = json.load(open(f"{root_directory_path}/sys_language.json"))[self.language]
         experiment_content = json.load(open(f"{self.DIRECTORY_PATH}/information.json"))
 
         back_button=QPushButton(" X ")
