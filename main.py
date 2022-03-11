@@ -8,6 +8,7 @@
 import sys, os, git, json
 from PyQt6 import QtCore, QtGui, QtWidgets
 #from Experiment import ExperimentTemplate
+from CustomButtons import TopicButton
 import pandas as pd
 import importlib.util
 
@@ -59,7 +60,7 @@ class MainApp(object):
         self.logo.setAutoRaise(True)
         self.logo.setObjectName("logo")
         self.centralwidget_layout.addWidget(self.logo,0,0,1,1)
-        image_path = f"{MainApp.ROOT_DIR}/assets/logo.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/logo.png"
         self.logo.setIcon(QtGui.QIcon(image_path))
         self.logo.setIconSize(QtCore.QSize(int(self._screen_size.width()/4.5), int(self._screen_size.height()*4.5/16)))
         self.logo.clicked.connect(self._reset_to_default)
@@ -137,7 +138,7 @@ class MainApp(object):
             border-top-left-radius: {int(parent_size.height()/2)}px;
             border-bottom-left-radius: {int(parent_size.height()/2)}px;""")
         layout.addWidget(self.previous)
-        image_path = f"{MainApp.ROOT_DIR}/assets/previous.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/previous.png"
         self.previous.setIcon(QtGui.QIcon(image_path))
         self.previous.setIconSize(QtCore.QSize(item_width, parent_size.height()))
         self.previous.clicked.connect(self._previous_page)
@@ -156,7 +157,7 @@ class MainApp(object):
             border-bottom-right-radius: {int(parent_size.height()/2)}px;
             """)
         layout.addWidget(self.next)
-        image_path = f"{MainApp.ROOT_DIR}/assets/next.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/next.png"
         self.next.setIcon(QtGui.QIcon(image_path))
         self.next.setIconSize(QtCore.QSize(item_width, parent_size.height()))
         self.next.clicked.connect(self._next_page)
@@ -184,7 +185,7 @@ class MainApp(object):
         self.sort_topics.setFont(MainApp.BASIC_FONT)
         self.sort_topics.setStyleSheet(MainApp.INTERFACE_BUTTON_SELECTED_SS)
         layout.addWidget(self.sort_topics)
-        image_path = f"{MainApp.ROOT_DIR}/assets/all_topics.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/all_topics.png"
         self.sort_topics.setIcon(QtGui.QIcon(image_path))
         self.sort_topics.setIconSize(QtCore.QSize(int(parent_size.width()/3), int(parent_size.height()/num_items)))
         self.sort_topics.clicked.connect(self._show_topics)
@@ -199,7 +200,7 @@ class MainApp(object):
         self.sort_new.setFont(MainApp.BASIC_FONT)
         self.sort_new.setStyleSheet(MainApp.INTERFACE_BUTTON_UNSELECTED_SS)
         layout.addWidget(self.sort_new)
-        image_path = f"{MainApp.ROOT_DIR}/assets/new.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/new.png"
         self.sort_new.setIcon(QtGui.QIcon(image_path))
         self.sort_new.setIconSize(QtCore.QSize(int(parent_size.width()/3), int(parent_size.height()/num_items)))
         self.sort_new.clicked.connect(self._sort_new)
@@ -214,7 +215,7 @@ class MainApp(object):
         self.show_beginner.setFont(MainApp.BASIC_FONT)
         self.show_beginner.setStyleSheet(MainApp.INTERFACE_BUTTON_UNSELECTED_SS)
         layout.addWidget(self.show_beginner)
-        image_path = f"{MainApp.ROOT_DIR}/assets/easy_experiments.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/easy_experiments.png"
         self.show_beginner.setIcon(QtGui.QIcon(image_path))
         self.show_beginner.setIconSize(QtCore.QSize(int(parent_size.width()/3), int(parent_size.height()/num_items)))
         self.show_beginner.clicked.connect(self._show_easy_only)
@@ -229,7 +230,7 @@ class MainApp(object):
         self.select_language.setFont(MainApp.BASIC_FONT)
         self.select_language.setStyleSheet(MainApp.INTERFACE_BUTTON_UNSELECTED_SS)
         layout.addWidget(self.select_language)
-        image_path = f"{MainApp.ROOT_DIR}/assets/default.png"#TODO Auto Adapt To Language
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/default.png"#TODO Auto Adapt To Language
         self.select_language.setIcon(QtGui.QIcon(image_path))
         self.select_language.setIconSize(QtCore.QSize(int(parent_size.width()/3), int(parent_size.height()/num_items)))
         self.select_language.clicked.connect(self._select_language)
@@ -245,7 +246,6 @@ class MainApp(object):
 
     def _select_language(self):
         """select language and change content of displayed items"""
-        #Experiment(self._language, MainApp.ROOT_DIR, "abc", self._screen_size, parent = self.main)
         print("selecting language")
 
     def _sort_new(self, topic = None):
@@ -261,7 +261,7 @@ class MainApp(object):
         self.close_software.setObjectName("close_software")
         self.close_software.setStyleSheet("")
         layout.addWidget(self.close_software)
-        image_path = f"{MainApp.ROOT_DIR}/assets/exit.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/exit.png"
         self.close_software.setIcon(QtGui.QIcon(image_path))
         self.close_software.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
         self.close_software.clicked.connect(self.main.close)
@@ -273,7 +273,7 @@ class MainApp(object):
         self.info.setObjectName("info")
         self.info.setStyleSheet("padding-bottom:10px")
         layout.addWidget(self.info)
-        image_path = f"{MainApp.ROOT_DIR}/assets/info.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/info.png"
         self.info.setIcon(QtGui.QIcon(image_path))
         self.info.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
         self.info.clicked.connect(self._show_info)
@@ -285,7 +285,7 @@ class MainApp(object):
         self.update_software.setObjectName("update_software")
         self.update_software.setStyleSheet("")
         layout.addWidget(self.update_software)
-        image_path = f"{MainApp.ROOT_DIR}/assets/update.png"
+        image_path = f"{MainApp.ROOT_DIR}/assets/system/update.png"
         self.update_software.setIcon(QtGui.QIcon(image_path))
         self.update_software.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
         self.update_software.clicked.connect(self._update_software)
@@ -301,22 +301,18 @@ class MainApp(object):
     def topic_widgets(self, layout, parent_size):
         self._topic_buttons = []
         for button_idx in range((self._topic_rows*self._topic_cols)):
-            button = QtWidgets.QToolButton()
-            button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
+            button = TopicButton(parent=self.centralwidget, screen_size=self._screen_size)
             button.setSizePolicy(self.sizePolicy)
             button.setAutoRaise(True)
             button.setObjectName(f"topic_{button_idx}")
             button.setText("")
-            button.setFont(MainApp.BASIC_FONT)
-            image_path = f"{MainApp.ROOT_DIR}/assets/default.png"
-            button.setIcon(QtGui.QIcon(image_path))
-            button.setIconSize(QtCore.QSize(int(parent_size.width()/self._topic_cols), int(parent_size.height()/self._topic_rows)))
+            image_path = f"{MainApp.ROOT_DIR}/assets/system/default.png"
+            button.setButtonIcon(image_path=image_path)
             layout.addWidget(button,int(button_idx/self._topic_cols),int(button_idx%self._topic_cols),1,1)
             self._topic_buttons.append(button)
         
 
     def _set_listed_content(self, content, direction=0):
-
 
         num_displays = len(self._topic_buttons)
         self._selection_starting_idx += (num_displays*direction)
@@ -342,34 +338,37 @@ class MainApp(object):
             try:
                 if self._display_type == "topic":
                     topic = content[self._selection_starting_idx + counter]
-                    display.setText(self._sys_content["topics"][topic][self._language])
+                    display.setButtonText(self._sys_content["topics"][topic][self._language])
                     image_path = f"{MainApp.ROOT_DIR}/assets/topics/{topic}.png"
-                    display.setIcon(QtGui.QIcon(image_path))
+                    display.setButtonIcon(image_path)
                     display.disconnect()
+                    display.setActive(True)
                     display.clicked.connect(lambda do_it, arg=topic :self._show_experiments_of_topic(arg))
 
                 elif self._display_type == "experiment":
                     topic = self._sys_content["topics"][list(content.topic)[self._selection_starting_idx + counter]][self._language]
                     level = self._sys_content["levels"][self._language][list(content.level)[self._selection_starting_idx + counter]]
                     name = list(content.name)[self._selection_starting_idx + counter][self._language]
-                    display.setText(f"{name}\n----------\n{level}")
+                    display.setButtonText(f"{name}\n----------\n{level}")
                     image_path = f"""{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}/assets/experiment_icon.png"""
                     
                     experiment_directory = f"""{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}"""
                     spec = importlib.util.spec_from_file_location("module.name", f"{experiment_directory}/experiment.py")
                     
-                    display.setIcon(QtGui.QIcon(image_path))
+                    display.setButtonIcon(image_path)
                     display.disconnect()
+                    display.setActive(True)
                     display.clicked.connect(lambda start_it, arg=spec :self._start_experiment(arg))
                 else:
                     print("Wrong display type selected, should be topic or experiment")
                     break
 
                 display.setEnabled(True)
-            except IndexError:
-                display.setIcon(QtGui.QIcon())
-                display.setText("")
+            except Exception as e:
+                display.setButtonIcon()
+                display.setButtonText()
                 display.setEnabled(False)
+                display.setActive(False)
 
     def _show_experiments_of_topic(self, topic):
         self._selection_starting_idx = 0
@@ -380,7 +379,6 @@ class MainApp(object):
         experiment_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(experiment_module)
         experiment_module.Experiment(root_dir= MainApp.ROOT_DIR, parent = self.main, language=self._language, screen_size=self._screen_size)
-        #print(experiment_directory)
 
     def additionalActions(self):
         pass
@@ -388,7 +386,7 @@ class MainApp(object):
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
-    main_ui = MainApp(language = 'de', screen_size = app.primaryScreen().size())
+    main_ui = MainApp(language = 'en', screen_size = app.primaryScreen().size())
     main_ui.setupUi(main_window)
     main_window.showFullScreen()
     sys.exit(app.exec())

@@ -1,5 +1,6 @@
 import os, json
 from PyQt6 import QtCore, QtGui, QtWidgets
+from CustomButtons import OverViewButton
 
 class ExperimentTemplate(QtWidgets.QWidget):
 
@@ -8,6 +9,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
     def __init__(self, root_dir, language, screen_size, parent=None):
         super().__init__(parent=parent)
+        self.parent = parent
         self.ROOT_DIR = root_dir
         self.screen_size = screen_size
         self.language = language
@@ -24,7 +26,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.close_experiment.setFlat(True)
         self.close_experiment.setObjectName("close_experiment")
         self.close_experiment.setStyleSheet(f"background-color:rgb(100,100,100);border-radius:{int(self.screen_size.height()*.024)}px")
-        image_path = f"{self.ROOT_DIR}/assets/close_experiment.png"
+        image_path = f"{self.ROOT_DIR}/assets/system/close_experiment.png"
         self.close_experiment.setIcon(QtGui.QIcon(image_path))
         self.close_experiment.setIconSize(QtCore.QSize(int(self.screen_size.width()*.05), int(self.screen_size.height()*.05)))
         self.close_experiment.clicked.connect(self.close)
@@ -72,15 +74,12 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
         self.material_buttons=[]
         for button_idx in range(rows*cols):
-            material_button = QtWidgets.QToolButton()
-            material_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
+            material_button = OverViewButton(parent=tab_widget, screen_size=self.screen_size)
             material_button.setSizePolicy(self.sizePolicy)
             material_button.setAutoRaise(True)
-            material_button.setEnabled(False)
             material_button.setObjectName(f"material_{button_idx}")
-            material_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/default.png"))
-            material_button.setStyleSheet(f"background-color:rgb(255,255,255); border: 2px solid black; margin:10px; padding-top: 20px; border-radius:10px")
-            material_button.setIconSize(QtCore.QSize(int(self.screen_size.width()*.15), int(self.screen_size.height()*.20)))
+            material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/default.png")
+            material_button.setButtonText(text=f"Test")
             self.material_buttons.append(material_button)
             layout.addWidget(material_button, int(button_idx/cols),int(button_idx%cols))
 
@@ -91,18 +90,18 @@ class ExperimentTemplate(QtWidgets.QWidget):
         if len(materials) <= len(self.material_buttons):
             for idx, material_button in enumerate(self.material_buttons):
                 try:
-                    material_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/parts/{materials[idx]['image']}"))
+                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{materials[idx]['image']}")
                     button_text=materials[idx]["text"]
                     if "source" in materials[idx].keys():
                         button_text += f"\n[{materials[idx]['source']}]"
-                    material_button.setText(button_text)
-                    material_button.setStyleSheet(f"background-color:rgb(255,255,255); border: 2px solid black; margin:10px; padding-top: 20px; border-radius:20px")
+                    material_button.setButtonText(button_text)
+                    material_button.setActive(True)
                     material_button.setEnabled(True)
                 except IndexError as e:
-                    material_button.setIcon(QtGui.QIcon())
-                    material_button.setText("")
+                    material_button.setButtonIcon()
+                    material_button.setButtonText()
                     material_button.setEnabled(False)
-                    material_button.setStyleSheet(f"")
+                    material_button.setActive(False)
 
 
             
@@ -115,7 +114,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         layout.setRowStretch(0,0)
         
         if not image_path:
-            image_path=os.path.join(self.ROOT_DIR, "assets/default.png")
+            image_path=os.path.join(self.ROOT_DIR, "assets/system/default.png")
             print("No Path specified")
 
 
@@ -131,7 +130,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
     def fill_experiment_info(self, text=[], file_path=None):
         if not file_path:
-            file_path = f"{self.ROOT_DIR}/assets/default.png"
+            file_path = f"{self.ROOT_DIR}/assets/system/default.png"
 
         tab_widget = self.tabs["information"]["widget"]
         layout = self.tabs["information"]["layout"]
