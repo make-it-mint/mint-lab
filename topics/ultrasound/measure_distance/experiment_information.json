@@ -1,0 +1,153 @@
+{
+    "material":{
+        "de":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x T-Cobbler",
+                    "image":"t_cobbler.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Flachbandkabel 2x20",
+                    "image":"ribbon_2x20.png"
+                },
+                {
+                    "text":"Jumperkabel Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x HC-SR04",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x rote LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x blaue LED",
+                    "image":"led_blue.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"2x Widerstand 100 Ohm",
+                    "image":"resistor100.png",
+                    "source":"fritzing"
+                }
+            ]
+        ,
+        "en":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x T-Cobbler",
+                    "image":"t_cobbler.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Ribbon Cable 2x20",
+                    "image":"ribbon_2x20.png"
+                },
+                {
+                    "text":"1x HC-SR04",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumpercable Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x red LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x blue LED",
+                    "image":"led_blue.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"2x Resistor 100 Ohm",
+                    "image":"resistor100.png",
+                    "source":"fritzing"
+                }
+            ]
+    },
+    "setup":{
+        "image":"setup.png"
+    },
+    "information":{
+        "file":"ultrasonic.gif",
+        "de":[
+            "Im Experiment \"Distanz Messen\" wird ein Ultraschall Sensor an den Raspberry Pi angeschlossen, der Schallimpulse in einem Frequenzbereich aussendet, den das menschliche Ohr nicht wahrnehmen kann.\nDa sich Schall nicht nur durch die Luft, sondern auch durch allen anderen Stoffe (Fest, Flüssig, Gasförmig, Plasma) bewegen kann, ist es möglich in diesem Experiment verschiedene Materialien auszuwählen.",
+            "Damit kannst du überprüfen, wie sich die Schallgeschwindigkeit zwischen Luft und einem anderen Stoff verhält.",
+            "Du kannst auch Mal recherchieren, was die Schallgeschwindigkeiten in hier nicht angegebenen Materialien sind und sie selbst eingeben.",
+            "Du misst in diesem Experiment immer die zeitliche Differenz zwischen dem Aussenden und Empfangen der Schallimpulse.",
+            "Wenn du jetzt eine andere Schallgeschwindigkeit eingibst, ist der Gegenstand, zu dem die Distanz gemessen wird, zwar immernoch genausoweit entfernt wie vorher, aber du siehst, wie weit er in einem anderen Stoff entfernt wäre.",
+            "Auf der Experiment Seite sind zwei Schieberegler für die blaue und die rote LED vorhanden, hiermit kann eingestellt werden, aber welcher Distanz die jeweiligen LEDs angehen sollen.",
+            "Na dann...bau das Experiment nach und wie Spaß beim ausprobieren :)"
+        ],
+        "en":[
+            "This is where the Projectdescription will be"
+        ]
+    },
+    "experiment":{
+        "de":{
+            "name":"Distanz Messen",
+            "formula-img":"formula_de.png",
+            "speed":{
+                "Luft":330,
+                "Wasser":1200,
+                "Stahl":3400,
+                "Holz":80,
+                "Sonstige":"DEIN WERT"
+            },
+            "distance":"Aktuelle Distanz",
+            "medium":"Medien"
+            
+
+        },
+        "en":{
+            "name":"Measure Distance",
+            "formula-img":"formula_de.png",
+            "speed":{
+                "Air":330,
+                "Water":1200,
+                "Steel":3400,
+                "Wood":80,
+                "Other":"YOUR VALUE"
+            },
+            "distance":"Current Distance",
+            "medium":"Media"
+        }
+    }
+}
