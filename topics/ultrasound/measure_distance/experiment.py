@@ -12,56 +12,10 @@ import random
 
 class Experiment(ExperimentTemplate):
 
-<<<<<<< HEAD:topics/ultrasound/measure_distance/experiment.py
     def __init__(self, root_dir, language, screen_size, parent = None):
         super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
         experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
-=======
-    DIRECTORY_PATH = os.path.dirname(os.path.abspath(__file__))
-
-    def __init__(self, language, program_windows, path):
-        super().__init__()
-        
-        root_directory_path=path
-        self.program_windows=program_windows
-        parent_layout=self.program_windows['experiment']['layout']
-        
-
-        self.widget=QWidget()
-        self.layout=QGridLayout()
-        self.widget.setLayout(self.layout)
-
-        parent_layout.addWidget(self.widget)
-
-        self.language = language
-        sys_content = json.load(open(f"{root_directory_path}/sys_language.json"))[self.language]
-        experiment_content = json.load(open(f"{self.DIRECTORY_PATH}/information.json"))
-
-        back_button=QPushButton(" X ")
-        back_button.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
-        back_button.clicked.connect(self._return_to_experiment_list)
-        back_button.setStyleSheet(
-                """
-                QPushButton {
-                background-color: red;
-                border: 2px solid black;
-                border-radius: 25px;
-                }
-                """)
-        self.layout.addWidget(back_button,0,0)
-
-        header =QLabel(experiment_content["experiment"][self.language]["name"])
-        header.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
-        self.layout.addWidget(header,0,1)
-
-        self.layout.setColumnStretch(0,0)
-        self.layout.setColumnStretch(1,1)
-        
-        self.tabs_widget = QTabWidget()
-        self.tabs_widget.setTabPosition(QTabWidget.North)
-        #self.tabs_widget.setMovable(True)
->>>>>>> main:ultrasonic/experiments/measure_distance/experiment.py
         
 
         self.header.setText(experiment_content["experiment"][self.language]["name"])
