@@ -1,151 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from Experiment import ExperimentTemplate
+import os
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
-from PyQt5.QtWidgets import * 
-from PyQt5.QtGui import * 
-from PyQt5.QtCore import * 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
 import threading
 import random
 
-class Experiment(QWidget):
+class Experiment(ExperimentTemplate):
 
-    DIRECTORY_PATH = os.path.dirname(os.path.abspath(__file__))
-
-    def __init__(self, language, program_windows, path):
-        super().__init__()
-        
-        root_directory_path=path
-        self.program_windows=program_windows
-        parent_layout=self.program_windows['experiment']['layout']
+    def __init__(self, root_dir, language, screen_size, parent = None):
+        super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
+        self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
+        experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
         
 
-        self.widget=QWidget()
-        self.layout=QGridLayout()
-        self.widget.setLayout(self.layout)
-
-        parent_layout.addWidget(self.widget)
-
-        self.language = language
-        sys_content = json.load(open(f"{root_directory_path}/sys_language.json"))[self.language]
-        experiment_content = json.load(open(f"{self.DIRECTORY_PATH}/information.json"))
-
-        back_button=QPushButton(" X ")
-        back_button.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
-        back_button.clicked.connect(self._return_to_experiment_list)
-        back_button.setStyleSheet(
-                """
-                QPushButton {
-                background-color: red;
-                border: 2px solid black;
-                border-radius: 25px;
-                }
-                """)
-        self.layout.addWidget(back_button,0,0)
-
-        header =QLabel(experiment_content["experiment"][self.language]["name"])
-        header.setFont(QFont("Helvetica", 30, QFont.Bold, italic=False))
-        self.layout.addWidget(header,0,1)
-
-        self.layout.setColumnStretch(0,0)
-        self.layout.setColumnStretch(1,1)
-        
-        self.tabs_widget = QTabWidget()
-        self.tabs_widget.setTabPosition(QTabWidget.North)
-        #self.tabs_widget.setMovable(True)
-        
-        self.tabs={}
-        for k,v in sys_content["experiment_tabs"].items():
-            current_tab = QFrame()
-            current_layout = QGridLayout(current_tab)
-            self.tabs_widget.addTab(current_tab ,v)
-            self.tabs.update({k:{"widget":current_tab,"layout":current_layout}})
-
-
-        self.layout.addWidget(self.tabs_widget,1,0,1,2)
-
-        self.fill_experiment_material(content=experiment_content["setup"])
-        self.fill_experiment_setup(content=experiment_content["setup"])
-        self.fill_experiment_info(content=experiment_content["information"])
+        self.header.setText(experiment_content["experiment"][self.language]["name"])
+        self.fill_experiment_material(materials=experiment_content["material"][self.language])
+        self.fill_experiment_setup(image_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["setup"]["image"]))
+        self.fill_experiment_info(text=experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["information"]["file"]))
         self.fill_experiment(content=experiment_content["experiment"])
 
 
-    def _return_to_experiment_list(self):
+        self.show_fullscreen()
+
+
+    def close(self):
         if self.experiment_is_running:
-            QMessageBox.about(self,"Achtung","Experiment stoppen, bevor das Fenster geschlossen werden kann")
+            QtWidgets.QMessageBox.about(self.MainWidget,"Achtung","Experiment stoppen, bevor das Fenster geschlossen werden kann")
         else:
-            self.program_windows["experiment"]["widget"].hide()
-            self.program_windows["experiment_list"]["widget"].show()
-            self.widget.deleteLater()
+            self.MainWidget.close() 
 
-
-
-    def fill_experiment_material(self, content:dict):
-        layout = self.tabs["material"]["layout"]
-
-        material = ""
-        for idx, item in enumerate(content[self.language]["material"]):
-            material += item
-            if idx < len(content[self.language]["material"])-1:
-                material += f"\n"
-
-        material_label = QLabel(material)
-        material_label.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
-        layout.addWidget(material_label,0,0)
-
-
-
-    def fill_experiment_setup(self, content:dict):
-        layout = self.tabs["setup"]["layout"]
-        layout.setColumnStretch(0,1)
-        layout.setRowStretch(0,0)
-        
-        img_path=os.path.join(self.DIRECTORY_PATH,content["image"])
-
-        image = QPixmap(img_path)
-        label = QLabel()
-        label.setPixmap(image.scaledToWidth(int(self.tabs_widget.size().width()*2)))
-        
-
-        layout.addWidget(label, 0,0,alignment=Qt.AlignCenter)
-
-        
-
-
-
-    def fill_experiment_info(self, content:dict):
-
-        layout = self.tabs["information"]["layout"]
-
-        info = ""
-        for idx, item in enumerate(content[self.language]):
-            info += item
-            if idx < len(content[self.language])-1:
-                info += f"\n\n"
-
-        material_label = QLabel(info)
-        material_label.setWordWrap(True)
-        material_label.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
-        layout.addWidget(material_label, 0, 0)
-
-
-        movie_label = QLabel()
-        img_path=os.path.join(self.DIRECTORY_PATH,content["image"])
-        movie = QMovie(img_path)
-        movie_label.setMovie(movie)
-        movie.start()
-        
-        
-        movie_label.setSizePolicy(
-                QSizePolicy.Expanding,
-                QSizePolicy.Expanding,
-        )
-        layout.addWidget(movie_label, 0, 1)
-        layout.setColumnStretch(0,1)
-        layout.setColumnStretch(1,0)
-        
+    
 
     def fill_experiment(self, content:dict):
         self.experiment_is_running = False
@@ -154,13 +43,13 @@ class Experiment(QWidget):
         self.experiment_medium_speed(parent=self.experiment_layout, content=content)
 
         self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
-        image = QPixmap(f"{self.DIRECTORY_PATH}/formula.png")
-        formula = QLabel()
+        image = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/formula.png")
+        formula = QtWidgets.QLabel()
         formula.setPixmap(image.scaledToWidth(formula.size().width()))
 
-        self.experiment_layout.addWidget(formula,0,1,alignment=Qt.AlignCenter)
+        self.experiment_layout.addWidget(formula,0,1)
 
-        self.start_experiment = QPushButton("START EXPERIMENT")
+        self.start_experiment = QtWidgets.QPushButton("START EXPERIMENT")
         self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
         self.experiment_layout.addWidget(self.start_experiment,1,1)
@@ -182,7 +71,7 @@ class Experiment(QWidget):
             self.experiment_is_running = True
             self.start_experiment.setText("STOP EXPERIMENT")
 
-            self.Experiment_Thread = QThread()
+            self.Experiment_Thread = QtCore.QThread()
             self.running_experiment = Running_Experiment()
             self.running_experiment.speed_of_sound = self.check_selected_medium()
             self.running_experiment.experiment_is_running = self.experiment_is_running
@@ -204,25 +93,25 @@ class Experiment(QWidget):
 
 
     def experiment_led_threshholds_and_distance(self, parent, content):
-        self.interactive_icons_frame =QFrame()
-        self.interactive_icons_layout = QGridLayout()
+        self.interactive_icons_frame =QtWidgets.QFrame()
+        self.interactive_icons_layout = QtWidgets.QGridLayout()
         self.interactive_icons_frame.setLayout(self.interactive_icons_layout)
         #Widgets for Blue LED
-        self.slider_blue = QSlider(Qt.Horizontal)
+        self.slider_blue = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal)
         self.slider_blue.setMinimum(0)
         self.slider_blue.setMaximum(30)
         self.slider_blue.setValue(3)
-        self.slider_blue.setTickPosition(QSlider.TicksBelow)
+        self.slider_blue.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBelow)
         self.slider_blue.setTickInterval(0.1)
         self.slider_blue.valueChanged.connect(self.blue_value_changed)
 
-        self.label_blue = QLabel(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
-        self.label_blue.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
-        self.label_blue_led = QLabel()
-        self.label_blue_led.setSizePolicy(
-                QSizePolicy.Expanding,
-                QSizePolicy.Expanding,
-            )
+        self.label_blue = QtWidgets.QLabel(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
+        self.label_blue.setFont(QtGui.QFont("Helvetica", 24, italic=False))
+        self.label_blue_led = QtWidgets.QLabel()
+        # self.label_blue_led.setSizePolicy(
+        #         QSizePolicy.Expanding,
+        #         QSizePolicy.Expanding,
+        #     )
         self.label_blue_led.setStyleSheet(
                 """
                 background-color: transparent;
@@ -234,36 +123,36 @@ class Experiment(QWidget):
 
 
         #Widgets for current distance
-        self.current_distance = QProgressBar()
+        self.current_distance = QtWidgets.QProgressBar()
         self.current_distance.setMaximum(30)
         self.current_distance.setMinimum(0)
         self.current_distance.setValue(0)
         self.current_distance.setTextVisible(False)
-        self.current_distance.setSizePolicy(
-                QSizePolicy.Expanding,
-                QSizePolicy.Expanding,
-            )
-        self.label_distance = QLabel(f"Aktuelle Distanz: {self.current_distance.value()} cm")
-        self.label_distance.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
+        # self.current_distance.setSizePolicy(
+        #         QSizePolicy.Expanding,
+        #         QSizePolicy.Expanding,
+        #     )
+        self.label_distance = QtWidgets.QLabel(f"Aktuelle Distanz: {self.current_distance.value()} cm")
+        self.label_distance.setFont(QtGui.QFont("Helvetica", 24))
         self.interactive_icons_layout.addWidget(self.current_distance,3,1)
         self.interactive_icons_layout.addWidget(self.label_distance,2,0,1,2)
 
         #Widgets for Red LED
-        self.slider_red = QSlider(Qt.Horizontal)
+        self.slider_red = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal)
         self.slider_red.setMinimum(0)
         self.slider_red.setMaximum(30)
         self.slider_red.setValue(1)
-        self.slider_red.setTickPosition(QSlider.TicksBelow)
+        self.slider_red.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBelow)
         self.slider_red.setTickInterval(1)
         self.slider_red.valueChanged.connect(self.red_value_changed)
         
-        self.label_red = QLabel(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
-        self.label_red.setFont(QFont("Helvetica", 24, QFont.Normal, italic=False))
-        self.label_red_led = QLabel()
-        self.label_red_led.setSizePolicy(
-                QSizePolicy.Expanding,
-                QSizePolicy.Expanding,
-            )
+        self.label_red = QtWidgets.QLabel(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
+        self.label_red.setFont(QtGui.QFont("Helvetica", 24))
+        self.label_red_led = QtWidgets.QLabel()
+        # self.label_red_led.setSizePolicy(
+        #         QSizePolicy.Expanding,
+        #         QSizePolicy.Expanding,
+        #     )
         self.label_red_led.setStyleSheet(
                 """
                 background-color: transparent;
@@ -301,18 +190,18 @@ class Experiment(QWidget):
 
 
     def experiment_medium_speed(self, parent, content):
-        self.medium_group=QGroupBox(content[self.language]['medium'])
+        self.medium_group=QtWidgets.QGroupBox(content[self.language]['medium'])
         self.medium_widgets = []
-        medium_layout=QVBoxLayout()
+        medium_layout=QtWidgets.QVBoxLayout()
         for idx, (k, v) in enumerate(content[self.language]['speed'].items()):
-            radio = QRadioButton(f"{k}(~ {v} m/s)")
-            radio.setFont(QFont("Helvetica", 18, QFont.Normal, italic=False))
+            radio = QtWidgets.QRadioButton(f"{k}(~ {v} m/s)")
+            radio.setFont(QtGui.QFont("Helvetica", 18))
             if idx == 0:
                 radio.setChecked(True)
             medium_layout.addWidget(radio)
             self.medium_widgets.append(radio)
 
-        self.custom_speed = QLineEdit()
+        self.custom_speed = QtWidgets.QLineEdit()
         #custom_speed.text()
         medium_layout.addWidget(self.custom_speed)
 
@@ -339,7 +228,7 @@ class Experiment(QWidget):
                         speed = int(self.custom_speed.text())
 
                     except ValueError:
-                        QMessageBox.about(self,"Error","Eigener Wert ist keine ganze Zahl (Integer)")
+                        QtWidgets.QMessageBox.about(self,"Error","Eigener Wert ist keine ganze Zahl (Integer)")
                         #print("Custom Value is not a Number")
                         speed = None
                 
@@ -383,8 +272,8 @@ class Experiment(QWidget):
 
 
 
-class Running_Experiment(QObject):
-    distance = pyqtSignal(float)
+class Running_Experiment(QtCore.QObject):
+    distance = QtCore.pyqtSignal(float)
     experiment_is_running = True
     speed_of_sound = None
     threshold_red = 0
@@ -408,13 +297,14 @@ class Running_Experiment(QObject):
             self.cleanup_pins()
 
     def cleanup_pins(self):
-        GPIO.cleanup()
+        #GPIO.cleanup()
         pass
 
 
     def measure_distance(self):
 
-        #distance = random.randint(2,40)
+        distance = random.randint(2,40)
+        """
         GPIO.setmode(GPIO.BCM)
         GPIO_TRIGGER = 18
         GPIO_ECHO = 24
@@ -453,5 +343,8 @@ class Running_Experiment(QObject):
             GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
         if distance <= self.threshold_blue:
             GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
-            
+            """
         return distance
+
+
+
