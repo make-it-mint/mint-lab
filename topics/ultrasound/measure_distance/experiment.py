@@ -3,7 +3,7 @@
 
 from Experiment import ExperimentTemplate
 import os
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
 #import RPi.GPIO as GPIO
 import time
