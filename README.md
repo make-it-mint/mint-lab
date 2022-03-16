@@ -14,7 +14,7 @@ Tested On:
 - OS Version - Bullseye
 - Python Version - 3.9.2
 
-####Cloning the Repository
+#### Cloning the Repository
 Clone the Repository by opening a Terminal on your Raspberry Pi an input the following:
 `git clone https://github.com/make-it-mint/mint-lab.git <INSTALLATION_DIRECTORY>`
 
@@ -22,7 +22,7 @@ e.g.: `git clone https://github.com/make-it-mint/mint-lab.git /home/pi/mint-lab`
 
 This clones the repository to your Pi and creates a new directory at `/home/pi/` called `mint-lab` where the repository will be placed. Of course you can choose another place for the repository.
 
-####Installing required packages
+#### Installing required packages
 MINT LAB uses PyQt5 which has to be installed manually once.
 PyQt5 is a library to create User Interfaces.
 It is installed by opening a Terminal and the inputting
@@ -31,7 +31,7 @@ It is installed by opening a Terminal and the inputting
 Since the version of the Python library `numpy` that s used here is higher than the one currently provided by Raspbian, it is necessary to install another package for linear algebra calculations
 `sudo apt-get install libatlas-base-dev` 
 
-####Starting MINT LAB
+#### Starting MINT LAB
 There are multiple options to run Mint LAB after downloading the Repository.
 The `main.py` can be run directly, but it will not check if all requirements are met. The `run_mint_lab.sh` script will do this and automatically download required Python Libraries.
 
@@ -59,7 +59,7 @@ Creating and Using a Desktop Icon:
 Now you can run it through this Desktop Icon
 
 
-##For Developers
+## For Developers
 
 You are welcome to create your own Experiments! A guide will be created in the future.
 
