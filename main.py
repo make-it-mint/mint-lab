@@ -31,12 +31,14 @@ class MainApp(object):
         self._sys_content = content_json["system"]
         self._experiments = pd.DataFrame(content_json["experiment_list"])
         self._screen_size = screen_size
+        self._current_listed_content = self._experiments.topic.drop_duplicates()
         if self._screen_size.width() < 1024:
             MainApp.BASIC_FONT = QtGui.QFont('Arial', 18)
 
     def setupUi(self, MainWindow):
         self.main = MainWindow
         MainWindow.setObjectName("MainWindow")
+        
         
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         self.sizePolicy.setHorizontalStretch(1)
@@ -54,6 +56,14 @@ class MainApp(object):
         #Set Central Widget Layout
         self.centralwidget_layout = QtWidgets.QGridLayout(self.centralwidget)
         
+
+        MainWindow.resize(self._screen_size)
+        self.centralwidget_layout.setColumnStretch(0, 1)
+        self.centralwidget_layout.setColumnStretch(1, 3)
+        self.centralwidget_layout.setRowStretch(0, 5)
+        self.centralwidget_layout.setRowStretch(1, 1)
+        self.centralwidget_layout.setRowStretch(2, 10)
+
         #Set logo
         self.logo = QtWidgets.QToolButton()
         self.logo.setSizePolicy(self.sizePolicy)
@@ -63,7 +73,7 @@ class MainApp(object):
         image_path = f"{MainApp.ROOT_DIR}/assets/system/logo.png"
         self.logo.setIcon(QtGui.QIcon(image_path))
         self.logo.setIconSize(QtCore.QSize(int(self._screen_size.width()/4.5), int(self._screen_size.height()*4.5/16)))
-        self.logo.clicked.connect(self._reset_to_default)
+        self.logo.clicked.connect(self._set_to_default)
         #self.logo.setStyleSheet("background-color:rgb(0,0,0)")
 
         #Set Navigation Buttons in frame
@@ -101,15 +111,10 @@ class MainApp(object):
         
         MainWindow.setCentralWidget(self.centralwidget)
                
-        self._set_listed_content(content= list(self._experiments.topic.drop_duplicates()))
+        #self._set_to_default()
         #MainWindow.showFullScreen()
 
-        MainWindow.resize(self._screen_size)
-        self.centralwidget_layout.setColumnStretch(0, 1)
-        self.centralwidget_layout.setColumnStretch(1, 3)
-        self.centralwidget_layout.setRowStretch(0, 5)
-        self.centralwidget_layout.setRowStretch(1, 1)
-        self.centralwidget_layout.setRowStretch(2, 10)
+        
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -117,10 +122,11 @@ class MainApp(object):
         self.additionalActions()
 
 
-    def _reset_to_default(self):
+    def _set_to_default(self):
         self._display_type="topic"
         self._selection_starting_idx = 0
-        self._set_listed_content(content=list(self._experiments.topic.drop_duplicates()))
+        self._current_listed_content = self._experiments.topic.drop_duplicates()
+        self._set_listed_content()
 
     def navigation_widgets(self, layout, parent_size):
         #Previous Button
@@ -165,11 +171,11 @@ class MainApp(object):
 
     def _previous_page(self):
         """move to previsou page"""
-        print("Move to previous Page")
+        self._set_listed_content(direction=-1)
 
     def _next_page(self):
         """move to next page"""
-        print("Move to Next Page")
+        self._set_listed_content(direction=1)
 
 
     def interface_widgets(self, layout, parent_size):
@@ -238,19 +244,48 @@ class MainApp(object):
 
     def _show_easy_only(self, topic = None):
         """show easy experiments only"""
-        print("Showing easy experiments only")
+        #set to first page
+        self._selection_starting_idx = 0
+        if self._display_type == "topic":
+            self._current_listed_content = self._experiments[self._experiments.level <= 1]
+        elif self._display_type == "experiment":
+            #check if already filtered for topic
+            cur_topics = self._current_listed_content.topic.drop_duplicates()
+            if len(cur_topics) == 1:
+                self._current_listed_content = self._experiments[self._experiments.topic == cur_topics[0]]
+            else:
+                self._current_listed_content = self._experiments
+
+            self._current_listed_content = self._current_listed_content[self._current_listed_content.level <= 1]
+
+        self._current_listed_content = self._current_listed_content.sort_values(by="level", ascending=True)
+        self._display_type = "experiment"
+        self._set_listed_content()
         
     def _show_topics(self):
         """display topics"""
-        print("Now displaying topics")
+        #print("Now displaying topics")
 
     def _select_language(self):
         """select language and change content of displayed items"""
         print("selecting language")
 
-    def _sort_new(self, topic = None):
+    def _sort_new(self):
         """sort experimentes from new to old"""
-        print("sorting Experimentes now")
+        self._selection_starting_idx = 0
+        if self._display_type == "topic":
+            self._current_listed_content = self._experiments.sort_values(by="date-added", ascending=False)
+        elif self._display_type == "experiment":
+            cur_topics = self._current_listed_content.topic.drop_duplicates()
+            if len(cur_topics) == 1:
+                self._current_listed_content = self._experiments[self._experiments.topic == cur_topics[0]]
+            else:
+                self._current_listed_content = self._experiments
+
+            self._current_listed_content = self._current_listed_content.sort_values(by="date-added", ascending=False)
+
+        self._display_type = "experiment"
+        self._set_listed_content()
 
     def system_widgets(self, layout, parent_size):
         #Close Software
@@ -300,8 +335,9 @@ class MainApp(object):
 
     def topic_widgets(self, layout, parent_size):
         self._topic_buttons = []
+
         for button_idx in range((self._topic_rows*self._topic_cols)):
-            button = TopicButton(parent=self.centralwidget, screen_size=self._screen_size)
+            button = TopicButton(parent=self.centralwidget, parent_size=parent_size)
             button.setSizePolicy(self.sizePolicy)
             button.setAutoRaise(True)
             button.setObjectName(f"topic_{button_idx}")
@@ -312,18 +348,16 @@ class MainApp(object):
             self._topic_buttons.append(button)
         
 
-    def _set_listed_content(self, content, direction=0):
-
+    def _set_listed_content(self, direction=0):
+        
+        content = self._current_listed_content
         num_displays = len(self._topic_buttons)
         self._selection_starting_idx += (num_displays*direction)
 
-
         if self._selection_starting_idx < 0:
             self._selection_starting_idx = len(content) - len(content)%num_displays
-            print("Going to final page")
         elif self._selection_starting_idx >= len(content):
             self._selection_starting_idx = 0
-            print("returning to first page")
 
         if self._display_type == "topic":
             self.sort_topics.setText(f"   {self._sys_content['bt_topic'][self._language]}")
@@ -350,12 +384,19 @@ class MainApp(object):
                     level = self._sys_content["levels"][self._language][list(content.level)[self._selection_starting_idx + counter]]
                     name = list(content.name)[self._selection_starting_idx + counter][self._language]
                     display.setButtonText(f"{name}\n----------\n{level}")
-                    image_path = f"""{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}/assets/experiment_icon.png"""
-                    
+                        
+                    if os.path.exists(f"{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}/assets/experiment_icon.png"):
+                        image_path = f"{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}/assets/experiment_icon.png"
+                    else:
+                        image_path = f"{MainApp.ROOT_DIR}/assets/system/default.png"
+
                     experiment_directory = f"""{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}"""
                     spec = importlib.util.spec_from_file_location("module.name", f"{experiment_directory}/experiment.py")
                     
-                    display.setButtonIcon(image_path)
+                    try:
+                        display.setButtonIcon(image_path)
+                    except:
+                        display.setButtonIcon(f"{MainApp.ROOT_DIR}/assets/system/default.png")
                     display.disconnect()
                     display.setActive(True)
                     display.clicked.connect(lambda start_it, arg=spec :self._start_experiment(arg))
@@ -373,7 +414,8 @@ class MainApp(object):
     def _show_experiments_of_topic(self, topic):
         self._selection_starting_idx = 0
         self._display_type = "experiment"
-        self._set_listed_content(content = self._experiments[self._experiments.topic == topic])
+        self._current_listed_content = self._experiments[self._experiments.topic == topic]
+        self._set_listed_content()
 
     def _start_experiment(self, spec):
         experiment_module = importlib.util.module_from_spec(spec)
@@ -388,5 +430,7 @@ if __name__ == '__main__':
     main_window = QtWidgets.QMainWindow()
     main_ui = MainApp(language = 'en', screen_size = app.primaryScreen().size())
     main_ui.setupUi(main_window)
+    main_ui._set_to_default()
     main_window.showFullScreen()
+    
     sys.exit(app.exec())

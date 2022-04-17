@@ -50,10 +50,12 @@ class TopicButton(QtWidgets.QToolButton):
     BASIC_FONT = QtGui.QFont('Arial', 18)
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-    def __init__(self, screen_size, parent=None):
+    def __init__(self, parent_size, parent=None):
         super().__init__(parent=parent)
         
         self.MainLayout = QtWidgets.QGridLayout(self)
+        self.MainLayout.setRowStretch(0, 5)
+        self.MainLayout.setRowStretch(1, 1)
 
         self.icon_label = QtWidgets.QLabel()
         self.icon_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -68,15 +70,14 @@ class TopicButton(QtWidgets.QToolButton):
 
         self.MainLayout.addWidget(self.icon_label,0,0,1,1)
         self.MainLayout.addWidget(self.text,1,0,1,1)
-
-        self.MainLayout.setRowStretch(0, 5)
-        self.MainLayout.setRowStretch(1, 1)
+        self.parent_size = parent_size
+        
 
 
     def setButtonIcon(self, image_path=None):
         if image_path:
             pixmap = QtGui.QPixmap(image_path)  
-            self.icon_label.setPixmap(pixmap.scaled(int(self.icon_label.width()*.9), self.icon_label.height(), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+            self.icon_label.setPixmap(pixmap.scaled(int(self.parent_size.width()*.75), int(self.parent_size.height()*.75), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         else:
             pixmap = QtGui.QPixmap(image_path)  
             self.icon_label.setPixmap(pixmap)
