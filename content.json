@@ -12,6 +12,16 @@
             {
                 "name":"English",
                 "icon":"flag_en.png"
+            },
+            "pl":
+            {
+                "name":"Polski",
+                "icon":"flag_pl.png"
+            },
+            "fr":
+            {
+                "name":"Français",
+                "icon":"flag_fr.png"
             }
         },
         "bt_topic":
