@@ -20,7 +20,7 @@ class Experiment(ExperimentTemplate):
 
         self.header.setText(experiment_content["experiment"][self.language]["name"])
         self.fill_experiment_material(materials=experiment_content["material"][self.language])
-        self.fill_experiment_setup(image_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["setup"]["image"]))
+        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_content["setup"]["images"])
         self.fill_experiment_info(text=experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["information"]["file"]))
         self.fill_experiment(content=experiment_content["experiment"])
 

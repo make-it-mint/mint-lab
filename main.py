@@ -435,7 +435,7 @@ class MainApp(object):
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
-    main_ui = MainApp(language = 'en', screen_size = app.primaryScreen().size())
+    main_ui = MainApp(language = 'de', screen_size = app.primaryScreen().size())
     main_ui.setupUi(main_window)
     main_ui._set_to_default()
     main_window.showFullScreen()

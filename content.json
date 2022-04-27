@@ -117,7 +117,7 @@
         {
             "level":2,
             "topic":"ultrasound",
-            "directory":"parking",
+            "directory":"parking_sensor",
             "date-added":"2022-01-18",
             "name":{
                 "de":"Parksensor",

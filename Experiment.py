@@ -106,20 +106,18 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
             
 
-    def fill_experiment_setup(self, image_path:str=None):
+    def fill_experiment_setup(self, image_dir, image_path:list=None):
         tab_widget = self.tabs["setup"]["widget"]
         tab_widget.setStyleSheet(f"background-color:rgb(0,0,0)")
         layout = self.tabs["setup"]["layout"]
         layout.setColumnStretch(0,1)
         layout.setRowStretch(0,0)
-        
+        image_path=os.path.join(image_dir,image_path[0])
+
         if not image_path:
             image_path=os.path.join(self.ROOT_DIR, "assets/system/default.png")
             print("No Path specified")
 
-
-        
-        
         setup = QtWidgets.QToolButton()
         setup.setSizePolicy(self.sizePolicy)
         setup.setAutoRaise(True)
@@ -127,6 +125,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         setup.setIcon(QtGui.QIcon(image_path))
         setup.setIconSize(QtCore.QSize(int(self.screen_size.width()*.97), int(self.screen_size.height()*.85)))
         layout.addWidget(setup, 0,0)
+
 
     def fill_experiment_info(self, text=[], file_path=None):
         if not file_path:
