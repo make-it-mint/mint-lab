@@ -122,13 +122,25 @@
         "de":{
             "name":"Name des Experiments",
             "link":"https://make-it-mint.de",
-            "custom_content":{}
+            "colour_legend":{
+                "far":"WEIT",
+                "mid":"MITTEL",
+                "near":"NAH",
+                "close":"DICHT"
+            },
+            "default_distance":"Aktuelle Distanz"
         }
         ,
         "en":{
             "name":"Name of Experiment",
             "link":"https://make-it-mint.de",
-            "custom_content":{}
+            "colour_legend":{
+                "far":"FAR",
+                "mid":"MIDDLE",
+                "near":"NEAR",
+                "close":"CLOSE"
+            },
+            "default_distance":"Current Distance"
         }
     }
 }

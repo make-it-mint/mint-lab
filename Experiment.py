@@ -6,6 +6,8 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
     BASIC_FONT = QtGui.QFont('Arial', 22)
     BACKGROUND_COLOR = "rgb(62, 110, 145)"
+    FONT_COLOR_LIGHT = "rgb(230, 230, 230)"
+    FONT_COLOR_DARK = "rgb(80, 80, 80)"
 
     def __init__(self, root_dir, language, screen_size, parent=None):
         super().__init__(parent=parent)
@@ -135,6 +137,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         layout = self.tabs["information"]["layout"]
         info_text = QtWidgets.QLabel()
         info_text.setWordWrap(True)
+        info_text.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
         info_text.setFont(self.BASIC_FONT)
         layout.addWidget(info_text, 0, 0)
 
