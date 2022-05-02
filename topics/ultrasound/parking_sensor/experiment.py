@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from hashlib import new
 from Experiment import ExperimentTemplate
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
 import threading
 import random
@@ -17,6 +18,7 @@ class Experiment(ExperimentTemplate):
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
         experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
         self.experiment_is_running = False
+        self.show_fullscreen()
         self.header.setText(experiment_content["experiment"][self.language]["name"])
         self.header.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
         self.fill_experiment_material(materials=experiment_content["material"][self.language])
@@ -25,7 +27,7 @@ class Experiment(ExperimentTemplate):
         self.fill_experiment(content=experiment_content["experiment"][self.language])
 
 
-        self.show_fullscreen()
+        
 
 
     def close(self):
@@ -38,10 +40,20 @@ class Experiment(ExperimentTemplate):
 
     def fill_experiment(self, content:dict):
         self.experiment_layout = self.tabs["experiment"]["layout"]
+        self.experiment_layout.setColumnStretch(0,1)
+        self.experiment_layout.setColumnStretch(1,1) 
+        self.experiment_layout.setRowStretch(0,3)
+        self.experiment_layout.setRowStretch(1,3)
+        self.experiment_layout.setRowStretch(2,4)
 
         self.distance_visualization_frame = QtWidgets.QFrame()
         self.set_distance_visualization(parent_widget=self.distance_visualization_frame, content=content)
+        self.distance_visualization_frame.setSizePolicy(
+                 QtWidgets.QSizePolicy.Policy.Preferred,
+                 QtWidgets.QSizePolicy.Policy.Preferred
+             )
         self.experiment_layout.addWidget(self.distance_visualization_frame, 0, 0, 1, 2)
+        
 
         self.distance_display = QtWidgets.QLabel(content["default_distance"])
         self.distance_display.setAlignment(QtCore.Qt.AlignCenter)
@@ -52,24 +64,23 @@ class Experiment(ExperimentTemplate):
         self.start_experiment_button = QtWidgets.QPushButton("START EXPERIMENT")
         self.start_experiment_button.setFont(QtGui.QFont('Arial', 48))
         self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 50px 200px 50px 200px; border-radius: 50px")
-        self.start_experiment_button.setCheckable(True)
         self.start_experiment_button.setSizePolicy(
-                 QtWidgets.QSizePolicy.Policy.Expanding,
-                 QtWidgets.QSizePolicy.Policy.Expanding
+                 QtWidgets.QSizePolicy.Policy.Preferred,
+                 QtWidgets.QSizePolicy.Policy.Preferred
              )
         self.start_experiment_button.clicked.connect(self.start_stop_experiment)
         self.experiment_layout.addWidget(self.start_experiment_button,1,1)
 
         self.car_distance_frame = QtWidgets.QFrame()
         self.set_car_distance_visualization(parent_widget=self.car_distance_frame, content=content)
+        self.car_distance_frame.setSizePolicy(
+                 QtWidgets.QSizePolicy.Policy.Preferred,
+                 QtWidgets.QSizePolicy.Policy.Preferred
+             )
         self.experiment_layout.addWidget(self.car_distance_frame, 2, 0, 1, 2)
 
         
-        self.experiment_layout.setColumnStretch(0,1)
-        self.experiment_layout.setColumnStretch(1,1) 
-        self.experiment_layout.setRowStretch(0,3)
-        self.experiment_layout.setRowStretch(1,3)
-        self.experiment_layout.setRowStretch(2,4)
+        
              
 
     def set_distance_visualization(self, parent_widget:QtWidgets, content:dict):
@@ -159,7 +170,7 @@ class Experiment(ExperimentTemplate):
         self.distance_stop = QtWidgets.QLabel()
         pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/go.png")
         self.distance_stop.setAlignment(QtCore.Qt.AlignCenter)
-        self.distance_stop.setPixmap(pixmap.scaled(int(parent_widget.size().width()), int(parent_widget.size().height()*.7), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        self.distance_stop.setPixmap(pixmap.scaled(200,100, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         # self.distance_stop.setStyleSheet(
         #     """
         #     background-color: rgb(255,0,0);
@@ -295,7 +306,7 @@ class Experiment(ExperimentTemplate):
             pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/go.png")
         else:
             pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/stop.png")
-        self.distance_stop.setPixmap(pixmap.scaled(int(self.distance_display.size().width()), int(self.distance_display.size().height()), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        self.distance_stop.setPixmap(pixmap.scaled(200,100, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
 
 
            
@@ -307,22 +318,19 @@ class Experiment(ExperimentTemplate):
         parent_widget.setLayout(self.movable_object_layout )
 
         movable_object = QtWidgets.QLabel()
-        #movable_object.setStyleSheet("background-color: rgb(0,0,0)")
         movable_object.setSizePolicy(
                  QtWidgets.QSizePolicy.Policy.Preferred,
-                 QtWidgets.QSizePolicy.Policy.Expanding,
+                 QtWidgets.QSizePolicy.Policy.Preferred,
              )
         movable_object.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
         pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/car.png")  
-        movable_object.setPixmap(pixmap.scaled(int(parent_widget.size().width()), int(parent_widget.size().height()), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        movable_object.setPixmap(pixmap.scaled(800,300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         self.movable_object_layout.addWidget(movable_object,0,0)
 
-
         space = QtWidgets.QLabel()
-        #space.setStyleSheet("background-color: rgb(255,0,0)")
         space.setSizePolicy(
-                 QtWidgets.QSizePolicy.Policy.Expanding,
-                 QtWidgets.QSizePolicy.Policy.Expanding,
+                 QtWidgets.QSizePolicy.Policy.Preferred,
+                 QtWidgets.QSizePolicy.Policy.Preferred,
              )
 
         self.movable_object_layout.addWidget(space,0,1)
@@ -331,10 +339,10 @@ class Experiment(ExperimentTemplate):
         static_object = QtWidgets.QLabel()
         pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/car_static.png")
         static_object.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-        static_object.setPixmap(pixmap.scaled(int(parent_widget.size().width()), int(parent_widget.size().height()), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        static_object.setPixmap(pixmap.scaled(300,300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         static_object.setSizePolicy(
-                 QtWidgets.QSizePolicy.Policy.Expanding,
-                 QtWidgets.QSizePolicy.Policy.Expanding,
+                 QtWidgets.QSizePolicy.Policy.Preferred,
+                 QtWidgets.QSizePolicy.Policy.Preferred,
              )
 
         self.movable_object_layout.addWidget(static_object,0,2)
@@ -350,7 +358,9 @@ class Experiment(ExperimentTemplate):
             new_movable_weight = self.default_movable_object_weight + self.max_distance - new_space_weight
         else:
             new_movable_weight = self.default_movable_object_weight
-            new_space_weight = self.max_distance 
+            new_space_weight = self.max_distance
+
+        print(new_movable_weight, new_space_weight, new_movable_weight+new_space_weight)
 
         self.movable_object_layout.setColumnStretch(0, new_movable_weight)
         self.movable_object_layout.setColumnStretch(1, new_space_weight)
@@ -383,7 +393,7 @@ class Experiment(ExperimentTemplate):
 
 
     def update_ui(self, distance):
-        self.distance_display.setText(f"{distance} cm")
+        self.distance_display.setText(f"{distance:3.3f} cm")
         self.update_progressbar(pb= self.progressbar_distance, distance=distance)
         self.update_object_distance(distance)
 
@@ -402,7 +412,7 @@ class Running_Experiment(QtCore.QObject):
             self.cleanup_pins()
 
     def cleanup_pins(self):
-        GPIO.cleanup()
+        #GPIO.cleanup()
         pass
 
 

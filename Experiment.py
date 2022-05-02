@@ -1,6 +1,6 @@
 import os, json
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CustomButtons import OverViewButton
+from CustomWidgets import OverViewButton, ScrollLabel
 
 class ExperimentTemplate(QtWidgets.QWidget):
 
@@ -135,10 +135,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
         tab_widget = self.tabs["information"]["widget"]
         layout = self.tabs["information"]["layout"]
-        info_text = QtWidgets.QLabel()
-        info_text.setWordWrap(True)
-        info_text.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
-        info_text.setFont(self.BASIC_FONT)
+        info_text = ScrollLabel()
         layout.addWidget(info_text, 0, 0)
 
         info = ""
@@ -154,6 +151,9 @@ class ExperimentTemplate(QtWidgets.QWidget):
         movie_label.setMovie(movie)
         layout.addWidget(movie_label, 0, 1)
         movie.start()
+
+        layout.setColumnStretch(0, 3)
+        layout.setColumnStretch(1, 2)
 
     def fill_experiment(self, content=None):
         pass

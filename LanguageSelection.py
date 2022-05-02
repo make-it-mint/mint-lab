@@ -1,6 +1,6 @@
 from logging import root
 from PyQt5 import QtWidgets, QtCore
-from CustomButtons import LanguageButton
+from CustomWidgets import LanguageButton
 
 import sys, math
 

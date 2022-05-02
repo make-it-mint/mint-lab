@@ -94,6 +94,7 @@ class TopicButton(QtWidgets.QToolButton):
         else:
             self.setStyleSheet(f"")
 
+
 class LanguageButton(QtWidgets.QToolButton):
 
     BASIC_FONT = QtGui.QFont('Arial', 18)
@@ -135,4 +136,27 @@ class LanguageButton(QtWidgets.QToolButton):
         self.text.setText(text)
 
 
+class ScrollLabel(QtWidgets.QScrollArea):
 
+    BASIC_FONT = QtGui.QFont('Arial', 18)
+
+    def __init__(self, *args, **kwargs):
+        QtWidgets.QScrollArea.__init__(self, *args, **kwargs)
+
+        self.setWidgetResizable(True)
+        content = QtWidgets.QWidget(self)
+        self.setStyleSheet("background-color: rgb(52, 100, 135); border-radius: 10px")
+        self.setWidget(content)
+
+        layout = QtWidgets.QVBoxLayout(content)
+
+        self.label = QtWidgets.QLabel(content)
+        self.label.setAlignment(QtCore.Qt.AlignJustify | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
+        self.label.setWordWrap(True)
+        self.label.setStyleSheet("color: rgb(230, 230, 230)")
+        self.label.setFont(self.BASIC_FONT)
+        layout.addWidget(self.label)
+
+
+    def setText(self, text):
+        self.label.setText(text)

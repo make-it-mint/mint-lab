@@ -1,6 +1,6 @@
 import sys, os, git, json
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CustomButtons import TopicButton
+from CustomWidgets import TopicButton
 from LanguageSelection import LanguageSelection
 import pandas as pd
 import importlib.util
