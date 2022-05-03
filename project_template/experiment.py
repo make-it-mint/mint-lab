@@ -25,7 +25,6 @@ class Experiment(ExperimentTemplate):
         self.fill_experiment(content=experiment_content["experiment"])
 
 
-        self.show_fullscreen()
 
 
     def close(self):

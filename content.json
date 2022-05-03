@@ -81,6 +81,12 @@
                 "icon":"controller.png",
                 "de":"Controller",
                 "en":"Controller"
+            },
+            "rfid":
+            {
+                "icon":"rfid.png",
+                "de":"RFID",
+                "en":"RFID"
             }
         }
         ,
@@ -105,7 +111,7 @@
     "experiment_list":
     [
         {
-            "level":1,
+            "level":2,
             "topic":"ultrasound",
             "directory":"measure_distance",
             "date-added":"2022-01-20",
@@ -125,43 +131,13 @@
             }
         },
         {
-            "level":1,
-            "topic":"electricity",
-            "directory":"other",
-            "date-added":"2022-03-09",
-            "name":{
-                "de":"Other",
-                "en":"Other"
-            }
-        },
-        {
-            "level":1,
-            "topic":"temperature",
-            "directory":"other",
-            "date-added":"2022-03-10",
-            "name":{
-                "de":"Other",
-                "en":"Other"
-            }
-        },
-        {
             "level":3,
-            "topic":"controller",
-            "directory":"other",
-            "date-added":"2022-03-01",
+            "topic":"rfid",
+            "directory":"basic_rfid_reader_writer",
+            "date-added":"2022-01-18",
             "name":{
-                "de":"Other",
-                "en":"Other"
-            }
-        },
-        {
-            "level":4,
-            "topic":"solar",
-            "directory":"other",
-            "date-added":"2022-03-09",
-            "name":{
-                "de":"Other",
-                "en":"Other"
+                "de":"RFID-Chips Beschreiben und Lesen",
+                "en":"Read and Write RFID-Chips"
             }
         }
     ]
