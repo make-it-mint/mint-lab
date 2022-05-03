@@ -82,11 +82,10 @@ class Experiment(ExperimentTemplate):
         self.custom_text_write = QtWidgets.QTextEdit()
         self.custom_text_write.setAlignment(QtCore.Qt.AlignJustify)
         self.custom_text_write.setFont(self.SELECTED_FONT)
-        self.custom_text_write.resize(int(self.screen_size.width()*.5),int(self.screen_size.height()*.3))
+        self.custom_text_write.setMinimumWidth(int(self.screen_size.width()*.3))
         self.custom_text_write.setPlaceholderText(f'{content[self.language]["custom_text"]["write_hint"]}')
         self.custom_text_write.setStyleSheet(f"color:{self.FONT_COLOR_DARK}; background-color:rgb(230,230,230); border-width:0px")
         layout.addWidget(self.custom_text_write, 0, 0, QtCore.Qt.AlignLeft)
-
 
 
         self.custom_text_read = QtWidgets.QTextEdit()
@@ -244,18 +243,18 @@ class Experiment(ExperimentTemplate):
         self.blue_led.setIcon(QtGui.QIcon(image_path))
         self.blue_led.setIconSize(QtCore.QSize(int(self.screen_size.width()*.1), int(self.screen_size.height()*.1)))
         self.blue_led.setStyleSheet(f"padding:4px")
-        layout.addWidget(self.blue_led,0,0, QtCore.Qt.AlignCenter)
+        layout.addWidget(self.blue_led,0,0, QtCore.Qt.AlignCenter|QtCore.Qt.AlignBottom)
         self.blue_led_is_selected = False
         self.blue_led.clicked.connect(self.check_blue_button)
 
         self.blue_led_freq = QtWidgets.QLineEdit()
         self.blue_led_freq.setFont(self.SELECTED_FONT)
-        self.blue_led_freq.resize(int(self.screen_size.width()*.2),int(self.screen_size.height()*.3))
+        self.blue_led_freq.setMaximumWidth(int(self.screen_size.width()*.05))
         self.blue_led_freq.setAlignment(QtCore.Qt.AlignCenter)
         self.blue_led_freq.setPlaceholderText(f'{content["frequency"]}')
         self.blue_led_freq.setStyleSheet(f"color:{self.FONT_COLOR_DARK}; background-color:rgb(230,230,230); border-width:0px")
         self.blue_led_freq.setValidator(QtGui.QDoubleValidator())
-        self.blue_led_freq.setMaxLength(1)
+        self.blue_led_freq.setMaxLength(3)
         layout.addWidget(self.blue_led_freq, 1, 0, QtCore.Qt.AlignCenter)
 
         ############
@@ -267,18 +266,18 @@ class Experiment(ExperimentTemplate):
         self.red_led.setIcon(QtGui.QIcon(image_path))
         self.red_led.setIconSize(QtCore.QSize(int(self.screen_size.width()*.1), int(self.screen_size.height()*.1)))
         self.red_led.setStyleSheet(f"padding:4px")
-        layout.addWidget(self.red_led,0,1, QtCore.Qt.AlignCenter)
+        layout.addWidget(self.red_led,0,1, QtCore.Qt.AlignCenter|QtCore.Qt.AlignBottom)
         self.red_led_is_selected = False
         self.red_led.clicked.connect(self.check_red_button)
 
         self.red_led_freq = QtWidgets.QLineEdit()
         self.red_led_freq.setFont(self.SELECTED_FONT)
-        self.red_led_freq.resize(int(self.screen_size.width()*.2),int(self.screen_size.height()*.3))
+        self.red_led_freq.setMaximumWidth(int(self.screen_size.width()*.05))
         self.red_led_freq.setAlignment(QtCore.Qt.AlignCenter)
         self.red_led_freq.setPlaceholderText(f'{content["frequency"]}')
         self.red_led_freq.setStyleSheet(f"color:{self.FONT_COLOR_DARK}; background-color:rgb(230,230,230); border-width:0px")
         self.red_led_freq.setValidator(QtGui.QDoubleValidator())
-        self.red_led_freq.setMaxLength(1)
+        self.red_led_freq.setMaxLength(3)
         layout.addWidget(self.red_led_freq, 1, 1, QtCore.Qt.AlignCenter)
 
 
@@ -309,7 +308,7 @@ class Experiment(ExperimentTemplate):
 
 
 
-        layout.setRowStretch(0,1)
+        layout.setRowStretch(0,2)
         layout.setRowStretch(1,1)
         layout.setColumnStretch(0,2)
         layout.setColumnStretch(1,2)
