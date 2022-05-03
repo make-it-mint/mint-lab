@@ -25,8 +25,10 @@ class MainApp(object):
         self._experiments = pd.DataFrame(content_json["experiment_list"])
         self._screen_size = screen_size
         self._current_listed_content = self._experiments.topic.drop_duplicates()
-        if self._screen_size.width() < 1024:
+        if self._screen_size.width() <= 1024:
             MainApp.BASIC_FONT = QtGui.QFont('Arial', 18)
+
+        print(self._screen_size)
 
     def setupUi(self, MainWindow):
         self.main = MainWindow
@@ -52,8 +54,8 @@ class MainApp(object):
 
         MainWindow.resize(self._screen_size)
         self.centralwidget_layout.setColumnStretch(0, 1)
-        self.centralwidget_layout.setColumnStretch(1, 3)
-        self.centralwidget_layout.setRowStretch(0, 5)
+        self.centralwidget_layout.setColumnStretch(1, 4)
+        self.centralwidget_layout.setRowStretch(0, 4)
         self.centralwidget_layout.setRowStretch(1, 1)
         self.centralwidget_layout.setRowStretch(2, 10)
 
@@ -65,7 +67,7 @@ class MainApp(object):
         self.centralwidget_layout.addWidget(self.logo,0,0,1,1)
         image_path = f"{MainApp.ROOT_DIR}/assets/system/logo.png"
         self.logo.setIcon(QtGui.QIcon(image_path))
-        self.logo.setIconSize(QtCore.QSize(int(self._screen_size.width()/4.5), int(self._screen_size.height()*4.5/16)))
+        self.logo.setIconSize(QtCore.QSize(int(self._screen_size.width()/4.5), int(self._screen_size.height()*4.5/30)))
         self.logo.clicked.connect(self._set_to_default)
         #self.logo.setStyleSheet("background-color:rgb(0,0,0)")
 
