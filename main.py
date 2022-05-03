@@ -58,6 +58,7 @@ class MainApp(object):
         self.centralwidget_layout.setRowStretch(0, 4)
         self.centralwidget_layout.setRowStretch(1, 1)
         self.centralwidget_layout.setRowStretch(2, 10)
+        MainWindow.showFullScreen()
 
         #Set logo
         self.logo = QtWidgets.QToolButton()
@@ -346,7 +347,7 @@ class MainApp(object):
         self._topic_buttons = []
 
         for button_idx in range((self._topic_rows*self._topic_cols)):
-            button = TopicButton(parent=self.centralwidget, parent_size=parent_size)
+            button = TopicButton(parent=self.centralwidget, screen_size=self._screen_size)
             button.setSizePolicy(self.sizePolicy)
             button.setAutoRaise(True)
             button.setObjectName(f"topic_{button_idx}")
@@ -440,6 +441,6 @@ if __name__ == '__main__':
     main_ui = MainApp(language = 'de', screen_size = app.primaryScreen().size())
     main_ui.setupUi(main_window)
     main_ui._set_to_default()
-    main_window.showFullScreen()
+    #main_window.showFullScreen()
     
     sys.exit(app.exec())
