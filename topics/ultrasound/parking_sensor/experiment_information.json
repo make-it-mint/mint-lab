@@ -128,7 +128,7 @@
     },
     "experiment":{
         "de":{
-            "name":"Name des Experiments",
+            "name":"Einparksensor",
             "link":"https://make-it-mint.de",
             "colour_legend":{
                 "far":"WEIT",
@@ -140,7 +140,7 @@
         }
         ,
         "en":{
-            "name":"Name of Experiment",
+            "name":"Parking Sensor",
             "link":"https://make-it-mint.de",
             "colour_legend":{
                 "far":"FAR",
