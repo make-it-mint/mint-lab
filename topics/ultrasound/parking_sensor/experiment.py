@@ -16,9 +16,16 @@ class Experiment(ExperimentTemplate):
     def __init__(self, root_dir, language, screen_size, parent = None):
         super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
+        if self.screen_size.width() <= 1024:
+            self.SELECTED_FONT = self.BASIC_FONT_SMALL
+            self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 32)
+        else:
+            self.SELECTED_FONT = self.BASIC_FONT_LARGE
+            self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 48)
+
         experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
         self.experiment_is_running = False
-        self.show_fullscreen()
+        #self.show_fullscreen()
         self.header.setText(experiment_content["experiment"][self.language]["name"])
         self.header.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
         self.fill_experiment_material(materials=experiment_content["material"][self.language])
@@ -57,13 +64,13 @@ class Experiment(ExperimentTemplate):
 
         self.distance_display = QtWidgets.QLabel(content["default_distance"])
         self.distance_display.setAlignment(QtCore.Qt.AlignCenter)
-        self.distance_display.setFont(QtGui.QFont('Arial', 70))
+        self.distance_display.setFont(self.CUR_DISTANCE_FONT)
         self.distance_display.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
         self.experiment_layout.addWidget(self.distance_display,1,0)
 
         self.start_experiment_button = QtWidgets.QPushButton("START EXPERIMENT")
-        self.start_experiment_button.setFont(QtGui.QFont('Arial', 48))
-        self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 50px 200px 50px 200px; border-radius: 50px")
+        self.start_experiment_button.setFont(self.CUR_DISTANCE_FONT)
+        self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
         self.start_experiment_button.setSizePolicy(
                  QtWidgets.QSizePolicy.Policy.Preferred,
                  QtWidgets.QSizePolicy.Policy.Preferred
@@ -93,9 +100,9 @@ class Experiment(ExperimentTemplate):
         self.bound_far = QtWidgets.QLineEdit()
         self.bound_far.setMaxLength(10)
         self.bound_far.setAlignment(QtCore.Qt.AlignCenter)
-        self.bound_far.setFont(self.BASIC_FONT)
+        self.bound_far.setFont(self.SELECTED_FONT)
         self.bound_far.setPlaceholderText(f'{content["colour_legend"]["far"]}: 20 cm')
-        self.bound_far.setStyleSheet("background-color: rgb(0,255,0); border-radius: 15px;")
+        self.bound_far.setStyleSheet("background-color: rgb(0,255,0); border-radius: 5px;")
         self.bound_far.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.bound_far, 0, 2, QtCore.Qt.AlignLeft)
 
@@ -104,9 +111,9 @@ class Experiment(ExperimentTemplate):
         self.bound_far_mid = QtWidgets.QLineEdit()
         self.bound_far_mid.setMaxLength(10)
         self.bound_far_mid.setAlignment(QtCore.Qt.AlignCenter)
-        self.bound_far_mid.setFont(self.BASIC_FONT)
+        self.bound_far_mid.setFont(self.SELECTED_FONT)
         self.bound_far_mid.setPlaceholderText(f'{content["colour_legend"]["mid"]}: 14 cm')
-        self.bound_far_mid.setStyleSheet("background-color: rgb(255,255,0); border-radius: 15px;")
+        self.bound_far_mid.setStyleSheet("background-color: rgb(255,255,0); border-radius: 5px;")
         self.bound_far_mid.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.bound_far_mid, 0, 4, QtCore.Qt.AlignLeft)
 
@@ -117,9 +124,9 @@ class Experiment(ExperimentTemplate):
         self.bound_mid_near = QtWidgets.QLineEdit()
         self.bound_mid_near.setMaxLength(10)
         self.bound_mid_near.setAlignment(QtCore.Qt.AlignCenter)
-        self.bound_mid_near.setFont(self.BASIC_FONT)
+        self.bound_mid_near.setFont(self.SELECTED_FONT)
         self.bound_mid_near.setPlaceholderText(f'{content["colour_legend"]["near"]}: 8 cm')
-        self.bound_mid_near.setStyleSheet("background-color: rgb(255,165,0); border-radius: 15px;")
+        self.bound_mid_near.setStyleSheet("background-color: rgb(255,165,0); border-radius: 5px;")
         self.bound_mid_near.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.bound_mid_near, 0, 6, QtCore.Qt.AlignLeft)
 
@@ -128,9 +135,9 @@ class Experiment(ExperimentTemplate):
         self.bound_near_close = QtWidgets.QLineEdit()
         self.bound_near_close.setMaxLength(10)
         self.bound_near_close.setAlignment(QtCore.Qt.AlignCenter)
-        self.bound_near_close.setFont(self.BASIC_FONT)
+        self.bound_near_close.setFont(self.SELECTED_FONT)
         self.bound_near_close.setPlaceholderText(f'{content["colour_legend"]["close"]}: 4 cm')
-        self.bound_near_close.setStyleSheet("background-color: rgb(255,48,48); border-radius: 15px;")
+        self.bound_near_close.setStyleSheet("background-color: rgb(255,48,48); border-radius: 5px;")
         self.bound_near_close.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.bound_near_close, 0, 8, QtCore.Qt.AlignLeft)
 
@@ -143,7 +150,7 @@ class Experiment(ExperimentTemplate):
             """
             background-color: rgb(0,255,0);
             border-radius: 10px;
-            margin: 100px 10px 100px 10px;
+            margin: 10px 10px 10px 10px;
             """)
         layout.addWidget(self.distance_colour, 1, 0)
 
@@ -186,9 +193,9 @@ class Experiment(ExperimentTemplate):
         self.beep_far = QtWidgets.QLineEdit()
         self.beep_far.setMaxLength(10)
         self.beep_far.setAlignment(QtCore.Qt.AlignCenter)
-        self.beep_far.setFont(self.BASIC_FONT)
+        self.beep_far.setFont(self.SELECTED_FONT)
         self.beep_far.setPlaceholderText(f'{content["colour_legend"]["far"]}: 0.5 Hz')
-        self.beep_far.setStyleSheet("background-color: rgb(0,255,0); border-radius: 15px;")
+        self.beep_far.setStyleSheet("background-color: rgb(0,255,0); border-radius: 5px;")
         self.beep_far.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.beep_far, 2, 2, QtCore.Qt.AlignLeft)
 
@@ -198,9 +205,9 @@ class Experiment(ExperimentTemplate):
         self.beep_far_mid = QtWidgets.QLineEdit()
         self.beep_far_mid.setMaxLength(10)
         self.beep_far_mid.setAlignment(QtCore.Qt.AlignCenter)
-        self.beep_far_mid.setFont(self.BASIC_FONT)
+        self.beep_far_mid.setFont(self.SELECTED_FONT)
         self.beep_far_mid.setPlaceholderText(f'{content["colour_legend"]["mid"]}: 1 Hz')
-        self.beep_far_mid.setStyleSheet("background-color: rgb(255,255,0); border-radius: 15px;")
+        self.beep_far_mid.setStyleSheet("background-color: rgb(255,255,0); border-radius: 5px;")
         self.beep_far_mid.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.beep_far_mid, 2, 4, QtCore.Qt.AlignLeft)
 
@@ -210,9 +217,9 @@ class Experiment(ExperimentTemplate):
         self.beep_mid_near = QtWidgets.QLineEdit()
         self.beep_mid_near.setMaxLength(10)
         self.beep_mid_near.setAlignment(QtCore.Qt.AlignCenter)
-        self.beep_mid_near.setFont(self.BASIC_FONT)
+        self.beep_mid_near.setFont(self.SELECTED_FONT)
         self.beep_mid_near.setPlaceholderText(f'{content["colour_legend"]["near"]}: 2 Hz')
-        self.beep_mid_near.setStyleSheet("background-color: rgb(255,165,0); border-radius: 15px;")
+        self.beep_mid_near.setStyleSheet("background-color: rgb(255,165,0); border-radius: 5px;")
         self.beep_mid_near.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.beep_mid_near, 2, 6, QtCore.Qt.AlignLeft)
 
@@ -223,9 +230,9 @@ class Experiment(ExperimentTemplate):
         self.beep_near_close = QtWidgets.QLineEdit()
         self.beep_near_close.setMaxLength(10)
         self.beep_near_close.setAlignment(QtCore.Qt.AlignCenter)
-        self.beep_near_close.setFont(self.BASIC_FONT)
+        self.beep_near_close.setFont(self.SELECTED_FONT)
         self.beep_near_close.setPlaceholderText(f'{content["colour_legend"]["close"]}: 4 Hz')
-        self.beep_near_close.setStyleSheet("background-color: rgb(255,48,48); border-radius: 15px;")
+        self.beep_near_close.setStyleSheet("background-color: rgb(255,48,48); border-radius: 5px;")
         self.beep_near_close.setValidator(QtGui.QDoubleValidator())
         layout.addWidget(self.beep_near_close, 2, 8, QtCore.Qt.AlignLeft)
 
@@ -266,7 +273,7 @@ class Experiment(ExperimentTemplate):
             f"""
             background-color: {far_colour};
             border-radius: 10px;
-            margin: 100px 10px 100px 10px;
+            margin: 10px 10px 10px 10px;
             """)
         elif distance_value <= mid/far and distance_value > near/far:
             start_colour, stop_colour = far_colour, mid_colour
@@ -274,7 +281,7 @@ class Experiment(ExperimentTemplate):
             f"""
             background-color: {mid_colour};
             border-radius: 10px;
-            margin: 100px 10px 100px 10px;
+            margin: 10px 10px 10px 10px;
             """)
         elif distance_value <= near/far and distance_value > close/far:
             start_colour, stop_colour = mid_colour, near_colour
@@ -282,7 +289,7 @@ class Experiment(ExperimentTemplate):
             f"""
             background-color: {near_colour};
             border-radius: 10px;
-            margin: 100px 10px 100px 10px;
+            margin: 10px 10px 10px 10px;
             """)
         elif distance_value <= close/far and distance_value >= 0:
             start_colour, stop_colour = near_colour, close_colour
@@ -290,7 +297,7 @@ class Experiment(ExperimentTemplate):
             f"""
             background-color: {close_colour};
             border-radius: 10px;
-            margin: 100px 10px 100px 10px;
+            margin: 10px 10px 10px 10px;
             """)
         else:
             return
@@ -306,7 +313,7 @@ class Experiment(ExperimentTemplate):
             pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/go.png")
         else:
             pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/stop.png")
-        self.distance_stop.setPixmap(pixmap.scaled(200,100, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        self.distance_stop.setPixmap(pixmap.scaled(int(self.screen_size.width()*.2),int(self.screen_size.height()*.2), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
 
 
            
@@ -324,7 +331,7 @@ class Experiment(ExperimentTemplate):
              )
         movable_object.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
         pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/car.png")  
-        movable_object.setPixmap(pixmap.scaled(800,300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        movable_object.setPixmap(pixmap.scaled(int(self.screen_size.width()*.2),int(self.screen_size.height()*.2), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         self.movable_object_layout.addWidget(movable_object,0,0)
 
         space = QtWidgets.QLabel()
@@ -339,7 +346,7 @@ class Experiment(ExperimentTemplate):
         static_object = QtWidgets.QLabel()
         pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/car_static.png")
         static_object.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-        static_object.setPixmap(pixmap.scaled(300,300, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        static_object.setPixmap(pixmap.scaled(int(self.screen_size.width()*.2),int(self.screen_size.height()*.2), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         static_object.setSizePolicy(
                  QtWidgets.QSizePolicy.Policy.Preferred,
                  QtWidgets.QSizePolicy.Policy.Preferred,
@@ -360,7 +367,6 @@ class Experiment(ExperimentTemplate):
             new_movable_weight = self.default_movable_object_weight
             new_space_weight = self.max_distance
 
-        print(new_movable_weight, new_space_weight, new_movable_weight+new_space_weight)
 
         self.movable_object_layout.setColumnStretch(0, new_movable_weight)
         self.movable_object_layout.setColumnStretch(1, new_space_weight)
@@ -371,7 +377,7 @@ class Experiment(ExperimentTemplate):
 
         if not self.experiment_is_running:
             self.experiment_is_running = True
-            self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}; background-color: rgb(139,0,0); margin: 50px 200px 50px 200px; border-radius: 50px")
+            self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}; background-color: rgb(239,0,0); margin: 10px 20px 10px 20px; border-radius: 10px")
             self.start_experiment_button.setText("STOP EXPERIMENT")
             self.Experiment_Thread = QtCore.QThread()
             self.running_experiment = Running_Experiment()
@@ -382,7 +388,7 @@ class Experiment(ExperimentTemplate):
             
         else:
             self.experiment_is_running = False
-            self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 50px 200px 50px 200px; border-radius: 50px")
+            self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
             self.start_experiment_button.setText("START EXPERIMENT")
             self.running_experiment.experiment_is_running = self.experiment_is_running
             self.Experiment_Thread.exit()

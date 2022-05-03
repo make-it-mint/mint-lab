@@ -4,7 +4,9 @@ from CustomWidgets import OverViewButton, ScrollLabel
 
 class ExperimentTemplate(QtWidgets.QWidget):
 
-    BASIC_FONT = QtGui.QFont('Arial', 22)
+    BASIC_FONT_LARGE = QtGui.QFont('Arial', 22)
+    BASIC_FONT_MEDIUM = QtGui.QFont('Arial', 16)
+    BASIC_FONT_SMALL = QtGui.QFont('Arial', 12)
     BACKGROUND_COLOR = "rgb(62, 110, 145)"
     FONT_COLOR_LIGHT = "rgb(230, 230, 230)"
     FONT_COLOR_DARK = "rgb(80, 80, 80)"
@@ -23,6 +25,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.MainLayout=QtWidgets.QGridLayout(self.MainWidget)
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
 
+        self.show_fullscreen()
         self.close_experiment = QtWidgets.QPushButton()
         self.close_experiment.setSizePolicy(self.sizePolicy)
         self.close_experiment.setFlat(True)
@@ -33,9 +36,9 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.close_experiment.setIconSize(QtCore.QSize(int(self.screen_size.width()*.05), int(self.screen_size.height()*.05)))
         self.close_experiment.clicked.connect(self.close)
 
-        self.header =QtWidgets.QLabel("DUMMY")
-        self.header.setFont(self.BASIC_FONT)
-
+        self.header =QtWidgets.QLabel()
+        self.header.setFont(self.BASIC_FONT_LARGE)
+        self.header.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
         self.MainLayout.addWidget(self.close_experiment,0,0,1,1)
         self.MainLayout.addWidget(self.header,0,1,1,1)
 
@@ -95,7 +98,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
                     material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{materials[idx]['image']}")
                     button_text=materials[idx]["text"]
                     if "source" in materials[idx].keys():
-                        button_text += f"\n[{materials[idx]['source']}]"
+                        button_text += f" [{materials[idx]['source']}]"
                     material_button.setButtonText(button_text)
                     material_button.setActive(True)
                     material_button.setEnabled(True)
@@ -125,7 +128,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         setup.setAutoRaise(True)
         setup.setObjectName("setup_image")
         setup.setIcon(QtGui.QIcon(image_path))
-        setup.setIconSize(QtCore.QSize(int(self.screen_size.width()*.97), int(self.screen_size.height()*.85)))
+        setup.setIconSize(QtCore.QSize(int(self.screen_size.width()*.9), int(self.screen_size.height()*.8)))
         layout.addWidget(setup, 0,0)
 
 
@@ -135,7 +138,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
         tab_widget = self.tabs["information"]["widget"]
         layout = self.tabs["information"]["layout"]
-        info_text = ScrollLabel()
+        info_text = ScrollLabel(screen_size=self.screen_size)
         layout.addWidget(info_text, 0, 0)
 
         info = ""

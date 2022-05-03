@@ -10,18 +10,21 @@ class OverViewButton(QtWidgets.QToolButton):
         super().__init__(parent=parent)
         
         self.MainLayout = QtWidgets.QGridLayout(self)
-
+        if screen_size.width() <= 1024:
+            self.BASIC_FONT = QtGui.QFont('Arial', 10)
         self.icon_button = QtWidgets.QToolButton()
         self.icon_button.setAutoRaise(True)
         self.icon_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.setStyleSheet(f"background-color:rgb(255,255,255); margin:10px; border-radius:10px")
-        self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.15), int(screen_size.height()*.20)))
+        self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.20), int(screen_size.height()*.20)))
 
-        self.text =QtWidgets.QLabel("DUMMY")
+        self.text =QtWidgets.QLabel("")
         self.text.setFont(self.BASIC_FONT)
 
         self.text.setStyleSheet("")
+        self.text.setWordWrap(True)
         self.icon_button.setStyleSheet("")
+        #self.icon_button.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         self.MainLayout.addWidget(self.icon_button,0,0,1,1)
         self.MainLayout.addWidget(self.text,1,0,1,1)
@@ -56,6 +59,8 @@ class TopicButton(QtWidgets.QToolButton):
         self.MainLayout = QtWidgets.QGridLayout(self)
         self.MainLayout.setRowStretch(0, 5)
         self.MainLayout.setRowStretch(1, 1)
+        if screen_size.width() <= 1024:
+            self.BASIC_FONT = QtGui.QFont('Arial', 12)
 
         self.icon_label = QtWidgets.QLabel()
         self.icon_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -65,7 +70,7 @@ class TopicButton(QtWidgets.QToolButton):
         self.text.setFont(self.BASIC_FONT)
         self.text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
-        self.text.setStyleSheet("")
+        self.text.setStyleSheet("color: rgb(230,230,230)")
         self.icon_label.setStyleSheet("")
 
         self.MainLayout.addWidget(self.icon_label,0,0,1,1)
@@ -75,13 +80,12 @@ class TopicButton(QtWidgets.QToolButton):
 
 
     def setButtonIcon(self, image_path=None):
-        print(self.size())
         if image_path:
             pixmap = QtGui.QPixmap(image_path)  
             self.icon_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.25), int(self.screen_size.height()*.25), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         else:
             pixmap = QtGui.QPixmap(image_path)  
-            self.icon_label.setPixmap(pixmap)
+            self.icon_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.25), int(self.screen_size.height()*.25), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
 
 
     def setButtonText(self, text=""):
@@ -90,7 +94,7 @@ class TopicButton(QtWidgets.QToolButton):
     def setActive(self, is_active:bool):
         if is_active:
             self.setStyleSheet("border:2px solid rgb(125,178,255); margin:10px; border-radius:30px")
-            self.text.setStyleSheet("border:0px")
+            self.text.setStyleSheet("color: rgb(230,230,230); border:0px")
             self.icon_label.setStyleSheet("border:0px")
         else:
             self.setStyleSheet(f"")
@@ -98,7 +102,7 @@ class TopicButton(QtWidgets.QToolButton):
 
 class LanguageButton(QtWidgets.QToolButton):
 
-    BASIC_FONT = QtGui.QFont('Arial', 18)
+    BASIC_FONT = QtGui.QFont('Arial', 14)
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
     def __init__(self, parent=None):
@@ -113,7 +117,7 @@ class LanguageButton(QtWidgets.QToolButton):
         self.setStyleSheet(f"margin:10px; border-radius:10px")
         
 
-        self.text =QtWidgets.QLabel("DUMMY")
+        self.text =QtWidgets.QLabel()
         self.text.setFont(self.BASIC_FONT)
         self.text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
@@ -123,14 +127,14 @@ class LanguageButton(QtWidgets.QToolButton):
         self.MainLayout.addWidget(self.icon_label,0,0,1,1)
         self.MainLayout.addWidget(self.text,1,0,1,1)
         self.setStyleSheet("border:2px solid rgb(125,178,255); margin:10px; border-radius:30px")
-        self.text.setStyleSheet("border:0px")
+        self.text.setStyleSheet("color: rgb(230,230,230); border:0px")
         self.icon_label.setStyleSheet("border:0px")
         
 
 
     def setButtonIcon(self, image_path=None):
         pixmap = QtGui.QPixmap(image_path)  
-        self.icon_label.setPixmap(pixmap.scaled(150, 100))
+        self.icon_label.setPixmap(pixmap.scaled(120, 100))
 
 
     def setButtonText(self, text=""):
@@ -141,13 +145,15 @@ class ScrollLabel(QtWidgets.QScrollArea):
 
     BASIC_FONT = QtGui.QFont('Arial', 18)
 
-    def __init__(self, *args, **kwargs):
-        QtWidgets.QScrollArea.__init__(self, *args, **kwargs)
+    def __init__(self, screen_size):
+        QtWidgets.QScrollArea.__init__(self)
 
         self.setWidgetResizable(True)
         content = QtWidgets.QWidget(self)
         self.setStyleSheet("background-color: rgb(52, 100, 135); border-radius: 10px")
         self.setWidget(content)
+        if screen_size.width() <= 1024:
+            self.BASIC_FONT = QtGui.QFont('Arial', 12)
 
         layout = QtWidgets.QVBoxLayout(content)
 
