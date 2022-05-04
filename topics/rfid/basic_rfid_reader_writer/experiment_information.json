@@ -2,22 +2,93 @@
     "material":{
         "de":[
             {
-                "text":"Anzahl x Materialname ",
-                "image":"name des Bildes im Repo Root assets/parts/ Ordner",
-                "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                "text":"1x Breadboard",
+                "image":"breadboard.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x T-Cobbler",
+                "image":"t_cobbler.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x Flachbandkabel 2x20",
+                "image":"ribbon_2x20.png"
+            },
+            {
+                "text":"Jumperkabel Male-Male",
+                "image":"jumpercable_mm.png"
+            },
+            {
+                "text":"1x rote LED",
+                "image":"led_red.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x blaue LED",
+                "image":"led_blue.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"2x Widerstand 100 Ohm",
+                "image":"resistor100.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x RFID-RC522 Sensor",
+                "image":"rfid-rc522.png",
+                "source":"fritzing"
             }
             ]
         ,
         "en":[
             {
-                "text":"Amount x Materialname ",
-                "image":"imagename in repo root assets/parts/ directory",
-                "source":"if not self created image, name source here"
+                "text":"1x Breadboard",
+                "image":"breadboard.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x T-Cobbler",
+                "image":"t_cobbler.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x Ribbon Cable 2x20",
+                "image":"ribbon_2x20.png"
+            },
+            {
+                "text":"Jumpercable Male-Male",
+                "image":"jumpercable_mm.png"
+            },
+            {
+                "text":"1x red LED",
+                "image":"led_red.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x blue LED",
+                "image":"led_blue.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"2x Resistor 100 Ohm",
+                "image":"resistor100.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x RFID-RC522 Sensor",
+                "image":"rfid-rc522.png",
+                "source":"fritzing"
             }
             ]
     },
     "setup":{
-        "images":["setup.png"]
+        "images":[
+            "setup_complete.png",
+            "setup_step1.png",
+            "setup_step2.png",
+            "setup_step3.png"
+        ]
     },
     "information":{
         "file":"default_file",
@@ -53,7 +124,7 @@
         ],
         "read_img":"read.png",
         "write_img":"write.png",
-        "frequency":"0 Hz",
+        "frequency":"1 Hz",
 
         "de":{
             "name":"RFID-Chips Beschreiben und Lesen",
@@ -67,6 +138,14 @@
                 "first_name":"Vorname",
                 "last_name":"Nachname",
                 "next":"WEITER"
+            },
+            "rfid_state":{
+                "idle":"NIX LOS BEIM RFID SCANNER...",
+                "searching":"SUCHE NACH RFID-CHIP... (FÜR ABBRUCH KLICKEN)",
+                "end":"FERTIG!!!",
+                "cancelled":"ABGEBROCHEN DURCH NUTZER",
+                "error":"FEHLER IN AUSGELESENEN DATEN",
+                "blinking":"LEDs SIND AM BLINKEN...(FÜR ABBRUCH KLICKEN)"
             }
         }
         ,
@@ -82,6 +161,14 @@
                 "first_name":"Firstname",
                 "last_name":"Lastname",
                 "next":"NEXT"
+            },
+            "rfid_state":{
+                "idle":"RFID SCANNER IDLING...",
+                "searching":"SEARCHING FOR RFID-CHIP... (CLICK TO CANCEL)",
+                "end":"DONE!!!",
+                "cancelled":"CANCELLED BY USER",
+                "error":"ERROR IN READ DATA",
+                "blinking":"LEDs ARE BLINKING...(CLICK TO CANCEL)"
             }
         }
     }

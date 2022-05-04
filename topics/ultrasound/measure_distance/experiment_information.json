@@ -103,7 +103,12 @@
             ]
     },
     "setup":{
-        "images":["setup.png"]
+        "images":[
+            "setup_complete.png",
+            "setup_step1.png",
+            "setup_step2.png",
+            "setup_step3.png",
+            "setup_step4.png"]
     },
     "information":{
         "file":"ultrasonic.gif",

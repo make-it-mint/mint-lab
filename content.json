@@ -88,6 +88,16 @@
                 "de":"RFID",
                 "en":"RFID"
             }
+        },
+        "experiment_setup":{
+            "complete_page":{
+                "de":"Kompletter Aufbau - Für Schrittweise Anleitung hier Klicken",
+                "en":"Complete Setup - For Step-By-Step Manual, Click here"
+            },
+            "step_page":{
+                "de":"Schritt",
+                "en":"Step"
+            }
         }
         ,
         "experiment_tabs":

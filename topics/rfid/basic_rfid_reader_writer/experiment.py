@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from Experiment import ExperimentTemplate
-import os
+import os, ast
+import signal
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
 import time
 import threading
 import random
@@ -15,7 +17,7 @@ class Experiment(ExperimentTemplate):
     def __init__(self, root_dir, language, screen_size, parent = None):
         super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
-        experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
+        self.experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
         
         if self.screen_size.width() <= 1024:
             self.SELECTED_FONT = self.BASIC_FONT_MEDIUM
@@ -23,11 +25,11 @@ class Experiment(ExperimentTemplate):
             self.SELECTED_FONT = self.BASIC_FONT_LARGE
         
         self.experiment_is_running = False
-        self.header.setText(experiment_content["experiment"][self.language]["name"])
-        self.fill_experiment_material(materials=experiment_content["material"][self.language])
-        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_content["setup"]["images"])
-        self.fill_experiment_info(text=experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["information"]["file"]))
-        self.fill_experiment(content=experiment_content["experiment"])
+        self.header.setText(self.experiment_content["experiment"][self.language]["name"])
+        self.fill_experiment_material(materials=self.experiment_content["material"][self.language])
+        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=self.experiment_content["setup"]["images"])
+        self.fill_experiment_info(text=self.experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",self.experiment_content["information"]["file"]))
+        self.fill_experiment(content=self.experiment_content["experiment"])
 
 
     def close(self):
@@ -69,11 +71,26 @@ class Experiment(ExperimentTemplate):
         self.experiment_layout.addWidget(self.rfid_leds, 2, 0)
 
 
+        self.rfid_state = QtWidgets.QPushButton()
+        self.rfid_state.setFont(self.SELECTED_FONT)
+        self.rfid_state.setText(content[self.language]['rfid_state']['idle'])
+        self.rfid_state.setStyleSheet(f"background-color: {self.FONT_COLOR_DARK}; color:{self.FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
+        self.rfid_state.setMinimumWidth(int(self.screen_size.width()*.8))
+        self.experiment_layout.addWidget(self.rfid_state,3,0, QtCore.Qt.AlignCenter)
+        self.rfid_state.clicked.connect(self.cancel_experiment)
+
+
         self.experiment_layout.setColumnStretch(0,1)
         self.experiment_layout.setRowStretch(0,1)
         self.experiment_layout.setRowStretch(1,1)
         self.experiment_layout.setRowStretch(2,1)
 
+    def cancel_experiment(self):
+        if self.experiment_is_running:
+            GPIO.cleanup()
+            self.update_ui(rfid_content="-1")
+            time.sleep(1)
+            self.update_ui(rfid_content="0")
 
     def custom_text_interface(self, parent_widget, content):
         layout = QtWidgets.QGridLayout()
@@ -180,14 +197,14 @@ class Experiment(ExperimentTemplate):
         image_path = f"{self.EXPERIMENT_DIR}/assets/{content['read_img']}"
         self.personal_image_read_button.setIcon(QtGui.QIcon(image_path))
         self.personal_image_read_button.setIconSize(QtCore.QSize(int(self.screen_size.width()*.1), int(self.screen_size.height()*.1)))
-        self.personal_image_read_button.clicked.connect(lambda do_it, arg="custom_read" :self.start_stop_experiment(arg))
+        self.personal_image_read_button.clicked.connect(lambda do_it, arg="personal_read" :self.start_stop_experiment(arg))
         self.personal_image_read_button.setStyleSheet("background-color:rgb(255,255,0); border-radius: 10px; padding:10px; border-width:0px")
 
         ###############
         # READ CONTENT#
         ###############
         self.personal_image_read = QtWidgets.QLabel()
-        layout.addWidget(self.personal_image_read,0,4,2,1)
+        layout.addWidget(self.personal_image_read,0,4,2,1,QtCore.Qt.AlignCenter)
         self.personal_image_read.setStyleSheet(f"border-width:0px")
 
 
@@ -253,7 +270,7 @@ class Experiment(ExperimentTemplate):
         self.blue_led_freq.setAlignment(QtCore.Qt.AlignCenter)
         self.blue_led_freq.setPlaceholderText(f'{content["frequency"]}')
         self.blue_led_freq.setStyleSheet(f"color:{self.FONT_COLOR_DARK}; background-color:rgb(230,230,230); border-width:0px")
-        self.blue_led_freq.setValidator(QtGui.QDoubleValidator())
+        self.blue_led_freq.setValidator(QtGui.QIntValidator())
         self.blue_led_freq.setMaxLength(3)
         layout.addWidget(self.blue_led_freq, 1, 0, QtCore.Qt.AlignCenter)
 
@@ -276,7 +293,7 @@ class Experiment(ExperimentTemplate):
         self.red_led_freq.setAlignment(QtCore.Qt.AlignCenter)
         self.red_led_freq.setPlaceholderText(f'{content["frequency"]}')
         self.red_led_freq.setStyleSheet(f"color:{self.FONT_COLOR_DARK}; background-color:rgb(230,230,230); border-width:0px")
-        self.red_led_freq.setValidator(QtGui.QDoubleValidator())
+        self.red_led_freq.setValidator(QtGui.QIntValidator())
         self.red_led_freq.setMaxLength(3)
         layout.addWidget(self.red_led_freq, 1, 1, QtCore.Qt.AlignCenter)
 
@@ -334,52 +351,191 @@ class Experiment(ExperimentTemplate):
 
 
     def start_stop_experiment(self, action_type):
-
+        self.action_type = action_type
+        
         if self.experiment_is_running == False:
             self.experiment_is_running = True
 
-            self.Experiment_Thread = QtCore.QThread()
-            self.running_experiment = Running_Experiment()
+            self.Experiment_Thread = QtCore.QThread(parent=self)
+            if action_type == "custom_write":
+                self.running_experiment = Running_Experiment(action_type = action_type, text=self.custom_text_write.toPlainText())
+            elif action_type == "personal_write":
+                text = [self.personal_first_write.text(), self.personal_last_write.text(), self.selected_image]
+                self.running_experiment = Running_Experiment(action_type = action_type, text=text)
+            elif action_type == "led_write":
+                text = [self.red_led_is_selected, self.red_led_freq.text(), self.blue_led_is_selected, self.blue_led_freq.text()]
+                self.running_experiment = Running_Experiment(action_type = action_type, text=text)
+            else:
+                self.running_experiment = Running_Experiment(action_type = action_type)
+
             self.running_experiment.moveToThread(self.Experiment_Thread)
             self.Experiment_Thread.started.connect(self.running_experiment.run)
-            self.running_experiment.distance.connect(self.update_ui)
+            self.running_experiment.rfid_content.connect(self.update_ui)
             self.Experiment_Thread.start()
             
-        else:
-            self.experiment_is_running = False
-            self.running_experiment.experiment_is_running = self.experiment_is_running
-            self.Experiment_Thread.exit()
 
 
 
    
 
 
-    def update_ui(self):
-        pass
+    def update_ui(self, rfid_content):
+        try:
+            if rfid_content == "2":
+                self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['searching'])
+                self.rfid_state.setStyleSheet(f"background-color: rgb(255,255,0); color:{self.FONT_COLOR_DARK}; border-radius:5px; padding 5px")
+            elif rfid_content == "1":
+                self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['end'])
+                self.rfid_state.setStyleSheet(f"background-color: rgb(0,255,0); color:{self.FONT_COLOR_DARK}; border-radius:5px; padding 5px")
+            elif rfid_content == "-1":
+                self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['cancelled'])
+                self.rfid_state.setStyleSheet(f"background-color: rgb(255,120,0); color:{self.FONT_COLOR_DARK}; border-radius:5px; padding 5px")
+            elif rfid_content == "-2":
+                self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['error'])
+                self.rfid_state.setStyleSheet(f"background-color: rgb(255,120,0); color:{self.FONT_COLOR_DARK}; border-radius:5px; padding 5px")
+            elif rfid_content == "0":
+                self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['idle'])
+                self.rfid_state.setStyleSheet(f"background-color: {self.FONT_COLOR_DARK}; color:{self.FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
+                self.experiment_is_running = False
+                self.Experiment_Thread.terminate()
+            elif rfid_content == "3":
+                self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['blinking'])
+                self.rfid_state.setStyleSheet(f"background-color: rgb(0,255,0); color:{self.FONT_COLOR_DARK}; border-radius:5px; padding 5px")
+
+            else:
+                if self.action_type == "custom_write" or self.action_type == "personal_write" or self.action_type == "led_write":
+                    pass
+                elif self.action_type == "custom_read":
+                    self.custom_text_read.setText(rfid_content)
+                elif self.action_type == "personal_read":
+                    personal_data = ast.literal_eval(rfid_content)
+                    self.personal_first_read.setText(personal_data[0])
+                    self.personal_last_read.setText(personal_data[1])
+                    pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/{self.experiment_content['experiment']['personal_images'][int(personal_data[2])]}")  
+                    self.personal_image_read.setPixmap(pixmap.scaled(int(self.screen_size.width()*.1), int(self.screen_size.height()*.1), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        except Exception as e:
+            print(e)
+                  
 
 
 
 class Running_Experiment(QtCore.QObject):
-    value_for_ui = QtCore.pyqtSignal(float)
+    rfid_content = QtCore.pyqtSignal(str)
+
+
+    def __init__(self, action_type, text=""):
+        super().__init__()
+        self.action_type=action_type
+        self.text = text
 
     def run(self):
         try:
-            while True:
-                self.value_for_ui.emit(self.my_experiment())
+            self.rfid_content.emit("2")
+            if self.action_type == "custom_write" or self.action_type == "personal_write" or self.action_type == "led_write":
+                self.set_text()
+            elif self.action_type == "custom_read" or self.action_type == "personal_read":
+                self.rfid_content.emit(self.get_text())
+            elif self.action_type == "led_read":
+                #print(self.get_text())
+                led_action = ast.literal_eval(self.get_text())
+                print("LEDs: " + str(led_action))
+                if not self.start_led(led_action=led_action):
+                    GPIO.cleanup()
+                    self.rfid_content.emit("-2")
+                    time.sleep(2)
+                    self.rfid_content.emit("0")
+                    return
+
+            self.rfid_content.emit("1")
+            time.sleep(2)
+            self.rfid_content.emit("0")
         except (Exception, KeyboardInterrupt) as e:
-            self.cleanup_pins()
+            print(e)
+            GPIO.cleanup()
+            self.rfid_content.emit("-1")
+            time.sleep(2)
+            self.rfid_content.emit("0")
 
-    def cleanup_pins(self):
-        GPIO.cleanup()
-        pass
 
-
-    def my_experiment(self):
-
-        value = random.randint(2,40)
+    def set_text(self):
+        rfid_reader = SimpleMFRC522()
+        try:
+            rfid_reader.write(f"{self.text}")
+        except:
+            return False
+        finally:
+            GPIO.cleanup()
         
-        return value
+        return True
+
+    def get_text(self):
+        rfid_reader = SimpleMFRC522()
+        try:
+            
+            idx, text = rfid_reader.read()
+        except:
+            pass
+        finally:
+            GPIO.cleanup()
+        
+        return text
+
+    def start_led(self, led_action:list):
+        
+        try:
+            led_red_on = bool(led_action[0])
+            if led_red_on:
+                if not led_action[1] == "":
+                    led_red_freq = int(led_action[1])
+                else:
+                    led_red_freq = 1
+            else:
+                led_red_freq = 1
+
+
+            led_blue_on = bool(led_action[2])
+            if led_blue_on:
+                if not led_action[3] == "":
+                    led_blue_freq = int(led_action[3])
+                else:
+                    led_blue_freq = 1
+            else:
+                led_blue_freq = 1
+
+
+            GPIO.setmode(GPIO.BCM)
+            BLUE_PIN = 16
+            GPIO.setup(BLUE_PIN, GPIO.OUT)
+            GPIO.output(BLUE_PIN, GPIO.LOW)
+            RED_PIN = 20
+            GPIO.setup(RED_PIN, GPIO.OUT)
+            GPIO.output(RED_PIN, GPIO.LOW)
+            pause_time = 1/(led_red_freq*led_blue_freq*2)
+            counter = 0
+            self.rfid_content.emit("3")
+            while True:
+                if led_blue_on and counter % led_red_freq == 0:
+                    if GPIO.input(BLUE_PIN) == GPIO.LOW:
+                        GPIO.output(BLUE_PIN, GPIO.HIGH)
+                    else:
+                        GPIO.output(BLUE_PIN, GPIO.LOW)
+
+                if led_red_on and counter % led_blue_freq == 0:
+                    if GPIO.input(RED_PIN) == GPIO.LOW:
+                        GPIO.output(RED_PIN, GPIO.HIGH)
+                    else:
+                        GPIO.output(RED_PIN, GPIO.LOW)
+
+                counter += 1
+                time.sleep(pause_time)
+
+        except Exception as e:
+            print(e)
+            return False
+        finally:
+            GPIO.cleanup()
+        
+        return True
 
 
 

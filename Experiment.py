@@ -112,25 +112,51 @@ class ExperimentTemplate(QtWidgets.QWidget):
             
 
     def fill_experiment_setup(self, image_dir, image_path:list=None):
+        self.setup_page = 0
         tab_widget = self.tabs["setup"]["widget"]
         tab_widget.setStyleSheet(f"background-color:rgb(0,0,0)")
         layout = self.tabs["setup"]["layout"]
         layout.setColumnStretch(0,1)
-        layout.setRowStretch(0,0)
-        image_path=os.path.join(image_dir,image_path[0])
+        layout.setRowStretch(0,9)
+        layout.setRowStretch(1,1)
+        self.setup_image_paths = [os.path.join(image_dir,image) for image in image_path]
+        image_path=self.setup_image_paths[0]
 
         if not image_path:
             image_path=os.path.join(self.ROOT_DIR, "assets/system/default.png")
             print("No Path specified")
 
-        setup = QtWidgets.QToolButton()
-        setup.setSizePolicy(self.sizePolicy)
-        setup.setAutoRaise(True)
-        setup.setObjectName("setup_image")
-        setup.setIcon(QtGui.QIcon(image_path))
-        setup.setIconSize(QtCore.QSize(int(self.screen_size.width()*.9), int(self.screen_size.height()*.8)))
-        layout.addWidget(setup, 0,0)
+        self.setup_image = QtWidgets.QToolButton()
+        self.setup_image.setSizePolicy(self.sizePolicy)
+        self.setup_image.setAutoRaise(True)
+        self.setup_image.setIcon(QtGui.QIcon(image_path))
+        self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.9), int(self.screen_size.height()*.6)))
+        layout.addWidget(self.setup_image, 0,0)
 
+        self.change_setup_image_button = QtWidgets.QPushButton()
+        self.change_setup_image_button.setFont(self.BASIC_FONT_MEDIUM)
+        self.change_setup_image_button.setText(self.sys_content["experiment_setup"]["complete_page"][self.language])
+        self.change_setup_image_button.setStyleSheet(f"background-color: {self.FONT_COLOR_DARK}; color:{self.FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
+        self.change_setup_image_button.setMinimumWidth(int(self.screen_size.width()*.8))
+        layout.addWidget(self.change_setup_image_button,1,0, QtCore.Qt.AlignCenter)
+        self.change_setup_image_button.clicked.connect(self.update_setup_image)
+        
+
+    def update_setup_image(self):
+        if self.setup_page == len(self.setup_image_paths) - 1:
+            self.setup_page = 0
+            self.change_setup_image_button.setText(self.sys_content["experiment_setup"]["complete_page"][self.language])
+        else:
+            self.setup_page += 1
+            self.change_setup_image_button.setText(f'{self.sys_content["experiment_setup"]["step_page"][self.language]}   {self.setup_page}/{len(self.setup_image_paths)}')
+        image_path = self.setup_image_paths[self.setup_page]
+        self.setup_image.setIcon(QtGui.QIcon(image_path))
+
+
+        
+
+
+        
 
     def fill_experiment_info(self, text=[], file_path=None):
         if not file_path:

@@ -10,7 +10,7 @@ class MainApp(object):
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     BASIC_FONT = QtGui.QFont('Arial', 28)
     BACKGROUND_COLOR = "rgb(62, 110, 145)"
-    INTERFACE_BUTTON_UNSELECTED_SS = f"background-color:{BACKGROUND_COLOR}; padding-left: 20px; border: 5px solid rgb(52, 100, 135);\nborder-radius: 30px;"
+    INTERFACE_BUTTON_UNSELECTED_SS = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR}; padding-left: 20px; border: 5px solid rgb(52, 100, 135);\nborder-radius: 30px;"
     INTERFACE_BUTTON_SELECTED_SS = f"background-color:rgb(200,50,100); padding-left: 20px; border: 5px solid rgb(0, 0, 0);\nborder-radius: 30px;"
     
     def __init__(self, language, screen_size):

@@ -93,9 +93,9 @@ class TopicButton(QtWidgets.QToolButton):
 
     def setActive(self, is_active:bool):
         if is_active:
-            self.setStyleSheet("border:2px solid rgb(125,178,255); margin:10px; border-radius:30px")
-            self.text.setStyleSheet("color: rgb(230,230,230); border:0px")
-            self.icon_label.setStyleSheet("border:0px")
+            self.setStyleSheet("background-color:rgb(52, 100, 135);border:5px solid rgb(52, 100, 135); margin:10px; border-radius:30px")
+            self.text.setStyleSheet("color: rgb(230,230,230)")
+            self.icon_label.setStyleSheet("background-color:rgb(62, 110, 145);border:0px;border-radius:30px")
         else:
             self.setStyleSheet(f"")
 

@@ -308,8 +308,8 @@ class Running_Experiment(QtCore.QObject):
         distance = random.randint(2,40)
         """
         GPIO.setmode(GPIO.BCM)
-        GPIO_TRIGGER = 18
-        GPIO_ECHO = 24
+        GPIO_TRIGGER = 21
+        GPIO_ECHO = 16
         GPIO_LED_KURZ = 26
         GPIO_LED_LANG = 5
 
