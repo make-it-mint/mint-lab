@@ -98,8 +98,7 @@
                 "de":"Schritt",
                 "en":"Step"
             }
-        }
-        ,
+        },
         "experiment_tabs":
         {
             "de":
@@ -116,6 +115,18 @@
                 "setup":"Setup",
                 "experiment":"Experiment"
             }
+        },
+        "closing_experiment_warning":{
+            "de":"Experiment stoppen, bevor das Fenster geschlossen werden kann",
+            "en":"Stop the Experiment, before closing the window"
+        },
+        "start_experiment":{
+            "de":"START",
+            "en":"START"
+        },
+        "stop_experiment":{
+            "de":"STOP",
+            "en":"STOP"
         }
     },
     "experiment_list":

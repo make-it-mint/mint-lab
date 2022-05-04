@@ -5,7 +5,7 @@ from Experiment import ExperimentTemplate
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import threading
 import random
@@ -32,7 +32,7 @@ class Experiment(ExperimentTemplate):
 
     def close(self):
         if self.experiment_is_running:
-            QtWidgets.QMessageBox.about(self.MainWidget,"Achtung","Experiment stoppen, bevor das Fenster geschlossen werden kann")
+            QtWidgets.QMessageBox.about(self.MainWidget,"",self.sys_content["closing_experiment_warning"][self.language])
         else:
             self.MainWidget.close() 
 
@@ -52,7 +52,7 @@ class Experiment(ExperimentTemplate):
 
         self.experiment_layout.addWidget(formula,0,1)
 
-        self.start_experiment = QtWidgets.QPushButton("START EXPERIMENT")
+        self.start_experiment = QtWidgets.QPushButton(self.sys_content["start_experiment"][self.language])
         self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
         self.experiment_layout.addWidget(self.start_experiment,1,1)
@@ -72,7 +72,7 @@ class Experiment(ExperimentTemplate):
 
         if self.experiment_is_running == False:
             self.experiment_is_running = True
-            self.start_experiment.setText("STOP EXPERIMENT")
+            self.start_experiment.setText(self.sys_content["stop_experiment"][self.language])
 
             self.Experiment_Thread = QtCore.QThread()
             self.running_experiment = Running_Experiment()
@@ -91,7 +91,7 @@ class Experiment(ExperimentTemplate):
             self.experiment_is_running = False
             self.running_experiment.experiment_is_running = self.experiment_is_running
             self.Experiment_Thread.exit()
-            self.start_experiment.setText("START EXPERIMENT")
+            self.start_experiment.setText(self.sys_content["start_experiment"][self.language])
 
 
 
@@ -305,8 +305,8 @@ class Running_Experiment(QtCore.QObject):
 
     def measure_distance(self):
 
-        distance = random.randint(2,40)
-        """
+        #distance = random.randint(2,40)
+        
         GPIO.setmode(GPIO.BCM)
         GPIO_TRIGGER = 21
         GPIO_ECHO = 16
@@ -345,7 +345,7 @@ class Running_Experiment(QtCore.QObject):
             GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
         if distance <= self.threshold_blue:
             GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
-            """
+            
         return distance
 
 

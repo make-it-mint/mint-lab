@@ -34,7 +34,7 @@ class Experiment(ExperimentTemplate):
 
     def close(self):
         if self.experiment_is_running:
-            QtWidgets.QMessageBox.about(self.MainWidget,"Achtung","Experiment stoppen, bevor das Fenster geschlossen werden kann")
+            QtWidgets.QMessageBox.about(self.MainWidget,"",self.sys_content["closing_experiment_warning"][self.language])
         else:
             self.MainWidget.close() 
 

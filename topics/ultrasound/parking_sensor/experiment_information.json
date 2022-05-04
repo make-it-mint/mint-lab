@@ -141,7 +141,8 @@
                 "near":"NAH",
                 "close":"DICHT"
             },
-            "default_distance":"Aktuelle Distanz"
+            "default_distance":"Aktuelle Distanz",
+            "warning_empty_fields":"Abstände oder Frequenzen fehlen noch, bitte ausfüllen!"
         }
         ,
         "en":{
@@ -153,7 +154,8 @@
                 "near":"NEAR",
                 "close":"CLOSE"
             },
-            "default_distance":"Current Distance"
+            "default_distance":"Current Distance",
+            "warning_empty_fields":"Boundaries or Frequencies are still missing, please fill everything!"
         }
     }
 }
