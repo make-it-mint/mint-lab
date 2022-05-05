@@ -1,11 +1,15 @@
 import os, json
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CustomButtons import OverViewButton
+from CustomWidgets import OverViewButton, ScrollLabel
 
 class ExperimentTemplate(QtWidgets.QWidget):
 
-    BASIC_FONT = QtGui.QFont('Arial', 22)
+    BASIC_FONT_LARGE = QtGui.QFont('Arial', 22)
+    BASIC_FONT_MEDIUM = QtGui.QFont('Arial', 16)
+    BASIC_FONT_SMALL = QtGui.QFont('Arial', 12)
     BACKGROUND_COLOR = "rgb(62, 110, 145)"
+    FONT_COLOR_LIGHT = "rgb(230, 230, 230)"
+    FONT_COLOR_DARK = "rgb(80, 80, 80)"
 
     def __init__(self, root_dir, language, screen_size, parent=None):
         super().__init__(parent=parent)
@@ -21,6 +25,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.MainLayout=QtWidgets.QGridLayout(self.MainWidget)
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
 
+        self.show_fullscreen()
         self.close_experiment = QtWidgets.QPushButton()
         self.close_experiment.setSizePolicy(self.sizePolicy)
         self.close_experiment.setFlat(True)
@@ -31,9 +36,9 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.close_experiment.setIconSize(QtCore.QSize(int(self.screen_size.width()*.05), int(self.screen_size.height()*.05)))
         self.close_experiment.clicked.connect(self.close)
 
-        self.header =QtWidgets.QLabel("DUMMY")
-        self.header.setFont(self.BASIC_FONT)
-
+        self.header =QtWidgets.QLabel()
+        self.header.setFont(self.BASIC_FONT_LARGE)
+        self.header.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
         self.MainLayout.addWidget(self.close_experiment,0,0,1,1)
         self.MainLayout.addWidget(self.header,0,1,1,1)
 
@@ -93,7 +98,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
                     material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{materials[idx]['image']}")
                     button_text=materials[idx]["text"]
                     if "source" in materials[idx].keys():
-                        button_text += f"\n[{materials[idx]['source']}]"
+                        button_text += f" [{materials[idx]['source']}]"
                     material_button.setButtonText(button_text)
                     material_button.setActive(True)
                     material_button.setEnabled(True)
@@ -106,27 +111,52 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
             
 
-    def fill_experiment_setup(self, image_path:str=None):
+    def fill_experiment_setup(self, image_dir, image_path:list=None):
+        self.setup_page = 0
         tab_widget = self.tabs["setup"]["widget"]
         tab_widget.setStyleSheet(f"background-color:rgb(0,0,0)")
         layout = self.tabs["setup"]["layout"]
         layout.setColumnStretch(0,1)
-        layout.setRowStretch(0,0)
-        
+        layout.setRowStretch(0,9)
+        layout.setRowStretch(1,1)
+        self.setup_image_paths = [os.path.join(image_dir,image) for image in image_path]
+        image_path=self.setup_image_paths[0]
+
         if not image_path:
             image_path=os.path.join(self.ROOT_DIR, "assets/system/default.png")
             print("No Path specified")
 
+        self.setup_image = QtWidgets.QToolButton()
+        self.setup_image.setSizePolicy(self.sizePolicy)
+        self.setup_image.setAutoRaise(True)
+        self.setup_image.setIcon(QtGui.QIcon(image_path))
+        self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.9), int(self.screen_size.height()*.6)))
+        layout.addWidget(self.setup_image, 0,0)
+
+        self.change_setup_image_button = QtWidgets.QPushButton()
+        self.change_setup_image_button.setFont(self.BASIC_FONT_MEDIUM)
+        self.change_setup_image_button.setText(self.sys_content["experiment_setup"]["complete_page"][self.language])
+        self.change_setup_image_button.setStyleSheet(f"background-color: {self.FONT_COLOR_DARK}; color:{self.FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
+        self.change_setup_image_button.setMinimumWidth(int(self.screen_size.width()*.8))
+        layout.addWidget(self.change_setup_image_button,1,0, QtCore.Qt.AlignCenter)
+        self.change_setup_image_button.clicked.connect(self.update_setup_image)
+        
+
+    def update_setup_image(self):
+        if self.setup_page == len(self.setup_image_paths) - 1:
+            self.setup_page = 0
+            self.change_setup_image_button.setText(self.sys_content["experiment_setup"]["complete_page"][self.language])
+        else:
+            self.setup_page += 1
+            self.change_setup_image_button.setText(f'{self.sys_content["experiment_setup"]["step_page"][self.language]}   {self.setup_page}/{len(self.setup_image_paths)}')
+        image_path = self.setup_image_paths[self.setup_page]
+        self.setup_image.setIcon(QtGui.QIcon(image_path))
+
 
         
+
+
         
-        setup = QtWidgets.QToolButton()
-        setup.setSizePolicy(self.sizePolicy)
-        setup.setAutoRaise(True)
-        setup.setObjectName("setup_image")
-        setup.setIcon(QtGui.QIcon(image_path))
-        setup.setIconSize(QtCore.QSize(int(self.screen_size.width()*.97), int(self.screen_size.height()*.85)))
-        layout.addWidget(setup, 0,0)
 
     def fill_experiment_info(self, text=[], file_path=None):
         if not file_path:
@@ -134,9 +164,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
 
         tab_widget = self.tabs["information"]["widget"]
         layout = self.tabs["information"]["layout"]
-        info_text = QtWidgets.QLabel()
-        info_text.setWordWrap(True)
-        info_text.setFont(self.BASIC_FONT)
+        info_text = ScrollLabel(screen_size=self.screen_size)
         layout.addWidget(info_text, 0, 0)
 
         info = ""
@@ -152,6 +180,9 @@ class ExperimentTemplate(QtWidgets.QWidget):
         movie_label.setMovie(movie)
         layout.addWidget(movie_label, 0, 1)
         movie.start()
+
+        layout.setColumnStretch(0, 3)
+        layout.setColumnStretch(1, 2)
 
     def fill_experiment(self, content=None):
         pass

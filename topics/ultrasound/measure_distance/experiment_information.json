@@ -20,7 +20,7 @@
                     "image":"jumpercable_mm.png"
                 },
                 {
-                    "text":"1x HC-SR04",
+                    "text":"1x HC-SR04 Ultraschallsensor",
                     "image":"HC-SR04.png",
                     "source":"fritzing"
                 },
@@ -67,7 +67,7 @@
                     "image":"ribbon_2x20.png"
                 },
                 {
-                    "text":"1x HC-SR04",
+                    "text":"1x HC-SR04 Ultrasound Sensor",
                     "image":"HC-SR04.png",
                     "source":"fritzing"
                 },
@@ -103,7 +103,12 @@
             ]
     },
     "setup":{
-        "image":"setup.png"
+        "images":[
+            "setup_complete.png",
+            "setup_step1.png",
+            "setup_step2.png",
+            "setup_step3.png",
+            "setup_step4.png"]
     },
     "information":{
         "file":"ultrasonic.gif",
@@ -123,6 +128,7 @@
     "experiment":{
         "de":{
             "name":"Distanz Messen",
+            "link":"https://make-it-mint.de",
             "formula-img":"formula_de.png",
             "speed":{
                 "Luft":330,
@@ -138,6 +144,7 @@
         },
         "en":{
             "name":"Measure Distance",
+            "link":"https://make-it-mint.de",
             "formula-img":"formula_de.png",
             "speed":{
                 "Air":330,
