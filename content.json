@@ -12,6 +12,16 @@
             {
                 "name":"English",
                 "icon":"flag_en.png"
+            },
+            "pl":
+            {
+                "name":"Polski",
+                "icon":"flag_pl.png"
+            },
+            "fr":
+            {
+                "name":"Français",
+                "icon":"flag_fr.png"
             }
         },
         "bt_topic":
@@ -53,9 +63,42 @@
                 "icon":"temperature.png",
                 "de":"Temperatur",
                 "en":"Temperature"
+            },
+            "weight":
+            {
+                "icon":"weight.png",
+                "de":"Gewicht",
+                "en":"Weight"
+            },
+            "solar":
+            {
+                "icon":"solar.png",
+                "de":"Solar",
+                "en":"Solar"
+            },
+            "controller":
+            {
+                "icon":"controller.png",
+                "de":"Controller",
+                "en":"Controller"
+            },
+            "rfid":
+            {
+                "icon":"rfid.png",
+                "de":"RFID",
+                "en":"RFID"
             }
-        }
-        ,
+        },
+        "experiment_setup":{
+            "complete_page":{
+                "de":"Kompletter Aufbau - Für Schrittweise Anleitung hier Klicken",
+                "en":"Complete Setup - For Step-By-Step Manual, Click here"
+            },
+            "step_page":{
+                "de":"Schritt",
+                "en":"Step"
+            }
+        },
         "experiment_tabs":
         {
             "de":
@@ -72,15 +115,27 @@
                 "setup":"Setup",
                 "experiment":"Experiment"
             }
+        },
+        "closing_experiment_warning":{
+            "de":"Experiment stoppen, bevor das Fenster geschlossen werden kann",
+            "en":"Stop the Experiment, before closing the window"
+        },
+        "start_experiment":{
+            "de":"START",
+            "en":"START"
+        },
+        "stop_experiment":{
+            "de":"STOP",
+            "en":"STOP"
         }
     },
     "experiment_list":
     [
         {
-            "level":1,
+            "level":2,
             "topic":"ultrasound",
             "directory":"measure_distance",
-            "added":"20.01.2022",
+            "date-added":"2022-01-20",
             "name":{
                 "de":"Distanz Messen",
                 "en":"Measure Distance"
@@ -89,21 +144,21 @@
         {
             "level":2,
             "topic":"ultrasound",
-            "directory":"parking",
-            "added":"18.01.2022",
+            "directory":"parking_sensor",
+            "date-added":"2022-01-18",
             "name":{
-                "de":"Parksensor",
+                "de":"Einpark Sensor",
                 "en":"Parking Sensor"
             }
         },
         {
-            "level":1,
-            "topic":"electricity",
-            "directory":"other",
-            "added":"09.03.2022",
+            "level":3,
+            "topic":"rfid",
+            "directory":"basic_rfid_reader_writer",
+            "date-added":"2022-01-18",
             "name":{
-                "de":"Other",
-                "en":"Other"
+                "de":"RFID-Chips Beschreiben und Lesen",
+                "en":"Read and Write RFID-Chips"
             }
         }
     ]

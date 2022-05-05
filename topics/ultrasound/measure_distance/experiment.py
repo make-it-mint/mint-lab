@@ -5,7 +5,7 @@ from Experiment import ExperimentTemplate
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import threading
 import random
@@ -16,21 +16,23 @@ class Experiment(ExperimentTemplate):
         super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
         experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
-        
+        if self.screen_size.width() <= 1024:
+            self.SELECTED_FONT = self.BASIC_FONT_SMALL
+            self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 32)
+        else:
+            self.SELECTED_FONT = self.BASIC_FONT_LARGE
+            self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 48)
 
         self.header.setText(experiment_content["experiment"][self.language]["name"])
         self.fill_experiment_material(materials=experiment_content["material"][self.language])
-        self.fill_experiment_setup(image_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["setup"]["image"]))
+        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_content["setup"]["images"])
         self.fill_experiment_info(text=experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["information"]["file"]))
         self.fill_experiment(content=experiment_content["experiment"])
 
 
-        self.show_fullscreen()
-
-
     def close(self):
         if self.experiment_is_running:
-            QtWidgets.QMessageBox.about(self.MainWidget,"Achtung","Experiment stoppen, bevor das Fenster geschlossen werden kann")
+            QtWidgets.QMessageBox.about(self.MainWidget,"",self.sys_content["closing_experiment_warning"][self.language])
         else:
             self.MainWidget.close() 
 
@@ -45,11 +47,12 @@ class Experiment(ExperimentTemplate):
         self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
         image = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/formula.png")
         formula = QtWidgets.QLabel()
-        formula.setPixmap(image.scaledToWidth(formula.size().width()))
+        formula.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        formula.setPixmap(image.scaled(int(self.screen_size.width()*.5), int(self.screen_size.height()*.25), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
 
         self.experiment_layout.addWidget(formula,0,1)
 
-        self.start_experiment = QtWidgets.QPushButton("START EXPERIMENT")
+        self.start_experiment = QtWidgets.QPushButton(self.sys_content["start_experiment"][self.language])
         self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
         self.experiment_layout.addWidget(self.start_experiment,1,1)
@@ -69,7 +72,7 @@ class Experiment(ExperimentTemplate):
 
         if self.experiment_is_running == False:
             self.experiment_is_running = True
-            self.start_experiment.setText("STOP EXPERIMENT")
+            self.start_experiment.setText(self.sys_content["stop_experiment"][self.language])
 
             self.Experiment_Thread = QtCore.QThread()
             self.running_experiment = Running_Experiment()
@@ -88,7 +91,7 @@ class Experiment(ExperimentTemplate):
             self.experiment_is_running = False
             self.running_experiment.experiment_is_running = self.experiment_is_running
             self.Experiment_Thread.exit()
-            self.start_experiment.setText("START EXPERIMENT")
+            self.start_experiment.setText(self.sys_content["start_experiment"][self.language])
 
 
 
@@ -106,7 +109,7 @@ class Experiment(ExperimentTemplate):
         self.slider_blue.valueChanged.connect(self.blue_value_changed)
 
         self.label_blue = QtWidgets.QLabel(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
-        self.label_blue.setFont(QtGui.QFont("Helvetica", 24, italic=False))
+        self.label_blue.setFont(self.SELECTED_FONT)
         self.label_blue_led = QtWidgets.QLabel()
         # self.label_blue_led.setSizePolicy(
         #         QSizePolicy.Expanding,
@@ -133,7 +136,7 @@ class Experiment(ExperimentTemplate):
         #         QSizePolicy.Expanding,
         #     )
         self.label_distance = QtWidgets.QLabel(f"Aktuelle Distanz: {self.current_distance.value()} cm")
-        self.label_distance.setFont(QtGui.QFont("Helvetica", 24))
+        self.label_distance.setFont(self.SELECTED_FONT)
         self.interactive_icons_layout.addWidget(self.current_distance,3,1)
         self.interactive_icons_layout.addWidget(self.label_distance,2,0,1,2)
 
@@ -147,7 +150,7 @@ class Experiment(ExperimentTemplate):
         self.slider_red.valueChanged.connect(self.red_value_changed)
         
         self.label_red = QtWidgets.QLabel(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
-        self.label_red.setFont(QtGui.QFont("Helvetica", 24))
+        self.label_red.setFont(self.SELECTED_FONT)
         self.label_red_led = QtWidgets.QLabel()
         # self.label_red_led.setSizePolicy(
         #         QSizePolicy.Expanding,
@@ -195,7 +198,7 @@ class Experiment(ExperimentTemplate):
         medium_layout=QtWidgets.QVBoxLayout()
         for idx, (k, v) in enumerate(content[self.language]['speed'].items()):
             radio = QtWidgets.QRadioButton(f"{k}(~ {v} m/s)")
-            radio.setFont(QtGui.QFont("Helvetica", 18))
+            radio.setFont(self.SELECTED_FONT)
             if idx == 0:
                 radio.setChecked(True)
             medium_layout.addWidget(radio)
@@ -229,7 +232,6 @@ class Experiment(ExperimentTemplate):
 
                     except ValueError:
                         QtWidgets.QMessageBox.about(self,"Error","Eigener Wert ist keine ganze Zahl (Integer)")
-                        #print("Custom Value is not a Number")
                         speed = None
                 
                 break
@@ -303,11 +305,11 @@ class Running_Experiment(QtCore.QObject):
 
     def measure_distance(self):
 
-        distance = random.randint(2,40)
-        """
+        #distance = random.randint(2,40)
+        
         GPIO.setmode(GPIO.BCM)
-        GPIO_TRIGGER = 18
-        GPIO_ECHO = 24
+        GPIO_TRIGGER = 21
+        GPIO_ECHO = 16
         GPIO_LED_KURZ = 26
         GPIO_LED_LANG = 5
 
@@ -343,7 +345,7 @@ class Running_Experiment(QtCore.QObject):
             GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
         if distance <= self.threshold_blue:
             GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
-            """
+            
         return distance
 
 
