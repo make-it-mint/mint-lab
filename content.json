@@ -39,6 +39,11 @@
             "de":"Einsteiger",
             "en":"Beginners"
         },
+        "bt_material_page":
+        {
+            "de":"Materialseite",
+            "en":"Materialpage"
+        },
         "levels":
         {
             "de":["Intro","Einsteiger", "Fortgeschritten", "Erfahren", "Experte", "BOSS"],

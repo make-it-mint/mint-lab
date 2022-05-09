@@ -131,16 +131,41 @@ class ExperimentTemplate(QtWidgets.QWidget):
                     material_button.setActive(False)
 
             self.next_material_button = self.material_buttons[-1]
-            self.next_material_button.setStyleSheet("background-color:rgb(0,255,0)")
-            self.next_material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/next.png")
-            self.next_material_button.setText(f"{self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons-1))))}")
-            self.next_material_button.clicked.connect(self.update_material_page)
             self.next_material_button.setActive(True)
             self.next_material_button.setEnabled(True)
+            self.next_material_button.setStyleSheet("background-color:rgb(0,205,0); margin:10px; border-radius:10px;")
+            self.next_material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/next.png")
+            self.next_material_button.setButtonText(f"{self.sys_content['bt_material_page'][self.language]} {self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons)-1)))}")
+            self.next_material_button.clicked.connect(self.update_material_page)
+            self.next_material_button.text.setStyleSheet("color:rgb(230,230,230);")
+            self.next_material_button.icon_button.clicked.connect(self.update_material_page)
+            
 
     def update_material_page(self):
-        print("Got here")
-        pass
+        if self.material_page + 1 <= int(math.ceil(len(self.materials)/(len(self.material_buttons)-1))):
+            self.material_page += 1
+        else:
+            self.material_page = 1
+            self.last_visible_material_idx = -1
+        self.next_material_button.setButtonText(f"{self.sys_content['bt_material_page'][self.language]} {self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons)-1)))}")
+        
+        for idx, material_button in enumerate(self.material_buttons):
+            if idx == self._material_rows*self._material_cols - 1:
+                break
+            self.last_visible_material_idx += 1
+            try:
+                material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{self.materials[self.last_visible_material_idx]['image']}")
+                button_text=self.materials[self.last_visible_material_idx]["text"]
+                if "source" in self.materials[self.last_visible_material_idx].keys():
+                    button_text += f" [{self.materials[self.last_visible_material_idx]['source']}]"
+                material_button.setButtonText(button_text)
+                material_button.setActive(True)
+                material_button.setEnabled(True)
+            except IndexError as e:
+                material_button.setButtonIcon()
+                material_button.setButtonText()
+                material_button.setEnabled(False)
+                material_button.setActive(False)
 
             
 
