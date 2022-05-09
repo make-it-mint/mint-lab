@@ -10,13 +10,16 @@ class OverViewButton(QtWidgets.QToolButton):
         super().__init__(parent=parent)
         
         self.MainLayout = QtWidgets.QGridLayout(self)
-        if screen_size.width() <= 1024:
-            self.BASIC_FONT = QtGui.QFont('Arial', 10)
+        
         self.icon_button = QtWidgets.QToolButton()
         self.icon_button.setAutoRaise(True)
         self.icon_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.setStyleSheet(f"background-color:rgb(255,255,255); margin:10px; border-radius:10px")
-        self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.20), int(screen_size.height()*.20)))
+        if screen_size.width() <= 1024:
+            self.BASIC_FONT = QtGui.QFont('Arial', 10)
+            self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.25), int(screen_size.height()*.30)))
+        else:
+            self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.20), int(screen_size.height()*.20)))
 
         self.text =QtWidgets.QLabel("")
         self.text.setFont(self.BASIC_FONT)

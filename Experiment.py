@@ -1,4 +1,5 @@
 import os, json, math
+from turtle import screensize
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
 
@@ -68,15 +69,27 @@ class ExperimentTemplate(QtWidgets.QWidget):
     def create_experiment_material_layout(self):
         tab_widget = self.tabs["material"]["widget"]
         layout = self.tabs["material"]["layout"]
-        self._material_rows, self._material_cols = 3,5
-        layout.setColumnStretch(0, 1)
-        layout.setColumnStretch(1, 1)
-        layout.setColumnStretch(2, 1)
-        layout.setColumnStretch(3, 1)
-        layout.setColumnStretch(4, 1)
-        layout.setRowStretch(0, 1)
-        layout.setRowStretch(1, 1)
-        layout.setRowStretch(2, 1)
+        if self.screen_size.width() <= 1024:
+            self._material_rows, self._material_cols = 2,4
+            layout.setColumnStretch(0, 1)
+            layout.setColumnStretch(1, 1)
+            layout.setColumnStretch(2, 1)
+            layout.setColumnStretch(3, 1)
+            #layout.setColumnStretch(4, 1)
+            layout.setRowStretch(0, 1)
+            layout.setRowStretch(1, 1)
+            #layout.setRowStretch(2, 1)
+
+        else:
+            self._material_rows, self._material_cols = 3,5
+            layout.setColumnStretch(0, 1)
+            layout.setColumnStretch(1, 1)
+            layout.setColumnStretch(2, 1)
+            layout.setColumnStretch(3, 1)
+            layout.setColumnStretch(4, 1)
+            layout.setRowStretch(0, 1)
+            layout.setRowStretch(1, 1)
+            layout.setRowStretch(2, 1)
 
         self.material_buttons=[]
         for button_idx in range(self._material_rows*self._material_cols):
