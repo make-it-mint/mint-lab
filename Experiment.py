@@ -1,4 +1,4 @@
-import os, json
+import os, json, math
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
 
@@ -67,7 +67,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
     def create_experiment_material_layout(self):
         tab_widget = self.tabs["material"]["widget"]
         layout = self.tabs["material"]["layout"]
-        rows, cols = 3,5
+        self._material_rows, self._material_cols = 3,5
         layout.setColumnStretch(0, 1)
         layout.setColumnStretch(1, 1)
         layout.setColumnStretch(2, 1)
@@ -78,7 +78,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         layout.setRowStretch(2, 1)
 
         self.material_buttons=[]
-        for button_idx in range(rows*cols):
+        for button_idx in range(self._material_rows*self._material_cols):
             material_button = OverViewButton(parent=tab_widget, screen_size=self.screen_size)
             material_button.setSizePolicy(self.sizePolicy)
             material_button.setAutoRaise(True)
@@ -86,19 +86,21 @@ class ExperimentTemplate(QtWidgets.QWidget):
             material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/default.png")
             material_button.setButtonText(text=f"Test")
             self.material_buttons.append(material_button)
-            layout.addWidget(material_button, int(button_idx/cols),int(button_idx%cols))
+            layout.addWidget(material_button, int(button_idx/self._material_cols),int(button_idx%self._material_cols))
 
 
 
     def fill_experiment_material(self, materials:list=[]):
-        
-        if len(materials) <= len(self.material_buttons):
+        self.last_visible_material_idx = 0
+        self.materials = materials
+        self.material_page = 1
+        if len(self.materials) <= len(self.material_buttons):
             for idx, material_button in enumerate(self.material_buttons):
                 try:
-                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{materials[idx]['image']}")
-                    button_text=materials[idx]["text"]
-                    if "source" in materials[idx].keys():
-                        button_text += f" [{materials[idx]['source']}]"
+                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{self.materials[idx]['image']}")
+                    button_text=self.materials[idx]["text"]
+                    if "source" in self.materials[idx].keys():
+                        button_text += f" [{self.materials[idx]['source']}]"
                     material_button.setButtonText(button_text)
                     material_button.setActive(True)
                     material_button.setEnabled(True)
@@ -108,6 +110,36 @@ class ExperimentTemplate(QtWidgets.QWidget):
                     material_button.setEnabled(False)
                     material_button.setActive(False)
 
+        else:
+            for idx, material_button in enumerate(self.material_buttons):
+                if idx == self._material_rows*self._material_cols - 1:
+                    break
+                self.last_visible_material_idx = idx
+                try:
+                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{self.materials[idx]['image']}")
+                    button_text=self.materials[idx]["text"]
+                    if "source" in self.materials[idx].keys():
+                        button_text += f" [{self.materials[idx]['source']}]"
+                    material_button.setButtonText(button_text)
+                    material_button.setActive(True)
+                    material_button.setEnabled(True)
+                except IndexError as e:
+                    material_button.setButtonIcon()
+                    material_button.setButtonText()
+                    material_button.setEnabled(False)
+                    material_button.setActive(False)
+
+            self.next_material_button = self.material_buttons[-1]
+            self.next_material_button.setStyleSheet("background-color:rgb(0,255,0)")
+            self.next_material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/next.png")
+            self.next_material_button.setText(f"{self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons-1))))}")
+            self.next_material_button.clicked.connect(self.update_material_page)
+            self.next_material_button.setActive(True)
+            self.next_material_button.setEnabled(True)
+
+    def update_material_page(self):
+        print("Got here")
+        pass
 
             
 
