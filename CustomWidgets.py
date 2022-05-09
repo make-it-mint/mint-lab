@@ -24,7 +24,6 @@ class OverViewButton(QtWidgets.QToolButton):
         self.text.setStyleSheet("")
         self.text.setWordWrap(True)
         self.icon_button.setStyleSheet("")
-        #self.icon_button.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         self.MainLayout.addWidget(self.icon_button,0,0,1,1)
         self.MainLayout.addWidget(self.text,1,0,1,1)
@@ -42,7 +41,7 @@ class OverViewButton(QtWidgets.QToolButton):
     def setActive(self, is_active:bool):
         if is_active:
             self.setStyleSheet(f"background-color:rgb(255,255,255); margin:10px; border-radius:10px")
-            self.text.setStyleSheet("")
+            self.text.setStyleSheet("color:rgb(0,0,0)")
             self.icon_button.setStyleSheet("")
         else:
             self.setStyleSheet(f"")

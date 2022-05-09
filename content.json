@@ -41,8 +41,8 @@
         },
         "levels":
         {
-            "de":["Einsteiger", "Fortgeschritten", "Erfahren", "Experte", "BOSS"],
-            "en":["Beginner", "Intermediate", "Advanced", "Expert", "MASTER"]
+            "de":["Intro","Einsteiger", "Fortgeschritten", "Erfahren", "Experte", "BOSS"],
+            "en":["Intro","Beginner", "Intermediate", "Advanced", "Expert", "MASTER"]
         },
         "topics":
         {
@@ -132,17 +132,17 @@
     "experiment_list":
     [
         {
-            "level":2,
+            "level":0,
             "topic":"ultrasound",
             "directory":"measure_distance",
             "date-added":"2022-01-20",
             "name":{
-                "de":"Distanz Messen",
-                "en":"Measure Distance"
+                "de":"Intro Ultraschall",
+                "en":"Intro Ultrasound"
             }
         },
         {
-            "level":2,
+            "level":1,
             "topic":"ultrasound",
             "directory":"parking_sensor",
             "date-added":"2022-01-18",
@@ -152,13 +152,13 @@
             }
         },
         {
-            "level":3,
+            "level":0,
             "topic":"rfid",
             "directory":"basic_rfid_reader_writer",
             "date-added":"2022-01-18",
             "name":{
-                "de":"RFID-Chips Beschreiben und Lesen",
-                "en":"Read and Write RFID-Chips"
+                "de":"Intro RFID",
+                "en":"Intro RFID"
             }
         }
     ]
