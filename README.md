@@ -33,14 +33,14 @@ Since the version of the Python library `numpy` that s used here is higher than 
 
 #### Starting MINT LAB
 There are multiple options to run Mint LAB after downloading the Repository.
-The `main.py` can be run directly, but it will not check if all requirements are met. The `run_mint_lab.sh` script will do this and automatically download required Python Libraries.
+The `main.py` can be run directly, but it will not check if all requirements are met. The `run_mint_lab_rpi.sh` script will do this and automatically download required Python Libraries.
 
 Here are two options on how to start MINT LAB
 
 If the instructions above were followed, the `<PATH_TO_REPOSITORY_DIRECTORY>` for the following steps can be substituted by `/home/pi`
 
 To run from the file directly, open a Terminal an input the following command:
-`bash <PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab.sh`
+`bash <PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab_rpi.sh`
 
 or
 
@@ -51,7 +51,7 @@ Creating and Using a Desktop Icon:
     [Desktop Entry]
     Name=MINT LAB
     Terminal=true
-    Exec=<PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab.sh
+    Exec=<PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab_rpi.sh
     Type=Application
     Icon=<PATH_TO_REPOSITORY_DIRECTORY>/assets/system/logo.png
     ```
@@ -63,7 +63,6 @@ Now you can run it through this Desktop Icon
 
 You are welcome to create your own Experiments! A guide will be created in the future.
 
-For development purposes `run_mint_lab.sh` creates a virtual environment. The current version is tailored for Linux systems.
-Except for the `run_mint_lab.sh` file in `main` branch, which is Raspbian specific.
+For development purposes `run_mint_lab_linux.sh` creates a virtual environment. The current version is tailored for Linux systems.
 
 You can also run the `main.py` file directly using Python.
