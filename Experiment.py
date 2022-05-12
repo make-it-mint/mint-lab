@@ -1,4 +1,5 @@
-import os, json
+import os, json, math
+from turtle import screensize
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
 
@@ -43,6 +44,7 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.MainLayout.addWidget(self.header,0,1,1,1)
 
         self.tabs_widget = QtWidgets.QTabWidget()
+        self.tabs_widget.setStyleSheet("color:rgb(230,230,230);")
         self.tabs_widget.setTabPosition(QtWidgets.QTabWidget.TabPosition.North)
 
         self.tabs={}
@@ -67,18 +69,30 @@ class ExperimentTemplate(QtWidgets.QWidget):
     def create_experiment_material_layout(self):
         tab_widget = self.tabs["material"]["widget"]
         layout = self.tabs["material"]["layout"]
-        rows, cols = 3,5
-        layout.setColumnStretch(0, 1)
-        layout.setColumnStretch(1, 1)
-        layout.setColumnStretch(2, 1)
-        layout.setColumnStretch(3, 1)
-        layout.setColumnStretch(4, 1)
-        layout.setRowStretch(0, 1)
-        layout.setRowStretch(1, 1)
-        layout.setRowStretch(2, 1)
+        if self.screen_size.width() <= 1024:
+            self._material_rows, self._material_cols = 2,4
+            layout.setColumnStretch(0, 1)
+            layout.setColumnStretch(1, 1)
+            layout.setColumnStretch(2, 1)
+            layout.setColumnStretch(3, 1)
+            #layout.setColumnStretch(4, 1)
+            layout.setRowStretch(0, 1)
+            layout.setRowStretch(1, 1)
+            #layout.setRowStretch(2, 1)
+
+        else:
+            self._material_rows, self._material_cols = 3,5
+            layout.setColumnStretch(0, 1)
+            layout.setColumnStretch(1, 1)
+            layout.setColumnStretch(2, 1)
+            layout.setColumnStretch(3, 1)
+            layout.setColumnStretch(4, 1)
+            layout.setRowStretch(0, 1)
+            layout.setRowStretch(1, 1)
+            layout.setRowStretch(2, 1)
 
         self.material_buttons=[]
-        for button_idx in range(rows*cols):
+        for button_idx in range(self._material_rows*self._material_cols):
             material_button = OverViewButton(parent=tab_widget, screen_size=self.screen_size)
             material_button.setSizePolicy(self.sizePolicy)
             material_button.setAutoRaise(True)
@@ -86,19 +100,21 @@ class ExperimentTemplate(QtWidgets.QWidget):
             material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/default.png")
             material_button.setButtonText(text=f"Test")
             self.material_buttons.append(material_button)
-            layout.addWidget(material_button, int(button_idx/cols),int(button_idx%cols))
+            layout.addWidget(material_button, int(button_idx/self._material_cols),int(button_idx%self._material_cols))
 
 
 
     def fill_experiment_material(self, materials:list=[]):
-        
-        if len(materials) <= len(self.material_buttons):
+        self.last_visible_material_idx = 0
+        self.materials = materials
+        self.material_page = 1
+        if len(self.materials) <= len(self.material_buttons):
             for idx, material_button in enumerate(self.material_buttons):
                 try:
-                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{materials[idx]['image']}")
-                    button_text=materials[idx]["text"]
-                    if "source" in materials[idx].keys():
-                        button_text += f" [{materials[idx]['source']}]"
+                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{self.materials[idx]['image']}")
+                    button_text=self.materials[idx]["text"]
+                    if "source" in self.materials[idx].keys():
+                        button_text += f" [{self.materials[idx]['source']}]"
                     material_button.setButtonText(button_text)
                     material_button.setActive(True)
                     material_button.setEnabled(True)
@@ -108,6 +124,61 @@ class ExperimentTemplate(QtWidgets.QWidget):
                     material_button.setEnabled(False)
                     material_button.setActive(False)
 
+        else:
+            for idx, material_button in enumerate(self.material_buttons):
+                if idx == self._material_rows*self._material_cols - 1:
+                    break
+                self.last_visible_material_idx = idx
+                try:
+                    material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{self.materials[idx]['image']}")
+                    button_text=self.materials[idx]["text"]
+                    if "source" in self.materials[idx].keys():
+                        button_text += f" [{self.materials[idx]['source']}]"
+                    material_button.setButtonText(button_text)
+                    material_button.setActive(True)
+                    material_button.setEnabled(True)
+                except IndexError as e:
+                    material_button.setButtonIcon()
+                    material_button.setButtonText()
+                    material_button.setEnabled(False)
+                    material_button.setActive(False)
+
+            self.next_material_button = self.material_buttons[-1]
+            self.next_material_button.setActive(True)
+            self.next_material_button.setEnabled(True)
+            self.next_material_button.setStyleSheet("background-color:rgb(0,205,0); margin:10px; border-radius:10px;")
+            self.next_material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/next.png")
+            self.next_material_button.setButtonText(f"{self.sys_content['bt_material_page'][self.language]} {self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons)-1)))}")
+            self.next_material_button.clicked.connect(self.update_material_page)
+            self.next_material_button.text.setStyleSheet("color:rgb(230,230,230);")
+            self.next_material_button.icon_button.clicked.connect(self.update_material_page)
+            
+
+    def update_material_page(self):
+        if self.material_page + 1 <= int(math.ceil(len(self.materials)/(len(self.material_buttons)-1))):
+            self.material_page += 1
+        else:
+            self.material_page = 1
+            self.last_visible_material_idx = -1
+        self.next_material_button.setButtonText(f"{self.sys_content['bt_material_page'][self.language]} {self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons)-1)))}")
+        
+        for idx, material_button in enumerate(self.material_buttons):
+            if idx == self._material_rows*self._material_cols - 1:
+                break
+            self.last_visible_material_idx += 1
+            try:
+                material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/parts/{self.materials[self.last_visible_material_idx]['image']}")
+                button_text=self.materials[self.last_visible_material_idx]["text"]
+                if "source" in self.materials[self.last_visible_material_idx].keys():
+                    button_text += f" [{self.materials[self.last_visible_material_idx]['source']}]"
+                material_button.setButtonText(button_text)
+                material_button.setActive(True)
+                material_button.setEnabled(True)
+            except IndexError as e:
+                material_button.setButtonIcon()
+                material_button.setButtonText()
+                material_button.setEnabled(False)
+                material_button.setActive(False)
 
             
 
@@ -130,12 +201,12 @@ class ExperimentTemplate(QtWidgets.QWidget):
         self.setup_image.setSizePolicy(self.sizePolicy)
         self.setup_image.setAutoRaise(True)
         self.setup_image.setIcon(QtGui.QIcon(image_path))
-        self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.9), int(self.screen_size.height()*.6)))
+        self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.95), int(self.screen_size.height()*.75)))
         layout.addWidget(self.setup_image, 0,0)
 
         self.change_setup_image_button = QtWidgets.QPushButton()
         self.change_setup_image_button.setFont(self.BASIC_FONT_MEDIUM)
-        self.change_setup_image_button.setText(self.sys_content["experiment_setup"]["complete_page"][self.language])
+        self.change_setup_image_button.setText(f'[fritzing] - {self.sys_content["experiment_setup"]["complete_page"][self.language]}')
         self.change_setup_image_button.setStyleSheet(f"background-color: {self.FONT_COLOR_DARK}; color:{self.FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
         self.change_setup_image_button.setMinimumWidth(int(self.screen_size.width()*.8))
         layout.addWidget(self.change_setup_image_button,1,0, QtCore.Qt.AlignCenter)
@@ -145,10 +216,10 @@ class ExperimentTemplate(QtWidgets.QWidget):
     def update_setup_image(self):
         if self.setup_page == len(self.setup_image_paths) - 1:
             self.setup_page = 0
-            self.change_setup_image_button.setText(self.sys_content["experiment_setup"]["complete_page"][self.language])
+            self.change_setup_image_button.setText(f'[fritzing] - {self.sys_content["experiment_setup"]["complete_page"][self.language]}')
         else:
             self.setup_page += 1
-            self.change_setup_image_button.setText(f'{self.sys_content["experiment_setup"]["step_page"][self.language]}   {self.setup_page}/{len(self.setup_image_paths)}')
+            self.change_setup_image_button.setText(f'[fritzing] - {self.sys_content["experiment_setup"]["step_page"][self.language]}   {self.setup_page}/{len(self.setup_image_paths)}')
         image_path = self.setup_image_paths[self.setup_page]
         self.setup_image.setIcon(QtGui.QIcon(image_path))
 
