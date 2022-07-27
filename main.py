@@ -1,8 +1,7 @@
 import sys, os, git, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import TopicButton
-from LanguageSelection import LanguageSelection
-from SystemSelection import SystemSelection
+from CustomWidgets import LanguageSelection, SystemSelection
 import pandas as pd
 import importlib.util
 
@@ -21,15 +20,16 @@ class MainApp(object):
         self._display_type = "topic" #Options: topic or experiment
         self._topic_rows = 2
         self._topic_cols = 2
-        content_json= json.load(open(os.path.join(MainApp.ROOT_DIR,"content.json")))
-        self._sys_content = content_json["system"]
-        self._experiments = pd.DataFrame(content_json["experiment_list"])
+        #content_json= json.load(open(os.path.join(MainApp.ROOT_DIR,"content.json")))
+        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"program_settings.json")))
+        self._experiments = pd.DataFrame(json.load(open(os.path.join(MainApp.ROOT_DIR,"experiment_list.json"))))
         self._screen_size = screen_size
         self._current_listed_content = self._experiments.topic.drop_duplicates()
         if self._screen_size.width() <= 1024:
             MainApp.BASIC_FONT = QtGui.QFont('Arial', 18)
 
         #print(self._screen_size)
+
 
     def setupUi(self, MainWindow):
         self.main = MainWindow
@@ -123,7 +123,7 @@ class MainApp(object):
         self._display_type="topic"
         self._selection_starting_idx = 0
         #self._current_listed_content = self._experiments.topic.drop_duplicates()
-        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._sys_content["selected_system"]["system_id"] in item )]
+        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._settings["selected_system"]["system_id"] in item )]
         self._current_listed_content = self._current_listed_content.topic.drop_duplicates()
         self._set_listed_content()
 
@@ -186,7 +186,7 @@ class MainApp(object):
         self.sort_topics.setSizePolicy(self.sizePolicy)
         self.sort_topics.setAutoRaise(True)
         self.sort_topics.setObjectName("sort_topics")
-        self.sort_topics.setText(f"   {self._sys_content['bt_topic'][self._language]}")
+        self.sort_topics.setText(f"   {self._settings['bt_topic'][self._language]}")
         self.sort_topics.setFont(MainApp.BASIC_FONT)
         self.sort_topics.setStyleSheet(MainApp.INTERFACE_BUTTON_SELECTED_SS)
         layout.addWidget(self.sort_topics)
@@ -201,7 +201,7 @@ class MainApp(object):
         self.sort_new.setSizePolicy(self.sizePolicy)
         self.sort_new.setAutoRaise(True)
         self.sort_new.setObjectName("sort_new")
-        self.sort_new.setText(f"   {self._sys_content['bt_sort_new'][self._language]}")
+        self.sort_new.setText(f"   {self._settings['bt_sort_new'][self._language]}")
         self.sort_new.setFont(MainApp.BASIC_FONT)
         self.sort_new.setStyleSheet(MainApp.INTERFACE_BUTTON_UNSELECTED_SS)
         layout.addWidget(self.sort_new)
@@ -216,7 +216,7 @@ class MainApp(object):
         self.show_beginner.setSizePolicy(self.sizePolicy)
         self.show_beginner.setAutoRaise(True)
         self.show_beginner.setObjectName("show_beginner")
-        self.show_beginner.setText(f"   {self._sys_content['bt_show_beginner'][self._language]}")
+        self.show_beginner.setText(f"   {self._settings['bt_show_beginner'][self._language]}")
         self.show_beginner.setFont(MainApp.BASIC_FONT)
         self.show_beginner.setStyleSheet(MainApp.INTERFACE_BUTTON_UNSELECTED_SS)
         layout.addWidget(self.show_beginner)
@@ -231,11 +231,11 @@ class MainApp(object):
         self.select_language.setSizePolicy(self.sizePolicy)
         self.select_language.setAutoRaise(True)
         self.select_language.setObjectName("show_language")
-        self.select_language.setText(f"   {self._sys_content['languages'][self._language]['name']}")
+        self.select_language.setText(f"   {self._settings['languages'][self._language]['name']}")
         self.select_language.setFont(MainApp.BASIC_FONT)
         self.select_language.setStyleSheet(MainApp.INTERFACE_BUTTON_UNSELECTED_SS)
         layout.addWidget(self.select_language)
-        image_path = f"{MainApp.ROOT_DIR}/assets/languages/{self._sys_content['languages'][self._language]['icon']}"
+        image_path = f"{MainApp.ROOT_DIR}/assets/languages/{self._settings['languages'][self._language]['icon']}"
         self.select_language.setIcon(QtGui.QIcon(image_path))
         self.select_language.setIconSize(QtCore.QSize(int(parent_size.width()/5), int(parent_size.height()/num_items)))
         self.select_language.clicked.connect(self._select_language)
@@ -245,7 +245,7 @@ class MainApp(object):
         """show easy experiments only"""
         #set to first page
         self._selection_starting_idx = 0
-        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._sys_content["selected_system"]["system_id"] in item )]
+        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._settings["selected_system"]["system_id"] in item )]
         if self._display_type == "topic":
             pass
         elif self._display_type == "experiment":
@@ -268,7 +268,7 @@ class MainApp(object):
     def _select_language(self):
         """select language and change content of displayed items"""
         #open new window
-        language_selection = LanguageSelection(parent=self.main, languages = self._sys_content["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
+        language_selection = LanguageSelection(parent=self.main, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
         if language_selection.exec():
             #Reload all widgets with new language
             self._language = language_selection.Selected_Language
@@ -276,17 +276,17 @@ class MainApp(object):
 
     def translate_icons(self):
         self._set_listed_content()
-        self.sort_new.setText(f"   {self._sys_content['bt_sort_new'][self._language]}")
-        self.show_beginner.setText(f"   {self._sys_content['bt_show_beginner'][self._language]}")
-        self.select_language.setText(f"   {self._sys_content['languages'][self._language]['name']}")
-        self.select_language.setIcon(QtGui.QIcon(f"{MainApp.ROOT_DIR}/assets/languages/{self._sys_content['languages'][self._language]['icon']}"))
+        self.sort_new.setText(f"   {self._settings['bt_sort_new'][self._language]}")
+        self.show_beginner.setText(f"   {self._settings['bt_show_beginner'][self._language]}")
+        self.select_language.setText(f"   {self._settings['languages'][self._language]['name']}")
+        self.select_language.setIcon(QtGui.QIcon(f"{MainApp.ROOT_DIR}/assets/languages/{self._settings['languages'][self._language]['icon']}"))
 
 
 
     def _sort_new(self):
         """sort experimentes from new to old"""
         self._selection_starting_idx = 0
-        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._sys_content["selected_system"]["system_id"] in item )]
+        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._settings["selected_system"]["system_id"] in item )]
 
         if self._display_type == "topic":
             pass
@@ -323,8 +323,8 @@ class MainApp(object):
         self.system_selection.setObjectName("system_selection")
         self.system_selection.setStyleSheet("padding-bottom:10px")
         layout.addWidget(self.system_selection)
-        for system in self._sys_content["systems"].keys():
-            if self._sys_content["systems"][system]["system_id"] == self._sys_content["selected_system"]["system_id"]:
+        for system in self._settings["systems"].keys():
+            if self._settings["systems"][system]["system_id"] == self._settings["selected_system"]["system_id"]:
                 image_path = f"{MainApp.ROOT_DIR}/assets/system/{system}.png"
                 break
         self.system_selection.setIcon(QtGui.QIcon(image_path))
@@ -345,13 +345,13 @@ class MainApp(object):
 
     def _select_system(self):
         """Open Window to select system RPi/PicoPi/Arduino etc."""
-        system_selection = SystemSelection(parent=self.main, systems = self._sys_content["systems"], root_dir=self.ROOT_DIR, cur_selected_sytem=self._sys_content["selected_system"])
+        system_selection = SystemSelection(parent=self.main, systems = self._settings["systems"], root_dir=self.ROOT_DIR, cur_selected_sytem=self._settings["selected_system"])
         
         if system_selection.exec():
-            self._sys_content["selected_system"] = system_selection.New_Selected_System
+            self._settings["selected_system"] = system_selection.New_Selected_System
             #Reload all widgets according to selected system
-            for system in self._sys_content["systems"].keys():
-                if self._sys_content["systems"][system]["system_id"] == self._sys_content["selected_system"]["system_id"]:
+            for system in self._settings["systems"].keys():
+                if self._settings["systems"][system]["system_id"] == self._settings["selected_system"]["system_id"]:
                     image_path = f"{MainApp.ROOT_DIR}/assets/system/{system}.png"
                     break
             self.system_selection.setIcon(QtGui.QIcon(image_path))
@@ -359,7 +359,7 @@ class MainApp(object):
         else:
             pass
 
-        #print(self._sys_content["selected_system"])
+        #print(self._settings["selected_system"])
 
 
     def _update_software(self, version = -1):
@@ -393,19 +393,19 @@ class MainApp(object):
             self._selection_starting_idx = 0
 
         if self._display_type == "topic":
-            self.sort_topics.setText(f"   {self._sys_content['bt_topic'][self._language]}")
+            self.sort_topics.setText(f"   {self._settings['bt_topic'][self._language]}")
         elif self._display_type == "experiment":
             if len(pd.unique(content.topic)) == 1:
-                self.sort_topics.setText(f"   {self._sys_content['topics'][pd.unique(content.topic)[0]][self._language]}")
+                self.sort_topics.setText(f"   {self._settings['topics'][pd.unique(content.topic)[0]][self._language]}")
             else:
-                self.sort_topics.setText(f"   {self._sys_content['bt_topic'][self._language]}")
+                self.sort_topics.setText(f"   {self._settings['bt_topic'][self._language]}")
 
         for counter, display in enumerate(self._topic_buttons):
             
             try:
                 if self._display_type == "topic":
                     topic = content[self._selection_starting_idx + counter]
-                    display.setButtonText(self._sys_content["topics"][topic][self._language])
+                    display.setButtonText(self._settings["topics"][topic][self._language])
                     image_path = f"{MainApp.ROOT_DIR}/assets/topics/{topic}.png"
                     display.setButtonIcon(image_path)
                     display.disconnect()
@@ -413,8 +413,8 @@ class MainApp(object):
                     display.clicked.connect(lambda do_it, arg=topic :self._show_experiments_of_topic(arg))
 
                 elif self._display_type == "experiment":
-                    topic = self._sys_content["topics"][list(content.topic)[self._selection_starting_idx + counter]][self._language]
-                    level = self._sys_content["levels"][self._language][list(content.level)[self._selection_starting_idx + counter]]
+                    topic = self._settings["topics"][list(content.topic)[self._selection_starting_idx + counter]][self._language]
+                    level = self._settings["levels"][self._language][list(content.level)[self._selection_starting_idx + counter]]
                     name = list(content.name)[self._selection_starting_idx + counter][self._language]
                     display.setButtonText(f"{name}\n----------\n{level}")
                         
@@ -453,7 +453,7 @@ class MainApp(object):
     def _start_experiment(self, spec):
         experiment_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(experiment_module)
-        experiment_module.Experiment(root_dir= MainApp.ROOT_DIR, parent = self.main, language=self._language, screen_size=self._screen_size, selected_system=self._sys_content["selected_system"])
+        experiment_module.Experiment(root_dir= MainApp.ROOT_DIR, parent = self.main, language=self._language, screen_size=self._screen_size, program_settings=self._settings)
 
     def additionalActions(self):
         pass

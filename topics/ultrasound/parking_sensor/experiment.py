@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from hashlib import new
-from Experiment import ExperimentTemplate
+from ExperimentTemplate import UI_Template
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
@@ -11,7 +11,7 @@ import time
 import threading
 import random
 
-class Experiment(ExperimentTemplate):
+class Experiment(UI_Template):
 
     def __init__(self, root_dir, language, screen_size, parent = None):
         super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)

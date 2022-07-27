@@ -1,0 +1,157 @@
+{
+    "systems":{
+        "rpi":{"system_id":0,"name":"RPi 3B+/4B/400"},
+        "picopi":{"system_id":1,"name":"Pico Pi H/W" },
+        "arduino":{"system_id":2, "name":"Arduino Nano/Uno/Due"}
+    },
+    "selected_system":{
+        "system_id":1,
+        "comport":""
+    },
+    "languages":
+    {
+        "de":
+        {
+            "name":"Deutsch",
+            "icon":"flag_de.png"
+        },
+        "en":
+        {
+            "name":"English",
+            "icon":"flag_en.png"
+        },
+        "pl":
+        {
+            "name":"Polski",
+            "icon":"flag_pl.png"
+        },
+        "fr":
+        {
+            "name":"Français",
+            "icon":"flag_fr.png"
+        }
+    },
+    "bt_topic":
+    {
+        "de":"Alle Themen",
+        "en":"All Topics"
+    },
+    "bt_sort_new":
+    {
+        "de":"Neu",
+        "en":"New"
+    },
+    "bt_show_beginner":
+    {
+        "de":"Einsteiger",
+        "en":"Beginners"
+    },
+    "bt_material_page":
+    {
+        "de":"Materialseite",
+        "en":"Materialpage"
+    },
+    "levels":
+    {
+        "de":["Intro","Einsteiger", "Fortgeschritten", "Erfahren", "Experte", "BOSS"],
+        "en":["Intro","Beginner", "Intermediate", "Advanced", "Expert", "MASTER"]
+    },
+    "topics":
+    {
+        "basics":
+        {
+            "icon":"basics.png",
+            "de":"Grundlagen",
+            "en":"Basics"
+        },
+        "ultrasound":
+        {
+            "icon":"ultrasound.png",
+            "de":"Ultraschall",
+            "en":"Ultrasound"
+        },
+        "electricity":
+        {
+            "icon":"electricity.png",
+            "de":"Elektrizität",
+            "en":"Electricity"
+        },
+        "temperature":
+        {
+            "icon":"temperature.png",
+            "de":"Temperatur",
+            "en":"Temperature"
+        },
+        "weight":
+        {
+            "icon":"weight.png",
+            "de":"Gewicht",
+            "en":"Weight"
+        },
+        "solar":
+        {
+            "icon":"solar.png",
+            "de":"Solar",
+            "en":"Solar"
+        },
+        "controller":
+        {
+            "icon":"controller.png",
+            "de":"Controller",
+            "en":"Controller"
+        },
+        "rfid":
+        {
+            "icon":"rfid.png",
+            "de":"RFID",
+            "en":"RFID"
+        }
+    },
+    "experiment_setup":{
+        "complete_page":{
+            "de":"Kompletter Aufbau - Für Schrittweise Anleitung hier Klicken",
+            "en":"Complete Setup - For Step-By-Step Manual, Click here"
+        },
+        "step_page":{
+            "de":"Schritt",
+            "en":"Step"
+        }
+    },
+    "experiment_tabs":
+    {
+        "de":
+        {
+            "information":"Info",
+            "material":"Material",
+            "setup":"Aufbau",
+            "experiment":"Experiment"
+        },
+        "en":
+        {
+            "information":"Info",
+            "material":"Material",
+            "setup":"Setup",
+            "experiment":"Experiment"
+        }
+    },
+    "closing_experiment_warning":{
+        "de":"Experiment stoppen, bevor das Fenster geschlossen werden kann",
+        "en":"Stop the Experiment, before closing the window"
+    },
+    "start_experiment":{
+        "de":"START",
+        "en":"START"
+    },
+    "stop_experiment":{
+        "de":"STOP",
+        "en":"STOP"
+    },
+    "show_details":{
+        "de":"zur Online-Doku",
+        "en":"to Online-Doc"
+    },
+    "close_experiment_warning":{
+        "de":"Du musst das Experiment stoppen, bevor das Fenster geschlossen werden kann!",
+        "en":"You must stop the experiment before closing the window!"
+    }
+}

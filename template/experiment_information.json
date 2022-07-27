@@ -18,7 +18,16 @@
             ]
     },
     "setup":{
-        "images":["setup.png"]
+        "0":{
+            "images":["setup_rpi.png"]
+            },
+        "1":{
+            "images":["setup_picopi.png"]
+            },
+        "2":{
+            "images":["setup_arduino.png"]
+            }
+        
     },
     "information":{
         "file":"defaul_file",
@@ -45,7 +54,7 @@
     },
     "experiment":{
         "de":{
-            "name":"Name des Experiments",
+            "name":"Grundlagen: LED blinken",
             "link":"https://make-it-mint.de",
             "custom_content":{}
         }
