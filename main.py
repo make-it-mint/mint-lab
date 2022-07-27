@@ -2,6 +2,7 @@ import sys, os, git, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import TopicButton
 from LanguageSelection import LanguageSelection
+from SystemSelection import SystemSelection
 import pandas as pd
 import importlib.util
 
@@ -28,7 +29,7 @@ class MainApp(object):
         if self._screen_size.width() <= 1024:
             MainApp.BASIC_FONT = QtGui.QFont('Arial', 18)
 
-        print(self._screen_size)
+        #print(self._screen_size)
 
     def setupUi(self, MainWindow):
         self.main = MainWindow
@@ -121,7 +122,9 @@ class MainApp(object):
     def _set_to_default(self):
         self._display_type="topic"
         self._selection_starting_idx = 0
-        self._current_listed_content = self._experiments.topic.drop_duplicates()
+        #self._current_listed_content = self._experiments.topic.drop_duplicates()
+        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._sys_content["selected_system"]["system_id"] in item )]
+        self._current_listed_content = self._current_listed_content.topic.drop_duplicates()
         self._set_listed_content()
 
     def navigation_widgets(self, layout, parent_size):
@@ -242,17 +245,17 @@ class MainApp(object):
         """show easy experiments only"""
         #set to first page
         self._selection_starting_idx = 0
+        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._sys_content["selected_system"]["system_id"] in item )]
         if self._display_type == "topic":
-            self._current_listed_content = self._experiments[self._experiments.level <= 1]
+            pass
         elif self._display_type == "experiment":
             #check if already filtered for topic
             cur_topics = self._current_listed_content.topic.drop_duplicates()
             if len(cur_topics) == 1:
-                self._current_listed_content = self._experiments[self._experiments.topic == cur_topics[0]]
-            else:
-                self._current_listed_content = self._experiments
+                self._current_listed_content = self._current_listed_content[self._experiments.topic == cur_topics[0]]
+            
 
-            self._current_listed_content = self._current_listed_content[self._current_listed_content.level <= 1]
+        self._current_listed_content = self._current_listed_content[self._current_listed_content.level <= 1]
 
         self._current_listed_content = self._current_listed_content.sort_values(by="level", ascending=True)
         self._display_type = "experiment"
@@ -283,16 +286,18 @@ class MainApp(object):
     def _sort_new(self):
         """sort experimentes from new to old"""
         self._selection_starting_idx = 0
+        self._current_listed_content = self._experiments[self._experiments.systems.apply(lambda item: self._sys_content["selected_system"]["system_id"] in item )]
+
         if self._display_type == "topic":
-            self._current_listed_content = self._experiments.sort_values(by="date-added", ascending=False)
+            pass
         elif self._display_type == "experiment":
             cur_topics = self._current_listed_content.topic.drop_duplicates()
             if len(cur_topics) == 1:
-                self._current_listed_content = self._experiments[self._experiments.topic == cur_topics[0]]
+                self._current_listed_content = self._current_listed_content[self._experiments.topic == cur_topics[0]]
             else:
-                self._current_listed_content = self._experiments
+                pass
 
-            self._current_listed_content = self._current_listed_content.sort_values(by="date-added", ascending=False)
+        self._current_listed_content = self._current_listed_content.sort_values(by="date-added", ascending=False)
 
         self._display_type = "experiment"
         self._set_listed_content()
@@ -311,17 +316,20 @@ class MainApp(object):
         self.close_software.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
         self.close_software.clicked.connect(self.main.close)
 
-        #Info
-        self.info = QtWidgets.QPushButton()
-        self.info.setSizePolicy(self.sizePolicy)
-        self.info.setFlat(True)
-        self.info.setObjectName("info")
-        self.info.setStyleSheet("padding-bottom:10px")
-        layout.addWidget(self.info)
-        image_path = f"{MainApp.ROOT_DIR}/assets/system/info.png"
-        self.info.setIcon(QtGui.QIcon(image_path))
-        self.info.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
-        self.info.clicked.connect(self._show_info)
+        #System Selection
+        self.system_selection = QtWidgets.QPushButton()
+        self.system_selection.setSizePolicy(self.sizePolicy)
+        self.system_selection.setFlat(True)
+        self.system_selection.setObjectName("system_selection")
+        self.system_selection.setStyleSheet("padding-bottom:10px")
+        layout.addWidget(self.system_selection)
+        for system in self._sys_content["systems"].keys():
+            if self._sys_content["systems"][system]["system_id"] == self._sys_content["selected_system"]["system_id"]:
+                image_path = f"{MainApp.ROOT_DIR}/assets/system/{system}.png"
+                break
+        self.system_selection.setIcon(QtGui.QIcon(image_path))
+        self.system_selection.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
+        self.system_selection.clicked.connect(self._select_system)
 
         #Update Software
         self.update_software = QtWidgets.QPushButton()
@@ -335,9 +343,24 @@ class MainApp(object):
         self.update_software.setIconSize(QtCore.QSize(item_width, int(parent_size.height())))
         self.update_software.clicked.connect(self._update_software)
 
-    def _show_info(self):
-        """Open Window to show software info, and allow manual selection of Software Version (git tags)"""
-        print("Opening Info Window")
+    def _select_system(self):
+        """Open Window to select system RPi/PicoPi/Arduino etc."""
+        system_selection = SystemSelection(parent=self.main, systems = self._sys_content["systems"], root_dir=self.ROOT_DIR, cur_selected_sytem=self._sys_content["selected_system"])
+        
+        if system_selection.exec():
+            self._sys_content["selected_system"] = system_selection.New_Selected_System
+            #Reload all widgets according to selected system
+            for system in self._sys_content["systems"].keys():
+                if self._sys_content["systems"][system]["system_id"] == self._sys_content["selected_system"]["system_id"]:
+                    image_path = f"{MainApp.ROOT_DIR}/assets/system/{system}.png"
+                    break
+            self.system_selection.setIcon(QtGui.QIcon(image_path))
+            self._set_to_default()
+        else:
+            pass
+
+        #print(self._sys_content["selected_system"])
+
 
     def _update_software(self, version = -1):
         """Default version (-1) updates to latest version"""
@@ -401,7 +424,7 @@ class MainApp(object):
                         image_path = f"{MainApp.ROOT_DIR}/assets/system/default.png"
 
                     experiment_directory = f"""{MainApp.ROOT_DIR}/topics/{list(content.topic)[self._selection_starting_idx + counter]}/{list(content.directory)[self._selection_starting_idx + counter]}"""
-                    spec = importlib.util.spec_from_file_location("module.name", f"{experiment_directory}/experiment.py")
+                    spec = importlib.util.spec_from_file_location("module.name", f"{experiment_directory}/experiment_ui.py")
                     
                     try:
                         display.setButtonIcon(image_path)
@@ -430,7 +453,7 @@ class MainApp(object):
     def _start_experiment(self, spec):
         experiment_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(experiment_module)
-        experiment_module.Experiment(root_dir= MainApp.ROOT_DIR, parent = self.main, language=self._language, screen_size=self._screen_size)
+        experiment_module.Experiment(root_dir= MainApp.ROOT_DIR, parent = self.main, language=self._language, screen_size=self._screen_size, selected_system=self._sys_content["selected_system"])
 
     def additionalActions(self):
         pass

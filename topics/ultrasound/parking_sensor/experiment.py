@@ -6,7 +6,7 @@ from Experiment import ExperimentTemplate
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
 import threading
 import random

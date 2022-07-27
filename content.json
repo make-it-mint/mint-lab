@@ -1,6 +1,15 @@
 {
     "system":
     {
+        "systems":{
+            "rpi":{"system_id":0,"name":"RPi 3B+/4B/400"},
+            "picopi":{"system_id":1,"name":"Pico Pi H/W" },
+            "arduino":{"system_id":2, "name":"Arduino Nano/Uno/Due"}
+        },
+        "selected_system":{
+            "system_id":1,
+            "comport":""
+        },
         "languages":
         {
             "de":
@@ -51,6 +60,12 @@
         },
         "topics":
         {
+            "basics":
+            {
+                "icon":"basics.png",
+                "de":"Grundlagen",
+                "en":"Basics"
+            },
             "ultrasound":
             {
                 "icon":"ultrasound.png",
@@ -138,9 +153,20 @@
     [
         {
             "level":0,
+            "topic":"basics",
+            "directory":"led_blinking",
+            "date-added":"2022-07-19",
+            "systems":[0,1],
+            "name":{
+                "de":"Grundlagen: LED blinken lassen",
+                "en":"Basics: Let a LED blink"
+            }
+        },{
+            "level":0,
             "topic":"ultrasound",
             "directory":"measure_distance",
             "date-added":"2022-01-20",
+            "systems":[0],
             "name":{
                 "de":"Intro Ultraschall",
                 "en":"Intro Ultrasound"
@@ -151,6 +177,7 @@
             "topic":"ultrasound",
             "directory":"parking_sensor",
             "date-added":"2022-01-18",
+            "systems":[0],
             "name":{
                 "de":"Einpark Sensor",
                 "en":"Parking Sensor"
@@ -161,6 +188,7 @@
             "topic":"rfid",
             "directory":"basic_rfid_reader_writer",
             "date-added":"2022-01-18",
+            "systems":[0],
             "name":{
                 "de":"Intro RFID",
                 "en":"Intro RFID"

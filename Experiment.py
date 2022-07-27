@@ -12,9 +12,10 @@ class ExperimentTemplate(QtWidgets.QWidget):
     FONT_COLOR_LIGHT = "rgb(230, 230, 230)"
     FONT_COLOR_DARK = "rgb(80, 80, 80)"
 
-    def __init__(self, root_dir, language, screen_size, parent=None):
+    def __init__(self, root_dir, language, screen_size, parent=None, selected_system=None):
         super().__init__(parent=parent)
         self.parent = parent
+        self.selected_system = selected_system
         self.ROOT_DIR = root_dir
         self.screen_size = screen_size
         self.language = language

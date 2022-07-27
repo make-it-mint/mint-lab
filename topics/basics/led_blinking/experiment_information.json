@@ -1,0 +1,60 @@
+{   
+    "author":"",
+    "material":{
+        "de":[
+            {
+                "text":"Anzahl x Materialname ",
+                "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+            }
+            ]
+        ,
+        "en":[
+            {
+                "text":"Amount x Materialname ",
+                "image":"imagename in repo root assets/parts/ directory",
+                "source":"if not self created image, name source here"
+            }
+            ]
+    },
+    "setup":{
+        "images":["setup.png"]
+    },
+    "information":{
+        "file":"defaul_file",
+        "de":[
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacus neque, efficitur nec bibendum in, convallis at lacus.",
+            "Vestibulum erat odio, venenatis id sapien sed, dictum lacinia ligula. Donec lacus leo, rhoncus ut tempor id, sagittis id eros.",
+            "Vestibulum et tincidunt eros, facilisis bibendum odio. Praesent non vulputate nibh. Praesent vel neque quis ligula mollis cursus nec ac urna.",
+            "Aliquam sit amet tellus vel urna congue ornare. Etiam elementum massa nibh, at imperdiet sapien fringilla ut.",
+            "Mauris ligula ante, rhoncus ut aliquet sit amet, vehicula nec lectus. Praesent rutrum dapibus condimentum. In id est sapien.",
+            "Vivamus id elementum sem. Cras elementum ex eget nibh iaculis fringilla. Nulla eget pharetra justo. Quisque tempus neque vel neque ultricies, quis bibendum diam egestas.",
+            "Pellentesque convallis eget mi a sagittis. Aliquam elementum dapibus lacus, in scelerisque risus maximus at. Maecenas nisi arcu, ultricies at pretium et, commodo ultrices nisi. Aenean consequat lorem at pellentesque mollis.",
+            "Aliquam erat volutpat. Mauris sem ipsum, eleifend ut ex et, pulvinar semper tortor. Nunc ut eros quis purus dapibus vehicula."
+        ],
+        "en":[
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacus neque, efficitur nec bibendum in, convallis at lacus.",
+            "Vestibulum erat odio, venenatis id sapien sed, dictum lacinia ligula. Donec lacus leo, rhoncus ut tempor id, sagittis id eros.",
+            "Vestibulum et tincidunt eros, facilisis bibendum odio. Praesent non vulputate nibh. Praesent vel neque quis ligula mollis cursus nec ac urna.",
+            "Aliquam sit amet tellus vel urna congue ornare. Etiam elementum massa nibh, at imperdiet sapien fringilla ut.",
+            "Mauris ligula ante, rhoncus ut aliquet sit amet, vehicula nec lectus. Praesent rutrum dapibus condimentum. In id est sapien.",
+            "Vivamus id elementum sem. Cras elementum ex eget nibh iaculis fringilla. Nulla eget pharetra justo. Quisque tempus neque vel neque ultricies, quis bibendum diam egestas.",
+            "Pellentesque convallis eget mi a sagittis. Aliquam elementum dapibus lacus, in scelerisque risus maximus at. Maecenas nisi arcu, ultricies at pretium et, commodo ultrices nisi. Aenean consequat lorem at pellentesque mollis.",
+            "Aliquam erat volutpat. Mauris sem ipsum, eleifend ut ex et, pulvinar semper tortor. Nunc ut eros quis purus dapibus vehicula."
+        ]
+    },
+    "experiment":{
+        "de":{
+            "name":"Name des Experiments",
+            "link":"https://make-it-mint.de",
+            "custom_content":{}
+        }
+        ,
+        "en":{
+            "name":"Name of Experiment",
+            "link":"https://make-it-mint.de",
+            "custom_content":{}
+        }
+    }
+}
+
