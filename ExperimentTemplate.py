@@ -243,7 +243,34 @@ class UI_Template(QtWidgets.QWidget):
 
 
         
+    def set_values(self, dir, new_values):
+        if self.selected_system["system_id"] == 0:
+            filename = f"{dir}/experiment_code/rpi.py"
+        elif self.selected_system["system_id"] == 1:
+            filename = f"{dir}/experiment_code/picopi.py"
+        elif self.selected_system["system_id"] == 2:
+            filename = f"{dir}/experiment_code/experiment_code.ino"
 
+        with open(filename, 'r', encoding='utf-8') as file:
+            data = file.readlines()
+
+        new_lines={}
+        for key, value in new_values.items():
+            for line_idx,line in enumerate(data):
+                if key in line:
+                    if self.selected_system["system_id"] == 2:
+                        new_text = f'{line[:line.find(key)]}{key}={value};\n'
+                    else:
+                        new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                    new_lines.update({line_idx:new_text})
+                    break
+
+        for replace_line, replace_str in new_lines.items():
+            data[replace_line]= replace_str
+
+
+        with open(filename, 'w', encoding='utf-8') as file:
+            file.writelines(data)
 
         
 

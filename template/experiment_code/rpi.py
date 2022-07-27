@@ -2,6 +2,7 @@ import time
 
 
 class Experiment:
+    FREQUENCY=2
     def __init__(self, is_running, value_for_ui):
         self.is_running = is_running
         self.value_for_ui = value_for_ui
@@ -10,8 +11,8 @@ class Experiment:
         counter = 0
         while self.is_running:
             counter+=1
-            self.value_for_ui.emit(f"counter={counter}:second_value=12")
-            time.sleep(.2)
+            self.value_for_ui.emit(f"counter={counter}")
+            time.sleep(1/self.FREQUENCY)
 
     def stop(self):
         self.is_running = False

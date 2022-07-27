@@ -2,6 +2,7 @@
 from machine import Pin
 from utime import sleep
 
+FREQUENCY=2
 def run():
     try:
         # Initialisierung der Onboard-LED
@@ -14,11 +15,11 @@ def run():
             # LED einschalten
             led_onboard.on()
             # halbe Sekunde warten
-            sleep(0.1)
+            sleep(1/FREQUENCY)
             # LED ausschalten
             led_onboard.off()
             # 1 Sekunde warten
-            sleep(.1)
+            sleep(1/FREQUENCY)
             print(f"counter={counter}\n")
     except KeyboardInterrupt:
         return "closed"
