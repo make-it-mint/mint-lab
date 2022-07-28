@@ -1,21 +1,68 @@
 {   
     "author":"",
     "material":{
-        "de":[
-            {
-                "text":"Anzahl x Materialname ",
-                "image":"name des Bildes im Repo Root assets/parts/ Ordner",
-                "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
-            }
+        "de":{
+            "0":[
+                {
+                    "text":"Anzahl x Materialname ",
+                    "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                    "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                },
+                {
+                    "text":"Anzahl x Materialname ",
+                    "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                    "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                }
+            ],
+            "1":[
+                {
+                    "text":"Anzahl x Materialname ",
+                    "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                    "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                },
+                {
+                    "text":"Anzahl x Materialname ",
+                    "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                    "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                }
+            ],
+            "2":[
+                {
+                    "text":"Anzahl x Materialname ",
+                    "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                    "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                },
+                {
+                    "text":"Anzahl x Materialname ",
+                    "image":"name des Bildes im Repo Root assets/parts/ Ordner",
+                    "source":"wenn das Bild nicht selbst designed ist, hier Quelle angeben"
+                }
             ]
+        }
         ,
-        "en":[
-            {
-                "text":"Amount x Materialname ",
-                "image":"imagename in repo root assets/parts/ directory",
-                "source":"if not self created image, name source here"
-            }
+        "en":{
+            "0":[
+                {
+                    "text":"Amount x Materialname ",
+                    "image":"imagename in repo root assets/parts/ directory",
+                    "source":"if not self created image, name source here"
+                }
+            ],
+            "1":[
+                {
+                    "text":"Amount x Materialname ",
+                    "image":"imagename in repo root assets/parts/ directory",
+                    "source":"if not self created image, name source here"
+                }
+            ],
+            "2":[
+                {
+                    "text":"Amount x Materialname ",
+                    "image":"imagename in repo root assets/parts/ directory",
+                    "source":"if not self created image, name source here"
+                }
             ]
+        }
     },
     "setup":{
         "0":{
@@ -30,7 +77,7 @@
         
     },
     "information":{
-        "file":"defaul_file",
+        "file":"default_file",
         "de":[
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacus neque, efficitur nec bibendum in, convallis at lacus.",
             "Vestibulum erat odio, venenatis id sapien sed, dictum lacinia ligula. Donec lacus leo, rhoncus ut tempor id, sagittis id eros.",
@@ -54,7 +101,7 @@
     },
     "experiment":{
         "de":{
-            "name":"Grundlagen: LED blinken",
+            "name":"Name des Experiments",
             "link":"https://make-it-mint.de",
             "custom_content":{}
         }

@@ -6,6 +6,7 @@ import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os, json
 import json
+from constants import *
 
 
 class Experiment(UI_Template):
@@ -21,7 +22,7 @@ class Experiment(UI_Template):
         self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
 
         self.set_experiment_header(experiment_name=experiment_information["experiment"][self.language]["name"], hyperlink=experiment_information["experiment"][self.language]["link"])
-        self.fill_experiment_material(materials=experiment_information["material"][self.language])
+        self.fill_experiment_material(materials=experiment_information["material"][self.language][str(self.selected_system["system_id"])])
         self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_information["setup"][str(self.selected_system["system_id"])]["images"])
         self.fill_experiment_info(text=experiment_information["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_information["information"]["file"]))
         self.fill_experiment(content=experiment_information["experiment"])
@@ -40,7 +41,7 @@ class Experiment(UI_Template):
         self.experiment_layout.addWidget(self.value_field, 0, 0, QtCore.Qt.AlignLeft)
 
         self.start_experiment_button = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
-        self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
+        self.start_experiment_button.setStyleSheet(f"color: {FONT_COLOR_DARK}; background-color:{BACKGROUND_LGREEN}; margin: 10px 20px 10px 20px; border-radius: 10px")
         self.start_experiment_button.setSizePolicy(
                  QtWidgets.QSizePolicy.Policy.Preferred,
                  QtWidgets.QSizePolicy.Policy.Preferred
