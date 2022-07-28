@@ -5,7 +5,7 @@
         "arduino":{"system_id":2, "name":"Arduino Nano/Uno/Due"}
     },
     "selected_system":{
-        "system_id":1,
+        "system_id":0,
         "comport":""
     },
     "languages":
@@ -13,22 +13,22 @@
         "de":
         {
             "name":"Deutsch",
-            "icon":"flag_de.png"
+            "icon":"flag_de"
         },
         "en":
         {
             "name":"English",
-            "icon":"flag_en.png"
+            "icon":"flag_en"
         },
         "pl":
         {
             "name":"Polski",
-            "icon":"flag_pl.png"
+            "icon":"flag_pl"
         },
         "fr":
         {
             "name":"Français",
-            "icon":"flag_fr.png"
+            "icon":"flag_fr"
         }
     },
     "bt_topic":
