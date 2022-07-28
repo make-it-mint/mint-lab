@@ -1,0 +1,45 @@
+[
+    {
+        "level":0,
+        "topic":"basics",
+        "directory":"led_blinking",
+        "date-added":"2022-07-19",
+        "systems":[0,1],
+        "name":{
+            "de":"Grundlagen: LED blinken lassen",
+            "en":"Basics: Let a LED blink"
+        }
+    },{
+        "level":0,
+        "topic":"ultrasound",
+        "directory":"measure_distance",
+        "date-added":"2022-01-20",
+        "systems":[0],
+        "name":{
+            "de":"Intro Ultraschall",
+            "en":"Intro Ultrasound"
+        }
+    },
+    {
+        "level":1,
+        "topic":"ultrasound",
+        "directory":"parking_sensor",
+        "date-added":"2022-01-18",
+        "systems":[0],
+        "name":{
+            "de":"Einpark Sensor",
+            "en":"Parking Sensor"
+        }
+    },
+    {
+        "level":0,
+        "topic":"rfid",
+        "directory":"basic_rfid_reader_writer",
+        "date-added":"2022-01-18",
+        "systems":[0],
+        "name":{
+            "de":"Intro RFID",
+            "en":"Intro RFID"
+        }
+    }
+]

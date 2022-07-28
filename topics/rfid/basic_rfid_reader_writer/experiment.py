@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from Experiment import ExperimentTemplate
+from ExperimentTemplate import UI_Template
 import os, ast
-import signal
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, os, json
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import time
-import threading
-import random
 
-class Experiment(ExperimentTemplate):
+
+class Experiment(UI_Template):
 
     def __init__(self, root_dir, language, screen_size, parent = None):
         super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
