@@ -102,7 +102,7 @@
             "setup_step4.png"]
     },
     "information":{
-        "file":"default_file",
+        "file":"ultrasonic.gif",
         "de":[
             "Du kennst doch bestimmt dieses nervige Piepen, wenn man das Auto parkt. Die meisten modernen Autos haben so ein Parkassistenzsystem.",
             "Aber was passiert da genau?? Nun, ganz grundlegend messen mehrere Ultraschallsensoren mehrmals pro Sekunde den Abstand zu dem Hindernis vor, oder hinter deinem Auto. Je nachdem wie weit du noch entfernt bist, piept es dann schneller.",
