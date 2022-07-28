@@ -5,6 +5,60 @@ import math
 from constants import *
 
 
+
+class OverViewButton(QtWidgets.QToolButton):
+
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    def __init__(self, screen_size, parent=None):
+        super().__init__(parent=parent)
+        
+        self.MainLayout = QtWidgets.QGridLayout(self)
+        
+        self.icon_button = QtWidgets.QToolButton()
+        self.icon_button.setAutoRaise(True)
+        self.icon_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        self.setStyleSheet(f"background-color:rgb(255,255,255); margin:10px; border-radius:10px")
+
+        if screen_size.width() <= 1024:
+            font = BASIC_FONT_SMALL
+            self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.25), int(screen_size.height()*.30)))
+        else:
+            font = BASIC_FONT_MID
+            self.icon_button.setIconSize(QtCore.QSize(int(screen_size.width()*.20), int(screen_size.height()*.20)))
+
+        self.text =QtWidgets.QLabel("")
+        self.text.setFont(font)
+
+        self.text.setStyleSheet("")
+        self.text.setWordWrap(True)
+        self.icon_button.setStyleSheet("")
+
+        self.MainLayout.addWidget(self.icon_button,0,0,1,1)
+        self.MainLayout.addWidget(self.text,1,0,1,1)
+
+        self.MainLayout.setRowStretch(0, 5)
+        self.MainLayout.setRowStretch(1, 1)
+
+    def setButtonIcon(self, image_path=None):
+        if image_path and os.path.exists(image_path):
+            self.icon_button.setIcon(QtGui.QIcon(image_path))
+        else:
+            image_path = QtGui.QPixmap(f"{TopicButton.ROOT_DIR}/assets/system/default_invisible.png")
+            self.icon_button.setIcon(QtGui.QIcon(image_path))
+
+    def setButtonText(self, text=""):
+        self.text.setText(text)
+
+    def setActive(self, is_active:bool):
+        if is_active:
+            self.setStyleSheet(f"background-color:rgb(255,255,255); margin:10px; border-radius:10px")
+            self.text.setStyleSheet("color:rgb(0,0,0)")
+            self.icon_button.setStyleSheet("")
+        else:
+            self.setStyleSheet(f"")
+
+
 class TopicButton(QtWidgets.QToolButton):
 
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -61,7 +115,6 @@ class TopicButton(QtWidgets.QToolButton):
 
 class LanguageButton(QtWidgets.QToolButton):
 
-    BASIC_FONT = QtGui.QFont('Arial', 14)
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
     def __init__(self, parent=None):
@@ -77,7 +130,7 @@ class LanguageButton(QtWidgets.QToolButton):
         
 
         self.text =QtWidgets.QLabel()
-        self.text.setFont(self.BASIC_FONT)
+        self.text.setFont(BASIC_FONT_SMALL)
         self.text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         self.text.setStyleSheet("")
@@ -102,7 +155,6 @@ class LanguageButton(QtWidgets.QToolButton):
 
 class ScrollLabel(QtWidgets.QScrollArea):
 
-    BASIC_FONT = QtGui.QFont('Arial', 18)
 
     def __init__(self, screen_size):
         QtWidgets.QScrollArea.__init__(self)
@@ -112,7 +164,9 @@ class ScrollLabel(QtWidgets.QScrollArea):
         self.setStyleSheet("background-color: rgb(52, 100, 135); border-radius: 10px")
         self.setWidget(content)
         if screen_size.width() <= 1024:
-            self.BASIC_FONT = QtGui.QFont('Arial', 12)
+            font = BASIC_FONT_SMALL
+        else:
+            font = BASIC_FONT_MID
 
         layout = QtWidgets.QVBoxLayout(content)
 
@@ -120,7 +174,7 @@ class ScrollLabel(QtWidgets.QScrollArea):
         self.label.setAlignment(QtCore.Qt.AlignJustify | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.label.setWordWrap(True)
         self.label.setStyleSheet("color: rgb(230, 230, 230)")
-        self.label.setFont(self.BASIC_FONT)
+        self.label.setFont(font)
         layout.addWidget(self.label)
 
 
@@ -153,14 +207,12 @@ class LanguageSelection(QtWidgets.QDialog):
         self.layout = QtWidgets.QGridLayout()
         num_cols = 3
         self._Language_Buttons = []
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(1)
+
         for idx, language in enumerate(languages.keys()):
             row = math.floor(idx/num_cols)
             col = int(idx%num_cols)
             button = LanguageButton(parent=self)
-            button.setSizePolicy(sizePolicy)
+            button.setSizePolicy(SIZE_POLICY)
             button.setButtonText(languages[language]["name"])
             button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/languages/{languages[language]['icon']}")
             button.clicked.connect(lambda do_it, arg=language :self._set_new_language(arg))
@@ -184,7 +236,6 @@ class SystemSelection(QtWidgets.QDialog):
     """
     This "window" is a QWidget. If it has no parent.
     """
-    BASIC_FONT = QtGui.QFont('Arial', 28)
 
     def __init__(self, systems, root_dir, cur_selected_sytem, parent=None):
         super().__init__(parent)
@@ -205,15 +256,12 @@ class SystemSelection(QtWidgets.QDialog):
     def _set_Ui(self, systems):
         self.layout = QtWidgets.QVBoxLayout()
         self.system_buttons = []
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(1)
         for system in systems.keys():
             if system == "arduino":
                 continue
             button = QtWidgets.QRadioButton(systems[system]["name"])
-            button.setFont(self.BASIC_FONT)
-            button.setSizePolicy(sizePolicy)
+            button.setFont(BASIC_FONT_LARGE)
+            button.setSizePolicy(SIZE_POLICY)
             button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/{system}.png"))
             button.setIconSize(QtCore.QSize(50,50))
             button.toggled.connect(lambda do_it, arg=systems[system]["system_id"] :self._set_selected_system(arg))
@@ -222,11 +270,11 @@ class SystemSelection(QtWidgets.QDialog):
 
         self._set_old_selected()
         comports_label = QtWidgets.QLabel("COM Ports")
-        comports_label.setFont(self.BASIC_FONT)
+        comports_label.setFont(BASIC_FONT_MID)
         self.layout.addWidget(comports_label)
         self.comports_list_widget = QtWidgets.QListWidget()
         self.comports_list_widget.setStyleSheet(f"background-color:rgb(230,230,230)")
-        self.comports_list_widget.setFont(self.BASIC_FONT)
+        self.comports_list_widget.setFont(BASIC_FONT_MID)
         self.comports_list_widget.addItems(self.comports)
         self.comports_list_widget.clicked.connect(self._comport_selected)
         self.layout.addWidget(self.comports_list_widget)

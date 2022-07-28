@@ -114,7 +114,6 @@ class UI_Template(QtWidgets.QWidget):
             material_button = OverViewButton(parent=tab_widget, screen_size=self.screen_size)
             material_button.setSizePolicy(self.sizePolicy)
             material_button.setAutoRaise(True)
-            material_button.setObjectName(f"material_{button_idx}")
             material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/default.png")
             material_button.setButtonText(text=f"Test")
             self.material_buttons.append(material_button)
