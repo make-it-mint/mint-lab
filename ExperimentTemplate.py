@@ -2,6 +2,7 @@ from ctypes.wintypes import SIZE
 import os, time, math, multiprocessing, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
+from VirtualKeyboard import Keyboard
 from constants import *
 
 class UI_Template(QtWidgets.QWidget):
@@ -20,7 +21,7 @@ class UI_Template(QtWidgets.QWidget):
         self.language = language
         
         self.MainWidget=QtWidgets.QWidget()
-        self.MainWidget.setStyleSheet(f"background-color:{BACKGROUND_COLOR}")
+        self.MainWidget.setStyleSheet(f"background-color:{BACKGROUND_COLOR}; color:{FONT_COLOR_LIGHT};")
         self.MainLayout=QtWidgets.QGridLayout(self.MainWidget)
         #self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
 
@@ -30,15 +31,24 @@ class UI_Template(QtWidgets.QWidget):
         self._set_header_widgets()
         self._set_experiment_tab_widgets()
 
+
         
         self._create_experiment_material_layout()
 
 
         self.MainWidget.resize(self.screen_size)
+
+        if not self.program_settings["has_keyboard"]:
+            self.initiate_keyboard()
+
         self.MainLayout.setColumnStretch(0, 1)
         self.MainLayout.setColumnStretch(1, 17)
         self.MainLayout.setRowStretch(0, 1)
         self.MainLayout.setRowStretch(1, 17)
+
+    def initiate_keyboard(self):
+        self.keyboard = Keyboard(language = self.language, screen_size = self.screen_size, parent=self.MainWidget)
+        #self.keyboard.show()
 
     def _set_experiment_tab_widgets(self):
         self.tabs_widget = QtWidgets.QTabWidget()

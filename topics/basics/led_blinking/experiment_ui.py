@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from ExperimentTemplate import UI_Template, Running_Experiment
+from VirtualKeyboard import VKQLineEdit
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os, json
@@ -33,7 +34,10 @@ class Experiment(UI_Template):
 
     def fill_experiment(self, content:dict):
         self.experiment_layout = self.tabs["experiment"]["layout"]
-        self.value_field = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.value_field = VKQLineEdit(name='value', mainWindowObj=self)
+        else:
+            self.value_field = QtWidgets.QLineEdit()
         self.value_field.setMaxLength(10)
         self.value_field.setAlignment(QtCore.Qt.AlignCenter)
         self.value_field.setPlaceholderText(f'{self.EXPERIMENT_VALUES["FREQUENCY"]}')

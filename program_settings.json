@@ -1,4 +1,5 @@
 {
+    "has_keyboard":0,
     "systems":{
         "rpi":{"system_id":0,"name":"RPi 3B+/4B/400"},
         "picopi":{"system_id":1,"name":"Pico Pi H/W" },

@@ -1,5 +1,6 @@
 from PyQt5 import QtGui, QtWidgets
 
+
 NUM_TOPIC_ROWS=2
 NUM_TOPIC_COLUMNS=2
 
@@ -17,6 +18,19 @@ FONT_COLOR_DARK = "rgb(80, 80, 80)"
 
 INTERFACE_BUTTON_UNSELECTED = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR}; padding-left: 20px; border: 5px solid rgb(52, 100, 135);\nborder-radius: 30px;"
 INTERFACE_BUTTON_SELECTED = f"background-color:rgb(200,50,100); padding-left: 20px; border: 5px solid rgb(0, 0, 0);\nborder-radius: 30px;"
+
+KEYBOARD={
+    "de":[
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z","Ä","Ö","Ü","ß",
+        "1", "2", "3", "4", "5", "5", "7", "8", "9", "0", ".", "(", ")","{","}"
+        ],
+    "en":[
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        "1", "2", "3", "4", "5", "5", "7", "8", "9", "0", ".", "(", ")","{","}"
+        ]
+}
 
 
 
