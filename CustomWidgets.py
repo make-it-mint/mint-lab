@@ -2,7 +2,7 @@ import os, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from serial.tools.list_ports import comports as list_comports
 import math
-from constants import *
+from software_data.constants import *
 
 
 

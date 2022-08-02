@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import TopicButton
-from constants import *
+from software_data.constants import *
 
 
 def setup_main_window(main_window, screen_size):

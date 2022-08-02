@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from ExperimentTemplate import UI_Template, Running_Experiment
-import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os, json
-import json
-from constants import *
+from VirtualKeyboard import VKQLineEdit
+from software_data.constants import *
 
 
 class Experiment(UI_Template):

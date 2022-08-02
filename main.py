@@ -1,11 +1,10 @@
 import sys, os, git, json
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CustomWidgets import TopicButton
 from CustomWidgets import LanguageSelection, SystemSelection
 import pandas as pd
 import importlib.util
 from main_ui import *
-from constants import *
+from software_data.constants import *
 
 class MainApp(object):
     

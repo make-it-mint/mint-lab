@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import *
 import sys
-from constants import *
+from software_data.constants import *
 import math
  
 class VKQLineEdit(QLineEdit):
@@ -15,17 +15,13 @@ class VKQLineEdit(QLineEdit):
  
     def focusInEvent(self, e):
         self.mainWindowObj.keyboard.currentTextBox = self
-        #print(f"Text1: {self.text()}")
         self.mainWindowObj.keyboard.text_box.setText(self.text())
         self.mainWindowObj.keyboard.show()
  
-        # self.setStyleSheet("border: 1px solid red;")
         super(VKQLineEdit, self).focusInEvent(e)
  
     def mousePressEvent(self, e):
-        # print(e)
-        #print(f"Text2: {self.text()}")
-        # self.setFocusPolicy(Qt.ClickFocus)
+
         super(VKQLineEdit, self).mousePressEvent(e)
         
  

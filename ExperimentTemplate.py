@@ -1,9 +1,8 @@
-from ctypes.wintypes import SIZE
 import os, time, math, multiprocessing, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
 from VirtualKeyboard import Keyboard
-from constants import *
+from software_data.constants import *
 
 class UI_Template(QtWidgets.QWidget):
 

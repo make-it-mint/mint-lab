@@ -7,7 +7,7 @@ import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os, json
 import json
-from constants import *
+from software_data.constants import *
 
 
 class Experiment(UI_Template):
