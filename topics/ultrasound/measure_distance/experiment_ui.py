@@ -241,7 +241,17 @@ class Experiment(UI_Template):
 
 
     def update_ui(self, value_for_ui):
-        distance=value_for_ui
+        distance = 0.0
+        try:
+            value_pairs = value_for_ui.split(":")
+            for pair in value_pairs:
+                key, value = pair.split("=")
+                if key == "d":
+                    distance=float(value)
+        except Exception as e:
+            print(e)
+            return
+
         self.label_distance.setText(f"Aktuelle Distanz: {round(distance,2)} cm")
         bar = self.current_distance
 

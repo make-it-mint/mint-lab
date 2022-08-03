@@ -324,11 +324,12 @@ class Running_Experiment(QtCore.QObject):
     value_for_ui = QtCore.pyqtSignal(str)
     experiment_is_running = True
 
-    def __init__(self, selected_system, dir, serial_read_freq_hz:int = 1):
+    def __init__(self, selected_system, dir, serial_read_freq_hz:int = 1, timeout=5):
         super().__init__()
         self.selected_system = selected_system
         self.dir = dir
         self.serial_read_freq = serial_read_freq_hz
+        self.timeout = timeout
         
 
     def start_experiment(self):
@@ -338,15 +339,17 @@ class Running_Experiment(QtCore.QObject):
             self.experiment.run()        
                 
         elif self.selected_system["system_id"] == 1:
+
             experiment = multiprocessing.Process(target=self.run_picopi)
             try:
                 experiment.start()
-                time.sleep(1)
-                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600)
+                time.sleep(1.5)
+                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600, timeout=self.timeout)
                 ser.flushInput()
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
+                print("Experiment Stopped by Button")
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
             except Exception or KeyboardInterrupt as e:
@@ -355,4 +358,5 @@ class Running_Experiment(QtCore.QObject):
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
 
     def run_picopi(self):
+        print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("mint-lab/")+9:]}/experiment_code/picopi.py')
         os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("mint-lab/")+9:]}/experiment_code/picopi.py')

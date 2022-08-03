@@ -51,6 +51,56 @@
                     "image":"resistor100.png",
                     "source":"fritzing"
                 }
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x T-Cobbler",
+                    "image":"t_cobbler.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Flachbandkabel 2x20",
+                    "image":"ribbon_2x20.png"
+                },
+                {
+                    "text":"Jumperkabel Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x HC-SR04 Ultraschallsensor",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x rote LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x blaue LED",
+                    "image":"led_blue.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"2x Widerstand 100 Ohm",
+                    "image":"resistor100.png",
+                    "source":"fritzing"
+                }
             ]
         }
         ,
@@ -104,11 +154,67 @@
                     "image":"resistor100.png",
                     "source":"fritzing"
                 }
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x T-Cobbler",
+                    "image":"t_cobbler.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Ribbon Cable 2x20",
+                    "image":"ribbon_2x20.png"
+                },
+                {
+                    "text":"1x HC-SR04 Ultrasound Sensor",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumpercable Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x red LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x blue LED",
+                    "image":"led_blue.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"2x Resistor 100 Ohm",
+                    "image":"resistor100.png",
+                    "source":"fritzing"
+                }
             ]
         }
     },
     "setup":{
         "0":[
+            "setup_complete.png",
+            "setup_step1.png",
+            "setup_step2.png",
+            "setup_step3.png",
+            "setup_step4.png"],
+        "1":[
             "setup_complete.png",
             "setup_step1.png",
             "setup_step2.png",

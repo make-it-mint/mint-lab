@@ -14,7 +14,7 @@
         "topic":"ultrasound",
         "directory":"measure_distance",
         "date-added":"2022-01-20",
-        "systems":[0],
+        "systems":[0,1],
         "name":{
             "de":"Intro Ultraschall",
             "en":"Intro Ultrasound"

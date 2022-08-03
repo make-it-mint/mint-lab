@@ -53,8 +53,7 @@ class Experiment(UI_Template):
 
         
     def write_values_to_experiment_file(self):
-        if self.EXPERIMENT_VALUES["FREQUENCY"] != "":
-            self.EXPERIMENT_VALUES["FREQUENCY"] = self.value_field.text()
+        self.EXPERIMENT_VALUES["FREQUENCY"] = self.value_field.text() if self.value_field.text() != "" else self.DEFAULT_VALUES["FREQUENCY"]
         self.set_values(new_values = self.EXPERIMENT_VALUES, dir = self.EXPERIMENT_DIR)
 
 
@@ -88,7 +87,7 @@ class Experiment(UI_Template):
             for pair in value_pairs:
                 key, value = pair.split("=")
                 if key == "counter":
-                    self.start_experiment_button.setText(pair)
+                    self.start_experiment_button.setText(value)
         except Exception as e:
             print(e)
         pass

@@ -16,7 +16,7 @@ class Experiment:
                 if self.SPEED_OF_SOUND is None:
                     break
 
-                self.value_for_ui.emit(self.measure_distance())
+                self.value_for_ui.emit(f"d={self.measure_distance()}")
                 time.sleep(1)
         except(Exception, KeyboardInterrupt) as e:
             print(e)
