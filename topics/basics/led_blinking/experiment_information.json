@@ -92,16 +92,9 @@
         }
     },
     "setup":{
-        "0":{
-            "images":["setup_rpi.png"]
-            },
-        "1":{
-            "images":["setup_picopi.png"]
-            },
-        "2":{
-            "images":["setup_arduino.png"]
-            }
-        
+        "0":["setup_rpi.png"],
+        "1":["setup_picopi.png"],
+        "2":["setup_arduino.png"]        
     },
     "information":{
         "file":"default_file",

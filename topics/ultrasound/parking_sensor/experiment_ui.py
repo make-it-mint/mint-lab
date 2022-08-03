@@ -1,49 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from hashlib import new
-from ExperimentTemplate import UI_Template
-import os
+from ExperimentTemplate import UI_Template, Running_Experiment
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, os, json
-#import RPi.GPIO as GPIO
-import time
-import threading
-import random
+import os, json
+from software_data.constants import *
+from VirtualKeyboard import VKQLineEdit
+
 
 class Experiment(UI_Template):
 
-    def __init__(self, root_dir, language, screen_size, parent = None):
-        super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
+    def __init__(self, root_dir, language, screen_size, program_settings, parent = None):
+        super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size, program_settings= program_settings)
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
         if self.screen_size.width() <= 1024:
-            self.SELECTED_FONT = self.BASIC_FONT_SMALL
+            self.SELECTED_FONT = BASIC_FONT_SMALL
             self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 32)
         else:
-            self.SELECTED_FONT = self.BASIC_FONT_LARGE
+            self.SELECTED_FONT = BASIC_FONT_LARGE
             self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 48)
 
-        self.experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
-        self.experiment_is_running = False
+        experiment_information = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
+        self.DEFAULT_VALUES={"SPEED_OF_SOUND":330,"FAR":20,"MID":14,"NEAR":8,"CLOSE":4,"FAR_HZ":1,"MID_HZ":2,"NEAR_HZ":4,"CLOSE_HZ":8}#MUST use double quotation marks
+        self.EXPERIMENT_VALUES=self.DEFAULT_VALUES.copy()
 
-        self.header.setText(self.experiment_content["experiment"][self.language]["name"])
-        self.header.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
-        self.fill_experiment_material(materials=self.experiment_content["material"][self.language])
-        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=self.experiment_content["setup"]["images"])
-        self.fill_experiment_info(text=self.experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",self.experiment_content["information"]["file"]))
-        self.fill_experiment(content=self.experiment_content["experiment"][self.language])
-
-
-        
+        self.set_experiment_header(experiment_name=experiment_information["experiment"][self.language]["name"], hyperlink=experiment_information["experiment"][self.language]["link"])
+        self.fill_experiment_material(materials=experiment_information["material"][self.language][str(self.selected_system["system_id"])])
+        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_information["setup"][str(self.selected_system["system_id"])])
+        self.fill_experiment_info(text=experiment_information["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_information["information"]["file"]))
+        self.fill_experiment(content=experiment_information["experiment"])
 
 
-    def close(self):
-        if self.experiment_is_running:
-            QtWidgets.QMessageBox.about(self.MainWidget,"",self.sys_content["closing_experiment_warning"][self.language])
-        else:
-            self.MainWidget.close() 
-
-    
+   
 
     def fill_experiment(self, content:dict):
         self.experiment_layout = self.tabs["experiment"]["layout"]
@@ -62,15 +50,15 @@ class Experiment(UI_Template):
         self.experiment_layout.addWidget(self.distance_visualization_frame, 0, 0, 1, 2)
         
 
-        self.distance_display = QtWidgets.QLabel(content["default_distance"])
+        self.distance_display = QtWidgets.QLabel(content[self.language]["default_distance"])
         self.distance_display.setAlignment(QtCore.Qt.AlignCenter)
         self.distance_display.setFont(self.CUR_DISTANCE_FONT)
-        self.distance_display.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
+        self.distance_display.setStyleSheet(f"color: {FONT_COLOR_LIGHT}")
         self.experiment_layout.addWidget(self.distance_display,1,0)
 
-        self.start_experiment_button = QtWidgets.QPushButton(self.sys_content["start_experiment"][self.language])
+        self.start_experiment_button = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
         self.start_experiment_button.setFont(self.CUR_DISTANCE_FONT)
-        self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
+        self.start_experiment_button.setStyleSheet(f"color: {FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
         self.start_experiment_button.setSizePolicy(
                  QtWidgets.QSizePolicy.Policy.Preferred,
                  QtWidgets.QSizePolicy.Policy.Preferred
@@ -97,22 +85,27 @@ class Experiment(UI_Template):
         ###################
         #ROW 0 - Distances#
         ###################
-        self.bound_far = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.bound_far = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.bound_far = QtWidgets.QLineEdit()
         self.bound_far.setMaxLength(10)
         self.bound_far.setAlignment(QtCore.Qt.AlignCenter)
         self.bound_far.setFont(self.SELECTED_FONT)
-        self.bound_far.setPlaceholderText(f'{content["colour_legend"]["far"]}: 20 cm')
+        self.bound_far.setPlaceholderText(f'{content[self.language]["colour_legend"]["far"]}: 20 cm')
         self.bound_far.setStyleSheet("background-color: rgb(0,255,0); border-radius: 5px;")
         self.bound_far.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.bound_far, 0, 2, QtCore.Qt.AlignLeft)
 
         #################
-
-        self.bound_far_mid = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.bound_far_mid = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.bound_far_mid = QtWidgets.QLineEdit()
         self.bound_far_mid.setMaxLength(10)
         self.bound_far_mid.setAlignment(QtCore.Qt.AlignCenter)
         self.bound_far_mid.setFont(self.SELECTED_FONT)
-        self.bound_far_mid.setPlaceholderText(f'{content["colour_legend"]["mid"]}: 14 cm')
+        self.bound_far_mid.setPlaceholderText(f'{content[self.language]["colour_legend"]["mid"]}: 14 cm')
         self.bound_far_mid.setStyleSheet("background-color: rgb(255,255,0); border-radius: 5px;")
         self.bound_far_mid.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.bound_far_mid, 0, 4, QtCore.Qt.AlignLeft)
@@ -120,23 +113,27 @@ class Experiment(UI_Template):
 
 
         #################
-
-        self.bound_mid_near = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.bound_mid_near = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.bound_mid_near = QtWidgets.QLineEdit()
         self.bound_mid_near.setMaxLength(10)
         self.bound_mid_near.setAlignment(QtCore.Qt.AlignCenter)
         self.bound_mid_near.setFont(self.SELECTED_FONT)
-        self.bound_mid_near.setPlaceholderText(f'{content["colour_legend"]["near"]}: 8 cm')
+        self.bound_mid_near.setPlaceholderText(f'{content[self.language]["colour_legend"]["near"]}: 8 cm')
         self.bound_mid_near.setStyleSheet("background-color: rgb(255,165,0); border-radius: 5px;")
         self.bound_mid_near.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.bound_mid_near, 0, 6, QtCore.Qt.AlignLeft)
 
         #################
-
-        self.bound_near_close = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.bound_near_close = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.bound_near_close = QtWidgets.QLineEdit()
         self.bound_near_close.setMaxLength(10)
         self.bound_near_close.setAlignment(QtCore.Qt.AlignCenter)
         self.bound_near_close.setFont(self.SELECTED_FONT)
-        self.bound_near_close.setPlaceholderText(f'{content["colour_legend"]["close"]}: 4 cm')
+        self.bound_near_close.setPlaceholderText(f'{content[self.language]["colour_legend"]["close"]}: 4 cm')
         self.bound_near_close.setStyleSheet("background-color: rgb(255,48,48); border-radius: 5px;")
         self.bound_near_close.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.bound_near_close, 0, 8, QtCore.Qt.AlignLeft)
@@ -189,49 +186,55 @@ class Experiment(UI_Template):
         #############################
         #ROW 2 - Beeping Frequencies#
         #############################
-
-        self.beep_far = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.beep_far = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.beep_far = QtWidgets.QLineEdit()
         self.beep_far.setMaxLength(10)
         self.beep_far.setAlignment(QtCore.Qt.AlignCenter)
         self.beep_far.setFont(self.SELECTED_FONT)
-        self.beep_far.setPlaceholderText(f'{content["colour_legend"]["far"]}: 1 Hz')
+        self.beep_far.setPlaceholderText(f'{content[self.language]["colour_legend"]["far"]}: 1 Hz')
         self.beep_far.setStyleSheet("background-color: rgb(0,255,0); border-radius: 5px;")
         self.beep_far.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.beep_far, 2, 2, QtCore.Qt.AlignLeft)
 
 
         #################
-
-        self.beep_far_mid = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.beep_far_mid = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.beep_far_mid = QtWidgets.QLineEdit()
         self.beep_far_mid.setMaxLength(10)
         self.beep_far_mid.setAlignment(QtCore.Qt.AlignCenter)
         self.beep_far_mid.setFont(self.SELECTED_FONT)
-        self.beep_far_mid.setPlaceholderText(f'{content["colour_legend"]["mid"]}: 2 Hz')
+        self.beep_far_mid.setPlaceholderText(f'{content[self.language]["colour_legend"]["mid"]}: 2 Hz')
         self.beep_far_mid.setStyleSheet("background-color: rgb(255,255,0); border-radius: 5px;")
         self.beep_far_mid.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.beep_far_mid, 2, 4, QtCore.Qt.AlignLeft)
 
         #################
-
-
-        self.beep_mid_near = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.beep_mid_near = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.beep_mid_near = QtWidgets.QLineEdit()
         self.beep_mid_near.setMaxLength(10)
         self.beep_mid_near.setAlignment(QtCore.Qt.AlignCenter)
         self.beep_mid_near.setFont(self.SELECTED_FONT)
-        self.beep_mid_near.setPlaceholderText(f'{content["colour_legend"]["near"]}: 4 Hz')
+        self.beep_mid_near.setPlaceholderText(f'{content[self.language]["colour_legend"]["near"]}: 4 Hz')
         self.beep_mid_near.setStyleSheet("background-color: rgb(255,165,0); border-radius: 5px;")
         self.beep_mid_near.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.beep_mid_near, 2, 6, QtCore.Qt.AlignLeft)
 
 
         #################
-
-
-        self.beep_near_close = QtWidgets.QLineEdit()
+        if not self.program_settings["has_keyboard"]:
+            self.beep_near_close = VKQLineEdit(name='value', mainWindowObj=self, validator="int")
+        else:
+            self.beep_near_close = QtWidgets.QLineEdit()
         self.beep_near_close.setMaxLength(10)
         self.beep_near_close.setAlignment(QtCore.Qt.AlignCenter)
         self.beep_near_close.setFont(self.SELECTED_FONT)
-        self.beep_near_close.setPlaceholderText(f'{content["colour_legend"]["close"]}: 8 Hz')
+        self.beep_near_close.setPlaceholderText(f'{content[self.language]["colour_legend"]["close"]}: 8 Hz')
         self.beep_near_close.setStyleSheet("background-color: rgb(255,48,48); border-radius: 5px;")
         self.beep_near_close.setValidator(QtGui.QIntValidator())
         layout.addWidget(self.beep_near_close, 2, 8, QtCore.Qt.AlignLeft)
@@ -371,140 +374,53 @@ class Experiment(UI_Template):
         self.movable_object_layout.setColumnStretch(0, new_movable_weight)
         self.movable_object_layout.setColumnStretch(1, new_space_weight)
 
+    def write_values_to_experiment_file(self):
+        self.EXPERIMENT_VALUES["FAR"] = self.bound_far.text() if self.bound_far.text() != "" else self.DEFAULT_VALUES["FAR"]
+        self.EXPERIMENT_VALUES["MID"] = self.bound_far_mid.text() if self.bound_far_mid.text() != "" else self.DEFAULT_VALUES["MID"]
+        self.EXPERIMENT_VALUES["NEAR"] = self.bound_mid_near.text() if self.bound_mid_near.text() != "" else self.DEFAULT_VALUES["NEAR"] 
+        self.EXPERIMENT_VALUES["CLOSE"] = self.bound_near_close.text() if self.bound_near_close.text() != "" else self.DEFAULT_VALUES["CLOSE"]
 
+        self.EXPERIMENT_VALUES["FAR_HZ"] = self.beep_far.text() if self.beep_far.text() != "" else self.DEFAULT_VALUES["FAR_HZ"]
+        self.EXPERIMENT_VALUES["MID_HZ"] = self.beep_far_mid.text() if self.beep_far_mid.text() != "" else self.DEFAULT_VALUES["MID_HZ"]
+        self.EXPERIMENT_VALUES["NEAR_HZ"] = self.beep_mid_near.text() if self.beep_mid_near.text() != "" else self.DEFAULT_VALUES["NEAR_HZ"] 
+        self.EXPERIMENT_VALUES["CLOSE_NZ"] = self.beep_near_close.text() if self.beep_near_close.text() != "" else self.DEFAULT_VALUES["CLOSE_HZ"]
+        self.set_values(new_values = self.EXPERIMENT_VALUES, dir = self.EXPERIMENT_DIR)
 
     def start_stop_experiment(self):
 
         if not self.experiment_is_running:
-            default_bounds = [20,14,8,4]
-            default_freq =  [1,2,4,8]
-            bounds = [self.bound_far.text(), self.bound_far_mid.text(), self.bound_mid_near.text(), self.bound_near_close.text()]
-            freqs = [self.beep_far.text(), self.beep_far_mid.text(),self.beep_mid_near.text(), self.beep_near_close.text()]
-            for idx, (bound, freq) in enumerate(zip(bounds,freqs)):
-                if bound == "":
-                    bounds[idx]=default_bounds[idx]
-                else:
-                    bounds[idx] = int(bounds[idx])
-                if freq == "":
-                    freqs[idx]=default_freq[idx]
-                else:
-                    freqs[idx] = int(freqs[idx])
 
+            self.write_values_to_experiment_file()
             self.experiment_is_running = True
-            self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}; background-color: rgb(239,0,0); margin: 10px 20px 10px 20px; border-radius: 10px")
-            self.start_experiment_button.setText(self.sys_content["stop_experiment"][self.language])
+            self.start_experiment_button.setStyleSheet(f"color: {FONT_COLOR_LIGHT}; background-color: rgb(239,0,0); margin: 10px 20px 10px 20px; border-radius: 10px")
+            self.start_experiment_button.setText(self.program_settings["stop_experiment"][self.language])
             self.Experiment_Thread = QtCore.QThread()
             
 
-            self.running_experiment = Running_Experiment(bounds=bounds, frequencies=freqs)
-            self.running_experiment.moveToThread(self.Experiment_Thread)
-            self.Experiment_Thread.started.connect(self.running_experiment.run)
+            self.running_experiment = Running_Experiment(selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)
             self.running_experiment.experiment_is_running = self.experiment_is_running
-            self.running_experiment.distance.connect(self.update_ui)
+            self.running_experiment.moveToThread(self.Experiment_Thread)
+            self.Experiment_Thread.started.connect(self.running_experiment.start_experiment)
+            self.running_experiment.value_for_ui.connect(self.update_ui)
             self.Experiment_Thread.start()
             
         else:
             self.experiment_is_running = False
-            self.start_experiment_button.setStyleSheet(f"color: {self.FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
-            self.start_experiment_button.setText(self.sys_content["start_experiment"][self.language])
             self.running_experiment.experiment_is_running = self.experiment_is_running
+            if self.selected_system["system_id"] == 0:
+                self.running_experiment.experiment.stop()
             self.Experiment_Thread.exit()
-
+            self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
 
 
    
 
 
-    def update_ui(self, distance):
+    def update_ui(self, value_for_ui):
+        distance = value_for_ui
         self.distance_display.setText(f"{distance:3.3f} cm")
         self.update_progressbar(pb= self.progressbar_distance, distance=distance)
         self.update_object_distance(distance)
-
-
-
-class Running_Experiment(QtCore.QObject):
-    distance = QtCore.pyqtSignal(float)
-    experiment_is_running = True
-    def __init__(self,bounds:list, frequencies:list):
-        super().__init__()
-        self.bounds = bounds
-        self.frequencies = frequencies
-        self.distance_beeper = bounds[0]+1
-        
-
-    def run(self):
-        try:
-            GPIO.setmode(GPIO.BCM)
-            GPIO_TRIGGER = 21
-            GPIO_ECHO = 16
-            
-
-            GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-            GPIO.setup(GPIO_ECHO,GPIO.IN)
-            
-            beeper_thread = threading.Thread(target=self.start_beeper).start()
-
-            while self.experiment_is_running:
-                #distance = random.uniform(0,22)
-
-                GPIO.output(GPIO_TRIGGER,True)
-
-                time.sleep(.00001)
-                GPIO.output(GPIO_TRIGGER, False)
-
-                StartTime = time.time()
-                StopTime = time.time()
-
-                while GPIO.input(GPIO_ECHO) == 0:
-                    StartTime = time.time()
-                    
-                while GPIO.input(GPIO_ECHO) == 1:
-                    StopTime = time.time()
-                    
-                TimeElapsed = StopTime - StartTime
-                self.distance_beeper = (TimeElapsed * 330*100)/2
-                self.distance.emit(self.distance_beeper)
-                time.sleep(.2)
-
-
-        except (Exception, KeyboardInterrupt) as e:
-            print(e)
-            self.cleanup_pins()
-
-    def cleanup_pins(self):
-        GPIO.cleanup()
-        pass
-
-
-    def start_beeper(self):
-        GPIO_BEEPER = 5
-        GPIO.setup(GPIO_BEEPER, GPIO.OUT)
-
-        try:
-            while self.experiment_is_running:
-                if float(self.distance_beeper) > float(self.bounds[0]):
-                    GPIO.output(GPIO_BEEPER, GPIO.LOW)
-                    continue
-                
-                if float(self.distance_beeper) >float(self.bounds[1]):
-                    duration = float(1/(2*self.frequencies[0]))
-                elif float(self.distance_beeper) <=float(self.bounds[1]) and self.distance_beeper > float(self.bounds[2]):
-                    duration = float(1/(2*self.frequencies[1]))
-                elif float(self.distance_beeper) <=float(self.bounds[2]) and self.distance_beeper > float(self.bounds[3]):
-                    duration = float(1/(2*self.frequencies[2]))
-                else:
-                    duration = float(1/(2*self.frequencies[3]))
-
-                GPIO.output(GPIO_BEEPER, GPIO.HIGH)
-                time.sleep(duration)
-
-                if not duration == 0:
-                    GPIO.output(GPIO_BEEPER, GPIO.LOW)
-                    time.sleep(duration)
-                else:
-                    time.sleep(.1)
-        except Exception as e:
-            print(e)
 
 
 

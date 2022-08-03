@@ -1,45 +1,71 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from ExperimentTemplate import UI_Template
-import os
+from ExperimentTemplate import UI_Template, Running_Experiment
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys, os, json
-import RPi.GPIO as GPIO
-import time
-import threading
-import random
+import os, json
+from software_data.constants import *
+from VirtualKeyboard import VKQLineEdit
 
 class Experiment(UI_Template):
 
-    def __init__(self, root_dir, language, screen_size, parent = None):
-        super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size)
+    def __init__(self, root_dir, language, screen_size, program_settings, parent = None):
+        super().__init__(root_dir=root_dir, language = language, parent = parent, screen_size = screen_size, program_settings= program_settings)
         self.EXPERIMENT_DIR = os.path.dirname(os.path.abspath(__file__))
-        experiment_content = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
         if self.screen_size.width() <= 1024:
-            self.SELECTED_FONT = self.BASIC_FONT_SMALL
+            self.SELECTED_FONT = BASIC_FONT_SMALL
             self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 32)
         else:
-            self.SELECTED_FONT = self.BASIC_FONT_LARGE
+            self.SELECTED_FONT = BASIC_FONT_LARGE
             self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 48)
 
-        self.header.setText(experiment_content["experiment"][self.language]["name"])
-        self.fill_experiment_material(materials=experiment_content["material"][self.language])
-        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_content["setup"]["images"])
-        self.fill_experiment_info(text=experiment_content["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_content["information"]["file"]))
-        self.fill_experiment(content=experiment_content["experiment"])
+        experiment_information = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
+        self.DEFAULT_VALUES={"SPEED_OF_SOUND":330,"RED":10,"BLUE":5}#MUST use double quotation marks
+        self.EXPERIMENT_VALUES=self.DEFAULT_VALUES.copy()
 
+        self.set_experiment_header(experiment_name=experiment_information["experiment"][self.language]["name"], hyperlink=experiment_information["experiment"][self.language]["link"])
+        self.fill_experiment_material(materials=experiment_information["material"][self.language][str(self.selected_system["system_id"])])
+        self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_information["setup"][str(self.selected_system["system_id"])])
+        self.fill_experiment_info(text=experiment_information["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_information["information"]["file"]))
+        self.fill_experiment(content=experiment_information["experiment"])
 
-    def close(self):
-        if self.experiment_is_running:
-            QtWidgets.QMessageBox.about(self.MainWidget,"",self.sys_content["closing_experiment_warning"][self.language])
+    def start_stop_experiment(self):
+
+        if self.experiment_is_running == False:
+            self.write_values_to_experiment_file()
+            self.experiment_is_running = True
+            self.start_experiment.setStyleSheet(f"color: {FONT_COLOR_LIGHT}; background-color: rgb(239,0,0); margin: 10px 20px 10px 20px; border-radius: 10px")
+            self.start_experiment.setText(self.program_settings["stop_experiment"][self.language])
+
+            self.Experiment_Thread = QtCore.QThread()
+            self.running_experiment = Running_Experiment(selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)
+            self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.running_experiment.moveToThread(self.Experiment_Thread)
+            self.Experiment_Thread.started.connect(self.running_experiment.start_experiment)
+            self.running_experiment.value_for_ui.connect(self.update_ui)
+
+            self.Experiment_Thread.start()
+            
         else:
-            self.MainWidget.close() 
+            self.experiment_is_running = False
+            self.start_experiment.setStyleSheet(f"color: {FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
+            self.running_experiment.experiment_is_running = self.experiment_is_running
+            if self.selected_system["system_id"] == 0:
+                self.running_experiment.experiment.stop()
+            self.Experiment_Thread.exit()
+            self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
+
+    def write_values_to_experiment_file(self):
+        self.EXPERIMENT_VALUES["SPEED_OF_SOUND"] = self.check_selected_medium()
+        self.EXPERIMENT_VALUES["RED"] = self.slider_red.value()
+        self.EXPERIMENT_VALUES["BLUE"] = self.slider_blue.value()
+        self.set_values(new_values = self.EXPERIMENT_VALUES, dir = self.EXPERIMENT_DIR)
+
+
 
     
 
     def fill_experiment(self, content:dict):
-        self.experiment_is_running = False
         self.experiment_layout = self.tabs["experiment"]["layout"]
         
         self.experiment_medium_speed(parent=self.experiment_layout, content=content)
@@ -52,7 +78,7 @@ class Experiment(UI_Template):
 
         self.experiment_layout.addWidget(formula,0,1)
 
-        self.start_experiment = QtWidgets.QPushButton(self.sys_content["start_experiment"][self.language])
+        self.start_experiment = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
         self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
         self.experiment_layout.addWidget(self.start_experiment,1,1)
@@ -64,36 +90,6 @@ class Experiment(UI_Template):
         self.experiment_layout.setColumnStretch(1,3)
 
         
-
-        
-
-
-    def start_stop_experiment(self):
-
-        if self.experiment_is_running == False:
-            self.experiment_is_running = True
-            self.start_experiment.setText(self.sys_content["stop_experiment"][self.language])
-
-            self.Experiment_Thread = QtCore.QThread()
-            self.running_experiment = Running_Experiment()
-            self.running_experiment.speed_of_sound = self.check_selected_medium()
-            self.running_experiment.experiment_is_running = self.experiment_is_running
-            self.running_experiment.threshold_red = self.slider_red.value()
-            self.running_experiment.threshold_blue = self.slider_blue.value()
-
-            self.running_experiment.moveToThread(self.Experiment_Thread)
-            self.Experiment_Thread.started.connect(self.running_experiment.run)
-            self.running_experiment.distance.connect(self.update_ui)
-
-            self.Experiment_Thread.start()
-            
-        else:
-            self.experiment_is_running = False
-            self.running_experiment.experiment_is_running = self.experiment_is_running
-            self.Experiment_Thread.exit()
-            self.start_experiment.setText(self.sys_content["start_experiment"][self.language])
-
-
 
     def experiment_led_threshholds_and_distance(self, parent, content):
         self.interactive_icons_frame =QtWidgets.QFrame()
@@ -204,8 +200,11 @@ class Experiment(UI_Template):
             medium_layout.addWidget(radio)
             self.medium_widgets.append(radio)
 
-        self.custom_speed = QtWidgets.QLineEdit()
-        #custom_speed.text()
+        if not self.program_settings["has_keyboard"]:
+            self.custom_speed = VKQLineEdit(name='value', mainWindowObj=self)
+        else:
+            self.custom_speed = QtWidgets.QLineEdit()
+
         medium_layout.addWidget(self.custom_speed)
 
         self.medium_group.setLayout(medium_layout)
@@ -241,7 +240,8 @@ class Experiment(UI_Template):
         
 
 
-    def update_ui(self, distance):
+    def update_ui(self, value_for_ui):
+        distance=value_for_ui
         self.label_distance.setText(f"Aktuelle Distanz: {round(distance,2)} cm")
         bar = self.current_distance
 
@@ -271,82 +271,3 @@ class Experiment(UI_Template):
             bar.setValue(distance)
         elif distance >= bar.maximum():
             bar.setValue(int(bar.maximum()))
-
-
-
-class Running_Experiment(QtCore.QObject):
-    distance = QtCore.pyqtSignal(float)
-    experiment_is_running = True
-    speed_of_sound = None
-    threshold_red = 0
-    threshold_blue = 0
-
-    def run(self):
-        try:
-            while self.experiment_is_running:
-                if self.speed_of_sound is None:
-                    break
-
-                self.distance.emit(self.measure_distance())
-                time.sleep(1)
-            
-            print("Measure stopped by Button Click")
-            self.cleanup_pins()
-            
-        except (Exception, KeyboardInterrupt) as e:
-            print(e)
-            print("Measurement stopped by User")
-            self.cleanup_pins()
-
-    def cleanup_pins(self):
-        #GPIO.cleanup()
-        pass
-
-
-    def measure_distance(self):
-
-        #distance = random.randint(2,40)
-        
-        GPIO.setmode(GPIO.BCM)
-        GPIO_TRIGGER = 21
-        GPIO_ECHO = 16
-        GPIO_LED_KURZ = 26
-        GPIO_LED_LANG = 5
-
-        
-        GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-        GPIO.setup(GPIO_ECHO,GPIO.IN)
-        GPIO.setup(GPIO_LED_KURZ, GPIO.OUT)
-        GPIO.setup(GPIO_LED_LANG, GPIO.OUT)
-        
-        GPIO.output(GPIO_LED_KURZ, GPIO.LOW)
-        GPIO.output(GPIO_LED_LANG,GPIO.LOW)
-        
-        GPIO.output(GPIO_TRIGGER,True)
-        
-        time.sleep(.00001)
-        GPIO.output(GPIO_TRIGGER, False)
-        
-        StartTime = time.time()
-        StopTime = time.time()
-        
-        while GPIO.input(GPIO_ECHO) == 0:
-            StartTime = time.time()
-            
-        while GPIO.input(GPIO_ECHO) == 1:
-            StopTime = time.time()
-            
-        
-        TimeElapsed = StopTime - StartTime
-        
-        distance = (TimeElapsed * self.speed_of_sound*100)/2
-        
-        if distance <= self.threshold_red:
-            GPIO.output(GPIO_LED_KURZ, GPIO.HIGH)
-        if distance <= self.threshold_blue:
-            GPIO.output(GPIO_LED_LANG,GPIO.HIGH)
-            
-        return distance
-
-
-

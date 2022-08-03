@@ -16,8 +16,8 @@ class MainApp(object):
         self._language = language
         self._selection_starting_idx = 0
         self._display_type = "topic" #Options: topic or experiment
-        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"program_settings.json")))
-        self._experiments = pd.DataFrame(json.load(open(os.path.join(MainApp.ROOT_DIR,"experiment_list.json"))))
+        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/software_settings.json")))
+        self._experiments = pd.DataFrame(json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/experiment_list.json"))))
         self._screen_size = screen_size
         self._current_listed_content = self._experiments.topic.drop_duplicates()
 

@@ -1,7 +1,8 @@
 {
-    "author":"Make It MINT",
+    "author":"MAKE IT MINT",
     "material":{
-        "de":[
+        "de":{
+            "0":[
                 {
                     "text":"1x Breadboard",
                     "image":"breadboard.png",
@@ -51,8 +52,10 @@
                     "source":"fritzing"
                 }
             ]
+        }
         ,
-        "en":[
+        "en":{
+            "0":[
                 {
                     "text":"1x Breadboard",
                     "image":"breadboard.png",
@@ -102,9 +105,10 @@
                     "source":"fritzing"
                 }
             ]
+        }
     },
     "setup":{
-        "images":[
+        "0":[
             "setup_complete.png",
             "setup_step1.png",
             "setup_step2.png",

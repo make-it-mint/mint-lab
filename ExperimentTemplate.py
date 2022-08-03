@@ -22,7 +22,6 @@ class UI_Template(QtWidgets.QWidget):
         self.MainWidget=QtWidgets.QWidget()
         self.MainWidget.setStyleSheet(f"background-color:{BACKGROUND_COLOR}; color:{FONT_COLOR_LIGHT};")
         self.MainLayout=QtWidgets.QGridLayout(self.MainWidget)
-        #self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
 
         self.show_fullscreen()
         
@@ -47,7 +46,6 @@ class UI_Template(QtWidgets.QWidget):
 
     def initiate_keyboard(self):
         self.keyboard = Keyboard(language = self.language, screen_size = self.screen_size, parent=self.MainWidget)
-        #self.keyboard.show()
 
     def _set_experiment_tab_widgets(self):
         self.tabs_widget = QtWidgets.QTabWidget()

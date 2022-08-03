@@ -7,11 +7,14 @@ from software_data.constants import *
 import math
  
 class VKQLineEdit(QLineEdit):
-    def __init__(self, parent=None, name=None, mainWindowObj=None):
+    def __init__(self, parent=None, name=None, mainWindowObj=None, validator=None):
         super(VKQLineEdit, self).__init__(parent)
         self.name = name
         self.mainWindowObj = mainWindowObj
         self.setFocusPolicy(Qt.ClickFocus)
+        if validator == "int":
+            self.setValidator(QIntValidator())
+
  
     def focusInEvent(self, e):
         self.mainWindowObj.keyboard.currentTextBox = self
@@ -23,6 +26,28 @@ class VKQLineEdit(QLineEdit):
     def mousePressEvent(self, e):
 
         super(VKQLineEdit, self).mousePressEvent(e)
+
+
+class VKQTextEdit(QTextEdit):
+    def __init__(self, parent=None, name=None, mainWindowObj=None, validator=None):
+        super(VKQTextEdit, self).__init__(parent)
+        self.name = name
+        self.mainWindowObj = mainWindowObj
+        self.setFocusPolicy(Qt.ClickFocus)
+        if validator == "int":
+            self.setValidator(QIntValidator())
+
+ 
+    def focusInEvent(self, e):
+        self.mainWindowObj.keyboard.currentTextBox = self
+        self.mainWindowObj.keyboard.text_box.setText(self.toPlainText())
+        self.mainWindowObj.keyboard.show()
+ 
+        super(VKQTextEdit, self).focusInEvent(e)
+ 
+    def mousePressEvent(self, e):
+
+        super(VKQTextEdit, self).mousePressEvent(e)
         
  
  
@@ -31,6 +56,7 @@ class Keyboard(QWidget):
     def __init__(self, screen_size, language, parent=None):
         super(Keyboard, self).__init__(parent)
         self.currentTextBox = None
+        self.setStyleSheet(f"background-color:{BACKGROUND_DARK_GREY}; color:{FONT_COLOR_LIGHT}")
         self.screen_size = screen_size
         self.language = language
         self.signalMapper = QSignalMapper(self)
@@ -45,6 +71,7 @@ class Keyboard(QWidget):
         self.setAutoFillBackground(True)
         self.text_box = QTextEdit()
         self.text_box.setFont(BASIC_FONT_LARGE)
+        
         
  
         names = KEYBOARD[self.language]
@@ -69,14 +96,14 @@ class Keyboard(QWidget):
             layout.addWidget(button, *position)
  
         # Cancel button
-        cancel_button = QPushButton('Cancel')
-        cancel_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
-        cancel_button.setFont(BASIC_FONT_LARGE)
-        cancel_button.KEY_CHAR = Qt.Key_Cancel
-        layout.addWidget(cancel_button, 5, 0, 1, 2)
-        cancel_button.clicked.connect(self.signalMapper.map)
-        self.signalMapper.setMapping(cancel_button, cancel_button.KEY_CHAR)
-        #cancel_button.setFixedWidth(60)
+        # cancel_button = QPushButton('Cancel')
+        # cancel_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
+        # cancel_button.setFont(BASIC_FONT_LARGE)
+        # cancel_button.KEY_CHAR = Qt.Key_Cancel
+        # layout.addWidget(cancel_button, 5, 0, 1, 2)
+        # cancel_button.clicked.connect(self.signalMapper.map)
+        # self.signalMapper.setMapping(cancel_button, cancel_button.KEY_CHAR)
+        # #cancel_button.setFixedWidth(60)
  
         # Cancel button
         clear_button = QPushButton('Clear')
