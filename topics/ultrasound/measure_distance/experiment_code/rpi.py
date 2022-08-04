@@ -4,13 +4,14 @@ import RPi.GPIO as GPIO
 
 class Experiment:
     SPEED_OF_SOUND=330
-    RED=1
-    BLUE=6
+    RED=10
+    BLUE=5
     def __init__(self, is_running, value_for_ui):
         self.is_running = is_running
         self.value_for_ui = value_for_ui
 
     def run(self):
+        GPIO.setmode(GPIO.BCM)
         try:
             while self.is_running:
                 if self.SPEED_OF_SOUND is None:
@@ -18,17 +19,18 @@ class Experiment:
 
                 self.value_for_ui.emit(f"d={self.measure_distance()}")
                 time.sleep(1)
+            GPIO.cleanup()
+
+            
         except(Exception, KeyboardInterrupt) as e:
             print(e)
-            print("Measurement stopped by User")
-            self.cleanup_pins()
+            #print("Measurement stopped by User")
+            GPIO.cleanup()
 
 
     def measure_distance(self):
 
         #distance = random.randint(2,40)
-        
-        GPIO.setmode(GPIO.BCM)
         GPIO_TRIGGER = 21
         GPIO_ECHO = 16
         GPIO_LED_KURZ = 26
@@ -72,9 +74,6 @@ class Experiment:
 
 
     def stop(self):
-        print("Measure stopped by Button Click")
-        self.cleanup_pins()
+        #print("Measure stopped by Button Click")
         self.is_running = False
 
-    def cleanup_pins(self):
-        GPIO.cleanup()

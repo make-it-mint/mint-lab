@@ -75,10 +75,11 @@ class Keyboard(QWidget):
         
  
         names = KEYBOARD[self.language]
-        cols = int(math.ceil(len(names)/3))
+        rows = 5 if self.screen_size.width()<1024 else 4
+        cols = int(math.ceil(len(names)/rows))
         layout.addWidget(self.text_box, 0, 0, 1, cols)
  
-        positions = [(i + 1, j) for i in range(3) for j in range(cols)]
+        positions = [(i + 1, j) for i in range(rows) for j in range(cols)]
  
         for position, name in zip(positions, names):
  
@@ -87,8 +88,8 @@ class Keyboard(QWidget):
             button = QPushButton(name)
             button.setFont(BASIC_FONT_LARGE)
             button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
-            button.setFixedHeight(50)
-            button.setFixedWidth(80)
+            button.setFixedHeight(80)
+            button.setFixedWidth(90)
  
             button.KEY_CHAR = ord(name)
             button.clicked.connect(self.signalMapper.map)
@@ -110,7 +111,7 @@ class Keyboard(QWidget):
         clear_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         clear_button.setFont(BASIC_FONT_LARGE)
         clear_button.KEY_CHAR = Qt.Key_Clear
-        layout.addWidget(clear_button, 5, 2, 1, 2)
+        layout.addWidget(clear_button, 5, 0, 1, 2)
         clear_button.clicked.connect(self.signalMapper.map)
         self.signalMapper.setMapping(clear_button, clear_button.KEY_CHAR)
         #clear_button.setFixedWidth(60)
@@ -120,7 +121,7 @@ class Keyboard(QWidget):
         space_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         space_button.setFont(BASIC_FONT_LARGE)
         space_button.KEY_CHAR = Qt.Key_Space
-        layout.addWidget(space_button, 5, 4, 1, 3)
+        layout.addWidget(space_button, 5, 2, 1, 3)
         space_button.clicked.connect(self.signalMapper.map)
         self.signalMapper.setMapping(space_button, space_button.KEY_CHAR)
         #space_button.setFixedWidth(85)
@@ -131,7 +132,7 @@ class Keyboard(QWidget):
         back_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         back_button.setFont(BASIC_FONT_LARGE)
         back_button.KEY_CHAR = Qt.Key_Backspace
-        layout.addWidget(back_button, 5, 7, 1, 2)
+        layout.addWidget(back_button, 5, 5, 1, 2)
         back_button.clicked.connect(self.signalMapper.map)
         self.signalMapper.setMapping(back_button, back_button.KEY_CHAR)
         #back_button.setFixedWidth(60)
@@ -143,7 +144,7 @@ class Keyboard(QWidget):
         enter_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         enter_button.setFont(BASIC_FONT_LARGE)
         enter_button.KEY_CHAR = Qt.Key_Enter
-        layout.addWidget(enter_button, 5, 9, 1, 2)
+        layout.addWidget(enter_button, 5, 7, 1, 2)
         enter_button.clicked.connect(self.signalMapper.map)
         self.signalMapper.setMapping(enter_button, enter_button.KEY_CHAR)
         #enter_button.setFixedWidth(60)
@@ -153,12 +154,12 @@ class Keyboard(QWidget):
         done_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         done_button.setFont(BASIC_FONT_LARGE)
         done_button.KEY_CHAR = Qt.Key_Home
-        layout.addWidget(done_button, 5, 11, 1, 2)
+        layout.addWidget(done_button, 5, 9, 1, 2)
         done_button.clicked.connect(self.signalMapper.map)
         self.signalMapper.setMapping(done_button, done_button.KEY_CHAR)
         #done_button.setFixedWidth(60)
  
-        self.setGeometry(int(self.screen_size.width()*.1), int(self.screen_size.height()*.3), int(self.screen_size.width()*.8), int(self.screen_size.height()*.5))
+        self.setGeometry(int(self.screen_size.width()*.05), int(self.screen_size.height()*.3), int(self.screen_size.width()*.9), int(self.screen_size.height()*.6))
         self.setLayout(layout)
  
     def buttonClicked(self, char_ord):

@@ -2,6 +2,7 @@ import os, time, math, multiprocessing, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
 from VirtualKeyboard import Keyboard
+import importlib.util
 from software_data.constants import *
 
 class UI_Template(QtWidgets.QWidget):
@@ -334,8 +335,10 @@ class Running_Experiment(QtCore.QObject):
 
     def start_experiment(self):
         if self.selected_system["system_id"] == 0:
-            from topics.basics.led_blinking.experiment_code.rpi import Experiment as rpi_experiment
-            self.experiment = rpi_experiment(self.experiment_is_running, self.value_for_ui)
+            spec = importlib.util.spec_from_file_location("module.name", f'{self.dir[self.dir.rfind("topics"):]}/experiment_code/rpi.py')
+            experiment_module_rpi = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(experiment_module_rpi)
+            self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
             self.experiment.run()        
                 
         elif self.selected_system["system_id"] == 1:
@@ -349,7 +352,7 @@ class Running_Experiment(QtCore.QObject):
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
-                print("Experiment Stopped by Button")
+                #print("Experiment Stopped by Button")
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
             except Exception or KeyboardInterrupt as e:
@@ -358,5 +361,5 @@ class Running_Experiment(QtCore.QObject):
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
 
     def run_picopi(self):
-        print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("mint-lab/")+9:]}/experiment_code/picopi.py')
-        os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("mint-lab/")+9:]}/experiment_code/picopi.py')
+        #print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')
+        os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')

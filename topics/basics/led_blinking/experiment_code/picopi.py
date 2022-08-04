@@ -15,11 +15,11 @@ try:
         # LED einschalten
         led_onboard.on()
         # halbe Sekunde warten
-        sleep(1/FREQUENCY)
+        sleep(1/(2*FREQUENCY))
         # LED ausschalten
         led_onboard.off()
         # 1 Sekunde warten
-        sleep(1/FREQUENCY)
+        sleep(1/(2*FREQUENCY))
         print(f"counter={counter}\n")
 except Exception and KeyboardInterrupt as e:
     print(f"{e}\n")

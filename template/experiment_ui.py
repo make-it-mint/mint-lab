@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from ExperimentTemplate import UI_Template, Running_Experiment
+from VirtualKeyboard import VKQLineEdit
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os, json
-from VirtualKeyboard import VKQLineEdit
+import json
 from software_data.constants import *
 
 
@@ -90,7 +92,6 @@ class Experiment(UI_Template):
                     self.start_experiment_button.setText(value)
         except Exception as e:
             print(e)
-        pass
 
 
 
