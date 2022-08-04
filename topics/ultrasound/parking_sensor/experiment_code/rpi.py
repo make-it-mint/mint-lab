@@ -51,10 +51,14 @@ class Experiment:
                 self.distance_beeper = (TimeElapsed * self.SPEED_OF_SOUND*100)/2
                 self.value_for_ui.emit(self.distance_beeper)
                 time.sleep(.2)
+
+            beeper_thread.stop()
+            GPIO.cleanup()
+
         except(Exception, KeyboardInterrupt) as e:
             print(e)
             print("Measurement stopped by User")
-            self.cleanup_pins()
+            GPIO.cleanup()
 
 
     def start_beeper(self):
@@ -92,8 +96,6 @@ class Experiment:
 
     def stop(self):
         print("Measure stopped by Button Click")
-        self.cleanup_pins()
         self.is_running = False
 
-    def cleanup_pins(self):
-        GPIO.cleanup()
+        

@@ -159,7 +159,7 @@ class Keyboard(QWidget):
         self.signalMapper.setMapping(done_button, done_button.KEY_CHAR)
         #done_button.setFixedWidth(60)
  
-        self.setGeometry(int(self.screen_size.width()*.05), int(self.screen_size.height()*.3), int(self.screen_size.width()*.9), int(self.screen_size.height()*.6))
+        self.setGeometry(int(self.screen_size.width()*.05), int(self.screen_size.height()*.2), int(self.screen_size.width()*.9), int(self.screen_size.height()*.7))
         self.setLayout(layout)
  
     def buttonClicked(self, char_ord):

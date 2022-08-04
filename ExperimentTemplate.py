@@ -335,7 +335,7 @@ class Running_Experiment(QtCore.QObject):
 
     def start_experiment(self):
         if self.selected_system["system_id"] == 0:
-            spec = importlib.util.spec_from_file_location("module.name", f'{self.dir[self.dir.rfind("topics"):]}/experiment_code/rpi.py')
+            spec = importlib.util.spec_from_file_location("module.name", f'{self.dir}/experiment_code/rpi.py')
             experiment_module_rpi = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(experiment_module_rpi)
             self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
