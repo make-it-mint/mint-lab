@@ -12,12 +12,12 @@ class MainApp(object):
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     
     
-    def __init__(self, language, screen_size):
+    def __init__(self, screen_size):
         super().__init__()
-        self._language = language
+        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/software_settings.json")))
+        self._language = self._settings["selected_language"]
         self._selection_starting_idx = 0
         self._display_type = "topic" #Options: topic or experiment
-        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/software_settings.json")))
         self._experiments = pd.DataFrame(json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/experiment_list.json"))))
         self._screen_size = screen_size
         self._current_listed_content = self._experiments.topic.drop_duplicates()
@@ -126,8 +126,10 @@ class MainApp(object):
         language_selection = LanguageSelection(parent=self.main_window, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
         if language_selection.exec():
             #Reload all widgets with new language
-            self._language = language_selection.Selected_Language
+            self._settings["selected_language"]=language_selection.Selected_Language
+            self._language = self._settings["selected_language"]
             self.translate_icons()
+            self._overwrite_settings_file()
 
 
     def translate_icons(self):
@@ -169,6 +171,7 @@ class MainApp(object):
                     break
             self.system_selection.setIcon(QtGui.QIcon(image_path))
             self._set_to_default()
+            self._overwrite_settings_file()
         else:
             pass
 
@@ -176,7 +179,9 @@ class MainApp(object):
     def _open_settings(self, version = -1):
         """Default version (-1) updates to latest version"""
         settings_window = SettingsInterface(root_dir=self.ROOT_DIR, settings=self._settings, parent=self.main_window)
-        settings_window.exec()
+        if settings_window.exec():
+            self._settings["has_keyboard"] = int(settings_window.has_keyboard)
+            self._overwrite_settings_file()
 
 
     def _set_listed_content(self, direction=0):
@@ -254,10 +259,15 @@ class MainApp(object):
 
 
 
+    def _overwrite_settings_file(self):
+        with open(f'{self.ROOT_DIR}/software_data/software_settings.json', 'w', encoding='utf-8') as f:
+            json.dump(self._settings, f, ensure_ascii=False, indent=4)
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
-    main_ui = MainApp(language = 'de', screen_size = app.primaryScreen().size())
+    main_ui = MainApp(screen_size = app.primaryScreen().size())
     main_ui.setup_ui(main_window)
     main_ui._set_to_default()
     

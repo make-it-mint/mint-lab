@@ -1,3 +1,4 @@
+from curses import COLOR_RED
 import os, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from software_data.constants import *
@@ -25,11 +26,36 @@ class SettingsInterface(QtWidgets.QDialog):
     def _set_Ui(self):
         self.layout = QtWidgets.QGridLayout()
         self.setLayout(self.layout)
-        self.system_buttons = []
+        self.layout.setColumnStretch(0, 1)
+        self.layout.setColumnStretch(1, 1)
+        
+
+        self.keyboard_toggle = QtWidgets.QPushButton()
+        self.keyboard_toggle.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/keyboard.png"))
+        self.keyboard_toggle.setIconSize(QtCore.QSize(int(self.size().width()*.6), int(self.size().height()*.6)))
+        self.keyboard_toggle.setSizePolicy(SIZE_POLICY)
+        if self.settings["has_keyboard"]:
+            self.has_keyboard = True
+            self.keyboard_toggle.setStyleSheet(f"background-color: {BACKGROUND_LGREEN}; padding:0 40px 0 40px;")
+        else:
+            self.has_keyboard = False
+            self.keyboard_toggle.setStyleSheet(f"background-color: {BACKGROUND_RED}; padding:0 40px 0 40px;")
+        self.keyboard_toggle.clicked.connect(self.toggle_keyboard)
+        self.layout.addWidget(self.keyboard_toggle,0,0)
         
 
         
-        self.layout.addWidget(self.buttonBox,0,0,1,2)
+        self.layout.addWidget(self.buttonBox,1,0,1,2)
+
+
+    def toggle_keyboard(self):
+        if self.has_keyboard:
+            self.has_keyboard = False
+            self.keyboard_toggle.setStyleSheet(f"background-color: {BACKGROUND_RED}; padding:0 40px 0 40px;")
+        else:
+            self.has_keyboard = True
+            self.keyboard_toggle.setStyleSheet(f"background-color: {BACKGROUND_LGREEN}; padding:0 40px 0 40px;")
+
 
 
 

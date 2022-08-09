@@ -11,6 +11,7 @@ BACKGROUND_COLOR = "rgb(62, 110, 145)"
 BACKGROUND_COLOR_DARK = "rgb(52, 100, 135)"
 BACKGROUND_WHITE = "rgb(230,230,230)"
 BACKGROUND_GREY = "rgb(100,100,100)"
+BACKGROUND_RED = "rgb(255,0,0)"
 BACKGROUND_DARK_GREY = "rgb(50,50,50)"
 BACKGROUND_LGREEN = "rgb(0,200,0)"
 BACKGROUND_BLACK = "rgb(0,0,0)"
@@ -30,10 +31,15 @@ KEYBOARD={
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".",":", "(", ")","{","}"]
     }
 
-def _set_size_policy():
-    size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
-    size_policy.setHorizontalStretch(1)
-    size_policy.setVerticalStretch(1)
+def _set_size_policy(version):
+    if version == 0:
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        size_policy.setHorizontalStretch(1)
+        size_policy.setVerticalStretch(1)
+    elif version == 1:
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
+        size_policy.setHorizontalStretch(1)
     return size_policy
 
-SIZE_POLICY = _set_size_policy()
+SIZE_POLICY = _set_size_policy(version=0)
+SIZE_POLICY_H = _set_size_policy(version=1)
