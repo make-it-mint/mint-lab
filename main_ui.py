@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import TopicButton
 from software_data.constants import *
-
+import math
 
 def setup_main_window(main_window, screen_size):
     
@@ -84,42 +84,46 @@ def create_nav_widgets(parent_layout, screen_size, asset_dir):
 
 def create_interface_widgets(parent_layout, screen_size, asset_dir, settings, language, font):
     frame = QtWidgets.QFrame()
-    frame_layout = QtWidgets.QVBoxLayout(frame)
+    frame_layout = QtWidgets.QGridLayout(frame)
     frame.resize(int(screen_size.width()/4), int(screen_size.height()*5.5/16))
     parent_layout.addWidget(frame,2,0,1,1)
-    buttons=['bt_topic','bt_sort_new','bt_show_beginner','languages']
-    images=['system/all_topics','system/new','system/easy_experiments',f"languages/{settings['languages'][language]['icon']}"] 
+
+    topic_button = QtWidgets.QToolButton()
+    topic_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+    topic_button.setSizePolicy(SIZE_POLICY)
+    topic_button.setAutoRaise(True)
+    topic_button.setText(f"  {settings['bt_topic'][language]}")
+    topic_button.setStyleSheet(INTERFACE_BUTTON_SELECTED)
+    image_path = f'{asset_dir}/assets/system/all_topics.png'
+    topic_button.setIcon(QtGui.QIcon(image_path))
+    topic_button.setFont(font)
+    topic_button.setIconSize(QtCore.QSize(int(frame.size().width()/5), int(frame.size().height()/4)))
+    frame_layout.addWidget(topic_button,0,0,1,2)
+
+    images=['system/new','system/beginner',f"languages/{settings['languages'][language]['icon']}", 'system/settings'] 
     button_list = []       
 
 
-    for button, image in zip(buttons,images):
+    for idx, image in enumerate(images):
+        row = int(math.floor(idx/2)+1)
+        col = int(idx%2)
         interface_button = QtWidgets.QToolButton()
-        interface_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+        interface_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         interface_button.setSizePolicy(SIZE_POLICY)
         interface_button.setAutoRaise(True)
 
-        if button == 'languages':
-            interface_button.setText(f"  {settings[button][language]['name']}")
-        else:
-            interface_button.setText(f"  {settings[button][language]}")
-
-        interface_button.setFont(font)
-
-        if button == 'bt_topic':
-            interface_button.setStyleSheet(INTERFACE_BUTTON_SELECTED)
-        else:
-            interface_button.setStyleSheet(INTERFACE_BUTTON_UNSELECTED)
+        interface_button.setStyleSheet(INTERFACE_BUTTON_UNSELECTED)
 
         image_path = f'{asset_dir}/assets/{image}.png'
         interface_button.setIcon(QtGui.QIcon(image_path))
-        interface_button.setIconSize(QtCore.QSize(int(frame.size().width()/5), int(frame.size().height()/len(buttons))))
-        frame_layout.addWidget(interface_button)
+        interface_button.setIconSize(QtCore.QSize(int(frame.size().width()/3), int(frame.size().width()/3)))
+        frame_layout.addWidget(interface_button,row,col)
         button_list.append(interface_button)
 
 
 
 
-    return frame, frame_layout, button_list[0], button_list[1], button_list[2], button_list[3]
+    return frame, frame_layout, topic_button, button_list[0], button_list[1], button_list[2], button_list[3]
 
 
 def create_system_widgets(parent_layout, screen_size, asset_dir, settings):
@@ -154,18 +158,19 @@ def create_system_widgets(parent_layout, screen_size, asset_dir, settings):
     system_selection.setIconSize(QtCore.QSize(item_width, int(frame.size().height())))
     frame_layout.addWidget(system_selection)
 
-    #Update Software
-    update_software = QtWidgets.QPushButton()
-    update_software.setSizePolicy(SIZE_POLICY)
-    update_software.setFlat(True)
-    update_software.setStyleSheet("")
-    image_path = f"{asset_dir}/assets/system/update.png"
-    update_software.setIcon(QtGui.QIcon(image_path))
-    update_software.setIconSize(QtCore.QSize(item_width, int(frame.size().height())))
-    frame_layout.addWidget(update_software)
+    # #Update Software
+    # update_software = QtWidgets.QPushButton()
+    # update_software.setSizePolicy(SIZE_POLICY)
+    # update_software.setFlat(True)
+    # update_software.setStyleSheet("")
+    # image_path = f"{asset_dir}/assets/system/update.png"
+    # update_software.setIcon(QtGui.QIcon(image_path))
+    # update_software.setIconSize(QtCore.QSize(item_width, int(frame.size().height())))
+    # frame_layout.addWidget(update_software)
 
 
-    return frame, frame_layout, close_software, system_selection, update_software
+    return frame, frame_layout, close_software, system_selection
+
 
 
 def create_topic_widgets(parent_widget, parent_layout, screen_size, asset_dir):

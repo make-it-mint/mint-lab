@@ -1,6 +1,7 @@
 import sys, os, git, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import LanguageSelection, SystemSelection
+from Settings import SettingsInterface
 import pandas as pd
 import importlib.util
 from main_ui import *
@@ -55,7 +56,7 @@ class MainApp(object):
 
 
         #set interface buttons in frame
-        self.frame_interface, self.frame_interface_layout, self.sort_topics, self.sort_new, self.show_beginner, self.select_language = create_interface_widgets(
+        self.frame_interface, self.frame_interface_layout, self.sort_topics, self.sort_new, self.show_beginner, self.select_language, self.open_settings = create_interface_widgets(
             parent_layout=self.central_widget_layout,
             screen_size=self._screen_size,
             asset_dir=MainApp.ROOT_DIR,
@@ -68,11 +69,12 @@ class MainApp(object):
         self.sort_new.clicked.connect(self._sort_new)
         self.show_beginner.clicked.connect(self._show_easy_only)
         self.select_language.clicked.connect(self._select_language)
+        self.open_settings.clicked.connect(self._open_settings)
          
         
 
         #set system widgets in frame
-        self.frame_system, self.frame_system_layout, self.close_software, self.system_selection, self.update_software = create_system_widgets(
+        self.frame_system, self.frame_system_layout, self.close_software, self.system_selection = create_system_widgets(
             parent_layout=self.central_widget_layout,
             screen_size=self._screen_size,
             asset_dir=MainApp.ROOT_DIR,
@@ -80,7 +82,6 @@ class MainApp(object):
             )
         self.close_software.clicked.connect(self.main_window.close)
         self.system_selection.clicked.connect(self._select_system)
-        self.update_software.clicked.connect(self._update_software)
 
 
 
@@ -193,9 +194,11 @@ class MainApp(object):
             pass
 
 
-    def _update_software(self, version = -1):
+    def _open_settings(self, version = -1):
         """Default version (-1) updates to latest version"""
-        print("Now Updating...")
+        settings_window = SettingsInterface(root_dir=self.ROOT_DIR, settings=self._settings, parent=self.main_window)
+        settings_window.exec()
+        print(settings_window.settings)
 
 
     def _set_listed_content(self, direction=0):
