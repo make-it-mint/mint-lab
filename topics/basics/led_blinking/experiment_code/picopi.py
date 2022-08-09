@@ -2,7 +2,7 @@
 from machine import Pin
 from utime import sleep
 
-FREQUENCY=2
+FREQUENCY=10
 
 try:
     # Initialisierung der Onboard-LED
