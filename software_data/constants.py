@@ -8,6 +8,7 @@ BASIC_FONT_MID = QtGui.QFont('Arial', 18)
 BASIC_FONT_SMALL = QtGui.QFont('Arial', 12)
 
 BACKGROUND_COLOR = "rgb(62, 110, 145)"
+BACKGROUND_COLOR_DARK = "rgb(52, 100, 135)"
 BACKGROUND_WHITE = "rgb(230,230,230)"
 BACKGROUND_GREY = "rgb(100,100,100)"
 BACKGROUND_DARK_GREY = "rgb(50,50,50)"
@@ -16,7 +17,8 @@ BACKGROUND_BLACK = "rgb(0,0,0)"
 FONT_COLOR_LIGHT = "rgb(230, 230, 230)"
 FONT_COLOR_DARK = "rgb(80, 80, 80)"
 
-INTERFACE_BUTTON_UNSELECTED = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR}; padding-left: 20px; border: 5px solid rgb(52, 100, 135);\nborder-radius: 30px;"
+INTERFACE_BUTTON_UNSELECTED = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR_DARK};\nborder-radius: 30px;"
+ITEMS_STYLE = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR}; padding-left: 20px; border: 5px solid {BACKGROUND_COLOR_DARK};\nborder-radius: 30px;"
 INTERFACE_BUTTON_SELECTED = f"background-color:rgb(200,50,100); padding-left: 20px; border: 5px solid rgb(0, 0, 0);\nborder-radius: 30px;"
 
 KEYBOARD={

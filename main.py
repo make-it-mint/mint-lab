@@ -45,18 +45,17 @@ class MainApp(object):
 
 
         #Set Navigation Buttons in frame
-        self.frame_nav, self.frame_nav_layout, self.bt_previous, self.bt_next = create_nav_widgets(
+        self.frame_nav, self.frame_nav_layout = create_nav_widgets(
+            parent=self,
             parent_layout=self.central_widget_layout,
             screen_size=self._screen_size,
             asset_dir=MainApp.ROOT_DIR
             )
 
-        self.bt_previous.clicked.connect(self._previous_page)
-        self.bt_next.clicked.connect(self._next_page)
-
 
         #set interface buttons in frame
-        self.frame_interface, self.frame_interface_layout, self.sort_topics, self.sort_new, self.show_beginner, self.select_language, self.open_settings = create_interface_widgets(
+        self.frame_interface, self.frame_interface_layout = create_interface_widgets(
+            parent=self,
             parent_layout=self.central_widget_layout,
             screen_size=self._screen_size,
             asset_dir=MainApp.ROOT_DIR,
@@ -64,24 +63,6 @@ class MainApp(object):
             language=self._language,
             font=self.basic_font
             )
-
-        self.sort_topics.clicked.connect(self._show_topics)
-        self.sort_new.clicked.connect(self._sort_new)
-        self.show_beginner.clicked.connect(self._show_easy_only)
-        self.select_language.clicked.connect(self._select_language)
-        self.open_settings.clicked.connect(self._open_settings)
-         
-        
-
-        #set system widgets in frame
-        self.frame_system, self.frame_system_layout, self.close_software, self.system_selection = create_system_widgets(
-            parent_layout=self.central_widget_layout,
-            screen_size=self._screen_size,
-            asset_dir=MainApp.ROOT_DIR,
-            settings=self._settings
-            )
-        self.close_software.clicked.connect(self.main_window.close)
-        self.system_selection.clicked.connect(self._select_system)
 
 
 
@@ -151,9 +132,7 @@ class MainApp(object):
 
     def translate_icons(self):
         self._set_listed_content()
-        self.sort_new.setText(f"   {self._settings['bt_sort_new'][self._language]}")
-        self.show_beginner.setText(f"   {self._settings['bt_show_beginner'][self._language]}")
-        self.select_language.setText(f"   {self._settings['languages'][self._language]['name']}")
+        self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
         self.select_language.setIcon(QtGui.QIcon(f"{MainApp.ROOT_DIR}/assets/languages/{self._settings['languages'][self._language]['icon']}"))
 
 
@@ -198,7 +177,6 @@ class MainApp(object):
         """Default version (-1) updates to latest version"""
         settings_window = SettingsInterface(root_dir=self.ROOT_DIR, settings=self._settings, parent=self.main_window)
         settings_window.exec()
-        print(settings_window.settings)
 
 
     def _set_listed_content(self, direction=0):
@@ -214,12 +192,12 @@ class MainApp(object):
             self._selection_starting_idx = 0
 
         if self._display_type == "topic":
-            self.sort_topics.setText(f"  {self._settings['bt_topic'][self._language]}")
+            self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
         elif self._display_type == "experiment":
             if len(pd.unique(content.topic)) == 1:
-                self.sort_topics.setText(f"  {self._settings['topics'][pd.unique(content.topic)[0]][self._language]}")
+                self.sort_topics.setText(f"{self._settings['topics'][pd.unique(content.topic)[0]][self._language]}")
             else:
-                self.sort_topics.setText(f"  {self._settings['bt_topic'][self._language]}")
+                self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
 
         for counter, display in enumerate(self._topic_buttons):
             
@@ -282,6 +260,5 @@ if __name__ == '__main__':
     main_ui = MainApp(language = 'de', screen_size = app.primaryScreen().size())
     main_ui.setup_ui(main_window)
     main_ui._set_to_default()
-    #main_window.showFullScreen()
     
     sys.exit(app.exec())
