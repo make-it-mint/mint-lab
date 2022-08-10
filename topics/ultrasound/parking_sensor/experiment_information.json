@@ -46,7 +46,48 @@
                 "image":"active_buzzer.png",
                 "source":"fritzing"
             }
-            ]
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Raspberry Pi Pico",
+                    "image":"picopi.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumperkabel Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x HC-SR04 Ultraschallsensor",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 100 Ohm",
+                    "image":"resistor100.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Aktiver Buzzer",
+                    "image":"active_buzzer.png",
+                    "source":"fritzing"
+                }
+                ]
         }
         ,
         "en":{
@@ -94,11 +135,59 @@
                 "image":"active_buzzer.png",
                 "source":"fritzing"
             }
-            ]
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Raspberry Pi Pico",
+                    "image":"picopi.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x HC-SR04 Ultrasound Sensor",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumpercable Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x Resistor 100 Ohm",
+                    "image":"resistor100.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Active Buzzer",
+                    "image":"active_buzzer.png",
+                    "source":"fritzing"
+                }
+                ]
         }
     },
     "setup":{
         "0":[
+            "setup_complete.png",
+            "setup_step1.png",
+            "setup_step2.png",
+            "setup_step3.png",
+            "setup_step4.png"
+        ],
+        "1":[
             "setup_complete.png",
             "setup_step1.png",
             "setup_step2.png",

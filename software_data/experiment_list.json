@@ -36,7 +36,7 @@
         "topic":"rfid",
         "directory":"basic_rfid_reader_writer",
         "date-added":"2022-01-18",
-        "systems":[0],
+        "systems":[0,1],
         "name":{
             "de":"Intro RFID",
             "en":"Intro RFID"

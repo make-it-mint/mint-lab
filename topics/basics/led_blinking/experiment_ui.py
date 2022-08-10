@@ -61,7 +61,7 @@ class Experiment(UI_Template):
         self.led_status.setAutoRaise(True)
         self.led_status.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         self.led_status.resize(int(self.screen_size.width()*.2), int(self.screen_size.width()*.2))
-        self.led_status.setIcon(QtGui.QIcon(f"{self.EXPERIMENT_DIR}/assets/blinking_led.png"))
+        self.led_status.setIcon(QtGui.QIcon(f"{self.EXPERIMENT_DIR}/assets/experiment_icon.png"))
         self.led_status.setIconSize(QtCore.QSize(int(self.screen_size.width()*.2), int(self.screen_size.width()*.2)))
         self.led_status.setStyleSheet(f"border-radius: 1px")
         self.led_status.setSizePolicy(SIZE_POLICY_PREF)

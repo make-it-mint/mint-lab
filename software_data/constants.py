@@ -31,6 +31,23 @@ KEYBOARD={
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".",":", "(", ")","{","}"]
     }
 
+KEYBOARD_KEYS={
+        "de":{
+            "clear":"Löschen",
+            "space":"Leerzeichen",
+            "back":"Zurück",
+            "enter":"Enter",
+            "done":"Fertig"
+        },
+        "en":{
+            "clear":"Clear",
+            "space":"Space",
+            "back":"Back",
+            "enter":"Enter",
+            "done":"Done"
+        }
+    }
+
 def _set_size_policy(version):
     if version == 0:
         size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)

@@ -107,7 +107,7 @@ class Keyboard(QWidget):
         # #cancel_button.setFixedWidth(60)
  
         # Cancel button
-        clear_button = QPushButton('Clear')
+        clear_button = QPushButton(KEYBOARD_KEYS[self.language]["clear"])
         clear_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         clear_button.setFont(BASIC_FONT_LARGE)
         clear_button.KEY_CHAR = Qt.Key_Clear
@@ -117,7 +117,7 @@ class Keyboard(QWidget):
         #clear_button.setFixedWidth(60)
  
         # Space button
-        space_button = QPushButton('Space')
+        space_button = QPushButton(KEYBOARD_KEYS[self.language]["space"])
         space_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         space_button.setFont(BASIC_FONT_LARGE)
         space_button.KEY_CHAR = Qt.Key_Space
@@ -128,7 +128,7 @@ class Keyboard(QWidget):
  
  
         # Back button
-        back_button = QPushButton('Back')
+        back_button = QPushButton(KEYBOARD_KEYS[self.language]["back"])
         back_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         back_button.setFont(BASIC_FONT_LARGE)
         back_button.KEY_CHAR = Qt.Key_Backspace
@@ -140,7 +140,7 @@ class Keyboard(QWidget):
  
  
         # Enter button
-        enter_button = QPushButton('Enter')
+        enter_button = QPushButton(KEYBOARD_KEYS[self.language]["enter"])
         enter_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         enter_button.setFont(BASIC_FONT_LARGE)
         enter_button.KEY_CHAR = Qt.Key_Enter
@@ -150,7 +150,7 @@ class Keyboard(QWidget):
         #enter_button.setFixedWidth(60)
  
         # Done button
-        done_button = QPushButton('Done')
+        done_button = QPushButton(KEYBOARD_KEYS[self.language]["done"])
         done_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT};")
         done_button.setFont(BASIC_FONT_LARGE)
         done_button.KEY_CHAR = Qt.Key_Home

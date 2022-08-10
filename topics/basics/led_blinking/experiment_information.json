@@ -27,8 +27,8 @@
                     "source":"fritzing"
                 },
                 {
-                    "text":"1x Widerstand 330 Ohm",
-                    "image":"resistor330.png",
+                    "text":"1x Widerstand 220 Ohm",
+                    "image":"resistor220.png",
                     "source":"fritzing"
                 }
             ],
@@ -49,8 +49,8 @@
                     "source":"fritzing"
                 },
                 {
-                    "text":"1x Widerstand 330 Ohm",
-                    "image":"resistor330.png",
+                    "text":"1x Widerstand 220 Ohm",
+                    "image":"resistor220.png",
                     "source":"fritzing"
                 }
             ]
@@ -82,8 +82,8 @@
                     "source":"fritzing"
                 },
                 {
-                    "text":"1x Resistor 330 Ohm",
-                    "image":"resistor330.png",
+                    "text":"1x Resistor 220 Ohm",
+                    "image":"resistor220.png",
                     "source":"fritzing"
                 }
             ],
@@ -104,15 +104,22 @@
                     "source":"fritzing"
                 },
                 {
-                    "text":"1x Resistor 330 Ohm",
-                    "image":"resistor330.png",
+                    "text":"1x Resistor 220 Ohm",
+                    "image":"resistor220.png",
                     "source":"fritzing"
                 }
             ]
         }
     },
     "setup":{
-        "0":["setup_rpi.png"],
+        "0":[
+            "setup_rpi.png",
+            "setup_rpi_1.png",
+            "setup_rpi_2.png",
+            "setup_rpi_3.png",
+            "setup_rpi_4.png",
+            "setup_rpi_5.png"
+        ],
         "1":[
             "setup_picopi.png",
             "setup_picopi_1.png",
