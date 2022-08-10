@@ -340,8 +340,10 @@ class Running_Experiment(QtCore.QObject):
             experiment_module_rpi = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(experiment_module_rpi)
             self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
-            self.experiment.run()   
-            self.experiment_button.setEnabled(True)     
+            self.experiment_button.setEnabled(True)
+            self.experiment.run()
+            self.experiment_button.setEnabled(True)
+                 
                 
         elif self.selected_system["system_id"] == 1:
 

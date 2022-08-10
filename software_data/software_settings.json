@@ -1,6 +1,6 @@
 {
-    "has_keyboard": 1,
-    "selected_language": "en",
+    "has_keyboard": 0,
+    "selected_language": "de",
     "systems": {
         "rpi": {
             "system_id": 0,
@@ -16,7 +16,7 @@
         }
     },
     "selected_system": {
-        "system_id": 0,
+        "system_id": 1,
         "comport": ""
     },
     "languages": {
@@ -115,8 +115,8 @@
     },
     "experiment_setup": {
         "complete_page": {
-            "de": "Kompletter Aufbau - Für Schrittweise Anleitung hier Klicken",
-            "en": "Complete Setup - For Step-By-Step Manual, Click here"
+            "de": "Kompletter Aufbau - Für Schrittweise Anleitung Bild anklicken",
+            "en": "Complete Setup - For Step-By-Step Instructions, Click the Image"
         },
         "step_page": {
             "de": "Schritt",
@@ -152,9 +152,5 @@
     "show_details": {
         "de": "zur Online-Doku",
         "en": "to Online-Doc"
-    },
-    "close_experiment_warning": {
-        "de": "Du musst das Experiment stoppen, bevor das Fenster geschlossen werden kann!",
-        "en": "You must stop the experiment before closing the window!"
     }
 }

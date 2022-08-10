@@ -83,11 +83,8 @@ class Experiment(UI_Template):
             
             if self.selected_system["system_id"] == 0:
                 self.running_experiment.experiment.stop()
-                self.Experiment_Thread.exit()
-                self.start_experiment_button.setEnabled(True)
-            else:
-                self.Experiment_Thread.exit()
 
+            self.Experiment_Thread.exit()
             self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
    
 
