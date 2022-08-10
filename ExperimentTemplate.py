@@ -221,14 +221,13 @@ class UI_Template(QtWidgets.QWidget):
         self.setup_image.setIcon(QtGui.QIcon(image_path))
         self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.95), int(self.screen_size.height()*.75)))
         layout.addWidget(self.setup_image, 0,0)
+        self.setup_image.clicked.connect(self.update_setup_image)
 
-        self.change_setup_image_button = QtWidgets.QPushButton()
+        self.change_setup_image_button = QtWidgets.QLabel()
         self.change_setup_image_button.setFont(BASIC_FONT_MID)
         self.change_setup_image_button.setText(f'[fritzing] - {self.program_settings["experiment_setup"]["complete_page"][self.language]}')
-        self.change_setup_image_button.setStyleSheet(f"background-color: {FONT_COLOR_DARK}; color:{FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
-        self.change_setup_image_button.setMinimumWidth(int(self.screen_size.width()*.8))
+        self.change_setup_image_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
         layout.addWidget(self.change_setup_image_button,1,0, QtCore.Qt.AlignCenter)
-        self.change_setup_image_button.clicked.connect(self.update_setup_image)
         
 
     def update_setup_image(self):
@@ -325,21 +324,24 @@ class Running_Experiment(QtCore.QObject):
     value_for_ui = QtCore.pyqtSignal(str)
     experiment_is_running = True
 
-    def __init__(self, selected_system, dir, serial_read_freq_hz:int = 1, timeout=5):
+    def __init__(self, experiment_button, selected_system, dir, serial_read_freq_hz:int = 1, timeout=5):
         super().__init__()
         self.selected_system = selected_system
         self.dir = dir
         self.serial_read_freq = serial_read_freq_hz
         self.timeout = timeout
+        self.experiment_button = experiment_button
         
 
     def start_experiment(self):
+        self.experiment_button.setEnabled(False)
         if self.selected_system["system_id"] == 0:
             spec = importlib.util.spec_from_file_location("module.name", f'{self.dir}/experiment_code/rpi.py')
             experiment_module_rpi = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(experiment_module_rpi)
             self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
-            self.experiment.run()        
+            self.experiment.run()   
+            self.experiment_button.setEnabled(True)     
                 
         elif self.selected_system["system_id"] == 1:
 
@@ -349,16 +351,19 @@ class Running_Experiment(QtCore.QObject):
                 time.sleep(1.5)
                 ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600, timeout=self.timeout)
                 ser.flushInput()
+                self.experiment_button.setEnabled(True)
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
                 #print("Experiment Stopped by Button")
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
+                self.experiment_button.setEnabled(True)
             except Exception or KeyboardInterrupt as e:
                 print(e)
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
+                self.experiment_button.setEnabled(True)
 
     def run_picopi(self):
         #print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')

@@ -13,18 +13,17 @@ class Experiment:
         GPIO_LED = 26
         GPIO.setup(GPIO_LED, GPIO.OUT)
 
-        counter=0
         while self.is_running:
-            counter+=1
             # LED einschalten
             GPIO.output(GPIO_LED,GPIO.HIGH)
+            self.value_for_ui.emit(f"state=on")
             # halbe Sekunde warten
             sleep(1/(2*self.FREQUENCY))
             # LED ausschalten
             GPIO.output(GPIO_LED,GPIO.LOW)
+            self.value_for_ui.emit(f"state=off")
             # 1 Sekunde warten
             sleep(1/(2*self.FREQUENCY))
-            self.value_for_ui.emit(f"counter={counter}")
             
         GPIO.cleanup()
 

@@ -209,17 +209,19 @@
     },
     "setup":{
         "0":[
-            "setup_complete.png",
-            "setup_step1.png",
-            "setup_step2.png",
-            "setup_step3.png",
-            "setup_step4.png"],
+            "setup_rpi.png",
+            "setup_rpi_1.png",
+            "setup_rpi_2.png",
+            "setup_rpi_3.png",
+            "setup_rpi_4.png",
+            "setup_rpi_5.png"],
         "1":[
-            "setup_complete.png",
-            "setup_step1.png",
-            "setup_step2.png",
-            "setup_step3.png",
-            "setup_step4.png"]
+            "setup_picopi.png",
+            "setup_picopi_1.png",
+            "setup_picopi_2.png",
+            "setup_picopi_3.png",
+            "setup_picopi_4.png",
+            "setup_picopi_5.png"]
     },
     "information":{
         "file":"ultrasonic.gif",

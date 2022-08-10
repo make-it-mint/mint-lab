@@ -42,6 +42,16 @@
                     "text":"1x Raspberry Pi Pico",
                     "image":"picopi.png",
                     "source":"fritzing"
+                },
+                {
+                    "text":"1x rote LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
                 }
             ]
         }
@@ -87,14 +97,29 @@
                     "text":"1x Raspberry Pi Pico",
                     "image":"picopi.png",
                     "source":"fritzing"
+                },
+                {
+                    "text":"1x red LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
                 }
             ]
         }
     },
     "setup":{
         "0":["setup_rpi.png"],
-        "1":["setup_picopi.png"],
-        "2":["setup_arduino.png"]        
+        "1":[
+            "setup_picopi.png",
+            "setup_picopi_1.png",
+            "setup_picopi_2.png",
+            "setup_picopi_3.png",
+            "setup_picopi_4.png"
+            ]       
     },
     "information":{
         "file":"default_file",
@@ -121,13 +146,17 @@
         "de":{
             "name":"Grundlagen: LED blinken",
             "link":"https://make-it-mint.de",
-            "custom_content":{}
+            "custom_content":{
+                "freq_label":"Frequenz [Hz]"
+            }
         }
         ,
         "en":{
             "name":"Name of Experiment",
             "link":"https://make-it-mint.de",
-            "custom_content":{}
+            "custom_content":{
+                "freq_label":"Frequency [Hz]"
+            }
         }
     }
 }

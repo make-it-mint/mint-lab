@@ -39,7 +39,11 @@ def _set_size_policy(version):
     elif version == 1:
         size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
         size_policy.setHorizontalStretch(1)
+    elif version == 2:
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+
     return size_policy
 
 SIZE_POLICY = _set_size_policy(version=0)
 SIZE_POLICY_H = _set_size_policy(version=1)
+SIZE_POLICY_PREF = _set_size_policy(version=2)

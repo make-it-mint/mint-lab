@@ -44,12 +44,14 @@ class Experiment(UI_Template):
         self.value_field.setValidator(QtGui.QIntValidator())
         self.experiment_layout.addWidget(self.value_field, 0, 0, QtCore.Qt.AlignLeft)
 
-        self.start_experiment_button = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
-        self.start_experiment_button.setStyleSheet(f"color: {FONT_COLOR_DARK}; background-color:{BACKGROUND_LGREEN}; margin: 10px 20px 10px 20px; border-radius: 10px")
-        self.start_experiment_button.setSizePolicy(
-                 QtWidgets.QSizePolicy.Policy.Preferred,
-                 QtWidgets.QSizePolicy.Policy.Preferred
-             )
+        self.start_experiment_button = QtWidgets.QToolButton()
+        self.start_experiment_button.setAutoRaise(True)
+        self.start_experiment_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
+        self.start_experiment_button.resize(int(self.screen_size.width()*.2), int(self.screen_size.width()*.2))
+        self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+        self.start_experiment_button.setIconSize(QtCore.QSize(int(self.screen_size.width()*.2), int(self.screen_size.width()*.2)))
+        self.start_experiment_button.setStyleSheet(f"border-radius: 1px")
+        self.start_experiment_button.setSizePolicy(SIZE_POLICY_PREF)
         self.start_experiment_button.clicked.connect(self.start_stop_experiment)
         self.experiment_layout.addWidget(self.start_experiment_button,1,1)
 
@@ -64,21 +66,28 @@ class Experiment(UI_Template):
         if self.experiment_is_running == False:
             self.write_values_to_experiment_file()
             self.experiment_is_running = True
-
             self.Experiment_Thread = QtCore.QThread()
-            self.running_experiment = Running_Experiment(selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)
+            self.running_experiment = Running_Experiment(experiment_button=self.start_experiment_button, selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)
             self.running_experiment.moveToThread(self.Experiment_Thread)
             self.running_experiment.experiment_is_running = self.experiment_is_running
             self.Experiment_Thread.started.connect(self.running_experiment.start_experiment)
             self.running_experiment.value_for_ui.connect(self.update_ui)
             self.Experiment_Thread.start()
+            self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/stop_round.png"))
             
         else:
+            self.start_experiment_button.setEnabled(False)
             self.experiment_is_running = False
             self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+            
             if self.selected_system["system_id"] == 0:
                 self.running_experiment.experiment.stop()
-            self.Experiment_Thread.exit()
+                self.Experiment_Thread.exit()
+                self.start_experiment_button.setEnabled(True)
+            else:
+                self.Experiment_Thread.exit()
+
             self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
    
 
