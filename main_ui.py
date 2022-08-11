@@ -89,7 +89,7 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
     parent.sort_topics.setFont(font)
     frame_layout.addWidget(parent.sort_topics,0,0,1,2)
 
-    images=['system/new','system/beginner',f"languages/{settings['languages'][language]['icon']}", 'system/settings','system/exit'] 
+    images=['system/new','system/beginner', 'system/settings','system/exit'] 
     button_list = []       
 
 
@@ -125,14 +125,12 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
 
     parent.sort_new=button_list[0]
     parent.show_beginner=button_list[1]
-    parent.select_language=button_list[2]
-    parent.open_settings=button_list[3]
-    parent.close_software=button_list[4]
+    parent.open_settings=button_list[2]
+    parent.close_software=button_list[3]
 
     parent.sort_topics.clicked.connect(parent._show_topics)
     parent.sort_new.clicked.connect(parent._sort_new)
     parent.show_beginner.clicked.connect(parent._show_easy_only)
-    parent.select_language.clicked.connect(parent._select_language)
     parent.open_settings.clicked.connect(parent._open_settings)
     parent.close_software.clicked.connect(parent.main_window.close)
     parent.system_selection.clicked.connect(parent._select_system)

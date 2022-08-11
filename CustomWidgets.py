@@ -186,8 +186,7 @@ class ScrollLabel(QtWidgets.QScrollArea):
 
 class LanguageSelection(QtWidgets.QDialog):
     """
-    This "window" is a QWidget. If it has no parent, it
-    will appear as a free-floating window as we want.
+    Unused
     """
     def __init__(self, languages, root_dir, cur_language, parent=None):
         super().__init__(parent)

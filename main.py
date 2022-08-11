@@ -119,23 +119,22 @@ class MainApp(object):
     def _show_topics(self):
         """display topics"""
 
-
-    def _select_language(self):
-        """select language and change content of displayed items"""
-        #open new window
-        language_selection = LanguageSelection(parent=self.main_window, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
-        if language_selection.exec():
-            #Reload all widgets with new language
-            self._settings["selected_language"]=language_selection.Selected_Language
-            self._language = self._settings["selected_language"]
-            self.translate_icons()
-            self._overwrite_settings_file()
+    #unused
+    # def _select_language(self):
+    #     """select language and change content of displayed items"""
+    #     #open new window
+    #     language_selection = LanguageSelection(parent=self.main_window, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
+    #     if language_selection.exec():
+    #         #Reload all widgets with new language
+    #         self._settings["selected_language"]=language_selection.Selected_Language
+    #         self._language = self._settings["selected_language"]
+    #         self.translate_icons()
+    #         self._overwrite_settings_file()
 
 
     def translate_icons(self):
         self._set_listed_content()
         self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
-        self.select_language.setIcon(QtGui.QIcon(f"{MainApp.ROOT_DIR}/assets/languages/{self._settings['languages'][self._language]['icon']}"))
 
 
     def _sort_new(self):
@@ -181,6 +180,9 @@ class MainApp(object):
         settings_window = SettingsInterface(root_dir=self.ROOT_DIR, settings=self._settings, parent=self.main_window)
         if settings_window.exec():
             self._settings["has_keyboard"] = int(settings_window.has_keyboard)
+            self._settings["selected_language"]=settings_window.selected_language
+            self._language = self._settings["selected_language"]
+            self.translate_icons()
             self._overwrite_settings_file()
 
 
