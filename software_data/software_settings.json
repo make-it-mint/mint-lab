@@ -1,5 +1,5 @@
 {
-    "has_keyboard": 0,
+    "has_keyboard": 1,
     "selected_language": "de",
     "systems": {
         "rpi": {
@@ -17,7 +17,7 @@
     },
     "selected_system": {
         "system_id": 0,
-        "comport": ""
+        "comport": "/dev/ttyACM0"
     },
     "languages": {
         "de": {

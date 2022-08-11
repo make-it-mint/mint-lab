@@ -36,10 +36,21 @@
         "topic":"rfid",
         "directory":"basic_rfid_reader_writer",
         "date-added":"2022-01-18",
-        "systems":[0,1],
+        "systems":[0],
         "name":{
             "de":"Intro RFID",
             "en":"Intro RFID"
+        }
+    },
+    {
+        "level":1,
+        "topic":"rfid",
+        "directory":"led_blinking",
+        "date-added":"2022-01-18",
+        "systems":[0],
+        "name":{
+            "de":"LEDs steuern",
+            "en":"Control LEDs"
         }
     }
 ]

@@ -22,6 +22,7 @@ INTERFACE_BUTTON_UNSELECTED = f"color: rgb(230,230,230);background-color:{BACKGR
 ITEMS_STYLE = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR}; padding-left: 20px; border: 5px solid {BACKGROUND_COLOR_DARK};\nborder-radius: 30px;"
 INTERFACE_BUTTON_SELECTED = f"background-color:rgb(200,50,100); padding-left: 20px; border: 5px solid rgb(0, 0, 0);\nborder-radius: 30px;"
 
+BORDER_STYLESHEET_THIN = f'border: 2px solid  {BACKGROUND_COLOR_DARK}; border-radius: 10px'
 KEYBOARD={
         "de":["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
         "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z","Ä","Ö","Ü","ß",

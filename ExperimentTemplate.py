@@ -324,7 +324,7 @@ class Running_Experiment(QtCore.QObject):
     value_for_ui = QtCore.pyqtSignal(str)
     experiment_is_running = True
 
-    def __init__(self, experiment_button, selected_system, dir, serial_read_freq_hz:int = 1, timeout=5):
+    def __init__(self, selected_system, dir, experiment_button=None, serial_read_freq_hz:int = 1, timeout=5):
         super().__init__()
         self.selected_system = selected_system
         self.dir = dir
@@ -340,9 +340,9 @@ class Running_Experiment(QtCore.QObject):
             experiment_module_rpi = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(experiment_module_rpi)
             self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
-            self.experiment_button.setEnabled(True)
+            if self.experiment_button: self.experiment_button.setEnabled(True)
             self.experiment.run()
-            self.experiment_button.setEnabled(True)
+            if self.experiment_button: self.experiment_button.setEnabled(True)
                  
                 
         elif self.selected_system["system_id"] == 1:
@@ -353,19 +353,19 @@ class Running_Experiment(QtCore.QObject):
                 time.sleep(1.5)
                 ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600, timeout=self.timeout)
                 ser.flushInput()
-                self.experiment_button.setEnabled(True)
+                if self.experiment_button: self.experiment_button.setEnabled(True)
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
                 #print("Experiment Stopped by Button")
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
-                self.experiment_button.setEnabled(True)
+                if self.experiment_button: self.experiment_button.setEnabled(True)
             except Exception or KeyboardInterrupt as e:
                 print(e)
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
-                self.experiment_button.setEnabled(True)
+                if self.experiment_button: self.experiment_button.setEnabled(True)
 
     def run_picopi(self):
         #print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')
