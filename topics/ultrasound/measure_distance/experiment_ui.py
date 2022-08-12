@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from curses import COLOR_BLACK
 from ExperimentTemplate import UI_Template, Running_Experiment
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os, json
@@ -20,6 +21,7 @@ class Experiment(UI_Template):
             self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 48)
 
         experiment_information = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
+        self.selected_button_idx = 0
         self.DEFAULT_VALUES={"SPEED_OF_SOUND":330,"RED":10,"BLUE":5}
         self.EXPERIMENT_VALUES=self.DEFAULT_VALUES.copy()
 
@@ -56,9 +58,9 @@ class Experiment(UI_Template):
             self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
 
     def write_values_to_experiment_file(self):
-        self.EXPERIMENT_VALUES["SPEED_OF_SOUND"] = self.check_selected_medium()
-        self.EXPERIMENT_VALUES["RED"] = self.slider_red.value()
-        self.EXPERIMENT_VALUES["BLUE"] = self.slider_blue.value()
+        self.EXPERIMENT_VALUES["SPEED_OF_SOUND"] = list(self.speeds[self.selected_button_idx].values())[0]
+        self.EXPERIMENT_VALUES["RED"] = 5#self.slider_red.value()
+        self.EXPERIMENT_VALUES["BLUE"] = 3#self.slider_blue.value()
         self.set_values(new_values = self.EXPERIMENT_VALUES, dir = self.EXPERIMENT_DIR)
 
 
@@ -67,33 +69,69 @@ class Experiment(UI_Template):
 
     def fill_experiment(self, content:dict):
         self.experiment_layout = self.tabs["experiment"]["layout"]
+        self.experiment_layout.setRowStretch(0,1)
+        self.experiment_layout.setRowStretch(1,4)
+        self.experiment_layout.setColumnStretch(0,4)
+        self.experiment_layout.setColumnStretch(1,1)
 
         self.speeds_frame = QtWidgets.QFrame()
         self.speeds_frame.setSizePolicy(SIZE_POLICY)
         self.speeds_frame.setStyleSheet(BORDER_STYLESHEET_THIN)
         self.speeds_interface(parent_widget=self.speeds_frame, content=content)
-        self.experiment_layout.addWidget(self.speeds_frame,0,0)
+        self.experiment_layout.addWidget(self.speeds_frame,0,0,1,2)
+
+        self.experiment_frame = QtWidgets.QFrame()
+        self.experiment_frame.setSizePolicy(SIZE_POLICY)
+        self.experiment_frame.setStyleSheet(f"background-color:{BACKGROUND_BLACK}")
+        self.experiment_interface(parent_widget=self.experiment_frame, content=content)
+        self.experiment_layout.addWidget(self.experiment_frame,1,0, QtCore.Qt.AlignCenter)
+    
+
+        self.start_experiment_button = QtWidgets.QToolButton()
+        self.start_experiment_button.setAutoRaise(True)
+        self.start_experiment_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        self.start_experiment_button.resize(int(self.screen_size.width()*.2), int(self.screen_size.width()*.2))
+        self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+        self.start_experiment_button.setIconSize(QtCore.QSize(int(self.screen_size.width()*.2), int(self.screen_size.width()*.2)))
+        self.start_experiment_button.setStyleSheet(f"border-radius: 0px")
+        self.start_experiment_button.setSizePolicy(SIZE_POLICY_PREF)
+        self.start_experiment_button.clicked.connect(self.start_stop_experiment)
+        self.experiment_layout.addWidget(self.start_experiment_button,1,1, QtCore.Qt.AlignCenter)
+    
+
         
-        #self.experiment_medium_speed(parent=self.experiment_layout, content=content)
 
-        # self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
-        # image = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/formula.png")
-        # formula = QtWidgets.QLabel()
-        # formula.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        # formula.setPixmap(image.scaled(int(self.screen_size.width()*.5), int(self.screen_size.height()*.25), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
 
-        # self.experiment_layout.addWidget(formula,0,1)
 
-        # self.start_experiment = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
-        # self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
-        
-        # self.experiment_layout.addWidget(self.start_experiment,1,1)
+    def start_stop_experiment(self):
 
-        self.experiment_layout.setRowStretch(0,2)
-        self.experiment_layout.setRowStretch(1,4)
-        self.experiment_layout.setRowStretch(2,3)
-        self.experiment_layout.setColumnStretch(0,1)
-        self.experiment_layout.setColumnStretch(1,3)
+        if self.experiment_is_running == False:
+            # self.write_values_to_experiment_file()
+            self.experiment_is_running = True
+            # self.Experiment_Thread = QtCore.QThread()
+            # self.running_experiment = Running_Experiment(experiment_button=self.start_experiment_button, selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)            
+            # self.running_experiment.moveToThread(self.Experiment_Thread)
+            # self.running_experiment.experiment_is_running = self.experiment_is_running
+            # self.Experiment_Thread.started.connect(self.running_experiment.start_experiment)
+            # self.running_experiment.value_for_ui.connect(self.update_ui)
+            # self.Experiment_Thread.start()
+            self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/stop_round.png"))
+            
+        else:
+            # self.start_experiment_button.setEnabled(False)
+            self.experiment_is_running = False
+            # self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+            
+            # if self.selected_system["system_id"] == 0:
+            #     self.running_experiment.experiment.stop()
+
+            # self.Experiment_Thread.exit()
+
+            # self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
+
+
+
 
     def speeds_interface(self, parent_widget, content):
         layout = QtWidgets.QGridLayout()
@@ -104,25 +142,33 @@ class Experiment(UI_Template):
         
         for idx, (medium,speed) in enumerate(content[self.language]['speed'].items()):
 
-            button = QtWidgets.QToolButton()
-            button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+            button = QtWidgets.QPushButton()
             image_path = f"{self.EXPERIMENT_DIR}/assets/{medium}.png"
             button.setIcon(QtGui.QIcon(image_path))
-            #button.setStyleSheet(f"border-width:0px")
+            button.setStyleSheet(f"border-width:0px; border-radius:20px")
             button.setSizePolicy(SIZE_POLICY)
             button.setIconSize(QtCore.QSize(int(parent_widget.size().width()*.15), int(parent_widget.size().height()*.4)))
-            #button.clicked.connect(lambda do_it, arg=content :self.update_personal_image(arg))
+            button.clicked.connect(lambda do_it, arg=idx :self.select_medium(arg))
             layout.addWidget(button,0,idx,QtCore.Qt.AlignCenter)
 
-            if not self.program_settings["has_keyboard"]:
-                text = VKQLineEdit(name='value', mainWindowObj=self)
+            if medium == "other":
+                if not self.program_settings["has_keyboard"]:
+                    text = VKQLineEdit(name='value', mainWindowObj=self)
+                else:
+                    text = QtWidgets.QLineEdit()
+                text.setAlignment(QtCore.Qt.AlignJustify)
+                text.setFont(BASIC_FONT_LARGE)
+                text.setValidator(QtGui.QIntValidator())
+                text.setSizePolicy(SIZE_POLICY)
+                text.setPlaceholderText(f'm/s')
+                text.setStyleSheet(f"color:{FONT_COLOR_DARK}; background-color:{BACKGROUND_WHITE}; border-width:0px")
+                
             else:
-                text = QtWidgets.QLineEdit()
-            text.setAlignment(QtCore.Qt.AlignJustify)
-            text.setFont(BASIC_FONT_MID)
-            text.setSizePolicy(SIZE_POLICY)
-            text.setPlaceholderText(f'm/s')
-            text.setStyleSheet(f"color:{FONT_COLOR_DARK}; background-color:{BACKGROUND_WHITE}; border-width:0px")
+                text = QtWidgets.QLabel(f"{speed} m/s")
+                text.setFont(BASIC_FONT_LARGE)
+                text.setStyleSheet(f"color:{FONT_COLOR_LIGHT}; border-width:0px")
+                text.setSizePolicy(SIZE_POLICY)
+            
             layout.addWidget(text,1,idx,QtCore.Qt.AlignCenter)
 
 
@@ -135,155 +181,68 @@ class Experiment(UI_Template):
         layout.setRowStretch(0,1)
         layout.setRowStretch(1,1)
 
+        self.select_medium(self.selected_button_idx)
 
-
-    def experiment_led_threshholds_and_distance(self, parent, content):
-        self.interactive_icons_frame =QtWidgets.QFrame()
-        self.interactive_icons_layout = QtWidgets.QGridLayout()
-        self.interactive_icons_frame.setLayout(self.interactive_icons_layout)
-        #Widgets for Blue LED
-        self.slider_blue = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal)
-        self.slider_blue.setMinimum(0)
-        self.slider_blue.setMaximum(30)
-        self.slider_blue.setValue(3)
-        self.slider_blue.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBelow)
-        self.slider_blue.setTickInterval(0.1)
-        self.slider_blue.valueChanged.connect(self.blue_value_changed)
-
-        self.label_blue = QtWidgets.QLabel(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
-        self.label_blue.setFont(self.SELECTED_FONT)
-        self.label_blue_led = QtWidgets.QLabel()
-        # self.label_blue_led.setSizePolicy(
-        #         QSizePolicy.Expanding,
-        #         QSizePolicy.Expanding,
-        #     )
-        self.label_blue_led.setStyleSheet(
-                """
-                background-color: transparent;
-                """)
-
-        self.interactive_icons_layout.addWidget(self.label_blue,0,0,1,2)
-        self.interactive_icons_layout.addWidget(self.label_blue_led,1,0)
-        self.interactive_icons_layout.addWidget(self.slider_blue,1,1)
-
-
-        #Widgets for current distance
-        self.current_distance = QtWidgets.QProgressBar()
-        self.current_distance.setMaximum(30)
-        self.current_distance.setMinimum(0)
-        self.current_distance.setValue(0)
-        self.current_distance.setTextVisible(False)
-        # self.current_distance.setSizePolicy(
-        #         QSizePolicy.Expanding,
-        #         QSizePolicy.Expanding,
-        #     )
-        self.label_distance = QtWidgets.QLabel(f"Aktuelle Distanz: {self.current_distance.value()} cm")
-        self.label_distance.setFont(self.SELECTED_FONT)
-        self.interactive_icons_layout.addWidget(self.current_distance,3,1)
-        self.interactive_icons_layout.addWidget(self.label_distance,2,0,1,2)
-
-        #Widgets for Red LED
-        self.slider_red = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal)
-        self.slider_red.setMinimum(0)
-        self.slider_red.setMaximum(30)
-        self.slider_red.setValue(1)
-        self.slider_red.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBelow)
-        self.slider_red.setTickInterval(1)
-        self.slider_red.valueChanged.connect(self.red_value_changed)
+    def select_medium(self, button_idx):
+        self.selected_button_idx=button_idx
+        for idx, medium_button in enumerate(self.speed_buttons):
+            if idx == button_idx:
+                medium_button.setStyleSheet(f"background-color:{BACKGROUND_COLOR_DARK};border-width:0px; border-radius:20px")
+            else:
+                medium_button.setStyleSheet(f"background-color:{BACKGROUND_COLOR};border-width:0px; border-radius:20px")
+        #print(list(self.speeds[button_idx].values())[0])
         
-        self.label_red = QtWidgets.QLabel(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
-        self.label_red.setFont(self.SELECTED_FONT)
-        self.label_red_led = QtWidgets.QLabel()
-        # self.label_red_led.setSizePolicy(
-        #         QSizePolicy.Expanding,
-        #         QSizePolicy.Expanding,
-        #     )
-        self.label_red_led.setStyleSheet(
-                """
-                background-color: transparent;
-                """)
 
-        self.interactive_icons_layout.addWidget(self.label_red,4,0,1,2)
-        self.interactive_icons_layout.addWidget(self.label_red_led,5,0)
-        self.interactive_icons_layout.addWidget(self.slider_red,5,1)
+    def experiment_interface(self, parent_widget, content):
+        layout = QtWidgets.QGridLayout()
+        parent_widget.setLayout(layout)
 
-        self.interactive_icons_layout.setColumnStretch(0,1)
-        self.interactive_icons_layout.setColumnStretch(1,20)
-        self.interactive_icons_layout.setRowStretch(0,0)
-        self.interactive_icons_layout.setRowStretch(1,1)
-        self.interactive_icons_layout.setRowStretch(2,0)
-        self.interactive_icons_layout.setRowStretch(3,1)
-        self.interactive_icons_layout.setRowStretch(4,0)
-        self.interactive_icons_layout.setRowStretch(5,1)
-
-        parent.addWidget(self.interactive_icons_frame,2,0,1,2)
-
-
-    def red_value_changed(self):
-        self.label_red.setText(f"Rote LED leuchtet ab einer Distanz von {self.slider_red.value()} cm")
-        try:
-            self.running_experiment.threshold_red = self.slider_red.value()
-        except:
-            pass
-
-    def blue_value_changed(self):
-        self.label_blue.setText(f"Blaue LED leuchtet ab einer Distanz von {self.slider_blue.value()} cm")
-        try:
-            self.running_experiment.threshold_blue = self.slider_blue.value()
-        except:
-            pass
-
-
-    def experiment_medium_speed(self, parent, content):
-        self.medium_group=QtWidgets.QGroupBox(content[self.language]['medium'])
-        self.medium_widgets = []
-        medium_layout=QtWidgets.QVBoxLayout()
-        for idx, (k, v) in enumerate(content[self.language]['speed'].items()):
-            radio = QtWidgets.QRadioButton(f"{k}(~ {v} m/s)")
-            radio.setFont(self.SELECTED_FONT)
-            if idx == 0:
-                radio.setChecked(True)
-            medium_layout.addWidget(radio)
-            self.medium_widgets.append(radio)
-
-        if not self.program_settings["has_keyboard"]:
-            self.custom_speed = VKQLineEdit(name='value', mainWindowObj=self)
-        else:
-            self.custom_speed = QtWidgets.QLineEdit()
-
-        medium_layout.addWidget(self.custom_speed)
-
-        self.medium_group.setLayout(medium_layout)
-
-        parent.addWidget(self.medium_group,0,0,2,1)
- 
-
-
-    def check_selected_medium(self):
-
-        speed = None
-
-        for medium in self.medium_widgets:
-            if medium.isChecked():
-                text = medium.text()
-                try:
-                    speed = int(text.split()[1])
-
-                except:
-                    
-
-                    try:
-                        speed = int(self.custom_speed.text())
-
-                    except ValueError:
-                        QtWidgets.QMessageBox.about(self,"Error","Eigener Wert ist keine ganze Zahl (Integer)")
-                        speed = None
-                
-                break
+        layout.setRowStretch(0,7)
+        layout.setRowStretch(1,2)
+        layout.setRowStretch(2,1)
+        layout.setColumnStretch(0,1)
+        layout.setColumnStretch(1,3)
+        layout.setColumnStretch(2,1)
         
-        return speed
+        self.red_slider = QtWidgets.QSlider(QtCore.Qt.Vertical)
+        self.red_slider.setSizePolicy(SIZE_POLICY_PREF)
+        layout.addWidget(self.red_slider,0,0, 1,1,QtCore.Qt.AlignCenter)
 
-        
+        self.led_red = QtWidgets.QToolButton()
+        self.led_red.setAutoRaise(True)
+        self.led_red.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        self.led_red.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+        self.led_red.setIconSize(QtCore.QSize(int(parent_widget.size().width()*.1), int(parent_widget.size().width()*.1)))
+        self.led_red.setStyleSheet(f"border-radius: 0px")
+        self.led_red.setSizePolicy(SIZE_POLICY_PREF)
+        self.led_red.setEnabled(False)
+        #self.led_red.clicked.connect(self.start_stop_experiment)
+        layout.addWidget(self.led_red,1,0, QtCore.Qt.AlignCenter)
+
+
+
+        self.blue_slider = QtWidgets.QSlider(QtCore.Qt.Vertical)
+        self.blue_slider.setSizePolicy(SIZE_POLICY_PREF)
+        layout.addWidget(self.blue_slider,0,2, QtCore.Qt.AlignCenter)
+
+        self.led_blue = QtWidgets.QToolButton()
+        self.led_blue.setAutoRaise(True)
+        self.led_blue.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        self.led_blue.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+        self.led_blue.setIconSize(QtCore.QSize(int(parent_widget.size().width()*.1), int(parent_widget.size().width()*.1)))
+        self.led_blue.setStyleSheet(f"border-radius: 0px")
+        self.led_blue.setSizePolicy(SIZE_POLICY_PREF)
+        self.led_blue.setEnabled(False)
+        #self.led_red.clicked.connect(self.start_stop_experiment)
+        layout.addWidget(self.led_blue,1,2, QtCore.Qt.AlignCenter)
+
+
+        self.current_distance = QtWidgets.QLabel("Aktuelle Distanz")
+        self.current_distance.setSizePolicy(SIZE_POLICY_PREF)
+        self.current_distance.setFont(BASIC_FONT_MID)
+        self.led_blue.setStyleSheet(f"color:{FONT_COLOR_LIGHT}")
+        layout.addWidget(self.current_distance,2,0,1,3, QtCore.Qt.AlignCenter)
+
 
 
     def update_ui(self, value_for_ui):

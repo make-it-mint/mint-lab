@@ -23,6 +23,7 @@ ITEMS_STYLE = f"color: rgb(230,230,230);background-color:{BACKGROUND_COLOR}; pad
 INTERFACE_BUTTON_SELECTED = f"background-color:rgb(200,50,100); padding-left: 20px; border: 5px solid rgb(0, 0, 0);\nborder-radius: 30px;"
 
 BORDER_STYLESHEET_THIN = f'border: 2px solid  {BACKGROUND_COLOR_DARK}; border-radius: 10px'
+BORDER_STYLESHEET_NONE = f'{BACKGROUND_COLOR_DARK}; border-radius: 0px'
 KEYBOARD={
         "de":["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
         "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z","Ä","Ö","Ü","ß",
@@ -58,7 +59,9 @@ def _set_size_policy(version):
         size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
         size_policy.setHorizontalStretch(1)
     elif version == 2:
-        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        size_policy.setHorizontalStretch(1)
+        size_policy.setVerticalStretch(1)
 
     return size_policy
 

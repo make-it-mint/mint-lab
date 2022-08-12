@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 class Experiment:
     EXPERIMENT="TEXT"
     ACTION="WRITE"
-    CONTENT=""
+    CONTENT="hj0hj"
     def __init__(self, is_running, value_for_ui):
         self.is_running = is_running
         self.value_for_ui = value_for_ui

@@ -1,6 +1,6 @@
 {
-    "has_keyboard": 0,
-    "selected_language": "de",
+    "has_keyboard": 1,
+    "selected_language": "en",
     "systems": {
         "rpi": {
             "system_id": 0,
