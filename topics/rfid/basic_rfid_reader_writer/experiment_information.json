@@ -165,8 +165,6 @@
         ],
         "read_img":"read.png",
         "write_img":"write.png",
-        "frequency":"1 Hz",
-
         "de":{
             "name":"RFID-Chips Beschreiben und Lesen",
             "link":"https://make-it-mint.de",
@@ -177,8 +175,7 @@
             },
             "custom_personal_data":{
                 "first_name":"Vorname",
-                "last_name":"Nachname",
-                "next":"WEITER"
+                "last_name":"Nachname"
             },
             "rfid_state":{
                 "idle":"NIX LOS BEIM RFID SCANNER...",
@@ -200,8 +197,7 @@
             },
             "custom_personal_data":{
                 "first_name":"Firstname",
-                "last_name":"Lastname",
-                "next":"NEXT"
+                "last_name":"Lastname"
             },
             "rfid_state":{
                 "idle":"RFID SCANNER IDLING...",

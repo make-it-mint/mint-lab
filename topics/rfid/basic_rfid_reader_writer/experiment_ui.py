@@ -128,8 +128,9 @@ class Experiment(UI_Template):
         self.custom_text_read.setStyleSheet(f"color:{FONT_COLOR_DARK}; border-radius:10px; border-width:0px")
         layout.addWidget(self.custom_text_read,2,0,QtCore.Qt.AlignCenter)
 
-        layout.setRowStretch(0,1)
-        layout.setRowStretch(2,1)
+        layout.setRowStretch(0,5)
+        layout.setRowStretch(1,1)
+        layout.setRowStretch(2,5)
         
 
 
@@ -148,9 +149,8 @@ class Experiment(UI_Template):
         else:
             self.personal_first_write = QtWidgets.QLineEdit()
         self.personal_first_write.setAlignment(QtCore.Qt.AlignJustify)
-        self.personal_first_write.setFont(self.SELECTED_FONT)
+        self.personal_first_write.setFont(BASIC_FONT_MID)
         self.personal_first_write.setSizePolicy(SIZE_POLICY)
-        #self.personal_first_write.resize(int(self.screen_size.width()*.2),int(self.screen_size.height()*.3))
         self.personal_first_write.setPlaceholderText(f'{content[self.language]["custom_personal_data"]["first_name"]}')
         self.personal_first_write.setStyleSheet(f"color:{FONT_COLOR_DARK}; background-color:{BACKGROUND_WHITE}; border-width:0px")
         layout.addWidget(self.personal_first_write,0,0)
@@ -161,9 +161,8 @@ class Experiment(UI_Template):
         else:
             self.personal_last_write = QtWidgets.QLineEdit()
         self.personal_last_write.setAlignment(QtCore.Qt.AlignJustify)
-        self.personal_last_write.setFont(self.SELECTED_FONT)
+        self.personal_last_write.setFont(BASIC_FONT_MID)
         self.personal_last_write.setSizePolicy(SIZE_POLICY)
-        #self.personal_last_write.resize(int(self.screen_size.width()*.2),int(self.screen_size.height()*.3))
         self.personal_last_write.setPlaceholderText(f'{content[self.language]["custom_personal_data"]["last_name"]}')
         self.personal_last_write.setStyleSheet(f"color:{FONT_COLOR_DARK}; background-color:{BACKGROUND_WHITE}; border-width:0px")
         layout.addWidget(self.personal_last_write,0,1)
@@ -178,26 +177,20 @@ class Experiment(UI_Template):
         self.personal_image_write.clicked.connect(lambda do_it, arg=content :self.update_personal_image(arg))
         layout.addWidget(self.personal_image_write,1,0,1,2,QtCore.Qt.AlignCenter)
 
-        separator = QtWidgets.QLabel("-------------------")
-        separator.setFont(self.SELECTED_FONT)
-        separator.setStyleSheet(f"color:{FONT_COLOR_LIGHT};border-width:0px")
-        layout.addWidget(separator,2,0,1,2,QtCore.Qt.AlignCenter)
+        # separator = QtWidgets.QLabel("-------------------")
+        # separator.setFont(self.SELECTED_FONT)
+        # separator.setStyleSheet(f"color:{FONT_COLOR_LIGHT};border-width:0px")
+        # layout.addWidget(separator,2,0,1,2,QtCore.Qt.AlignCenter)
 
   
 
         # ###############
         # # READ CONTENT#
-        # ###############
-        self.personal_image_read = QtWidgets.QLabel()
-        self.personal_image_read.setStyleSheet(f"border-width:0px")
-        #pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/{content['personal_images'][self.selected_image]}")  
-        #self.personal_image_read.setPixmap(pixmap.scaled(int(self.screen_size.width()*.15), int(self.screen_size.height()*.15), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
-        layout.addWidget(self.personal_image_read,4,0,1,2,QtCore.Qt.AlignCenter)
-        
+        # ###############     
 
 
         self.personal_first_read = QtWidgets.QTextEdit()
-        self.personal_first_read.setFont(self.SELECTED_FONT)
+        self.personal_first_read.setFont(BASIC_FONT_MID)
         self.personal_first_read.setReadOnly(True)
         self.personal_first_read.setSizePolicy(SIZE_POLICY)
         self.personal_first_read.setPlaceholderText(f'{content[self.language]["custom_personal_data"]["first_name"]}')
@@ -205,15 +198,29 @@ class Experiment(UI_Template):
         layout.addWidget(self.personal_first_read,3,0,QtCore.Qt.AlignCenter)
 
         self.personal_last_read = QtWidgets.QTextEdit()
-        self.personal_last_read.setFont(self.SELECTED_FONT)
+        self.personal_last_read.setFont(BASIC_FONT_MID)
         self.personal_last_read.setReadOnly(True)
         self.personal_last_read.setSizePolicy(SIZE_POLICY)
         self.personal_last_read.setPlaceholderText(f'{content[self.language]["custom_personal_data"]["last_name"]}')
         self.personal_last_read.setStyleSheet(f"color:{FONT_COLOR_DARK}; border-radius:10px; border-width:0px")
         layout.addWidget(self.personal_last_read,3,1,QtCore.Qt.AlignCenter)
 
+
+        self.personal_image_read = QtWidgets.QToolButton()
+        self.personal_image_read.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        self.personal_image_read.setStyleSheet(f"border-width:0px")
+        image_path = f"{self.EXPERIMENT_DIR}/assets/{content['personal_images'][self.selected_image]}"
+        self.personal_image_read.setIcon(QtGui.QIcon(image_path))
+        self.personal_image_read.setEnabled(False)
+        self.personal_image_read.setSizePolicy(SIZE_POLICY)
+        self.personal_image_read.setIconSize(QtCore.QSize(int(self.screen_size.width()*.15), int(self.screen_size.height()*.15)))
+        layout.addWidget(self.personal_image_read,4,0,1,2,QtCore.Qt.AlignCenter)
+
+
+
         layout.setRowStretch(0,1)
         layout.setRowStretch(1,4)
+        layout.setRowStretch(2,1)
         layout.setRowStretch(3,1)
         layout.setRowStretch(4,4)
 
@@ -360,8 +367,8 @@ class Experiment(UI_Template):
                     personal_data = ast.literal_eval(rfid_content)
                     self.personal_first_read.setText(personal_data[0])
                     self.personal_last_read.setText(personal_data[1])
-                    pixmap = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/{self.experiment_information['experiment']['personal_images'][int(personal_data[2])]}")  
-                    self.personal_image_read.setPixmap(pixmap.scaled(int(self.screen_size.width()*.1), int(self.screen_size.height()*.1), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+                    self.personal_image_read.setIcon(QtGui.QIcon(f"{self.EXPERIMENT_DIR}/assets/{self.experiment_information['experiment']['personal_images'][int(personal_data[2])]}"))
+                    self.personal_image_read.setEnabled(True)
         except Exception as e:
             print(e)
             #self.running_experiment.experiment.stop()

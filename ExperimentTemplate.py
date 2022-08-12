@@ -346,7 +346,7 @@ class Running_Experiment(QtCore.QObject):
             if self.experiment_button: self.experiment_button.setEnabled(True)
             self.experiment.run()
             if self.experiment_button: self.experiment_button.setEnabled(True)
-            print("EXPERIMENT FINISHED")
+            #print("EXPERIMENT FINISHED")
                  
                 
         elif self.selected_system["system_id"] == 1:
