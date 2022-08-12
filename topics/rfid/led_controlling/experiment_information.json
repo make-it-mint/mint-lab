@@ -1,0 +1,217 @@
+{
+    "author":"MAKE IT MINT",
+    "material":{
+        "de":{
+            "0":[
+            {
+                "text":"1x Breadboard",
+                "image":"breadboard.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x T-Cobbler",
+                "image":"t_cobbler.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x Ribbon Cable 2x20",
+                "image":"ribbon_2x20.png"
+            },
+            {
+                "text":"Jumperkabel Male-Male",
+                "image":"jumpercable_mm.png"
+            },
+            {
+                "text":"1x RFID-RC522 Sensor",
+                "image":"rfid-rc522.png",
+                "source":"fritzing"
+            }
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Raspberry Pi Pico",
+                    "image":"picopi.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumperkabel Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x RFID-RC522 Sensor",
+                    "image":"rfid-rc522.png",
+                    "source":"fritzing"
+                }
+                ]
+        }
+        ,
+        "en":{
+            "0":[
+            {
+                "text":"1x Breadboard",
+                "image":"breadboard.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x T-Cobbler",
+                "image":"t_cobbler.png",
+                "source":"fritzing"
+            },
+            {
+                "text":"1x Ribbon Cable 2x20",
+                "image":"ribbon_2x20.png"
+            },
+            {
+                "text":"Jumpercable Male-Male",
+                "image":"jumpercable_mm.png"
+            },
+            {
+                "text":"1x RFID-RC522 Sensor",
+                "image":"rfid-rc522.png",
+                "source":"fritzing"
+            }
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Raspberry Pi Pico",
+                    "image":"picopi.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumpercable Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x RFID-RC522 Sensor",
+                    "image":"rfid-rc522.png",
+                    "source":"fritzing"
+                }
+                ]
+        }
+    },
+    "setup":{
+        "0":[
+            "setup_rpi.png",
+            "setup_rpi_1.png",
+            "setup_rpi_2.png",
+            "setup_rpi_3.png",
+            "setup_rpi_4.png",
+            "setup_rpi_5.png",
+            "setup_rpi_6.png",
+            "setup_rpi_7.png",
+            "setup_rpi_8.png"
+        ],
+        "1":[
+            "setup_picopi.png",
+            "setup_picopi_1.png",
+            "setup_picopi_2.png",
+            "setup_picopi_3.png",
+            "setup_picopi_4.png",
+            "setup_picopi_5.png",
+            "setup_picopi_6.png",
+            "setup_picopi_7.png",
+            "setup_picopi_8.png"
+        ]
+    },
+    "information":{
+        "file":"default_file",
+        "de":[
+            "RFID-Chips findet ihr an vielen Kleidungsstücken in Modegeschäften, in Smartphones, EC-Karten, Schlüsselkarten und und und...",
+            "Die RFID (Radio Frequency Identification) Technologie, genauso wie NFC (Near Field Communication) Technologie, die auf der RFID Technologie basiert, ist aus unserem heutigen Leben nicht wegzudenken.",
+            "Auf RFID-Chips können durch kontaktlose Signalübertragung Informationen gespeichert werden. Hierfür ist ein Lesegerät und ein Transponder notwendig.",
+            "In unserem Experiment wird das Lesegerät auf dem Breadboard befestigt und an den Raspberry Pi angeschlossen. Dann kannst du den Transponder (die Karte oder den Dongle), du das Halten an das Lesegerät beschreiben oder auslesen.",
+            "Es gibt sowohl aktive als auch passive Transponder.\nAktive Transponder verfügen über eine eigene Stromquelle und können auch über größere Entfernungen ausgelesen werden.\nPassive Transponder verfügen über keine eigene Batterie, sondern werden über das elektrische Feld des Lesegerätes betrieben. Dadurch können sie normalerweise auch nur bei geringen Abständen genutzt werden.",
+            "In diesem Experiment benutzt du passive Transponder. Es können drei verschiedene Mini-Experimente durchgeführt werden.",
+            "Bei dem ersten Experiment kann beliebiger Text auf den Transponder geschrieben und von ihm ausgelesen werden",
+            "Im zweiten Experiment werden persönliche Informationen einer Person auf der Karte gespeichert. Das Bild kann durch anklicken gewechselt werden",
+            "Das dritte Experiment kontrolliert die beiden angeschlossenen LEDs. Klicke die LED an um sie beim Einlesen des RFID-Chips mit der ausgewählten Frequenz blinken zu lassen.",
+            "Du kannst natürlich auch Mal versuchen die Blinkbefehle für die LEDs, oder persönlichen Informationen selbst mit dem ersten Experiment auf die Karte zu schreiben und dann im jeweiligen anderen Experiment auszulesen",
+            "Natürlich sind die RFID-Chips in euren EC-Karten und in Modegeschäften gegen so einfache Zugriffe gesichert. Ihr könnt so also leider nicht per Knopfdruck euer Konto füllen ;)",
+            "Na dann, viel Spaß beim Experimentieren!!!"
+        ],
+        "en":[
+            "RFID-Chips can be found on clothing items in shops, in smartphones, credit cards, key cards and so on an so on...",
+            "The RFID (Radio Frequency Identification), as well as the NFC (Near Field Communication) technology which is based on RFID, is deeply engraved in our everyday life.",
+            "Through contact free signal transmissions information can be written on and read from an RFID-Chip. For this an RFID reader and a transponder are required.",
+            "In this Experiment the reader is placed on the breadboard and connected to the Raspberry Pi. Afterwards you can hold the transponder (either a card or a dongle) close to the reader to read information from or write information to it.",
+            "There are passive and active transponders.\nActive transponders have their own power source and are always active. Due to this their information can be read from a greater distance.\nPassive transponders do not have their own battery and are powered by the electric field the RFID reader creates. Therefore they can usually only be read at short distances.",
+            "For our Experiment we use passive transponders that can be used for the three Mini-Experiments.",
+            "The first Experiment lets you write custom information to the RFID-Chip and read it again.",
+            "For the second Experiment you can write peronal information on the transponder and read it again. To change the image, click it.",
+            "The third Experiment can be used to control the attached LEDs. Activate the LED and specify a blinking frequency to write to the transponder. When reading the transponder again, the LEDs will light up as specified.",
+            "Of course you may also try manually write the commands to get the LEDs blinking or enter personal information using the custom text field in the first Experiment. And then read that information again in the respective other Experiment.",
+            "Of course RFID-Chips on your Credit Cards and in shops are protected against such simple attempts of maipulation, so unfortunately you cannot increase your account balance this easily ;)",
+            "Alright, that is it. Now have fun experimenting!!!"
+        ]
+    },
+    "experiment":{
+        "personal_images":[
+            "boy1.png",
+            "girl1.png",
+            "boy2.png",
+            "girl2.png",
+            "boy3.png",
+            "girl3.png"
+        ],
+        "read_img":"read.png",
+        "write_img":"write.png",
+        "frequency":"1 Hz",
+
+        "de":{
+            "name":"RFID-Chips Beschreiben und Lesen",
+            "link":"https://make-it-mint.de",
+            "waiting":"Warten auf RFID-Chip...",
+            "custom_text":{
+                "write_hint":"Dein Text!!!",
+                "read_hint":"Das stand auf dem Chip!!"
+            },
+            "custom_personal_data":{
+                "first_name":"Vorname",
+                "last_name":"Nachname",
+                "next":"WEITER"
+            },
+            "rfid_state":{
+                "idle":"NIX LOS BEIM RFID SCANNER...",
+                "searching":"SUCHE NACH RFID-CHIP... (FÜR ABBRUCH KLICKEN)",
+                "end":"FERTIG!!!",
+                "cancelled":"ABGEBROCHEN DURCH NUTZER",
+                "error":"FEHLER IN AUSGELESENEN DATEN",
+                "blinking":"LEDs SIND AM BLINKEN...(FÜR ABBRUCH KLICKEN)"
+            }
+        }
+        ,
+        "en":{
+            "name":"Read and Write RFID-Chips",
+            "link":"https://make-it-mint.de",
+            "waiting":"Waiting for RFID-Chip...",
+            "custom_text":{
+                "write_hint":"Your Text!!!",
+                "read_hint":"This was on the Chip!!"
+            },
+            "custom_personal_data":{
+                "first_name":"Firstname",
+                "last_name":"Lastname",
+                "next":"NEXT"
+            },
+            "rfid_state":{
+                "idle":"RFID SCANNER IDLING...",
+                "searching":"SEARCHING FOR RFID-CHIP... (CLICK TO CANCEL)",
+                "end":"DONE!!!",
+                "cancelled":"CANCELLED BY USER",
+                "error":"ERROR IN READ DATA",
+                "blinking":"LEDs ARE BLINKING...(CLICK TO CANCEL)"
+            }
+        }
+    }
+}
+

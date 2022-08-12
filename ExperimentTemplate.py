@@ -1,8 +1,9 @@
-from ctypes.wintypes import SIZE
 import os, time, math, multiprocessing, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
-from constants import *
+from VirtualKeyboard import Keyboard
+import importlib.util
+from software_data.constants import *
 
 class UI_Template(QtWidgets.QWidget):
 
@@ -20,9 +21,8 @@ class UI_Template(QtWidgets.QWidget):
         self.language = language
         
         self.MainWidget=QtWidgets.QWidget()
-        self.MainWidget.setStyleSheet(f"background-color:{BACKGROUND_COLOR}")
+        self.MainWidget.setStyleSheet(f"background-color:{BACKGROUND_COLOR}; color:{FONT_COLOR_LIGHT};")
         self.MainLayout=QtWidgets.QGridLayout(self.MainWidget)
-        #self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
 
         self.show_fullscreen()
         
@@ -30,15 +30,23 @@ class UI_Template(QtWidgets.QWidget):
         self._set_header_widgets()
         self._set_experiment_tab_widgets()
 
+
         
         self._create_experiment_material_layout()
 
 
         self.MainWidget.resize(self.screen_size)
+
+        if not self.program_settings["has_keyboard"]:
+            self.initiate_keyboard()
+
         self.MainLayout.setColumnStretch(0, 1)
         self.MainLayout.setColumnStretch(1, 17)
         self.MainLayout.setRowStretch(0, 1)
         self.MainLayout.setRowStretch(1, 17)
+
+    def initiate_keyboard(self):
+        self.keyboard = Keyboard(language = self.language, screen_size = self.screen_size, parent=self.MainWidget)
 
     def _set_experiment_tab_widgets(self):
         self.tabs_widget = QtWidgets.QTabWidget()
@@ -213,14 +221,13 @@ class UI_Template(QtWidgets.QWidget):
         self.setup_image.setIcon(QtGui.QIcon(image_path))
         self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.95), int(self.screen_size.height()*.75)))
         layout.addWidget(self.setup_image, 0,0)
+        self.setup_image.clicked.connect(self.update_setup_image)
 
-        self.change_setup_image_button = QtWidgets.QPushButton()
+        self.change_setup_image_button = QtWidgets.QLabel()
         self.change_setup_image_button.setFont(BASIC_FONT_MID)
         self.change_setup_image_button.setText(f'[fritzing] - {self.program_settings["experiment_setup"]["complete_page"][self.language]}')
-        self.change_setup_image_button.setStyleSheet(f"background-color: {FONT_COLOR_DARK}; color:{FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
-        self.change_setup_image_button.setMinimumWidth(int(self.screen_size.width()*.8))
+        self.change_setup_image_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
         layout.addWidget(self.change_setup_image_button,1,0, QtCore.Qt.AlignCenter)
-        self.change_setup_image_button.clicked.connect(self.update_setup_image)
         
 
     def update_setup_image(self):
@@ -253,7 +260,10 @@ class UI_Template(QtWidgets.QWidget):
                     if self.selected_system["system_id"] == 2:
                         new_text = f'{line[:line.find(key)]}{key}={value};\n'
                     else:
-                        new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                        if type(value) == int or type(value) == float or type(value) == list or type(value) == dict:
+                            new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                        elif type(value) == str:
+                            new_text = f'{line[:line.find(key)]}{key}="{value}"\n'
                     new_lines.update({line_idx:new_text})
                     break
 
@@ -317,35 +327,50 @@ class Running_Experiment(QtCore.QObject):
     value_for_ui = QtCore.pyqtSignal(str)
     experiment_is_running = True
 
-    def __init__(self, selected_system, dir, serial_read_freq_hz:int = 1):
+    def __init__(self, selected_system, dir, experiment_button=None, serial_read_freq_hz:int = 1, timeout=5):
         super().__init__()
         self.selected_system = selected_system
         self.dir = dir
         self.serial_read_freq = serial_read_freq_hz
+        self.timeout = timeout
+        self.experiment_button = experiment_button
         
 
     def start_experiment(self):
+        if self.experiment_button: self.experiment_button.setEnabled(False)
         if self.selected_system["system_id"] == 0:
-            from topics.basics.led_blinking.experiment_code.rpi import Experiment as rpi_experiment
-            self.experiment = rpi_experiment(self.experiment_is_running, self.value_for_ui)
-            self.experiment.run()        
+            spec = importlib.util.spec_from_file_location("module.name", f'{self.dir}/experiment_code/rpi.py')
+            experiment_module_rpi = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(experiment_module_rpi)
+            self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
+            if self.experiment_button: self.experiment_button.setEnabled(True)
+            self.experiment.run()
+            if self.experiment_button: self.experiment_button.setEnabled(True)
+            #print("EXPERIMENT FINISHED")
+                 
                 
         elif self.selected_system["system_id"] == 1:
+
             experiment = multiprocessing.Process(target=self.run_picopi)
             try:
                 experiment.start()
-                time.sleep(1)
-                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600)
+                time.sleep(1.5)
+                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600, timeout=self.timeout)
                 ser.flushInput()
+                if self.experiment_button: self.experiment_button.setEnabled(True)
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
+                #print("Experiment Stopped by Button")
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
+                if self.experiment_button: self.experiment_button.setEnabled(True)
             except Exception or KeyboardInterrupt as e:
                 print(e)
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
+                if self.experiment_button: self.experiment_button.setEnabled(True)
 
     def run_picopi(self):
-        os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("mint-lab/")+9:]}/experiment_code/picopi.py')
+        #print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')
+        os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')

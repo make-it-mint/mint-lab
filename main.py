@@ -1,24 +1,24 @@
 import sys, os, git, json
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CustomWidgets import TopicButton
 from CustomWidgets import LanguageSelection, SystemSelection
+from Settings import SettingsInterface
 import pandas as pd
 import importlib.util
 from main_ui import *
-from constants import *
+from software_data.constants import *
 
 class MainApp(object):
     
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     
     
-    def __init__(self, language, screen_size):
+    def __init__(self, screen_size):
         super().__init__()
-        self._language = language
+        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/software_settings.json")))
+        self._language = self._settings["selected_language"]
         self._selection_starting_idx = 0
         self._display_type = "topic" #Options: topic or experiment
-        self._settings = json.load(open(os.path.join(MainApp.ROOT_DIR,"program_settings.json")))
-        self._experiments = pd.DataFrame(json.load(open(os.path.join(MainApp.ROOT_DIR,"experiment_list.json"))))
+        self._experiments = pd.DataFrame(json.load(open(os.path.join(MainApp.ROOT_DIR,"software_data/experiment_list.json"))))
         self._screen_size = screen_size
         self._current_listed_content = self._experiments.topic.drop_duplicates()
 
@@ -45,18 +45,17 @@ class MainApp(object):
 
 
         #Set Navigation Buttons in frame
-        self.frame_nav, self.frame_nav_layout, self.bt_previous, self.bt_next = create_nav_widgets(
+        self.frame_nav, self.frame_nav_layout = create_nav_widgets(
+            parent=self,
             parent_layout=self.central_widget_layout,
             screen_size=self._screen_size,
             asset_dir=MainApp.ROOT_DIR
             )
 
-        self.bt_previous.clicked.connect(self._previous_page)
-        self.bt_next.clicked.connect(self._next_page)
-
 
         #set interface buttons in frame
-        self.frame_interface, self.frame_interface_layout, self.sort_topics, self.sort_new, self.show_beginner, self.select_language = create_interface_widgets(
+        self.frame_interface, self.frame_interface_layout = create_interface_widgets(
+            parent=self,
             parent_layout=self.central_widget_layout,
             screen_size=self._screen_size,
             asset_dir=MainApp.ROOT_DIR,
@@ -64,24 +63,6 @@ class MainApp(object):
             language=self._language,
             font=self.basic_font
             )
-
-        self.sort_topics.clicked.connect(self._show_topics)
-        self.sort_new.clicked.connect(self._sort_new)
-        self.show_beginner.clicked.connect(self._show_easy_only)
-        self.select_language.clicked.connect(self._select_language)
-         
-        
-
-        #set system widgets in frame
-        self.frame_system, self.frame_system_layout, self.close_software, self.system_selection, self.update_software = create_system_widgets(
-            parent_layout=self.central_widget_layout,
-            screen_size=self._screen_size,
-            asset_dir=MainApp.ROOT_DIR,
-            settings=self._settings
-            )
-        self.close_software.clicked.connect(self.main_window.close)
-        self.system_selection.clicked.connect(self._select_system)
-        self.update_software.clicked.connect(self._update_software)
 
 
 
@@ -138,23 +119,22 @@ class MainApp(object):
     def _show_topics(self):
         """display topics"""
 
-
-    def _select_language(self):
-        """select language and change content of displayed items"""
-        #open new window
-        language_selection = LanguageSelection(parent=self.main_window, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
-        if language_selection.exec():
-            #Reload all widgets with new language
-            self._language = language_selection.Selected_Language
-            self.translate_icons()
+    #unused
+    # def _select_language(self):
+    #     """select language and change content of displayed items"""
+    #     #open new window
+    #     language_selection = LanguageSelection(parent=self.main_window, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
+    #     if language_selection.exec():
+    #         #Reload all widgets with new language
+    #         self._settings["selected_language"]=language_selection.Selected_Language
+    #         self._language = self._settings["selected_language"]
+    #         self.translate_icons()
+    #         self._overwrite_settings_file()
 
 
     def translate_icons(self):
         self._set_listed_content()
-        self.sort_new.setText(f"   {self._settings['bt_sort_new'][self._language]}")
-        self.show_beginner.setText(f"   {self._settings['bt_show_beginner'][self._language]}")
-        self.select_language.setText(f"   {self._settings['languages'][self._language]['name']}")
-        self.select_language.setIcon(QtGui.QIcon(f"{MainApp.ROOT_DIR}/assets/languages/{self._settings['languages'][self._language]['icon']}"))
+        self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
 
 
     def _sort_new(self):
@@ -190,13 +170,20 @@ class MainApp(object):
                     break
             self.system_selection.setIcon(QtGui.QIcon(image_path))
             self._set_to_default()
+            self._overwrite_settings_file()
         else:
             pass
 
 
-    def _update_software(self, version = -1):
+    def _open_settings(self, version = -1):
         """Default version (-1) updates to latest version"""
-        print("Now Updating...")
+        settings_window = SettingsInterface(root_dir=self.ROOT_DIR, settings=self._settings, parent=self.main_window)
+        if settings_window.exec():
+            self._settings["has_keyboard"] = int(settings_window.has_keyboard)
+            self._settings["selected_language"]=settings_window.selected_language
+            self._language = self._settings["selected_language"]
+            self.translate_icons()
+            self._overwrite_settings_file()
 
 
     def _set_listed_content(self, direction=0):
@@ -212,12 +199,12 @@ class MainApp(object):
             self._selection_starting_idx = 0
 
         if self._display_type == "topic":
-            self.sort_topics.setText(f"  {self._settings['bt_topic'][self._language]}")
+            self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
         elif self._display_type == "experiment":
             if len(pd.unique(content.topic)) == 1:
-                self.sort_topics.setText(f"  {self._settings['topics'][pd.unique(content.topic)[0]][self._language]}")
+                self.sort_topics.setText(f"{self._settings['topics'][pd.unique(content.topic)[0]][self._language]}")
             else:
-                self.sort_topics.setText(f"  {self._settings['bt_topic'][self._language]}")
+                self.sort_topics.setText(f"{self._settings['bt_topic'][self._language]}")
 
         for counter, display in enumerate(self._topic_buttons):
             
@@ -274,12 +261,16 @@ class MainApp(object):
 
 
 
+    def _overwrite_settings_file(self):
+        with open(f'{self.ROOT_DIR}/software_data/software_settings.json', 'w', encoding='utf-8') as f:
+            json.dump(self._settings, f, ensure_ascii=False, indent=4)
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
-    main_ui = MainApp(language = 'de', screen_size = app.primaryScreen().size())
+    main_ui = MainApp(screen_size = app.primaryScreen().size())
     main_ui.setup_ui(main_window)
     main_ui._set_to_default()
-    #main_window.showFullScreen()
     
     sys.exit(app.exec())

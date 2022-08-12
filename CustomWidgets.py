@@ -2,7 +2,7 @@ import os, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from serial.tools.list_ports import comports as list_comports
 import math
-from constants import *
+from software_data.constants import *
 
 
 
@@ -186,8 +186,7 @@ class ScrollLabel(QtWidgets.QScrollArea):
 
 class LanguageSelection(QtWidgets.QDialog):
     """
-    This "window" is a QWidget. If it has no parent, it
-    will appear as a free-floating window as we want.
+    Unused
     """
     def __init__(self, languages, root_dir, cur_language, parent=None):
         super().__init__(parent)

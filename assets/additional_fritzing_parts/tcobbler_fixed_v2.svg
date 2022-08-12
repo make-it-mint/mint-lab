@@ -1,0 +1,740 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="257" viewBox="0 0 306 257" width="306">
+    <defs/>
+    <g id="group1" transform="translate(1.00,1.00)">
+        <g id="group2" transform="translate(-0.01,0.00)">
+            <path d="M206.0,.0L206.0,44.0C206.0,49.0,202.0,53.0,197.0,53.0L143.3,53.0C138.4,53.0,134.3,57.0,134.3,62.0L134.3,246.0C134.3,251.0,130.3,255.0,125.4,255.0L80.6,255.0C75.7,255.0,71.7,251.0,71.7,246.0L71.7,62.0C71.7,57.0,67.6,53.0,62.7,53.0L9.0,53.0C4.0,53.0,.0,49.0,.0,44.0L.0,.0L206.0,.0zM74.4,62.0C74.4,62.9,75.2,63.7,76.1,63.7C77.1,63.7,77.9,62.9,77.9,62.0C77.9,61.0,77.1,60.2,76.1,60.2C75.2,60.2,74.4,61.0,74.4,62.0zM74.4,70.9C74.4,71.9,75.2,72.7,76.1,72.7C77.1,72.7,77.9,71.9,77.9,70.9C77.9,70.0,77.1,69.2,76.1,69.2C75.2,69.2,74.4,70.0,74.4,70.9zM74.4,79.9C74.4,80.9,75.2,81.7,76.1,81.7C77.1,81.7,77.9,80.9,77.9,79.9C77.9,78.9,77.1,78.1,76.1,78.1C75.2,78.1,74.4,78.9,74.4,79.9zM74.4,88.9C74.4,89.9,75.2,90.7,76.1,90.7C77.1,90.7,77.9,89.9,77.9,88.9C77.9,87.9,77.1,87.1,76.1,87.1C75.2,87.1,74.4,87.9,74.4,88.9zM74.4,97.9C74.4,98.8,75.2,99.6,76.1,99.6C77.1,99.6,77.9,98.8,77.9,97.9C77.9,96.9,77.1,96.1,76.1,96.1C75.2,96.1,74.4,96.9,74.4,97.9zM74.4,106.8C74.4,107.8,75.2,108.6,76.1,108.6C77.1,108.6,77.9,107.8,77.9,106.8C77.9,105.9,77.1,105.1,76.1,105.1C75.2,105.1,74.4,105.9,74.4,106.8zM74.4,115.8C74.4,116.8,75.2,117.6,76.1,117.6C77.1,117.6,77.9,116.8,77.9,115.8C77.9,114.9,77.1,114.1,76.1,114.1C75.2,114.1,74.4,114.9,74.4,115.8zM74.4,124.8C74.4,125.8,75.2,126.6,76.1,126.6C77.1,126.6,77.9,125.8,77.9,124.8C77.9,123.8,77.1,123.0,76.1,123.0C75.2,123.0,74.4,123.8,74.4,124.8zM74.4,133.8C74.4,134.8,75.2,135.6,76.1,135.6C77.1,135.6,77.9,134.8,77.9,133.8C77.9,132.8,77.1,132.0,76.1,132.0C75.2,132.0,74.4,132.8,74.4,133.8zM74.4,142.8C74.4,143.7,75.2,144.5,76.1,144.5C77.1,144.5,77.9,143.7,77.9,142.8C77.9,141.8,77.1,141.0,76.1,141.0C75.2,141.0,74.4,141.8,74.4,142.8zM74.4,151.7C74.4,152.7,75.2,153.5,76.1,153.5C77.1,153.5,77.9,152.7,77.9,151.7C77.9,150.8,77.1,150.0,76.1,150.0C75.2,150.0,74.4,150.8,74.4,151.7zM74.4,160.7C74.4,161.7,75.2,162.5,76.1,162.5C77.1,162.5,77.9,161.7,77.9,160.7C77.9,159.7,77.1,159.0,76.1,159.0C75.2,159.0,74.4,159.7,74.4,160.7zM74.4,169.7C74.4,170.7,75.2,171.5,76.1,171.5C77.1,171.5,77.9,170.7,77.9,169.7C77.9,168.7,77.1,167.9,76.1,167.9C75.2,167.9,74.4,168.7,74.4,169.7zM74.4,178.7C74.4,179.7,75.2,180.4,76.1,180.4C77.1,180.4,77.9,179.7,77.9,178.7C77.9,177.7,77.1,176.9,76.1,176.9C75.2,176.9,74.4,177.7,74.4,178.7zM74.4,187.7C74.4,188.6,75.2,189.4,76.1,189.4C77.1,189.4,77.9,188.6,77.9,187.7C77.9,186.7,77.1,185.9,76.1,185.9C75.2,185.9,74.4,186.7,74.4,187.7zM74.4,196.6C74.4,197.6,75.2,198.4,76.1,198.4C77.1,198.4,77.9,197.6,77.9,196.6C77.9,195.7,77.1,194.9,76.1,194.9C75.2,194.9,74.4,195.7,74.4,196.6zM74.4,205.6C74.4,206.6,75.2,207.4,76.1,207.4C77.1,207.4,77.9,206.6,77.9,205.6C77.9,204.6,77.1,203.8,76.1,203.8C75.2,203.8,74.4,204.6,74.4,205.6zM74.4,214.6C74.4,215.6,75.2,216.4,76.1,216.4C77.1,216.4,77.9,215.6,77.9,214.6C77.9,213.6,77.1,212.8,76.1,212.8C75.2,212.8,74.4,213.6,74.4,214.6zM74.4,223.6C74.4,224.6,75.2,225.3,76.1,225.3C77.1,225.3,77.9,224.6,77.9,223.6C77.9,222.6,77.1,221.8,76.1,221.8C75.2,221.8,74.4,222.6,74.4,223.6zM74.4,232.6C74.4,233.5,75.2,234.3,76.1,234.3C77.1,234.3,77.9,233.5,77.9,232.6C77.9,231.6,77.1,230.8,76.1,230.8C75.2,230.8,74.4,231.6,74.4,232.6zM128.1,62.0C128.1,62.9,128.9,63.7,129.9,63.7C130.8,63.7,131.6,62.9,131.6,62.0C131.6,61.0,130.8,60.2,129.9,60.2C128.9,60.2,128.1,61.0,128.1,62.0zM128.1,70.9C128.1,71.9,128.9,72.7,129.9,72.7C130.8,72.7,131.6,71.9,131.6,70.9C131.6,70.0,130.8,69.2,129.9,69.2C128.9,69.2,128.1,70.0,128.1,70.9zM128.1,79.9C128.1,80.9,128.9,81.7,129.9,81.7C130.8,81.7,131.6,80.9,131.6,79.9C131.6,78.9,130.8,78.1,129.9,78.1C128.9,78.1,128.1,78.9,128.1,79.9zM128.1,88.9C128.1,89.9,128.9,90.7,129.9,90.7C130.8,90.7,131.6,89.9,131.6,88.9C131.6,87.9,130.8,87.1,129.9,87.1C128.9,87.1,128.1,87.9,128.1,88.9zM128.1,97.9C128.1,98.8,128.9,99.6,129.9,99.6C130.8,99.6,131.6,98.8,131.6,97.9C131.6,96.9,130.8,96.1,129.9,96.1C128.9,96.1,128.1,96.9,128.1,97.9zM128.1,106.8C128.1,107.8,128.9,108.6,129.9,108.6C130.8,108.6,131.6,107.8,131.6,106.8C131.6,105.9,130.8,105.1,129.9,105.1C128.9,105.1,128.1,105.9,128.1,106.8zM128.1,115.8C128.1,116.8,128.9,117.6,129.9,117.6C130.8,117.6,131.6,116.8,131.6,115.8C131.6,114.9,130.8,114.1,129.9,114.1C128.9,114.1,128.1,114.9,128.1,115.8zM128.1,124.8C128.1,125.8,128.9,126.6,129.9,126.6C130.8,126.6,131.6,125.8,131.6,124.8C131.6,123.8,130.8,123.0,129.9,123.0C128.9,123.0,128.1,123.8,128.1,124.8zM128.1,133.8C128.1,134.8,128.9,135.6,129.9,135.6C130.8,135.6,131.6,134.8,131.6,133.8C131.6,132.8,130.8,132.0,129.9,132.0C128.9,132.0,128.1,132.8,128.1,133.8zM128.1,142.8C128.1,143.7,128.9,144.5,129.9,144.5C130.8,144.5,131.6,143.7,131.6,142.8C131.6,141.8,130.8,141.0,129.9,141.0C128.9,141.0,128.1,141.8,128.1,142.8zM128.1,151.7C128.1,152.7,128.9,153.5,129.9,153.5C130.8,153.5,131.6,152.7,131.6,151.7C131.6,150.8,130.8,150.0,129.9,150.0C128.9,150.0,128.1,150.8,128.1,151.7zM128.1,160.7C128.1,161.7,128.9,162.5,129.9,162.5C130.8,162.5,131.6,161.7,131.6,160.7C131.6,159.7,130.8,159.0,129.9,159.0C128.9,159.0,128.1,159.7,128.1,160.7zM128.1,169.7C128.1,170.7,128.9,171.5,129.9,171.5C130.8,171.5,131.6,170.7,131.6,169.7C131.6,168.7,130.8,167.9,129.9,167.9C128.9,167.9,128.1,168.7,128.1,169.7zM128.1,178.7C128.1,179.7,128.9,180.4,129.9,180.4C130.8,180.4,131.6,179.7,131.6,178.7C131.6,177.7,130.8,176.9,129.9,176.9C128.9,176.9,128.1,177.7,128.1,178.7zM128.1,187.7C128.1,188.6,128.9,189.4,129.9,189.4C130.8,189.4,131.6,188.6,131.6,187.7C131.6,186.7,130.8,185.9,129.9,185.9C128.9,185.9,128.1,186.7,128.1,187.7zM128.1,196.6C128.1,197.6,128.9,198.4,129.9,198.4C130.8,198.4,131.6,197.6,131.6,196.6C131.6,195.7,130.8,194.9,129.9,194.9C128.9,194.9,128.1,195.7,128.1,196.6zM128.1,205.6C128.1,206.6,128.9,207.4,129.9,207.4C130.8,207.4,131.6,206.6,131.6,205.6C131.6,204.6,130.8,203.8,129.9,203.8C128.9,203.8,128.1,204.6,128.1,205.6zM128.1,214.6C128.1,215.6,128.9,216.4,129.9,216.4C130.8,216.4,131.6,215.6,131.6,214.6C131.6,213.6,130.8,212.8,129.9,212.8C128.9,212.8,128.1,213.6,128.1,214.6zM128.1,223.6C128.1,224.6,128.9,225.3,129.9,225.3C130.8,225.3,131.6,224.6,131.6,223.6C131.6,222.6,130.8,221.8,129.9,221.8C128.9,221.8,128.1,222.6,128.1,223.6zM128.1,232.6C128.1,233.5,128.9,234.3,129.9,234.3C130.8,234.3,131.6,233.5,131.6,232.6C131.6,231.6,130.8,230.8,129.9,230.8C128.9,230.8,128.1,231.6,128.1,232.6zM121.0,246.0C121.0,247.6,121.8,249.1,123.2,249.9C124.6,250.6,126.2,250.6,127.6,249.9C129.0,249.1,129.8,247.6,129.8,246.0C129.8,244.4,129.0,243.0,127.6,242.2C126.2,241.4,124.6,241.4,123.2,242.2C121.8,243.0,121.0,244.4,121.0,246.0zM192.6,44.0C192.6,45.6,193.5,47.0,194.8,47.8C196.2,48.6,197.9,48.6,199.2,47.8C200.6,47.0,201.5,45.6,201.5,44.0C201.5,42.4,200.6,41.0,199.2,40.2C197.9,39.4,196.2,39.4,194.8,40.2C193.5,41.0,192.6,42.4,192.6,44.0zM76.2,246.0C76.2,247.6,77.0,249.1,78.4,249.9C79.8,250.6,81.4,250.6,82.8,249.9C84.2,249.1,85.0,247.6,85.0,246.0C85.0,244.4,84.2,243.0,82.8,242.2C81.4,241.4,79.8,241.4,78.4,242.2C77.0,243.0,76.2,244.4,76.2,246.0zM4.5,44.0C4.5,45.6,5.4,47.0,6.8,47.8C8.1,48.6,9.8,48.6,11.2,47.8C12.5,47.0,13.4,45.6,13.4,44.0C13.4,42.4,12.5,41.0,11.2,40.2C9.8,39.4,8.1,39.4,6.8,40.2C5.4,41.0,4.5,42.4,4.5,44.0zM186.3,12.6C186.3,13.5,187.1,14.3,188.1,14.3C189.1,14.3,189.8,13.5,189.8,12.6C189.8,11.6,189.1,10.8,188.1,10.8C187.1,10.8,186.3,11.6,186.3,12.6zM186.3,21.5C186.3,22.5,187.1,23.3,188.1,23.3C189.1,23.3,189.8,22.5,189.8,21.5C189.8,20.6,189.1,19.8,188.1,19.8C187.1,19.8,186.3,20.6,186.3,21.5zM177.4,12.6C177.4,13.5,178.2,14.3,179.1,14.3C180.1,14.3,180.9,13.5,180.9,12.6C180.9,11.6,180.1,10.8,179.1,10.8C178.2,10.8,177.4,11.6,177.4,12.6zM177.4,21.5C177.4,22.5,178.2,23.3,179.1,23.3C180.1,23.3,180.9,22.5,180.9,21.5C180.9,20.6,180.1,19.8,179.1,19.8C178.2,19.8,177.4,20.6,177.4,21.5zM168.4,12.6C168.4,13.5,169.2,14.3,170.2,14.3C171.1,14.3,171.9,13.5,171.9,12.6C171.9,11.6,171.1,10.8,170.2,10.8C169.2,10.8,168.4,11.6,168.4,12.6zM168.4,21.5C168.4,22.5,169.2,23.3,170.2,23.3C171.1,23.3,171.9,22.5,171.9,21.5C171.9,20.6,171.1,19.8,170.2,19.8C169.2,19.8,168.4,20.6,168.4,21.5zM159.5,12.6C159.5,13.5,160.2,14.3,161.2,14.3C162.2,14.3,163.0,13.5,163.0,12.6C163.0,11.6,162.2,10.8,161.2,10.8C160.2,10.8,159.5,11.6,159.5,12.6zM159.5,21.5C159.5,22.5,160.2,23.3,161.2,23.3C162.2,23.3,163.0,22.5,163.0,21.5C163.0,20.6,162.2,19.8,161.2,19.8C160.2,19.8,159.5,20.6,159.5,21.5zM150.5,12.6C150.5,13.5,151.3,14.3,152.3,14.3C153.2,14.3,154.0,13.5,154.0,12.6C154.0,11.6,153.2,10.8,152.3,10.8C151.3,10.8,150.5,11.6,150.5,12.6zM150.5,21.5C150.5,22.5,151.3,23.3,152.3,23.3C153.2,23.3,154.0,22.5,154.0,21.5C154.0,20.6,153.2,19.8,152.3,19.8C151.3,19.8,150.5,20.6,150.5,21.5zM141.5,12.6C141.5,13.5,142.3,14.3,143.3,14.3C144.3,14.3,145.1,13.5,145.1,12.6C145.1,11.6,144.3,10.8,143.3,10.8C142.3,10.8,141.5,11.6,141.5,12.6zM141.5,21.5C141.5,22.5,142.3,23.3,143.3,23.3C144.3,23.3,145.1,22.5,145.1,21.5C145.1,20.6,144.3,19.8,143.3,19.8C142.3,19.8,141.5,20.6,141.5,21.5zM132.6,12.6C132.6,13.5,133.4,14.3,134.3,14.3C135.3,14.3,136.1,13.5,136.1,12.6C136.1,11.6,135.3,10.8,134.3,10.8C133.4,10.8,132.6,11.6,132.6,12.6zM132.6,21.5C132.6,22.5,133.4,23.3,134.3,23.3C135.3,23.3,136.1,22.5,136.1,21.5C136.1,20.6,135.3,19.8,134.3,19.8C133.4,19.8,132.6,20.6,132.6,21.5zM123.6,12.6C123.6,13.5,124.4,14.3,125.4,14.3C126.4,14.3,127.2,13.5,127.2,12.6C127.2,11.6,126.4,10.8,125.4,10.8C124.4,10.8,123.6,11.6,123.6,12.6zM123.6,21.5C123.6,22.5,124.4,23.3,125.4,23.3C126.4,23.3,127.2,22.5,127.2,21.5C127.2,20.6,126.4,19.8,125.4,19.8C124.4,19.8,123.6,20.6,123.6,21.5zM114.7,12.6C114.7,13.5,115.5,14.3,116.4,14.3C117.4,14.3,118.2,13.5,118.2,12.6C118.2,11.6,117.4,10.8,116.4,10.8C115.5,10.8,114.7,11.6,114.7,12.6zM114.7,21.5C114.7,22.5,115.5,23.3,116.4,23.3C117.4,23.3,118.2,22.5,118.2,21.5C118.2,20.6,117.4,19.8,116.4,19.8C115.5,19.8,114.7,20.6,114.7,21.5zM105.7,12.6C105.7,13.5,106.5,14.3,107.5,14.3C108.5,14.3,109.2,13.5,109.2,12.6C109.2,11.6,108.5,10.8,107.5,10.8C106.5,10.8,105.7,11.6,105.7,12.6zM105.7,21.5C105.7,22.5,106.5,23.3,107.5,23.3C108.5,23.3,109.2,22.5,109.2,21.5C109.2,20.6,108.5,19.8,107.5,19.8C106.5,19.8,105.7,20.6,105.7,21.5zM96.8,12.6C96.8,13.5,97.5,14.3,98.5,14.3C99.5,14.3,100.3,13.5,100.3,12.6C100.3,11.6,99.5,10.8,98.5,10.8C97.5,10.8,96.8,11.6,96.8,12.6zM96.8,21.5C96.8,22.5,97.5,23.3,98.5,23.3C99.5,23.3,100.3,22.5,100.3,21.5C100.3,20.6,99.5,19.8,98.5,19.8C97.5,19.8,96.8,20.6,96.8,21.5zM87.8,12.6C87.8,13.5,88.6,14.3,89.6,14.3C90.5,14.3,91.3,13.5,91.3,12.6C91.3,11.6,90.5,10.8,89.6,10.8C88.6,10.8,87.8,11.6,87.8,12.6zM87.8,21.5C87.8,22.5,88.6,23.3,89.6,23.3C90.5,23.3,91.3,22.5,91.3,21.5C91.3,20.6,90.5,19.8,89.6,19.8C88.6,19.8,87.8,20.6,87.8,21.5zM78.8,12.6C78.8,13.5,79.6,14.3,80.6,14.3C81.6,14.3,82.4,13.5,82.4,12.6C82.4,11.6,81.6,10.8,80.6,10.8C79.6,10.8,78.8,11.6,78.8,12.6zM78.8,21.5C78.8,22.5,79.6,23.3,80.6,23.3C81.6,23.3,82.4,22.5,82.4,21.5C82.4,20.6,81.6,19.8,80.6,19.8C79.6,19.8,78.8,20.6,78.8,21.5zM69.9,12.6C69.9,13.5,70.7,14.3,71.7,14.3C72.6,14.3,73.4,13.5,73.4,12.6C73.4,11.6,72.6,10.8,71.7,10.8C70.7,10.8,69.9,11.6,69.9,12.6zM69.9,21.5C69.9,22.5,70.7,23.3,71.7,23.3C72.6,23.3,73.4,22.5,73.4,21.5C73.4,20.6,72.6,19.8,71.7,19.8C70.7,19.8,69.9,20.6,69.9,21.5zM60.9,12.6C60.9,13.5,61.7,14.3,62.7,14.3C63.7,14.3,64.5,13.5,64.5,12.6C64.5,11.6,63.7,10.8,62.7,10.8C61.7,10.8,60.9,11.6,60.9,12.6zM60.9,21.5C60.9,22.5,61.7,23.3,62.7,23.3C63.7,23.3,64.5,22.5,64.5,21.5C64.5,20.6,63.7,19.8,62.7,19.8C61.7,19.8,60.9,20.6,60.9,21.5zM52.0,12.6C52.0,13.5,52.8,14.3,53.7,14.3C54.7,14.3,55.5,13.5,55.5,12.6C55.5,11.6,54.7,10.8,53.7,10.8C52.8,10.8,52.0,11.6,52.0,12.6zM52.0,21.5C52.0,22.5,52.8,23.3,53.7,23.3C54.7,23.3,55.5,22.5,55.5,21.5C55.5,20.6,54.7,19.8,53.7,19.8C52.8,19.8,52.0,20.6,52.0,21.5zM43.0,12.6C43.0,13.5,43.8,14.3,44.8,14.3C45.8,14.3,46.5,13.5,46.5,12.6C46.5,11.6,45.8,10.8,44.8,10.8C43.8,10.8,43.0,11.6,43.0,12.6zM43.0,21.5C43.0,22.5,43.8,23.3,44.8,23.3C45.8,23.3,46.5,22.5,46.5,21.5C46.5,20.6,45.8,19.8,44.8,19.8C43.8,19.8,43.0,20.6,43.0,21.5zM34.1,12.6C34.1,13.5,34.9,14.3,35.8,14.3C36.8,14.3,37.6,13.5,37.6,12.6C37.6,11.6,36.8,10.8,35.8,10.8C34.9,10.8,34.1,11.6,34.1,12.6zM34.1,21.5C34.1,22.5,34.9,23.3,35.8,23.3C36.8,23.3,37.6,22.5,37.6,21.5C37.6,20.6,36.8,19.8,35.8,19.8C34.9,19.8,34.1,20.6,34.1,21.5zM25.1,12.6C25.1,13.5,25.9,14.3,26.9,14.3C27.8,14.3,28.6,13.5,28.6,12.6C28.6,11.6,27.8,10.8,26.9,10.8C25.9,10.8,25.1,11.6,25.1,12.6zM25.1,21.5C25.1,22.5,25.9,23.3,26.9,23.3C27.8,23.3,28.6,22.5,28.6,21.5C28.6,20.6,27.8,19.8,26.9,19.8C25.9,19.8,25.1,20.6,25.1,21.5zM16.1,12.6C16.1,13.5,16.9,14.3,17.9,14.3C18.9,14.3,19.7,13.5,19.7,12.6C19.7,11.6,18.9,10.8,17.9,10.8C16.9,10.8,16.1,11.6,16.1,12.6zM16.1,21.5C16.1,22.5,16.9,23.3,17.9,23.3C18.9,23.3,19.7,22.5,19.7,21.5C19.7,20.6,18.9,19.8,17.9,19.8C16.9,19.8,16.1,20.6,16.1,21.5z" fill-rule="nonzero" id="shape3" fill="#014cb1"/>
+            <g id="group4" transform="translate(0.02,1.15)">
+                <g id="shape5" transform="translate(107.34,54.32)">
+                    <text style="font-family:OCRA;font-size:3.90pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff" y="9.0">5.0V</tspan>
+                    </text>
+                </g>
+                <g id="shape6" transform="translate(107.34,63.05)">
+                    <text style="font-family:OCRA;font-size:3.90pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff" y="9.0">5.0V</tspan>
+                    </text>
+                </g>
+                <g id="shape7" transform="translate(108.46,71.78)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape8" transform="translate(108.34,80.51)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">TXD</tspan>
+                    </text>
+                </g>
+                <g id="shape9" transform="translate(108.46,90.49)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">RXD</tspan>
+                    </text>
+                </g>
+                <g id="shape10" transform="translate(108.46,99.22)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#18</tspan>
+                    </text>
+                </g>
+                <g id="shape11" transform="translate(108.46,107.95)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape12" transform="translate(108.46,116.68)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#23</tspan>
+                    </text>
+                </g>
+                <g id="shape13" transform="translate(108.46,125.41)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#24</tspan>
+                    </text>
+                </g>
+                <g id="shape14" transform="translate(108.46,135.38)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape15" transform="translate(108.46,144.11)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#25</tspan>
+                    </text>
+                </g>
+                <g id="shape16" transform="translate(108.34,152.84)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">CE0</tspan>
+                    </text>
+                </g>
+                <g id="shape17" transform="translate(108.34,161.57)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">CE1</tspan>
+                    </text>
+                </g>
+                <g id="shape18" transform="translate(108.46,170.30)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">EEC</tspan>
+                    </text>
+                </g>
+                <g id="shape19" transform="translate(108.46,180.28)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape20" transform="translate(108.46,189.01)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#12</tspan>
+                    </text>
+                </g>
+                <g id="shape21" transform="translate(108.46,197.74)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape22" transform="translate(108.46,206.47)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#16</tspan>
+                    </text>
+                </g>
+                <g id="shape23" transform="translate(108.46,215.20)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#20</tspan>
+                    </text>
+                </g>
+                <g id="shape24" transform="translate(108.46,225.17)">
+                    <text style="font-family:OCRA;font-size:3.90pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff" y="9.0">#21</tspan>
+                    </text>
+                </g>
+                <g id="shape25" transform="translate(77.80,54.32)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">3V3</tspan>
+                    </text>
+                </g>
+                <g id="shape26" transform="translate(77.68,63.05)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">SDA</tspan>
+                    </text>
+                </g>
+                <g id="shape27" transform="translate(77.68,71.78)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">SCL</tspan>
+                    </text>
+                </g>
+                <g id="shape28" transform="translate(77.43,80.51)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#4</tspan>
+                    </text>
+                </g>
+                <g id="shape29" transform="translate(77.92,90.49)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape30" transform="translate(76.92,99.22)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#17</tspan>
+                    </text>
+                </g>
+                <g id="shape31" transform="translate(76.92,107.95)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#27</tspan>
+                    </text>
+                </g>
+                <g id="shape32" transform="translate(76.92,116.68)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#22</tspan>
+                    </text>
+                </g>
+                <g id="shape33" transform="translate(77.80,125.41)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">3.3V</tspan>
+                    </text>
+                </g>
+                <g id="shape34" transform="translate(77.16,135.38)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">MOSI</tspan>
+                    </text>
+                </g>
+                <g id="shape35" transform="translate(77.16,144.11)">
+                    <text style="font-family:OCRA;font-size:3.90pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff" y="9.0">MISO</tspan>
+                    </text>
+                </g>
+                <g id="shape36" transform="translate(78.04,152.84)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">SCLK</tspan>
+                    </text>
+                </g>
+                <g id="shape37" transform="translate(77.92,161.57)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="shape38" transform="translate(77.80,170.30)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.9" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">EED</tspan>
+                    </text>
+                </g>
+                <g id="shape39" transform="translate(77.43,180.28)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#5</tspan>
+                    </text>
+                </g>
+                <g id="shape40" transform="translate(77.43,189.01)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#6</tspan>
+                    </text>
+                </g>
+                <g id="shape41" transform="translate(76.92,197.74)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#13</tspan>
+                    </text>
+                </g>
+                <g id="shape42" transform="translate(76.92,206.47)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#19</tspan>
+                    </text>
+                </g>
+                <g id="shape43" transform="translate(76.92,215.20)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="4.2" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">#26</tspan>
+                    </text>
+                </g>
+                <g id="shape44" transform="translate(76.92,225.17)">
+                    <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                        <tspan x="3.8" style="fill:#ffffff;font-family:OCRA;font-size:3.90pt" y="9.0">GND</tspan>
+                    </text>
+                </g>
+                <g id="group45" transform="translate(60.07,29.93)">
+                    <g id="shape46" transform="translate(0.56,0.00)">
+                        <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                            <tspan x="6.3" style="fill:#ffffff;font-family:OCRA;font-size:5.14pt" y="11.0">Adafruit T-Cobbler Plus</tspan>
+                        </text>
+                    </g>
+                    <g id="shape47" transform="translate(0.00,6.87)">
+                        <text style="font-family:OCRA;font-size:5.14pt" xml:space="preserve">
+                            <tspan x="-6.2" style="fill:#ffffff" y="11.0">           for Raspberry Pi</tspan>
+                        </text>
+                    </g>
+                </g>
+                <path stroke-width="0,8913252949714661" d="M14.1,7.1C14.1,11.0,10.9,14.1,7.1,14.1C3.2,14.1,.0,11.0,.0,7.1C.0,3.2,3.2,.0,7.1,.0C10.9,.0,14.1,3.2,14.1,7.1z" id="shape48" fill="none" stroke="#ffffff" transform="translate(118.30,237.80)"/>
+                <path stroke-width="0,8913252949714661" d="M15.9,8.0C15.9,12.3,12.3,15.9,7.9,15.9C3.6,15.9,.0,12.3,.0,8.0C.0,3.6,3.6,.0,7.9,.0C12.3,.0,15.9,3.6,15.9,8.0z" id="shape49" fill="none" stroke="#ffffff" transform="translate(189.07,34.89)"/>
+                <path stroke-width="0,8913252949714661" d="M14.1,7.1C14.1,11.0,10.9,14.1,7.1,14.1C3.2,14.1,.0,11.0,.0,7.1C.0,3.2,3.2,.0,7.1,.0C10.9,.0,14.1,3.2,14.1,7.1z" id="shape50" fill="none" stroke="#ffffff" transform="translate(73.52,237.80)"/>
+                <path stroke-width="0,8913252949714661" d="M15.9,8.0C15.9,12.3,12.3,15.9,7.9,15.9C3.6,15.9,.0,12.3,.0,8.0C.0,3.6,3.6,.0,7.9,.0C12.3,.0,15.9,3.6,15.9,8.0z" id="shape51" fill="none" stroke="#ffffff" transform="translate(0.99,34.89)"/>
+                <g id="group52">
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape53" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(190.29,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape54" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(185.81,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape55" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(183.57,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape56" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(181.33,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape57" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(176.86,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape58" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(174.62,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape59" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(172.38,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape60" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(167.90,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape61" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(165.66,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape62" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(163.42,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape63" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(158.94,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape64" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(156.70,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape65" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(154.46,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape66" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(149.69,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape67" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(147.75,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape68" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(145.51,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape69" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(141.03,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape70" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(138.79,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L.0,13.5L.0,.0z" id="shape71" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(192.53,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape72" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(190.29,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape73" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(185.81,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape74" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(183.57,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape75" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(181.33,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape76" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(176.86,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape77" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(174.62,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape78" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(172.38,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape79" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(167.90,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape80" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(165.66,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape81" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(163.42,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape82" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(158.94,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape83" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(156.70,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape84" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(154.46,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape85" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(149.69,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape86" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(147.75,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape87" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(145.51,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape88" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(141.03,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape89" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(138.79,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape90" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(136.55,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape91" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(132.07,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape92" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(129.83,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape93" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(127.60,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape94" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(123.12,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape95" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(120.88,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape96" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(118.64,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape97" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(114.16,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape98" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(111.92,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape99" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(109.68,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape100" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(105.20,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape101" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(102.96,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape102" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(100.73,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape103" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(96.25,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape104" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(94.01,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape105" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(91.77,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M4.5,.0L.0,.0L4.5,.0z" id="shape106" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(87.29,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L2.2,2.2L.0,.0z" fill-rule="nonzero" id="shape107" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(85.05,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape108" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(82.81,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape109" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(78.33,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape110" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(76.10,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape111" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(76.10,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape112" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(78.33,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape113" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(82.81,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape114" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(85.05,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape115" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(87.29,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape116" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(91.77,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape117" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(94.01,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape118" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(96.25,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape119" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(100.73,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape120" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(102.96,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape121" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(105.20,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape122" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(109.68,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape123" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(111.92,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape124" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(114.16,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape125" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(118.64,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape126" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(120.88,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape127" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(123.12,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape128" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(127.60,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape129" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(129.83,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape130" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(132.07,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape131" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(136.55,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape132" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(183.57,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape133" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(174.62,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape134" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(165.66,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape135" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(156.70,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape136" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(147.75,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape137" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(138.79,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape138" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(129.83,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape139" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(120.88,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape140" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(111.92,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape141" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(102.96,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape142" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(94.01,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape143" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(85.05,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape144" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(76.10,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M3.0,.0L.0,.0L3.0,.0z" id="shape145" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(186.53,5.40)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,3.0L1.5,.0L.0,3.0z" fill-rule="nonzero" id="shape146" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(186.53,2.44)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L1.5,3.0L.0,.0z" fill-rule="nonzero" id="shape147" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(188.05,2.44)"/>
+                    <path stroke-width="0,8913252949714661" d="M-114.3,-2.5L-114.3,-2.5z" id="shape148" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(302.36,4.97)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L205.9,.0L.0,.0z" id="shape149" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(0.00,31.81)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,31.8L.0,.0L.0,31.8z" id="shape150" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(205.93,0.00)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,31.8L.0,.0L.0,31.8z" id="shape151" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(0.00,0.00)"/>
+                    <path stroke-width="0,8913252949714661" d="M95.0,.0L.0,.0L95.0,.0z" id="shape152" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(110.90,-0.00)"/>
+                    <path stroke-width="0,8913252949714661" d="M95.0,.0L.0,.0L95.0,.0z" id="shape153" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(0.00,-0.00)"/>
+                    <path stroke-width="0,8913252949714661" d="M15.9,.0L.0,.0L15.9,.0z" id="shape154" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(95.03,3.53)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L.0,3.5L.0,.0z" id="shape155" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(110.90,-0.00)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,3.5L.0,.0L.0,3.5z" id="shape156" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(95.03,-0.00)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape157" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(73.86,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape158" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(69.38,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape159" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(67.14,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape160" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(67.14,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape161" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(69.38,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape162" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(73.86,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape163" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(67.14,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape164" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(64.90,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape165" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(60.42,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape166" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(58.18,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape167" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(58.18,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape168" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(60.42,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape169" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(64.90,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape170" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(58.18,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape171" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(55.94,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape172" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(51.46,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape173" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(49.23,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape174" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(49.23,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape175" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(51.46,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape176" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(55.94,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape177" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(49.23,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape178" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(46.99,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape179" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(42.51,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape180" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(40.27,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape181" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(40.27,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape182" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(42.51,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape183" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(46.99,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape184" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(40.27,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape185" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(38.03,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape186" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(33.55,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape187" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(31.31,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape188" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(31.31,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape189" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(33.55,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape190" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(38.03,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape191" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(31.31,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape192" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(29.07,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape193" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(24.60,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape194" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(22.36,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape195" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(22.36,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape196" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(24.60,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape197" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(29.07,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape198" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(22.36,9.17)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,.0L.0,2.2L2.2,.0z" fill-rule="nonzero" id="shape199" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(20.12,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape200" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(15.64,24.89)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape201" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(13.40,22.64)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,2.2L2.2,.0L.0,2.2z" fill-rule="nonzero" id="shape202" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(13.40,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,.0L4.5,.0L.0,.0z" id="shape203" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(15.64,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M2.2,2.2L.0,.0L2.2,2.2z" fill-rule="nonzero" id="shape204" stroke-linecap="round" fill="#000000" stroke="#ffffff" transform="translate(20.12,6.93)"/>
+                    <path stroke-width="0,8913252949714661" d="M.0,13.5L.0,.0L.0,13.5z" id="shape205" stroke-linecap="round" fill="none" stroke="#ffffff" transform="translate(13.40,9.17)"/>
+                    <g id="shape206" transform="translate(195.73,3.32)">
+                        <text style="font-family:Arial;font-size:10.00pt" xml:space="preserve">
+                            <tspan x="4.1" style="fill:#ffffff;font-family:OCRA;font-size:4.68pt" y="10.0">1</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape207" fill="none" stroke="#9a916c" transform="translate(73.61,59.42)"/>
+            <path stroke-width="1,894066333770752" d="M.0,.0L5.0,.0L5.0,5.1L.0,5.1L.0,.0z" id="shape208" fill="none" stroke="#9a916c" transform="translate(73.61,59.42)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape209" fill="none" stroke="#9a916c" transform="translate(73.61,68.40)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape210" fill="none" stroke="#9a916c" transform="translate(73.61,77.38)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape211" fill="none" stroke="#9a916c" transform="translate(73.61,86.36)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape212" fill="none" stroke="#9a916c" transform="translate(73.61,95.34)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape213" fill="none" stroke="#9a916c" transform="translate(73.61,104.32)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape214" fill="none" stroke="#9a916c" transform="translate(73.61,113.30)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape215" fill="none" stroke="#9a916c" transform="translate(73.61,122.28)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape216" fill="none" stroke="#9a916c" transform="translate(73.61,131.25)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape217" fill="none" stroke="#9a916c" transform="translate(73.61,140.23)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape218" fill="none" stroke="#9a916c" transform="translate(73.61,149.21)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape219" fill="none" stroke="#9a916c" transform="translate(73.61,158.19)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape220" fill="none" stroke="#9a916c" transform="translate(73.61,167.17)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape221" fill="none" stroke="#9a916c" transform="translate(73.61,176.15)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape222" fill="none" stroke="#9a916c" transform="translate(73.61,185.13)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape223" fill="none" stroke="#9a916c" transform="translate(73.61,194.11)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape224" fill="none" stroke="#9a916c" transform="translate(73.61,203.09)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape225" fill="none" stroke="#9a916c" transform="translate(73.61,212.06)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape226" fill="none" stroke="#9a916c" transform="translate(73.61,221.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape227" fill="none" stroke="#9a916c" transform="translate(73.61,230.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape228" fill="none" stroke="#9a916c" transform="translate(127.43,59.42)"/>
+            <path stroke-width="1,894066333770752" d="M.0,.0L5.0,.0L5.0,5.1L.0,5.1L.0,.0z" id="shape229" fill="none" stroke="#9a916c" transform="translate(127.34,59.42)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape230" fill="none" stroke="#9a916c" transform="translate(127.35,68.40)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape231" fill="none" stroke="#9a916c" transform="translate(127.35,77.38)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape232" fill="none" stroke="#9a916c" transform="translate(127.35,86.36)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape233" fill="none" stroke="#9a916c" transform="translate(127.35,95.34)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape234" fill="none" stroke="#9a916c" transform="translate(127.35,104.32)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape235" fill="none" stroke="#9a916c" transform="translate(127.35,113.30)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape236" fill="none" stroke="#9a916c" transform="translate(127.35,122.28)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape237" fill="none" stroke="#9a916c" transform="translate(127.35,131.25)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape238" fill="none" stroke="#9a916c" transform="translate(127.35,140.23)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape239" fill="none" stroke="#9a916c" transform="translate(127.35,149.21)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape240" fill="none" stroke="#9a916c" transform="translate(127.35,158.19)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape241" fill="none" stroke="#9a916c" transform="translate(127.35,167.17)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape242" fill="none" stroke="#9a916c" transform="translate(127.35,176.15)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape243" fill="none" stroke="#9a916c" transform="translate(127.35,185.13)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape244" fill="none" stroke="#9a916c" transform="translate(127.35,194.11)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape245" fill="none" stroke="#9a916c" transform="translate(127.35,203.09)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape246" fill="none" stroke="#9a916c" transform="translate(127.35,212.06)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape247" fill="none" stroke="#9a916c" transform="translate(127.35,221.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape248" fill="none" stroke="#9a916c" transform="translate(127.35,230.02)"/>
+            <path stroke-width="2,228313446044922" d="M10.6,5.3C10.6,8.3,8.2,10.6,5.3,10.6C2.4,10.6,.0,8.3,.0,5.3C.0,2.4,2.4,.0,5.3,.0C8.2,.0,10.6,2.4,10.6,5.3z" id="shape249" fill="none" stroke="#9a916c" transform="translate(120.09,240.70)"/>
+            <path stroke-width="3,289841413497925" d="M11.5,5.7C11.5,8.9,8.9,11.5,5.7,11.5C2.6,11.5,.0,8.9,.0,5.7C.0,2.6,2.6,.0,5.7,.0C8.9,.0,11.5,2.6,11.5,5.7z" id="shape250" fill="none" stroke="#9a916c" transform="translate(191.31,38.25)"/>
+            <path stroke-width="2,228313446044922" d="M10.6,5.3C10.6,8.3,8.2,10.6,5.3,10.6C2.4,10.6,.0,8.3,.0,5.3C.0,2.4,2.4,.0,5.3,.0C8.2,.0,10.6,2.4,10.6,5.3z" id="shape251" fill="none" stroke="#9a916c" transform="translate(75.31,240.70)"/>
+            <path stroke-width="3,289841413497925" d="M11.5,5.7C11.5,8.9,8.9,11.5,5.7,11.5C2.6,11.5,.0,8.9,.0,5.7C.0,2.6,2.6,.0,5.7,.0C8.9,.0,11.5,2.6,11.5,5.7z" id="shape252" fill="none" stroke="#9a916c" transform="translate(3.23,38.25)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape253" fill="none" stroke="#9a916c" transform="translate(185.56,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M.0,.0L5.0,.0L5.0,5.1L.0,5.1L.0,.0z" id="shape254" fill="none" stroke="#9a916c" transform="translate(185.56,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape255" fill="none" stroke="#9a916c" transform="translate(185.56,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape256" fill="none" stroke="#9a916c" transform="translate(176.61,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape257" fill="none" stroke="#9a916c" transform="translate(176.61,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape258" fill="none" stroke="#9a916c" transform="translate(167.65,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape259" fill="none" stroke="#9a916c" transform="translate(167.65,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape260" fill="none" stroke="#9a916c" transform="translate(158.69,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape261" fill="none" stroke="#9a916c" transform="translate(158.69,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape262" fill="none" stroke="#9a916c" transform="translate(149.74,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape263" fill="none" stroke="#9a916c" transform="translate(149.74,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape264" fill="none" stroke="#9a916c" transform="translate(140.78,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape265" fill="none" stroke="#9a916c" transform="translate(140.78,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape266" fill="none" stroke="#9a916c" transform="translate(131.82,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape267" fill="none" stroke="#9a916c" transform="translate(131.82,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape268" fill="none" stroke="#9a916c" transform="translate(122.87,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape269" fill="none" stroke="#9a916c" transform="translate(122.87,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape270" fill="none" stroke="#9a916c" transform="translate(113.91,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape271" fill="none" stroke="#9a916c" transform="translate(113.91,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape272" fill="none" stroke="#9a916c" transform="translate(104.95,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape273" fill="none" stroke="#9a916c" transform="translate(104.95,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape274" fill="none" stroke="#9a916c" transform="translate(96.00,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape275" fill="none" stroke="#9a916c" transform="translate(96.00,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape276" fill="none" stroke="#9a916c" transform="translate(87.04,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape277" fill="none" stroke="#9a916c" transform="translate(87.04,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape278" fill="none" stroke="#9a916c" transform="translate(78.08,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape279" fill="none" stroke="#9a916c" transform="translate(78.08,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape280" fill="none" stroke="#9a916c" transform="translate(69.13,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape281" fill="none" stroke="#9a916c" transform="translate(69.13,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape282" fill="none" stroke="#9a916c" transform="translate(60.17,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape283" fill="none" stroke="#9a916c" transform="translate(60.17,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape284" fill="none" stroke="#9a916c" transform="translate(51.21,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape285" fill="none" stroke="#9a916c" transform="translate(51.21,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape286" fill="none" stroke="#9a916c" transform="translate(42.26,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape287" fill="none" stroke="#9a916c" transform="translate(42.26,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape288" fill="none" stroke="#9a916c" transform="translate(33.30,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape289" fill="none" stroke="#9a916c" transform="translate(33.30,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape290" fill="none" stroke="#9a916c" transform="translate(24.35,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape291" fill="none" stroke="#9a916c" transform="translate(24.35,19.02)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape292" fill="none" stroke="#9a916c" transform="translate(15.39,10.04)"/>
+            <path stroke-width="1,894066333770752" d="M5.0,2.5C5.0,3.9,3.9,5.1,2.5,5.1C1.1,5.1,.0,3.9,.0,2.5C.0,1.1,1.1,.0,2.5,.0C3.9,.0,5.0,1.1,5.0,2.5z" id="shape293" fill="none" stroke="#9a916c" transform="translate(15.39,19.02)"/>
+        </g>
+        <g id="group294" transform="translate(0.00,1.42)">
+            <path d="M17.5,7.7C17.4,7.3,17.2,7.2,16.7,7.1C16.4,7.0,14.0,6.2,14.0,6.2C14.0,6.2,12.3,5.6,11.1,6.5C10.9,6.6,10.8,6.7,10.6,6.9C10.7,6.7,10.9,6.5,11.0,6.4C11.9,5.1,11.2,3.5,11.2,3.5C11.2,3.5,10.5,1.1,10.4,.7C10.2,.3,10.1,.0,9.8,.0C9.4,.0,9.2,.1,9.0,.5C8.7,.8,7.3,2.8,7.3,2.8C7.3,2.8,6.2,4.2,6.6,5.7C6.7,5.9,6.8,6.1,6.9,6.3C6.7,6.1,6.6,5.9,6.5,5.8C5.6,4.5,3.8,4.6,3.8,4.6C3.8,4.6,1.3,4.6,1.0,4.6C.5,4.6,.2,4.6,.0,5.0C.0,5.3,.0,5.5,.3,5.9C.5,6.2,2.0,8.2,2.0,8.2C2.0,8.2,3.0,9.7,4.5,9.7C4.7,9.7,4.9,9.7,5.1,9.7C4.9,9.7,4.7,9.8,4.5,9.8C3.1,10.3,2.6,12.0,2.6,12.0C2.6,12.0,1.8,14.4,1.7,14.8C1.6,15.2,1.5,15.5,1.8,15.7C2.0,16.0,2.3,15.9,2.7,15.8C3.1,15.7,5.5,14.9,5.5,14.9C5.5,14.9,7.2,14.4,7.6,13.0C7.7,12.8,7.8,12.6,7.8,12.3C7.8,12.6,7.8,12.8,7.8,13.0C7.8,14.5,9.3,15.5,9.3,15.5C9.3,15.5,11.3,17.0,11.6,17.2C12.0,17.5,12.2,17.6,12.5,17.4C12.8,17.2,12.9,17.0,12.9,16.5C12.9,16.2,12.9,13.7,12.9,13.7C12.9,13.7,12.9,11.9,11.7,11.0C11.6,10.9,11.4,10.7,11.2,10.6C11.4,10.7,11.6,10.8,11.8,10.8C13.2,11.3,14.6,10.2,14.6,10.2C14.6,10.2,16.6,8.7,16.9,8.5C17.3,8.2,17.5,8.1,17.5,7.7zM8.8,5.9C9.1,5.9,9.2,6.5,9.1,7.2C9.0,7.8,8.7,8.3,8.5,8.3C8.2,8.3,8.0,7.7,8.2,7.0C8.3,6.3,8.6,5.8,8.8,5.9zM5.3,7.6C5.5,7.4,6.1,7.5,6.7,7.8C7.3,8.1,7.7,8.5,7.5,8.8C7.4,9.0,6.8,9.0,6.2,8.7C5.6,8.3,5.2,7.9,5.3,7.6zM7.2,11.0C6.7,11.5,6.2,11.7,6.0,11.5C5.8,11.3,6.0,10.8,6.5,10.3C7.0,9.8,7.5,9.6,7.7,9.8C7.9,10.0,7.7,10.5,7.2,11.0zM9.8,12.1C9.6,12.3,9.1,11.9,8.8,11.3C8.5,10.7,8.5,10.1,8.7,9.9C9.0,9.8,9.4,10.2,9.7,10.8C10.0,11.4,10.1,12.0,9.8,12.1zM10.5,9.3C9.8,9.4,9.2,9.3,9.2,9.0C9.1,8.7,9.6,8.4,10.3,8.3C11.0,8.2,11.6,8.4,11.6,8.6C11.7,8.9,11.1,9.2,10.5,9.3z" fill-rule="nonzero" id="shape295" fill="#dcdcdc" transform="translate(94.80,227.26)"/>
+            <g id="group296">
+                <path d="M.0,.0L206.0,.0L206.0,31.3L.0,31.3L.0,.0z" fill-rule="nonzero" id="shape297" fill="#1a1a1a" transform="translate(0.00,0.00)"/>
+                <path d="M.0,.0L205.9,.0L205.9,3.5L.0,3.5L.0,.0z" fill-rule="nonzero" id="shape298" fill="#2a2a29" transform="translate(0.04,-0.00)"/>
+                <path d="M.0,.0L205.6,.0L205.6,3.5L.0,3.5L.0,.0z" fill-rule="nonzero" id="shape299" fill="#595959" transform="translate(0.18,27.79)"/>
+                <path d="M.0,.0L.0,31.3L3.5,27.8L3.5,3.5L.0,.0z" fill-rule="nonzero" id="shape300" fill="#373737" transform="translate(0.00,0.00)"/>
+                <path d="M3.5,.0L3.5,31.3L.0,27.8L.0,3.5L3.5,.0z" fill-rule="nonzero" id="shape301" fill="#474747" transform="translate(202.51,0.00)"/>
+                <path d="M.0,.0L206.0,.0L206.0,2.2L.0,2.2L.0,.0z" fill-rule="nonzero" id="shape302" fill="#404040" transform="translate(0.00,-0.00)"/>
+                <path d="M.0,.0L206.0,.0L206.0,2.2L.0,2.2L.0,.0z" fill-rule="nonzero" id="shape303" fill="#404040" transform="translate(0.00,29.04)"/>
+                <path d="M.0,.0L2.2,.0L2.2,31.3L.0,31.3L.0,.0z" fill-rule="nonzero" id="shape304" fill="#404040" transform="translate(0.00,0.00)"/>
+                <path d="M.0,.0L2.2,.0L2.2,31.3L.0,31.3L.0,.0z" fill-rule="nonzero" id="shape305" fill="#404040" transform="translate(203.76,0.00)"/>
+                <path d="M.0,.0L15.1,.0L15.1,6.1L.0,6.1L.0,.0z" fill-rule="nonzero" id="shape306" fill="#1a1a1a" transform="translate(95.47,25.19)"/>
+                <g id="group307" transform="translate(15.53,8.62)">
+                    <g id="group308" transform="translate(0.00,0.00)">
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape309" fill="#141414" transform="translate(0.00,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape310" fill="#8c8663" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape311" fill="#b8af82" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape312" fill="#5e5b43" transform="translate(0.93,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape313" fill="#9a916c" transform="translate(0.93,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape314" fill="#9a916c" transform="translate(3.10,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape315" fill="#141414" transform="translate(8.96,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape316" fill="#8c8663" transform="translate(9.89,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape317" fill="#b8af82" transform="translate(9.89,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape318" fill="#5e5b43" transform="translate(9.89,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape319" fill="#9a916c" transform="translate(9.89,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape320" fill="#9a916c" transform="translate(12.06,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape321" fill="#141414" transform="translate(17.91,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape322" fill="#8c8663" transform="translate(18.85,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape323" fill="#b8af82" transform="translate(18.85,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape324" fill="#5e5b43" transform="translate(18.85,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape325" fill="#9a916c" transform="translate(18.85,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape326" fill="#9a916c" transform="translate(21.01,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape327" fill="#141414" transform="translate(26.87,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape328" fill="#8c8663" transform="translate(27.80,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape329" fill="#b8af82" transform="translate(27.80,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape330" fill="#5e5b43" transform="translate(27.80,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape331" fill="#9a916c" transform="translate(27.80,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape332" fill="#9a916c" transform="translate(29.97,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape333" fill="#141414" transform="translate(35.83,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape334" fill="#8c8663" transform="translate(36.76,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape335" fill="#b8af82" transform="translate(36.76,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape336" fill="#5e5b43" transform="translate(36.76,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape337" fill="#9a916c" transform="translate(36.76,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape338" fill="#9a916c" transform="translate(38.92,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape339" fill="#141414" transform="translate(0.00,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape340" fill="#8c8663" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape341" fill="#b8af82" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape342" fill="#5e5b43" transform="translate(0.93,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape343" fill="#9a916c" transform="translate(0.93,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape344" fill="#9a916c" transform="translate(3.10,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape345" fill="#141414" transform="translate(8.96,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape346" fill="#8c8663" transform="translate(9.89,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape347" fill="#b8af82" transform="translate(9.89,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape348" fill="#5e5b43" transform="translate(9.89,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape349" fill="#9a916c" transform="translate(9.89,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape350" fill="#9a916c" transform="translate(12.06,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape351" fill="#141414" transform="translate(17.91,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape352" fill="#8c8663" transform="translate(18.85,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape353" fill="#b8af82" transform="translate(18.85,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape354" fill="#5e5b43" transform="translate(18.85,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape355" fill="#9a916c" transform="translate(18.85,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape356" fill="#9a916c" transform="translate(21.01,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape357" fill="#141414" transform="translate(26.87,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape358" fill="#8c8663" transform="translate(27.80,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape359" fill="#b8af82" transform="translate(27.80,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape360" fill="#5e5b43" transform="translate(27.80,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape361" fill="#9a916c" transform="translate(27.80,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape362" fill="#9a916c" transform="translate(29.97,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape363" fill="#141414" transform="translate(35.83,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape364" fill="#8c8663" transform="translate(36.76,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape365" fill="#b8af82" transform="translate(36.76,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape366" fill="#5e5b43" transform="translate(36.76,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape367" fill="#9a916c" transform="translate(36.76,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape368" fill="#9a916c" transform="translate(38.92,9.91)"/>
+                    </g>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape369" fill="#141414" transform="translate(44.78,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape370" fill="#8c8663" transform="translate(45.72,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape371" fill="#b8af82" transform="translate(45.72,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape372" fill="#5e5b43" transform="translate(45.72,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape373" fill="#9a916c" transform="translate(45.72,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape374" fill="#9a916c" transform="translate(47.88,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape375" fill="#141414" transform="translate(53.74,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape376" fill="#8c8663" transform="translate(54.67,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape377" fill="#b8af82" transform="translate(54.67,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape378" fill="#5e5b43" transform="translate(54.67,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape379" fill="#9a916c" transform="translate(54.67,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape380" fill="#9a916c" transform="translate(56.84,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape381" fill="#141414" transform="translate(62.70,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape382" fill="#8c8663" transform="translate(63.63,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape383" fill="#b8af82" transform="translate(63.63,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape384" fill="#5e5b43" transform="translate(63.63,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape385" fill="#9a916c" transform="translate(63.63,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape386" fill="#9a916c" transform="translate(65.79,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape387" fill="#141414" transform="translate(71.65,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape388" fill="#8c8663" transform="translate(72.59,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape389" fill="#b8af82" transform="translate(72.59,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape390" fill="#5e5b43" transform="translate(72.59,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape391" fill="#9a916c" transform="translate(72.59,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape392" fill="#9a916c" transform="translate(74.75,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape393" fill="#141414" transform="translate(80.61,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape394" fill="#8c8663" transform="translate(81.54,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape395" fill="#b8af82" transform="translate(81.54,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape396" fill="#5e5b43" transform="translate(81.54,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape397" fill="#9a916c" transform="translate(81.54,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape398" fill="#9a916c" transform="translate(83.71,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape399" fill="#141414" transform="translate(44.78,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape400" fill="#8c8663" transform="translate(45.72,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape401" fill="#b8af82" transform="translate(45.72,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape402" fill="#5e5b43" transform="translate(45.72,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape403" fill="#9a916c" transform="translate(45.72,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape404" fill="#9a916c" transform="translate(47.88,9.91)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape405" fill="#141414" transform="translate(53.74,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape406" fill="#8c8663" transform="translate(54.67,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape407" fill="#b8af82" transform="translate(54.67,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape408" fill="#5e5b43" transform="translate(54.67,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape409" fill="#9a916c" transform="translate(54.67,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape410" fill="#9a916c" transform="translate(56.84,9.91)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape411" fill="#141414" transform="translate(62.70,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape412" fill="#8c8663" transform="translate(63.63,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape413" fill="#b8af82" transform="translate(63.63,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape414" fill="#5e5b43" transform="translate(63.63,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape415" fill="#9a916c" transform="translate(63.63,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape416" fill="#9a916c" transform="translate(65.79,9.91)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape417" fill="#141414" transform="translate(71.65,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape418" fill="#8c8663" transform="translate(72.59,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape419" fill="#b8af82" transform="translate(72.59,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape420" fill="#5e5b43" transform="translate(72.59,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape421" fill="#9a916c" transform="translate(72.59,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape422" fill="#9a916c" transform="translate(74.75,9.91)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape423" fill="#141414" transform="translate(80.61,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape424" fill="#8c8663" transform="translate(81.54,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape425" fill="#b8af82" transform="translate(81.54,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape426" fill="#5e5b43" transform="translate(81.54,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape427" fill="#9a916c" transform="translate(81.54,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape428" fill="#9a916c" transform="translate(83.71,9.91)"/>
+                    <g id="group429" transform="translate(89.60,0.00)">
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape430" fill="#141414" transform="translate(0.00,0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape431" fill="#8c8663" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape432" fill="#b8af82" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape433" fill="#5e5b43" transform="translate(0.93,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape434" fill="#9a916c" transform="translate(0.93,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape435" fill="#9a916c" transform="translate(3.10,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape436" fill="#141414" transform="translate(8.96,0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape437" fill="#8c8663" transform="translate(9.89,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape438" fill="#b8af82" transform="translate(9.89,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape439" fill="#5e5b43" transform="translate(9.89,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape440" fill="#9a916c" transform="translate(9.89,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape441" fill="#9a916c" transform="translate(12.06,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape442" fill="#141414" transform="translate(17.91,0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape443" fill="#8c8663" transform="translate(18.85,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape444" fill="#b8af82" transform="translate(18.85,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape445" fill="#5e5b43" transform="translate(18.85,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape446" fill="#9a916c" transform="translate(18.85,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape447" fill="#9a916c" transform="translate(21.01,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape448" fill="#141414" transform="translate(0.00,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape449" fill="#8c8663" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape450" fill="#b8af82" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape451" fill="#5e5b43" transform="translate(0.93,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape452" fill="#9a916c" transform="translate(0.93,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape453" fill="#9a916c" transform="translate(3.10,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape454" fill="#141414" transform="translate(8.96,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape455" fill="#8c8663" transform="translate(9.89,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape456" fill="#b8af82" transform="translate(9.89,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape457" fill="#5e5b43" transform="translate(9.89,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape458" fill="#9a916c" transform="translate(9.89,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape459" fill="#9a916c" transform="translate(12.06,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape460" fill="#141414" transform="translate(17.91,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape461" fill="#8c8663" transform="translate(18.85,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape462" fill="#b8af82" transform="translate(18.85,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape463" fill="#5e5b43" transform="translate(18.85,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape464" fill="#9a916c" transform="translate(18.85,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape465" fill="#9a916c" transform="translate(21.01,9.91)"/>
+                    </g>
+                    <g id="group466" transform="translate(116.47,0.00)">
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape467" fill="#141414" transform="translate(-0.00,0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape468" fill="#8c8663" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape469" fill="#b8af82" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape470" fill="#5e5b43" transform="translate(0.93,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape471" fill="#9a916c" transform="translate(0.93,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape472" fill="#9a916c" transform="translate(3.10,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape473" fill="#141414" transform="translate(8.96,0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape474" fill="#8c8663" transform="translate(9.89,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape475" fill="#b8af82" transform="translate(9.89,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape476" fill="#5e5b43" transform="translate(9.89,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape477" fill="#9a916c" transform="translate(9.89,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape478" fill="#9a916c" transform="translate(12.06,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape479" fill="#141414" transform="translate(17.91,0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape480" fill="#8c8663" transform="translate(18.85,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape481" fill="#b8af82" transform="translate(18.85,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape482" fill="#5e5b43" transform="translate(18.85,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape483" fill="#9a916c" transform="translate(18.85,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape484" fill="#9a916c" transform="translate(21.01,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape485" fill="#141414" transform="translate(-0.00,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape486" fill="#8c8663" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape487" fill="#b8af82" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape488" fill="#5e5b43" transform="translate(0.93,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape489" fill="#9a916c" transform="translate(0.93,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape490" fill="#9a916c" transform="translate(3.10,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape491" fill="#141414" transform="translate(8.96,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape492" fill="#8c8663" transform="translate(9.89,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape493" fill="#b8af82" transform="translate(9.89,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape494" fill="#5e5b43" transform="translate(9.89,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape495" fill="#9a916c" transform="translate(9.89,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape496" fill="#9a916c" transform="translate(12.06,9.91)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape497" fill="#141414" transform="translate(17.91,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape498" fill="#8c8663" transform="translate(18.85,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape499" fill="#b8af82" transform="translate(18.85,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape500" fill="#5e5b43" transform="translate(18.85,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape501" fill="#9a916c" transform="translate(18.85,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape502" fill="#9a916c" transform="translate(21.01,9.91)"/>
+                    </g>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape503" fill="#141414" transform="translate(143.34,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape504" fill="#8c8663" transform="translate(144.27,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape505" fill="#b8af82" transform="translate(144.27,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape506" fill="#5e5b43" transform="translate(144.27,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape507" fill="#9a916c" transform="translate(144.27,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape508" fill="#9a916c" transform="translate(146.44,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape509" fill="#141414" transform="translate(152.30,0.00)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape510" fill="#8c8663" transform="translate(153.23,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape511" fill="#b8af82" transform="translate(153.23,0.94)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape512" fill="#5e5b43" transform="translate(153.23,3.11)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape513" fill="#9a916c" transform="translate(153.23,0.94)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape514" fill="#9a916c" transform="translate(155.39,0.94)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape515" fill="#141414" transform="translate(143.34,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape516" fill="#8c8663" transform="translate(144.27,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape517" fill="#b8af82" transform="translate(144.27,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape518" fill="#5e5b43" transform="translate(144.27,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape519" fill="#9a916c" transform="translate(144.27,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape520" fill="#9a916c" transform="translate(146.44,9.91)"/>
+                    <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape521" fill="#141414" transform="translate(152.30,8.98)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape522" fill="#8c8663" transform="translate(153.23,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape523" fill="#b8af82" transform="translate(153.23,9.91)"/>
+                    <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape524" fill="#5e5b43" transform="translate(153.23,12.09)"/>
+                    <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape525" fill="#9a916c" transform="translate(153.23,9.91)"/>
+                    <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape526" fill="#9a916c" transform="translate(155.39,9.91)"/>
+                    <g id="group527" transform="translate(161.25,0.00)">
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape528" fill="#141414" transform="translate(0.00,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape529" fill="#8c8663" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape530" fill="#b8af82" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape531" fill="#5e5b43" transform="translate(0.93,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape532" fill="#9a916c" transform="translate(0.93,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape533" fill="#9a916c" transform="translate(3.10,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape534" fill="#141414" transform="translate(0.00,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape535" fill="#8c8663" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape536" fill="#b8af82" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape537" fill="#5e5b43" transform="translate(0.93,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape538" fill="#9a916c" transform="translate(0.93,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape539" fill="#9a916c" transform="translate(3.10,9.91)"/>
+                    </g>
+                    <g id="group540" transform="translate(170.21,0.00)">
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape541" fill="#141414" transform="translate(0.00,-0.00)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape542" fill="#8c8663" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape543" fill="#b8af82" transform="translate(0.93,0.94)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape544" fill="#5e5b43" transform="translate(0.93,3.11)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape545" fill="#9a916c" transform="translate(0.93,0.94)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape546" fill="#9a916c" transform="translate(3.10,0.94)"/>
+                        <path d="M.0,.0L4.7,.0L4.7,4.7L.0,4.7L.0,.0z" fill-rule="nonzero" id="shape547" fill="#141414" transform="translate(0.00,8.98)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,2.9L.0,2.9L.0,.0z" fill-rule="nonzero" id="shape548" fill="#8c8663" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape549" fill="#b8af82" transform="translate(0.93,9.91)"/>
+                        <path d="M.0,.0L2.9,.0L2.9,.7L.0,.7L.0,.0z" fill-rule="nonzero" id="shape550" fill="#5e5b43" transform="translate(0.93,12.09)"/>
+                        <path d="M.0,.0L.0,2.9L.7,2.2L.7,.7L.0,.0z" fill-rule="nonzero" id="shape551" fill="#9a916c" transform="translate(0.93,9.91)"/>
+                        <path d="M.7,.0L.7,2.9L.0,2.2L.0,.7L.7,.0z" fill-rule="nonzero" id="shape552" fill="#9a916c" transform="translate(3.10,9.91)"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

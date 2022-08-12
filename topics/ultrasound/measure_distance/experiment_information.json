@@ -1,7 +1,8 @@
 {
-    "author":"Make It MINT",
+    "author":"MAKE IT MINT",
     "material":{
-        "de":[
+        "de":{
+            "0":[
                 {
                     "text":"1x Breadboard",
                     "image":"breadboard.png",
@@ -46,13 +47,61 @@
                     "source":"fritzing"
                 },
                 {
-                    "text":"2x Widerstand 100 Ohm",
-                    "image":"resistor100.png",
+                    "text":"2x Widerstand 220 Ohm",
+                    "image":"resistor220.png",
+                    "source":"fritzing"
+                }
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Raspberry Pi Pico",
+                    "image":"picopi.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumperkabel Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x HC-SR04 Ultraschallsensor",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x rote LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x blaue LED",
+                    "image":"led_blue.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Widerstand 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"2x Widerstand 220 Ohm",
+                    "image":"resistor220.png",
                     "source":"fritzing"
                 }
             ]
+        }
         ,
-        "en":[
+        "en":{
+            "0":[
                 {
                     "text":"1x Breadboard",
                     "image":"breadboard.png",
@@ -97,19 +146,90 @@
                     "source":"fritzing"
                 },
                 {
-                    "text":"2x Resistor 100 Ohm",
-                    "image":"resistor100.png",
+                    "text":"2x Resistor 220 Ohm",
+                    "image":"resistor220.png",
+                    "source":"fritzing"
+                }
+            ],
+            "1":[
+                {
+                    "text":"1x Breadboard",
+                    "image":"breadboard.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Raspberry Pi Pico",
+                    "image":"picopi.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x HC-SR04 Ultrasound Sensor",
+                    "image":"HC-SR04.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"Jumpercable Male-Male",
+                    "image":"jumpercable_mm.png"
+                },
+                {
+                    "text":"1x red LED",
+                    "image":"led_red.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x blue LED",
+                    "image":"led_blue.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 330 Ohm",
+                    "image":"resistor330.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"1x Resistor 470 Ohm",
+                    "image":"resistor470.png",
+                    "source":"fritzing"
+                },
+                {
+                    "text":"2x Resistor 220 Ohm",
+                    "image":"resistor220.png",
                     "source":"fritzing"
                 }
             ]
+        }
     },
     "setup":{
-        "images":[
-            "setup_complete.png",
-            "setup_step1.png",
-            "setup_step2.png",
-            "setup_step3.png",
-            "setup_step4.png"]
+        "0":[
+            "setup_rpi.png", 
+            "setup_rpi_1.png",
+            "setup_rpi_2.png",
+            "setup_rpi_3.png",
+            "setup_rpi_4.png",
+            "setup_rpi_5.png",
+            "setup_rpi_6.png",
+            "setup_rpi_7.png",
+            "setup_rpi_8.png",
+            "setup_rpi_9.png",
+            "setup_rpi_10.png",
+            "setup_rpi_11.png",
+            "setup_rpi_12.png",
+            "setup_rpi_13.png"],
+        "1":[
+            "setup_picopi.png",
+            "setup_picopi_1.png",
+            "setup_picopi_2.png",
+            "setup_picopi_3.png",
+            "setup_picopi_4.png",
+            "setup_picopi_5.png",
+            "setup_picopi_6.png",
+            "setup_picopi_7.png",
+            "setup_picopi_8.png",
+            "setup_picopi_9.png",
+            "setup_picopi_10.png",
+            "setup_picopi_11.png",
+            "setup_picopi_12.png",
+            "setup_picopi_13.png"]
     },
     "information":{
         "file":"ultrasonic.gif",
