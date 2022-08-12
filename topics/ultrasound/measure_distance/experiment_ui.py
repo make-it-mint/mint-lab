@@ -20,7 +20,7 @@ class Experiment(UI_Template):
             self.CUR_DISTANCE_FONT = QtGui.QFont('Arial', 48)
 
         experiment_information = json.load(open(os.path.join(self.EXPERIMENT_DIR,"experiment_information.json")))
-        self.DEFAULT_VALUES={"SPEED_OF_SOUND":330,"RED":10,"BLUE":5}#MUST use double quotation marks
+        self.DEFAULT_VALUES={"SPEED_OF_SOUND":330,"RED":10,"BLUE":5}
         self.EXPERIMENT_VALUES=self.DEFAULT_VALUES.copy()
 
         self.set_experiment_header(experiment_name=experiment_information["experiment"][self.language]["name"], hyperlink=experiment_information["experiment"][self.language]["link"])
@@ -67,21 +67,27 @@ class Experiment(UI_Template):
 
     def fill_experiment(self, content:dict):
         self.experiment_layout = self.tabs["experiment"]["layout"]
+
+        self.speeds_frame = QtWidgets.QFrame()
+        self.speeds_frame.setSizePolicy(SIZE_POLICY)
+        self.speeds_frame.setStyleSheet(BORDER_STYLESHEET_THIN)
+        self.speeds_interface(parent_widget=self.speeds_frame, content=content)
+        self.experiment_layout.addWidget(self.speeds_frame,0,0)
         
-        self.experiment_medium_speed(parent=self.experiment_layout, content=content)
+        #self.experiment_medium_speed(parent=self.experiment_layout, content=content)
 
-        self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
-        image = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/formula.png")
-        formula = QtWidgets.QLabel()
-        formula.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        formula.setPixmap(image.scaled(int(self.screen_size.width()*.5), int(self.screen_size.height()*.25), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        # self.experiment_led_threshholds_and_distance(parent=self.experiment_layout, content=content)
+        # image = QtGui.QPixmap(f"{self.EXPERIMENT_DIR}/assets/formula.png")
+        # formula = QtWidgets.QLabel()
+        # formula.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        # formula.setPixmap(image.scaled(int(self.screen_size.width()*.5), int(self.screen_size.height()*.25), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
 
-        self.experiment_layout.addWidget(formula,0,1)
+        # self.experiment_layout.addWidget(formula,0,1)
 
-        self.start_experiment = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
-        self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
+        # self.start_experiment = QtWidgets.QPushButton(self.program_settings["start_experiment"][self.language])
+        # self.start_experiment.clicked.connect(lambda:self.start_stop_experiment())
         
-        self.experiment_layout.addWidget(self.start_experiment,1,1)
+        # self.experiment_layout.addWidget(self.start_experiment,1,1)
 
         self.experiment_layout.setRowStretch(0,2)
         self.experiment_layout.setRowStretch(1,4)
@@ -89,7 +95,47 @@ class Experiment(UI_Template):
         self.experiment_layout.setColumnStretch(0,1)
         self.experiment_layout.setColumnStretch(1,3)
 
+    def speeds_interface(self, parent_widget, content):
+        layout = QtWidgets.QGridLayout()
+        parent_widget.setLayout(layout)
+        self.speed_buttons=[]
+        self.speed_texts=[]
+        self.speeds=[]
         
+        for idx, (medium,speed) in enumerate(content[self.language]['speed'].items()):
+
+            button = QtWidgets.QToolButton()
+            button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+            image_path = f"{self.EXPERIMENT_DIR}/assets/{medium}.png"
+            button.setIcon(QtGui.QIcon(image_path))
+            #button.setStyleSheet(f"border-width:0px")
+            button.setSizePolicy(SIZE_POLICY)
+            button.setIconSize(QtCore.QSize(int(parent_widget.size().width()*.15), int(parent_widget.size().height()*.4)))
+            #button.clicked.connect(lambda do_it, arg=content :self.update_personal_image(arg))
+            layout.addWidget(button,0,idx,QtCore.Qt.AlignCenter)
+
+            if not self.program_settings["has_keyboard"]:
+                text = VKQLineEdit(name='value', mainWindowObj=self)
+            else:
+                text = QtWidgets.QLineEdit()
+            text.setAlignment(QtCore.Qt.AlignJustify)
+            text.setFont(BASIC_FONT_MID)
+            text.setSizePolicy(SIZE_POLICY)
+            text.setPlaceholderText(f'm/s')
+            text.setStyleSheet(f"color:{FONT_COLOR_DARK}; background-color:{BACKGROUND_WHITE}; border-width:0px")
+            layout.addWidget(text,1,idx,QtCore.Qt.AlignCenter)
+
+
+            self.speed_buttons.append(button)
+            self.speed_texts.append(text)
+            self.speeds.append({medium:speed})
+
+            layout.setColumnStretch(idx,1)
+
+        layout.setRowStretch(0,1)
+        layout.setRowStretch(1,1)
+
+
 
     def experiment_led_threshholds_and_distance(self, parent, content):
         self.interactive_icons_frame =QtWidgets.QFrame()

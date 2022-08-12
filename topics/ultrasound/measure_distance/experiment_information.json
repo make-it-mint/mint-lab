@@ -258,11 +258,11 @@
             "link":"https://make-it-mint.de",
             "formula-img":"formula_de.png",
             "speed":{
-                "Luft":330,
-                "Wasser":1200,
-                "Stahl":3400,
-                "Holz":80,
-                "Sonstige":"DEIN WERT"
+                "air":330,
+                "water":1200,
+                "steel":3400,
+                "wood":80,
+                "other":"DEIN WERT"
             },
             "distance":"Aktuelle Distanz",
             "medium":"Medien"
@@ -274,11 +274,11 @@
             "link":"https://make-it-mint.de",
             "formula-img":"formula_de.png",
             "speed":{
-                "Air":330,
-                "Water":1200,
-                "Steel":3400,
-                "Wood":80,
-                "Other":"YOUR VALUE"
+                "air":330,
+                "water":1200,
+                "steel":3400,
+                "wood":80,
+                "other":"YOUR VALUE"
             },
             "distance":"Current Distance",
             "medium":"Media"
