@@ -50,7 +50,7 @@ class SettingsInterface(QtWidgets.QDialog):
         self.language_selection.setSizePolicy(SIZE_POLICY)
         self.language_selection.clicked.connect(self.select_language)
         self.layout.addWidget(self.language_selection,0,1)
-        print(list(self.available_languages.keys()))
+
         
 
         

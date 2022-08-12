@@ -301,19 +301,20 @@ class Experiment(UI_Template):
     
     def cancel_experiment(self):
         if self.experiment_is_running:
-            self.running_experiment.experiment.stop()
-            self.update_ui(value_for_ui="-1")
+            self.experiment_is_running = False
+            self.running_experiment.experiment.rfid_reader.READER.Close_MFRC522()
+            del self.running_experiment.experiment
+            self.update_ui(value_for_ui="state=-1")
+            time.sleep(.5)
+            self.update_ui(value_for_ui="state=0")
             self.rfid_state_bt.setEnabled(False)
-            time.sleep(1)
-            self.update_ui(value_for_ui="0")
 
    
 
 
     def update_ui(self, value_for_ui:str):
-
         try:
-            if value_for_ui.startswith("state"):
+            if value_for_ui.startswith("state="):
                 rfid_content = value_for_ui[6:]
             else:
                 rfid_content = value_for_ui
@@ -342,16 +343,20 @@ class Experiment(UI_Template):
                 self.rfid_state_bt.setStyleSheet(f"background-color:{BACKGROUND_COLOR}")
                 # self.rfid_state.setText(self.experiment_content["experiment"][self.language]['rfid_state']['idle'])
                 # self.rfid_state.setStyleSheet(f"background-color: {FONT_COLOR_DARK}; color:{FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
+                #self.running_experiment.experiment.stop()
                 self.experiment_is_running = False
-                self.Experiment_Thread.terminate()
+                self.Experiment_Thread.quit()
+                self.rfid_state_bt.setEnabled(False)
+                self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
+
 
 
             else:
                 if self.EXPERIMENT_VALUES["ACTION"]=="WRITE":
                     pass
-                elif self.EXPERIMENT_VALUES["ACTION"]=="READ"and self.EXPERIMENT_VALUES["EPERIMENT"]=="TEXT":
+                elif self.EXPERIMENT_VALUES["ACTION"]=="READ"and self.EXPERIMENT_VALUES["EXPERIMENT"]=="TEXT":
                     self.custom_text_read.setText(rfid_content)
-                elif self.EXPERIMENT_VALUES["ACTION"]=="READ"and self.EXPERIMENT_VALUES["EPERIMENT"]=="PERSON":
+                elif self.EXPERIMENT_VALUES["ACTION"]=="READ"and self.EXPERIMENT_VALUES["EXPERIMENT"]=="PERSON":
                     personal_data = ast.literal_eval(rfid_content)
                     self.personal_first_read.setText(personal_data[0])
                     self.personal_last_read.setText(personal_data[1])
@@ -359,4 +364,12 @@ class Experiment(UI_Template):
                     self.personal_image_read.setPixmap(pixmap.scaled(int(self.screen_size.width()*.1), int(self.screen_size.height()*.1), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         except Exception as e:
             print(e)
+            #self.running_experiment.experiment.stop()
+            self.experiment_is_running = False
+            self.Experiment_Thread.quit()
+            self.rfid_state_bt.setEnabled(False)
+            self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
+
+
+
                   

@@ -1,6 +1,6 @@
 {
-    "has_keyboard": 1,
-    "selected_language": "en",
+    "has_keyboard": 0,
+    "selected_language": "de",
     "systems": {
         "rpi": {
             "system_id": 0,
@@ -137,7 +137,7 @@
             "experiment": "Experiment"
         }
     },
-    "closing_experiment_warning": {
+    "close_experiment_warning": {
         "de": "Experiment stoppen, bevor das Fenster geschlossen werden kann",
         "en": "Stop the Experiment, before closing the window"
     },

@@ -90,7 +90,7 @@ class Experiment(UI_Template):
             self.write_values_to_experiment_file()
             self.experiment_is_running = True
             self.Experiment_Thread = QtCore.QThread()
-experiment_button=self.start_experiment_button, selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)            self.running_experiment = Running_Experiment(
+            self.running_experiment = Running_Experiment(experiment_button=self.start_experiment_button, selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)            
             self.running_experiment.moveToThread(self.Experiment_Thread)
             self.running_experiment.experiment_is_running = self.experiment_is_running
             self.Experiment_Thread.started.connect(self.running_experiment.start_experiment)

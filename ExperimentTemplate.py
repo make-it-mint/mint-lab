@@ -260,7 +260,10 @@ class UI_Template(QtWidgets.QWidget):
                     if self.selected_system["system_id"] == 2:
                         new_text = f'{line[:line.find(key)]}{key}={value};\n'
                     else:
-                        new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                        if type(value) == int or type(value) == float or type(value) == list or type(value) == dict:
+                            new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                        elif type(value) == str:
+                            new_text = f'{line[:line.find(key)]}{key}="{value}"\n'
                     new_lines.update({line_idx:new_text})
                     break
 
@@ -334,7 +337,7 @@ class Running_Experiment(QtCore.QObject):
         
 
     def start_experiment(self):
-        self.experiment_button.setEnabled(False)
+        if self.experiment_button: self.experiment_button.setEnabled(False)
         if self.selected_system["system_id"] == 0:
             spec = importlib.util.spec_from_file_location("module.name", f'{self.dir}/experiment_code/rpi.py')
             experiment_module_rpi = importlib.util.module_from_spec(spec)
@@ -343,6 +346,7 @@ class Running_Experiment(QtCore.QObject):
             if self.experiment_button: self.experiment_button.setEnabled(True)
             self.experiment.run()
             if self.experiment_button: self.experiment_button.setEnabled(True)
+            print("EXPERIMENT FINISHED")
                  
                 
         elif self.selected_system["system_id"] == 1:
