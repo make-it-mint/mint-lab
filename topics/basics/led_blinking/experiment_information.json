@@ -129,24 +129,39 @@
             ]       
     },
     "information":{
-        "file":"default_file",
+        "files":{
+            "de":[
+                "experiment_icon.png",
+                "experiment_icon.png",
+                "experiment_icon.png",
+                "experiment_icon.png"
+            ],
+            "en":[
+                "experiment_icon.png",
+                "experiment_icon.png",
+                "experiment_icon.png",
+                "experiment_icon.png"
+            ]
+        },
         "de":[
-            "In diesem Grundlagenexperiment lassen wir eine LED (Licht Emittierende Diode) blinken. Wenn ihr ein Raspberry Pi Pico benutzt, benötigt ihr keine weiteren Bauteile, weil wir die LED direkt auf dem Pico ansteuern können.",
-            "Es wird eine einfache Schaltung aufgebaut, die ihr auf der rechten Seite sehen könnt. Ein Widerstand und eine LED werden in Reihe geschalten.",
-            "Der Pin, der die Schaltung mit Spannung versorgt, gibt 3.3 V aus. Die LED kann diese Spannung theoretisch aushalten, es sollte aber einen Vorwiderstand als Strombegrenzer eingesetzt werden, da die LED sonst kaputt gehen kann.",
-            "Durch Anwendung des kirchhoffschen Gesetzes und des ohmschen Gesetzes wissen wir, dass wir einen Widerstand von mindestens 110 Ohm benutzen sollten (siehe Online-Doku).",
-            "Einer der häufigsten Widerstände, die in Bausätze geliefert werden ist 330 Ohm, deswegen wurde dieser Widerstand hier gewählt, nimm gerne einen anderen Widerstand, solltest du keinen 330 Ohm Widerstand haben.",
-            "Was passiert, wenn ein größerer Widerstand verbaut wird? Der Strom sinkt, welchen Einfluss hat das auf die LED? Teste es doch Mal.",
-            "In diesem Experiment kannst du die Blinkfrequenz des LED steuern. Es wird also eingestellt, wie oft die LED pro Sekunde blinkt."
+            ["In diesem Grundlagenexperiment lassen wir eine LED (Licht Emittierende Diode) blinken.",
+            "Es wird eine einfache Schaltung aufgebaut, die ihr auf der rechten Seite sehen könnt. Ein Widerstand und eine LED werden in Reihe geschalten."],
+            ["Der Pin, der die Schaltung mit Spannung versorgt, gibt 3.3 V aus. Die LED kann diese Spannung theoretisch aushalten, es sollte aber einen Vorwiderstand als Strombegrenzer eingesetzt werden, da die LED sonst kaputt gehen kann.",
+            "Durch Anwendung des kirchhoffschen Gesetzes und des ohmschen Gesetzes wissen wir, dass wir einen Widerstand von mindestens 110 Ohm benutzen sollten (siehe Online-Doku)."],
+            ["Einer der häufigsten Widerstände, die in Bausätze geliefert werden ist 330 Ohm. Deswegen wurde dieser Widerstand hier gewählt. Nimm gerne einen anderen Widerstand, solltest du keinen 330 Ohm Widerstand haben.",
+            "Was passiert, wenn ein größerer Widerstand verbaut wird?",
+            "Der Strom sinkt, welchen Einfluss hat das auf die LED? Teste es doch Mal."],
+            ["In diesem Experiment kannst du die Blinkfrequenz des LED steuern. Es wird also eingestellt, wie oft die LED pro Sekunde blinkt."]
         ],
         "en":[
-            "This basic tutorial we let an LED (Light Emitting Diode) blink. If you are using a Raspberry Pi Pico, there is no need for any additional material, since you will use the onboard LED of the Pico.",
-            "The setup is a rather simple circuit, as you can see on the right side. A resistor and a LED are palced in sequence.",
-            "The Pin providing voltage to the circuit outputs 3.3 V. The LED technically can handle this voltage and the electrical current supplied, but to be sure the LED does not break we are using a resistor as a current limiter.",
-            "By applying Kirchhoffs' Law and Ohms' Law, we calculate a minimum resistance of 110 Ohm (see Online-Doc)",
-            "One of the most common resistors included in experimentation kits is the 330 Ohm resistor. Therefore it was chosen for this experiment. If you do not have one, use any other resistor you have on hand, provided it is greater than 110 Ohm.",
-            "What happens if you use a higher resistance? The current going through the LED declines. But what does that mean for the LED? Test it for yourself and see what happens.",
-            "Other than that, in this Experiment you can set the blinking frequency of a LED. So you can control how many times per second it blinks."
+            ["This basic tutorial we let an LED (Light Emitting Diode) blink.",
+            "The setup is a rather simple circuit, as you can see on the right side. A resistor and a LED are palced in sequence."],
+            ["The Pin providing voltage to the circuit outputs 3.3 V. The LED technically can handle this voltage and the electrical current supplied, but to be sure the LED does not break we are using a resistor as a current limiter.",
+            "By applying Kirchhoffs' Law and Ohms' Law, we calculate a minimum resistance of 110 Ohm (see Online-Doc)"],
+            ["One of the most common resistors included in experimentation kits is the 330 Ohm resistor. Therefore it was chosen for this experiment. If you do not have one, use any other resistor you have on hand, provided it is greater than 110 Ohm.",
+            "What happens if you use a higher resistance?",
+            "The current going through the LED declines. But what does that mean for the LED? Test it for yourself and see what happens."],
+            ["Other than that, in this Experiment you can set the blinking frequency of a LED. So you can control how many times per second it blinks."]
         ]
     },
     "experiment":{
@@ -159,7 +174,7 @@
         }
         ,
         "en":{
-            "name":"Name of Experiment",
+            "name":"Basics: LED blinking",
             "link":"https://make-it-mint.de",
             "custom_content":{
                 "freq_label":"Frequency [Hz]"

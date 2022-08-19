@@ -1,6 +1,6 @@
 {
-    "has_keyboard": 0,
-    "selected_language": "de",
+    "has_keyboard": 1,
+    "selected_language": "en",
     "systems": {
         "rpi": {
             "system_id": 0,
@@ -27,14 +27,6 @@
         "en": {
             "name": "English",
             "icon": "flag_en"
-        },
-        "pl": {
-            "name": "Polski",
-            "icon": "flag_pl"
-        },
-        "fr": {
-            "name": "Français",
-            "icon": "flag_fr"
         }
     },
     "bt_topic": {

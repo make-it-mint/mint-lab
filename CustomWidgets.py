@@ -161,19 +161,19 @@ class ScrollLabel(QtWidgets.QScrollArea):
 
         self.setWidgetResizable(True)
         content = QtWidgets.QWidget(self)
-        self.setStyleSheet("background-color: rgb(52, 100, 135); border-radius: 10px")
+        self.setStyleSheet(f"background-color: {BACKGROUND_COLOR_DARK}; border-radius: 10px; padding: 24px;")
         self.setWidget(content)
         if screen_size.width() <= 1024:
-            font = BASIC_FONT_SMALL
-        else:
             font = BASIC_FONT_MID
+        else:
+            font = BASIC_FONT_LARGE
 
         layout = QtWidgets.QVBoxLayout(content)
 
         self.label = QtWidgets.QLabel(content)
-        self.label.setAlignment(QtCore.Qt.AlignJustify | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
+        self.label.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.label.setWordWrap(True)
-        self.label.setStyleSheet("color: rgb(230, 230, 230)")
+        self.label.setStyleSheet(f"color: {FONT_COLOR_LIGHT}")
         self.label.setFont(font)
         layout.addWidget(self.label)
 

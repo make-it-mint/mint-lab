@@ -195,22 +195,31 @@
             "setup_step4.png"]
     },
     "information":{
-        "file":"ultrasonic.gif",
+        "files":{
+            "de":[
+                "experiment_icon.png",
+                "experiment_icon.png"
+            ],
+            "en":[
+                "experiment_icon.png",
+                "experiment_icon.png"
+            ]
+        },
         "de":[
-            "Du kennst doch bestimmt dieses nervige Piepen, wenn man das Auto parkt. Die meisten modernen Autos haben so ein Parkassistenzsystem.",
-            "Aber was passiert da genau?? Nun, ganz grundlegend messen mehrere Ultraschallsensoren mehrmals pro Sekunde den Abstand zu dem Hindernis vor, oder hinter deinem Auto. Je nachdem wie weit du noch entfernt bist, piept es dann schneller.",
-            "In diesem Experiment kannst du die sowohl das Piepen, als auch die Grenzwerte, ab wann es wie schnell piept einstellen. Der Abstand wird dir dann farblich und mit einem Auto, das auf ein anderes zufährt dargestellt",
-            "Wir benutzen hier nur einen Ultraschallsensor zum Messen des Abstands. Autos haben natürlich mehr, damit man auch zwischen links und rechts unterscheiden kann. Man parkt ja normalerweise schräg ein, bleibt dann aber gerade stehen ;)",
-            "Der Pieper wird mit der von dir ausgewählten Frequenz angesteuert. Vor dem Pieper ist ein ohmscher Widerstand platziert. Den kannst du auch gerne weglassen oder einen anderen Widerstand einsetzen und Mal schauen, was passiert, aber vorsicht... das könnte laut werden ;).",
-            "Alles klar, damit bist du bereit. Viel Spaß beim Experimentieren!!!"
+            ["Du kennst doch bestimmt dieses nervige Piepen, wenn man das Auto parkt. Die meisten modernen Autos haben so ein Parkassistenzsystem.",
+            "Aber was passiert da genau?? Nun, ganz grundlegend messen mehrere Ultraschallsensoren mehrmals pro Sekunde den Abstand zu dem Hindernis vor, oder hinter deinem Auto. Je nachdem wie weit du noch entfernt bist, piept es dann schneller."],
+            ["In diesem Experiment kannst du die sowohl das Piepen, als auch die Grenzwerte, ab wann es wie schnell piept einstellen. Der Abstand wird dir dann farblich und mit einem Auto, das auf ein anderes zufährt dargestellt",
+            "Wir benutzen hier nur einen Ultraschallsensor zum Messen des Abstands. Autos haben natürlich mehr, damit man auch zwischen links und rechts unterscheiden kann. Man parkt ja normalerweise schräg ein, bleibt dann aber gerade stehen ;)"],
+            ["Der Pieper wird mit der von dir ausgewählten Frequenz angesteuert. Vor dem Pieper ist ein ohmscher Widerstand platziert. Den kannst du auch gerne weglassen oder einen anderen Widerstand einsetzen und Mal schauen, was passiert, aber vorsicht... das könnte laut werden ;).",
+            "Alles klar, damit bist du bereit. Viel Spaß beim Experimentieren!!!"]
         ],
         "en":[
-            "You probably already know that annoying beeping sound during parking a car. Most modern cars have one of those parking assistant system.",
+            ["You probably already know that annoying beeping sound during parking a car. Most modern cars have one of those parking assistant system.",
             "But how does this actually work?? Well, basically multiple ultrasound sensors are measuring the distance to the obstacle in front or in the back quickly. Depending on how far you are away from that obstacle, the beeping frequency increases.",
-            "In this Experiment you can set the thresholds at which the beeping starts and the beeping frequencies. The distace is then presented to you in a coloured bar and a car that moves towards an obstacle, representing the measured distance.",
-            "Here, we are only using a single ultrasound sensor to measure the distance. Cars use multiple sensore so that you can differentiate between the left and right side of the car. This is necessary because you usually park at an angle, but hopefully usually stop after straightening ;).",
+            "In this Experiment you can set the thresholds at which the beeping starts and the beeping frequencies. The distace is then presented to you in a coloured bar and a car that moves towards an obstacle, representing the measured distance."],
+            ["Here, we are only using a single ultrasound sensor to measure the distance. Cars use multiple sensore so that you can differentiate between the left and right side of the car. This is necessary because you usually park at an angle, but hopefully usually stop after straightening ;).",
             "The beeper will make noise at the frequencies you set. In front of the beeper we placed a resistor. But you can also leave it out or put a different one there and see (or hear) what happens. But watch out... might be loud ;).",
-            "Alright, you are ready. Now set everything up and enjoy Experimenting!!!"
+            "Alright, you are ready. Now set everything up and enjoy Experimenting!!!"]
         ]
     },
     "experiment":{

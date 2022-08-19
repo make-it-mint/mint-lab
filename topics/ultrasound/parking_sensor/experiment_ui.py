@@ -27,7 +27,7 @@ class Experiment(UI_Template):
         self.set_experiment_header(experiment_name=experiment_information["experiment"][self.language]["name"], hyperlink=experiment_information["experiment"][self.language]["link"])
         self.fill_experiment_material(materials=experiment_information["material"][self.language][str(self.selected_system["system_id"])])
         self.fill_experiment_setup(image_dir=os.path.join(self.EXPERIMENT_DIR,"assets"),image_path=experiment_information["setup"][str(self.selected_system["system_id"])])
-        self.fill_experiment_info(text=experiment_information["information"][self.language], file_path=os.path.join(self.EXPERIMENT_DIR,"assets",experiment_information["information"]["file"]))
+        self.fill_experiment_info(text=experiment_information["information"][self.language], file_paths=[f"{self.EXPERIMENT_DIR}/assets/{item}" for item in experiment_information['information']['files'][self.language]])
         self.fill_experiment(content=experiment_information["experiment"])
 
 
