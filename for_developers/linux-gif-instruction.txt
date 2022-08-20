@@ -1,0 +1,20 @@
+General Info
+
+For this software, images and gif dimensions should be 8:9 (width:height)
+if using .jpg files, background colour is rgb(62, 110, 145)
+
+
+For Linux
+
+https://averagelinuxuser.com/make-gif-in-linux-with-one-simple-command/
+
+Or Quick:
+-install imagemagick
+sudo apt-get install imagemagick
+
+-cd to directory
+
+-create gif using all png files in directory
+convert -delay 100 -loop 0 *.png  my_gif.gif
+
+

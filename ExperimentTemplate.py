@@ -290,10 +290,11 @@ class UI_Template(QtWidgets.QWidget):
         self.info_pages = text
         self.info_movie_file_path = file_paths
 
-
+        self.video_size = (int(self.screen_size.width()*.4), int(self.screen_size.height()*.8))#(width:height->8:9(e.g. 800:900))
         self.info_movie_label = QtWidgets.QLabel()
         self.info_movie_label.setSizePolicy(SIZE_POLICY)
         self.info_movie_label.setScaledContents(True)
+        #self.info_movie_label.setFixedSize(self.video_size[0],self.video_size[1])
         layout.addWidget(self.info_movie_label, 0, 2, 2, 1, QtCore.Qt.AlignCenter )
 
 
@@ -334,17 +335,21 @@ class UI_Template(QtWidgets.QWidget):
             if file.endswith(".gif"):
                 movie = QtGui.QMovie(file)
                 self.info_movie_label.setMovie(movie)
+                movie.setScaledSize(QtCore.QSize(self.video_size[0],self.video_size[1]))
                 movie.start()
             else:
                 pixmap = QtGui.QPixmap(file)
                 self.info_movie_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.4), int(self.screen_size.height()*.8), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
-        except:
-                pixmap = QtGui.QPixmap(self.info_movie_file_path[0])
-                self.info_movie_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.4), int(self.screen_size.height()*.8), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        except Exception as e:
+            print(e)
+            pixmap = QtGui.QPixmap(self.info_movie_file_path[0])
+            self.info_movie_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.4), int(self.screen_size.height()*.8), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
         
 
     def change_info_page(self):
         self.current_info_page = self.current_info_page + 1 if self.current_info_page < len(self.info_pages)-1 else 0
+
+        self.change_info_page_bt.setStyleSheet(f"background-color:{BACKGROUND_ORANGE}; color:{FONT_COLOR_LIGHT}") if self.current_info_page == len(self.info_pages)-1 else self.change_info_page_bt.setStyleSheet(f"background-color:{BACKGROUND_LGREEN}; color:{FONT_COLOR_LIGHT}")
         self.set_info_content(page_idx=self.current_info_page)
 
 
