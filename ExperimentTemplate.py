@@ -294,7 +294,6 @@ class UI_Template(QtWidgets.QWidget):
         self.info_movie_label = QtWidgets.QLabel()
         self.info_movie_label.setSizePolicy(SIZE_POLICY)
         self.info_movie_label.setScaledContents(True)
-        #self.info_movie_label.setFixedSize(self.video_size[0],self.video_size[1])
         layout.addWidget(self.info_movie_label, 0, 2, 2, 1, QtCore.Qt.AlignCenter )
 
 
