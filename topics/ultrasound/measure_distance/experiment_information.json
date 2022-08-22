@@ -232,24 +232,35 @@
             "setup_picopi_13.png"]
     },
     "information":{
-        "file":"ultrasonic.gif",
+        "files":{
+            "de":[
+                "ultrasonic.gif",
+                "ultrasonic.gif",
+                "ultrasonic.gif"
+            ],
+            "en":[
+                "ultrasonic.gif",
+                "ultrasonic.gif",
+                "ultrasonic.gif"
+            ]
+        },
         "de":[
-            "Im Experiment \"Distanz Messen\" wird ein Ultraschall Sensor an den Raspberry Pi angeschlossen, der Schallimpulse in einem Frequenzbereich aussendet, den das menschliche Ohr nicht wahrnehmen kann.\nDa sich Schall nicht nur durch die Luft, sondern auch durch allen anderen Stoffe beliebiger Aggregatzustände (fest, flüssig, gasförmig, Plasma) bewegen kann, ist es möglich in diesem Experiment verschiedene Materialien auszuwählen.",
-            "Damit kannst du überprüfen, wie sich die Schallgeschwindigkeit zwischen Luft und einem anderen Stoff verhält.",
+            ["In diesem Experiment wird ein Ultraschall Sensor an den Raspberry Pi angeschlossen, der Schallimpulse in einem Frequenzbereich aussendet, den das menschliche Ohr nicht wahrnehmen kann.\nDa sich Schall nicht nur durch die Luft, sondern auch durch allen anderen Stoffe beliebiger Aggregatzustände (fest, flüssig, gasförmig, Plasma) bewegen kann, ist es möglich in diesem Experiment verschiedene Materialien auszuwählen."],
+            ["Damit kannst du überprüfen, wie sich die Schallgeschwindigkeit zwischen Luft und einem anderen Stoff verhält.",
             "Du kannst auch Mal recherchieren, was die Schallgeschwindigkeiten in hier nicht angegebenen Materialien sind und sie selbst eingeben.",
-            "Du misst in diesem Experiment immer die zeitliche Differenz zwischen dem Aussenden und Empfangen der Schallimpulse.",
-            "Wenn du jetzt eine andere Schallgeschwindigkeit eingibst, ist der Gegenstand, zu dem die Distanz gemessen wird, zwar immernoch genausoweit entfernt wie vorher, aber du siehst, wie weit er erntfernt wäre, würde sich der Ultraschallimpuls durch ein anderes Material bewegen.",
+            "Du misst in diesem Experiment immer die zeitliche Differenz zwischen dem Aussenden und Empfangen der Schallimpulse."],
+            ["Wenn du jetzt eine andere Schallgeschwindigkeit eingibst, ist der Gegenstand, zu dem die Distanz gemessen wird, zwar immernoch genausoweit entfernt wie vorher, aber du siehst, wie weit er erntfernt wäre, würde sich der Ultraschallimpuls durch ein anderes Material bewegen.",
             "Auf der Experiment Seite sind zwei Schieberegler für die blaue und die rote LED vorhanden, hiermit kann eingestellt werden, aber welcher Distanz die jeweiligen LEDs angehen sollen.",
-            "Na dann...bau das Experiment nach und viel Spaß beim ausprobieren :)"
+            "Na dann...bau das Experiment nach und viel Spaß beim ausprobieren :)"]
         ],
         "en":[
-            "In the Experiment \"Measure Distance\" an Ultrasound Sensor is connected to the Raspberry Pi. It emits impulses of sound the are in a frequency range not audible to the human hearing.\nSince sound can travel not only through the air, but any other material, regardless of its aggregate state (solid, liquid, gaseous, plasma), the Experiment gives you the option of specifying different materials for the sound to travel through.",
-            "With this it is possible for you the check how the speed of sound in different materials affect the measured distance.",
+            ["In the Experiment \"Measure Distance\" an Ultrasound Sensor is connected to the Raspberry Pi. It emits impulses of sound the are in a frequency range not audible to the human hearing.\nSince sound can travel not only through the air, but any other material, regardless of its aggregate state (solid, liquid, gaseous, plasma), the Experiment gives you the option of specifying different materials for the sound to travel through."],
+            ["With this it is possible for you the check how the speed of sound in different materials affect the measured distance.",
             "You are encouraged to research the speed of sound for different materials and input the as your custom speeds.",
-            "In this Experiment the algorithm calculates the distance by taking the time difference between emitting and receiving the ultrasound impulse, which is the duration the sound traveled through the air. This duration multiplied by the speed of sound, which you can select, returns to you the total distance traveled. But since the sound travels to the object and back, the result has to be halved, whcich gives you the formula in the Experiment tab.",
-            "Now if you do not move the object you are measuring the distance to, but change the selected speed of sound and restart the experiment, the algorithm will use the newly entered value and show you how far the object would be from the sensor if the ultrasound impulse would travel through that material, instead of air.",
+            "In this Experiment the algorithm calculates the distance by taking the time difference between emitting and receiving the ultrasound impulse, which is the duration the sound traveled through the air. This duration multiplied by the speed of sound, which you can select, returns to you the total distance traveled. But since the sound travels to the object and back, the result has to be halved, which gives you the formula in the Experiment tab."],
+            ["Now if you do not move the object you are measuring the distance to, but change the selected speed of sound and restart the experiment, the algorithm will use the newly entered value and show you how far the object would be from the sensor if the ultrasound impulse would travel through that material, instead of air.",
             "The Experiment tab also gives you two sliders that can be used to set thresholds. If the measured distance falls below the selected thresholds the corresponding LED will turn on.",
-            "Alright, that is all for now... It is your Turn Now, set up the Experiment and have a go at it :)"
+            "Alright, that is all for now... It is your Turn Now, set up the Experiment and have a go at it :)"]
         ]
     },
     "experiment":{
@@ -258,13 +269,13 @@
             "link":"https://make-it-mint.de",
             "formula-img":"formula_de.png",
             "speed":{
-                "Luft":330,
-                "Wasser":1200,
-                "Stahl":3400,
-                "Holz":80,
-                "Sonstige":"DEIN WERT"
+                "air":330,
+                "water":1200,
+                "steel":3400,
+                "wood":80,
+                "other":"DEIN WERT"
             },
-            "distance":"Aktuelle Distanz",
+            "distance":"Aktuelle Distanz in cm",
             "medium":"Medien"
             
 
@@ -274,13 +285,13 @@
             "link":"https://make-it-mint.de",
             "formula-img":"formula_de.png",
             "speed":{
-                "Air":330,
-                "Water":1200,
-                "Steel":3400,
-                "Wood":80,
-                "Other":"YOUR VALUE"
+                "air":330,
+                "water":1200,
+                "steel":3400,
+                "wood":80,
+                "other":"YOUR VALUE"
             },
-            "distance":"Current Distance",
+            "distance":"Current Distance in cm",
             "medium":"Media"
         }
     }

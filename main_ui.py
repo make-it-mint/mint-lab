@@ -75,10 +75,11 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
     frame.resize(int(screen_size.width()/4), int(screen_size.height()*5.5/16))
     parent_layout.addWidget(frame,2,0,1,1)
 
-    frame_layout.setRowStretch(0, 1)
-    frame_layout.setRowStretch(1, 3)
-    frame_layout.setRowStretch(2, 3)
-    frame_layout.setRowStretch(3, 3)
+    frame_layout.setRowStretch(0, 2)
+    frame_layout.setRowStretch(1, 6)
+    frame_layout.setRowStretch(2, 2)
+    frame_layout.setRowStretch(3, 5)
+    frame_layout.setRowStretch(4, 5)
 
     parent.sort_topics = QtWidgets.QToolButton()
     parent.sort_topics.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextOnly)
@@ -90,12 +91,12 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
     frame_layout.addWidget(parent.sort_topics,0,0,1,2)
 
     images=['system/new','system/beginner', 'system/settings','system/exit'] 
+    widget_positions=[[1,0,1,1],[1,1,1,1],[3,0,1,1],[4,0,1,1]]
     button_list = []       
 
 
     for idx, image in enumerate(images):
-        row = int(math.floor(idx/2)+1)
-        col = int(idx%2)
+
         interface_button = QtWidgets.QToolButton()
         interface_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         interface_button.setSizePolicy(SIZE_POLICY)
@@ -106,7 +107,7 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
         image_path = f'{asset_dir}/assets/{image}.png'
         interface_button.setIcon(QtGui.QIcon(image_path))
         interface_button.setIconSize(QtCore.QSize(int(frame.size().width()/3.5), int(frame.size().width()/3.5)))
-        frame_layout.addWidget(interface_button,row,col)
+        frame_layout.addWidget(interface_button,widget_positions[idx][0],widget_positions[idx][1],widget_positions[idx][2],widget_positions[idx][3])
         button_list.append(interface_button)
 
     parent.system_selection = QtWidgets.QToolButton()
@@ -120,7 +121,7 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
             break
     parent.system_selection.setIcon(QtGui.QIcon(image_path))
     parent.system_selection.setIconSize(QtCore.QSize(int(frame.size().width()/3.5), int(frame.size().width()/3.5)))
-    frame_layout.addWidget(parent.system_selection,3,1)
+    frame_layout.addWidget(parent.system_selection,3,1,2,1)
 
 
     parent.sort_new=button_list[0]

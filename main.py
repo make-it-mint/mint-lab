@@ -87,7 +87,8 @@ class MainApp(object):
 
     def _previous_page(self):
         """move to previsou page"""
-        self._set_listed_content(direction=-1)
+        if not self._selection_starting_idx == 0:
+            self._set_listed_content(direction=-1)
 
 
     def _next_page(self):
@@ -119,17 +120,6 @@ class MainApp(object):
     def _show_topics(self):
         """display topics"""
 
-    #unused
-    # def _select_language(self):
-    #     """select language and change content of displayed items"""
-    #     #open new window
-    #     language_selection = LanguageSelection(parent=self.main_window, languages = self._settings["languages"], root_dir=self.ROOT_DIR, cur_language=self._language)
-    #     if language_selection.exec():
-    #         #Reload all widgets with new language
-    #         self._settings["selected_language"]=language_selection.Selected_Language
-    #         self._language = self._settings["selected_language"]
-    #         self.translate_icons()
-    #         self._overwrite_settings_file()
 
 
     def translate_icons(self):

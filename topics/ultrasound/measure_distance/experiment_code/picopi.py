@@ -7,17 +7,14 @@ RED=10
 BLUE=5
 
 try:
+    factor = 100/1_000_000 #[m/us -> cm/s]
+    TRIGGER = Pin(16, Pin.OUT)
+    ECHO = Pin(17, Pin.IN)
+    LED_RED = Pin(15,Pin.OUT)
+    LED_BLUE = Pin(14,Pin.OUT)
     while True:
-        factor = 100/1_000_000 #[m/us -> cm/s]
-        TRIGGER = Pin(0, Pin.OUT)
-        ECHO = Pin(1, Pin.IN)
-        LED_RED = Pin(15,Pin.OUT)
-        LED_BLUE = Pin(14,Pin.OUT)
+        
 
-        
-    
-        
-        
         TRIGGER.on()
         sleep(.00001)
         TRIGGER.off()
