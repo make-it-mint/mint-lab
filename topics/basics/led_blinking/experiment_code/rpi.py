@@ -1,4 +1,5 @@
-import time
+from time import sleep
+import RPi.GPIO as GPIO
 
 
 class Experiment:
@@ -8,11 +9,24 @@ class Experiment:
         self.value_for_ui = value_for_ui
 
     def run(self):
-        counter = 0
+        GPIO.setmode(GPIO.BCM)
+        GPIO_LED = 26
+        GPIO.setup(GPIO_LED, GPIO.OUT)
+
         while self.is_running:
-            counter+=1
-            self.value_for_ui.emit(f"counter={counter}")
-            time.sleep(1/self.FREQUENCY)
+            # LED einschalten
+            GPIO.output(GPIO_LED,GPIO.HIGH)
+            self.value_for_ui.emit(f"state=on")
+            # halbe Sekunde warten
+            sleep(1/(2*self.FREQUENCY))
+            # LED ausschalten
+            GPIO.output(GPIO_LED,GPIO.LOW)
+            self.value_for_ui.emit(f"state=off")
+            # 1 Sekunde warten
+            sleep(1/(2*self.FREQUENCY))
+            
+        GPIO.cleanup()
 
     def stop(self):
+        #print("Measure stopped by Button Click")
         self.is_running = False

@@ -2,7 +2,7 @@ import os, json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from serial.tools.list_ports import comports as list_comports
 import math
-from constants import *
+from software_data.constants import *
 
 
 
@@ -161,19 +161,19 @@ class ScrollLabel(QtWidgets.QScrollArea):
 
         self.setWidgetResizable(True)
         content = QtWidgets.QWidget(self)
-        self.setStyleSheet("background-color: rgb(52, 100, 135); border-radius: 10px")
+        self.setStyleSheet(f"background-color: {BACKGROUND_COLOR_DARK}; border-radius: 10px; padding: 24px;")
         self.setWidget(content)
         if screen_size.width() <= 1024:
-            font = BASIC_FONT_SMALL
-        else:
             font = BASIC_FONT_MID
+        else:
+            font = BASIC_FONT_LARGE
 
         layout = QtWidgets.QVBoxLayout(content)
 
         self.label = QtWidgets.QLabel(content)
-        self.label.setAlignment(QtCore.Qt.AlignJustify | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
+        self.label.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.label.setWordWrap(True)
-        self.label.setStyleSheet("color: rgb(230, 230, 230)")
+        self.label.setStyleSheet(f"color: {FONT_COLOR_LIGHT}")
         self.label.setFont(font)
         layout.addWidget(self.label)
 
@@ -186,8 +186,7 @@ class ScrollLabel(QtWidgets.QScrollArea):
 
 class LanguageSelection(QtWidgets.QDialog):
     """
-    This "window" is a QWidget. If it has no parent, it
-    will appear as a free-floating window as we want.
+    Unused
     """
     def __init__(self, languages, root_dir, cur_language, parent=None):
         super().__init__(parent)
@@ -291,3 +290,10 @@ class SystemSelection(QtWidgets.QDialog):
         self.New_Selected_System["comport"]=self.comports_list_widget.currentItem().text()
 
 
+class SliderProxyStyle(QtWidgets.QProxyStyle):
+    def pixelMetric(self, metric, option, widget):
+        if metric == QtWidgets.QStyle.PM_SliderThickness:
+            return 80
+        elif metric == QtWidgets.QStyle.PM_SliderLength:
+            return 80
+        return super().pixelMetric(metric, option, widget)

@@ -1,15 +1,13 @@
 import os, time, math, multiprocessing, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
+from VirtualKeyboard import Keyboard
+import importlib.util
+from software_data.constants import *
 
 class UI_Template(QtWidgets.QWidget):
 
-    BASIC_FONT_LARGE = QtGui.QFont('Arial', 22)
-    BASIC_FONT_MEDIUM = QtGui.QFont('Arial', 16)
-    BASIC_FONT_SMALL = QtGui.QFont('Arial', 12)
-    BACKGROUND_COLOR = "rgb(62, 110, 145)"
-    FONT_COLOR_LIGHT = "rgb(230, 230, 230)"
-    FONT_COLOR_DARK = "rgb(80, 80, 80)"
+    
 
     def __init__(self, root_dir, language, screen_size, parent=None, program_settings=None):
         super().__init__(parent=parent)
@@ -23,9 +21,8 @@ class UI_Template(QtWidgets.QWidget):
         self.language = language
         
         self.MainWidget=QtWidgets.QWidget()
-        self.MainWidget.setStyleSheet(f"background-color:{self.BACKGROUND_COLOR}")
+        self.MainWidget.setStyleSheet(f"background-color:{BACKGROUND_COLOR}; color:{FONT_COLOR_LIGHT};")
         self.MainLayout=QtWidgets.QGridLayout(self.MainWidget)
-        self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
 
         self.show_fullscreen()
         
@@ -33,19 +30,26 @@ class UI_Template(QtWidgets.QWidget):
         self._set_header_widgets()
         self._set_experiment_tab_widgets()
 
+
         
         self._create_experiment_material_layout()
 
 
         self.MainWidget.resize(self.screen_size)
+
+        if not self.program_settings["has_keyboard"]:
+            self.initiate_keyboard()
+
         self.MainLayout.setColumnStretch(0, 1)
         self.MainLayout.setColumnStretch(1, 17)
         self.MainLayout.setRowStretch(0, 1)
         self.MainLayout.setRowStretch(1, 17)
 
+    def initiate_keyboard(self):
+        self.keyboard = Keyboard(language = self.language, screen_size = self.screen_size, parent=self.MainWidget)
+
     def _set_experiment_tab_widgets(self):
         self.tabs_widget = QtWidgets.QTabWidget()
-        self.tabs_widget.setStyleSheet("color:rgb(230,230,230);")
         self.tabs_widget.setTabPosition(QtWidgets.QTabWidget.TabPosition.North)
 
         self.tabs={}
@@ -61,23 +65,22 @@ class UI_Template(QtWidgets.QWidget):
     def _set_header_widgets(self):
         image_path = f"{self.ROOT_DIR}/assets/system/close_experiment.png"
         self.close_experiment = QtWidgets.QPushButton()
-        self.close_experiment.setSizePolicy(self.sizePolicy)
+        self.close_experiment.setSizePolicy(SIZE_POLICY)
         self.close_experiment.setFlat(True)
-        self.close_experiment.setObjectName("close_experiment")
-        self.close_experiment.setStyleSheet(f"background-color:rgb(100,100,100);border-radius:{int(self.screen_size.height()*.024)}px")
+        self.close_experiment.setStyleSheet(f"background-color:{BACKGROUND_GREY};border-radius:{int(self.screen_size.height()*.024)}px")
         self.close_experiment.setIcon(QtGui.QIcon(image_path))
         self.close_experiment.setIconSize(QtCore.QSize(int(self.screen_size.width()*.05), int(self.screen_size.height()*.05)))
         self.close_experiment.clicked.connect(self.close)
 
         self.header =QtWidgets.QLabel()
-        self.header.setFont(self.BASIC_FONT_LARGE)
-        self.header.setStyleSheet(f"color: {self.FONT_COLOR_LIGHT}")
+        self.header.setFont(BASIC_FONT_LARGE)
+        self.header.setStyleSheet(f"color: {FONT_COLOR_LIGHT}")
         
 
         self.header_button =QtWidgets.QLabel()
-        self.header_button.setFont(self.BASIC_FONT_LARGE)
+        self.header_button.setFont(BASIC_FONT_LARGE)
 
-        self.header_button.setStyleSheet(f"background-color:rgb(0,200,0);border-radius:{int(self.screen_size.height()*.024)}px; padding:10px 0 10px 0;")
+        self.header_button.setStyleSheet(f"background-color:{BACKGROUND_LGREEN};border-radius:{int(self.screen_size.height()*.024)}px; padding:10px 0 10px 0;")
 
         self.MainLayout.addWidget(self.close_experiment,0,0,1,1)
         self.MainLayout.addWidget(self.header,0,1,1,1)
@@ -112,10 +115,8 @@ class UI_Template(QtWidgets.QWidget):
         self.material_buttons=[]
         for button_idx in range(self._material_rows*self._material_cols):
             material_button = OverViewButton(parent=tab_widget, screen_size=self.screen_size)
-            material_button.setSizePolicy(self.sizePolicy)
+            material_button.setSizePolicy(SIZE_POLICY)
             material_button.setAutoRaise(True)
-            material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/default.png")
-            material_button.setButtonText(text=f"Test")
             self.material_buttons.append(material_button)
             layout.addWidget(material_button, int(button_idx/self._material_cols),int(button_idx%self._material_cols))
 
@@ -163,11 +164,11 @@ class UI_Template(QtWidgets.QWidget):
             self.next_material_button = self.material_buttons[-1]
             self.next_material_button.setActive(True)
             self.next_material_button.setEnabled(True)
-            self.next_material_button.setStyleSheet("background-color:rgb(0,205,0); margin:10px; border-radius:10px;")
+            self.next_material_button.setStyleSheet(f"background-color:{BACKGROUND_LGREEN}; margin:10px; border-radius:10px;")
             self.next_material_button.setButtonIcon(image_path=f"{self.ROOT_DIR}/assets/system/next.png")
             self.next_material_button.setButtonText(f"{self.program_settings['bt_material_page'][self.language]} {self.material_page}/{int(math.ceil(len(self.materials)/(len(self.material_buttons)-1)))}")
             self.next_material_button.clicked.connect(self.update_material_page)
-            self.next_material_button.text.setStyleSheet("color:rgb(230,230,230);")
+            self.next_material_button.text.setStyleSheet(f"color:rgb(230,230,230{BACKGROUND_WHITE};")
             self.next_material_button.icon_button.clicked.connect(self.update_material_page)
             
 
@@ -202,7 +203,7 @@ class UI_Template(QtWidgets.QWidget):
     def fill_experiment_setup(self, image_dir, image_path:list=None):
         self.setup_page = 0
         tab_widget = self.tabs["setup"]["widget"]
-        tab_widget.setStyleSheet(f"background-color:rgb(0,0,0)")
+        tab_widget.setStyleSheet(f"background-color:{BACKGROUND_BLACK}")
         layout = self.tabs["setup"]["layout"]
         layout.setColumnStretch(0,1)
         layout.setRowStretch(0,9)
@@ -215,19 +216,18 @@ class UI_Template(QtWidgets.QWidget):
             print("No Path specified")
 
         self.setup_image = QtWidgets.QToolButton()
-        self.setup_image.setSizePolicy(self.sizePolicy)
+        self.setup_image.setSizePolicy(SIZE_POLICY)
         self.setup_image.setAutoRaise(True)
         self.setup_image.setIcon(QtGui.QIcon(image_path))
         self.setup_image.setIconSize(QtCore.QSize(int(self.screen_size.width()*.95), int(self.screen_size.height()*.75)))
         layout.addWidget(self.setup_image, 0,0)
+        self.setup_image.clicked.connect(self.update_setup_image)
 
-        self.change_setup_image_button = QtWidgets.QPushButton()
-        self.change_setup_image_button.setFont(self.BASIC_FONT_MEDIUM)
+        self.change_setup_image_button = QtWidgets.QLabel()
+        self.change_setup_image_button.setFont(BASIC_FONT_MID)
         self.change_setup_image_button.setText(f'[fritzing] - {self.program_settings["experiment_setup"]["complete_page"][self.language]}')
-        self.change_setup_image_button.setStyleSheet(f"background-color: {self.FONT_COLOR_DARK}; color:{self.FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
-        self.change_setup_image_button.setMinimumWidth(int(self.screen_size.width()*.8))
+        self.change_setup_image_button.setStyleSheet(f"color:{FONT_COLOR_LIGHT}; border-radius:5px; padding 5px")
         layout.addWidget(self.change_setup_image_button,1,0, QtCore.Qt.AlignCenter)
-        self.change_setup_image_button.clicked.connect(self.update_setup_image)
         
 
     def update_setup_image(self):
@@ -260,7 +260,10 @@ class UI_Template(QtWidgets.QWidget):
                     if self.selected_system["system_id"] == 2:
                         new_text = f'{line[:line.find(key)]}{key}={value};\n'
                     else:
-                        new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                        if type(value) == int or type(value) == float or type(value) == list or type(value) == dict:
+                            new_text = f'{line[:line.find(key)]}{key}={value}\n'
+                        elif type(value) == str:
+                            new_text = f'{line[:line.find(key)]}{key}="{value}"\n'
                     new_lines.update({line_idx:new_text})
                     break
 
@@ -273,31 +276,80 @@ class UI_Template(QtWidgets.QWidget):
 
         
 
-    def fill_experiment_info(self, text=[], file_path=None):
-        if not file_path:
-            file_path = f"{self.ROOT_DIR}/assets/system/default.png"
+    def fill_experiment_info(self, text=[], file_paths=None):
+        if not file_paths:
+            file_paths = f"{self.ROOT_DIR}/assets/system/default.png"
 
         tab_widget = self.tabs["information"]["widget"]
         layout = self.tabs["information"]["layout"]
-        info_text = ScrollLabel(screen_size=self.screen_size)
-        layout.addWidget(info_text, 0, 0)
+        self.info_text = ScrollLabel(screen_size=self.screen_size)
+        layout.addWidget(self.info_text, 0, 0,1,2)
 
-        info = ""
-        for idx, item in enumerate(text):
-            info += item
-            if idx < len(text)-1:
-                info += f"\n\n"
+        self.current_info_page = 0
+        self.info_pages = text
+        self.info_movie_file_path = file_paths
 
-        info_text.setText(info)
+        self.video_size = (int(self.screen_size.width()*.4), int(self.screen_size.height()*.8))#(width:height->8:9(e.g. 800:900))
+        self.info_movie_label = QtWidgets.QLabel()
+        self.info_movie_label.setSizePolicy(SIZE_POLICY)
+        self.info_movie_label.setScaledContents(True)
+        layout.addWidget(self.info_movie_label, 0, 2, 2, 1, QtCore.Qt.AlignCenter )
 
-        movie_label = QtWidgets.QLabel()
-        movie = QtGui.QMovie(file_path)
-        movie_label.setMovie(movie)
-        layout.addWidget(movie_label, 0, 1)
-        movie.start()
+
+        self.info_page_label = QtWidgets.QLabel(f"{self.current_info_page+1}/{len(self.info_pages)}")
+        self.info_page_label.setSizePolicy(SIZE_POLICY)
+        self.info_page_label.setFont(BASIC_FONT_LARGE)
+        layout.addWidget(self.info_page_label,1,1, QtCore.Qt.AlignCenter )
+
+        
+        self.change_info_page_bt = QtWidgets.QPushButton()
+        self.change_info_page_bt.setSizePolicy(SIZE_POLICY)
+        self.change_info_page_bt.setStyleSheet(f"background-color:{BACKGROUND_LGREEN}; color:{FONT_COLOR_LIGHT}")
+        self.change_info_page_bt.setFont(BASIC_FONT_LARGE)
+        self.change_info_page_bt.clicked.connect(self.change_info_page)
+        layout.addWidget(self.change_info_page_bt,1,0)
+
+        self.set_info_content(page_idx=self.current_info_page)
 
         layout.setColumnStretch(0, 3)
-        layout.setColumnStretch(1, 2)
+        layout.setColumnStretch(1, 1)
+        layout.setColumnStretch(2, 4)
+        layout.setRowStretch(0, 9)
+        layout.setRowStretch(1, 1)
+
+    def set_info_content(self, page_idx):
+        info = ""
+        for idx, item in enumerate(self.info_pages[page_idx]):
+            info += item
+            if idx < len(self.info_pages[page_idx])-1:
+                info += f"\n\n"
+
+        self.info_text.setText(info)
+        self.info_page_label.setText(f"{self.current_info_page+1}/{len(self.info_pages)}")
+        
+        
+        try:
+            file = self.info_movie_file_path[page_idx]
+            if file.endswith(".gif"):
+                movie = QtGui.QMovie(file)
+                self.info_movie_label.setMovie(movie)
+                movie.setScaledSize(QtCore.QSize(self.video_size[0],self.video_size[1]))
+                movie.start()
+            else:
+                pixmap = QtGui.QPixmap(file)
+                self.info_movie_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.4), int(self.screen_size.height()*.8), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        except Exception as e:
+            print(e)
+            pixmap = QtGui.QPixmap(self.info_movie_file_path[0])
+            self.info_movie_label.setPixmap(pixmap.scaled(int(self.screen_size.width()*.4), int(self.screen_size.height()*.8), QtCore.Qt.AspectRatioMode.KeepAspectRatio))
+        
+
+    def change_info_page(self):
+        self.current_info_page = self.current_info_page + 1 if self.current_info_page < len(self.info_pages)-1 else 0
+
+        self.change_info_page_bt.setStyleSheet(f"background-color:{BACKGROUND_ORANGE}; color:{FONT_COLOR_LIGHT}") if self.current_info_page == len(self.info_pages)-1 else self.change_info_page_bt.setStyleSheet(f"background-color:{BACKGROUND_LGREEN}; color:{FONT_COLOR_LIGHT}")
+        self.set_info_content(page_idx=self.current_info_page)
+
 
     def fill_experiment(self, content=None):
         pass
@@ -324,35 +376,50 @@ class Running_Experiment(QtCore.QObject):
     value_for_ui = QtCore.pyqtSignal(str)
     experiment_is_running = True
 
-    def __init__(self, selected_system, dir, serial_read_freq_hz:int = 1):
+    def __init__(self, selected_system, dir, experiment_button=None, serial_read_freq_hz:int = 1, timeout=5):
         super().__init__()
         self.selected_system = selected_system
         self.dir = dir
         self.serial_read_freq = serial_read_freq_hz
+        self.timeout = timeout
+        self.experiment_button = experiment_button
         
 
     def start_experiment(self):
+        if self.experiment_button: self.experiment_button.setEnabled(False)
         if self.selected_system["system_id"] == 0:
-            from topics.basics.led_blinking.experiment_code.rpi import Experiment as rpi_experiment
-            self.experiment = rpi_experiment(self.experiment_is_running, self.value_for_ui)
-            self.experiment.run()        
+            spec = importlib.util.spec_from_file_location("module.name", f'{self.dir}/experiment_code/rpi.py')
+            experiment_module_rpi = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(experiment_module_rpi)
+            self.experiment = experiment_module_rpi.Experiment(self.experiment_is_running, self.value_for_ui)
+            if self.experiment_button: self.experiment_button.setEnabled(True)
+            self.experiment.run()
+            if self.experiment_button: self.experiment_button.setEnabled(True)
+            #print("EXPERIMENT FINISHED")
+                 
                 
         elif self.selected_system["system_id"] == 1:
+
             experiment = multiprocessing.Process(target=self.run_picopi)
             try:
                 experiment.start()
-                time.sleep(1)
-                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600)
+                time.sleep(1.5)
+                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600, timeout=self.timeout)
                 ser.flushInput()
+                if self.experiment_button: self.experiment_button.setEnabled(True)
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
+                #print("Experiment Stopped by Button")
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
+                if self.experiment_button: self.experiment_button.setEnabled(True)
             except Exception or KeyboardInterrupt as e:
                 print(e)
                 experiment.terminate()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
+                if self.experiment_button: self.experiment_button.setEnabled(True)
 
     def run_picopi(self):
-        os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("mint-lab/")+9:]}/experiment_code/picopi.py')
+        #print(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')
+        os.system(f'ampy --port {self.selected_system["comport"]} run {self.dir[self.dir.rfind("topics"):]}/experiment_code/picopi.py')
