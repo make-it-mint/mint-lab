@@ -80,7 +80,7 @@ class Experiment(UI_Template):
 
         
     def write_values_to_experiment_file(self):
-        self.EXPERIMENT_VALUES["FREQUENCY"] = self.value_field.text() if self.value_field.text() != "" else self.DEFAULT_VALUES["FREQUENCY"]
+        self.EXPERIMENT_VALUES["FREQUENCY"] = float(self.value_field.text()) if self.value_field.text() != "" else self.DEFAULT_VALUES["FREQUENCY"]
         self.set_values(new_values = self.EXPERIMENT_VALUES, dir = self.EXPERIMENT_DIR)
 
 

@@ -96,8 +96,7 @@ def create_interface_widgets(parent, parent_layout, screen_size, asset_dir, sett
 
 
     for idx, image in enumerate(images):
-        #row = int(math.floor(idx/2)+1)
-        #col = int(idx%2)
+
         interface_button = QtWidgets.QToolButton()
         interface_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
         interface_button.setSizePolicy(SIZE_POLICY)

@@ -290,3 +290,10 @@ class SystemSelection(QtWidgets.QDialog):
         self.New_Selected_System["comport"]=self.comports_list_widget.currentItem().text()
 
 
+class SliderProxyStyle(QtWidgets.QProxyStyle):
+    def pixelMetric(self, metric, option, widget):
+        if metric == QtWidgets.QStyle.PM_SliderThickness:
+            return 80
+        elif metric == QtWidgets.QStyle.PM_SliderLength:
+            return 80
+        return super().pixelMetric(metric, option, widget)

@@ -275,7 +275,7 @@
                 "wood":80,
                 "other":"DEIN WERT"
             },
-            "distance":"Aktuelle Distanz",
+            "distance":"Aktuelle Distanz in cm",
             "medium":"Medien"
             
 
@@ -291,7 +291,7 @@
                 "wood":80,
                 "other":"YOUR VALUE"
             },
-            "distance":"Current Distance",
+            "distance":"Current Distance in cm",
             "medium":"Media"
         }
     }
