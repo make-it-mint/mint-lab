@@ -36,25 +36,26 @@ class Experiment(UI_Template):
         if self.experiment_is_running == False:
             self.write_values_to_experiment_file()
             self.experiment_is_running = True
-            self.start_experiment.setStyleSheet(f"color: {FONT_COLOR_LIGHT}; background-color: rgb(239,0,0); margin: 10px 20px 10px 20px; border-radius: 10px")
-            self.start_experiment.setText(self.program_settings["stop_experiment"][self.language])
-
             self.Experiment_Thread = QtCore.QThread()
-            self.running_experiment = Running_Experiment(selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)
-            self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.running_experiment = Running_Experiment(experiment_button=self.start_experiment_button, selected_system=self.selected_system, dir = self.EXPERIMENT_DIR, serial_read_freq_hz=10)            
             self.running_experiment.moveToThread(self.Experiment_Thread)
+            self.running_experiment.experiment_is_running = self.experiment_is_running
             self.Experiment_Thread.started.connect(self.running_experiment.start_experiment)
             self.running_experiment.value_for_ui.connect(self.update_ui)
-
             self.Experiment_Thread.start()
+            self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/stop_round.png"))
             
         else:
+            self.start_experiment_button.setEnabled(False)
             self.experiment_is_running = False
-            self.start_experiment.setStyleSheet(f"color: {FONT_COLOR_DARK}; background-color: rgb(0,255,0); margin: 10px 20px 10px 20px; border-radius: 10px")
             self.running_experiment.experiment_is_running = self.experiment_is_running
+            self.start_experiment_button.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/start_round.png"))
+            
             if self.selected_system["system_id"] == 0:
                 self.running_experiment.experiment.stop()
+
             self.Experiment_Thread.exit()
+
             self.set_values(new_values = self.DEFAULT_VALUES, dir = self.EXPERIMENT_DIR)
 
     def write_values_to_experiment_file(self):
@@ -285,7 +286,6 @@ class Experiment(UI_Template):
 
 
     def update_ui(self, value_for_ui):
-        print(value_for_ui)
         distance = 0.0
         try:
             value_pairs = value_for_ui.split(":")
