@@ -1,4 +1,3 @@
-from ctypes.wintypes import SIZE
 import os, time, math, multiprocessing, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
