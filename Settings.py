@@ -1,6 +1,5 @@
-import os, json
+import os, json, git
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CustomWidgets import SystemSelection
 from software_data.constants import *
 
 
@@ -51,10 +50,20 @@ class SettingsInterface(QtWidgets.QDialog):
         self.language_selection.clicked.connect(self.select_language)
         self.layout.addWidget(self.language_selection,0,1)
 
+        self.bt_update_software = QtWidgets.QToolButton()
+        self.bt_update_software.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.bt_update_software.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/update.png"))
+        self.bt_update_software.setText("VERSION X.X.X")
+        self.bt_update_software.setFont(BASIC_FONT_MID)
+        self.bt_update_software.setIconSize(QtCore.QSize(int(self.size().width()*.3), int(self.size().height()*.3)))
+        self.bt_update_software.setSizePolicy(SIZE_POLICY)
+        self.bt_update_software.clicked.connect(self.update_software)
+        self.layout.addWidget(self.bt_update_software,1,0)
+
         
 
         
-        self.layout.addWidget(self.buttonBox,1,0,1,2)
+        self.layout.addWidget(self.buttonBox,2,0,1,2)
 
         self.layout.setRowStretch(0,1)
         self.layout.setColumnStretch(0,1)
@@ -79,6 +88,10 @@ class SettingsInterface(QtWidgets.QDialog):
             self.selected_language = languages[languages.index(self.selected_language)+1]
         
         self.language_selection.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/languages/{self.available_languages[self.selected_language]['icon']}.png"))
+
+
+    def update_software(self):
+        print("Hello")
 
 
 
