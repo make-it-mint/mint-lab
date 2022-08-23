@@ -53,8 +53,9 @@ class SettingsInterface(QtWidgets.QDialog):
         self.bt_update_software = QtWidgets.QToolButton()
         self.bt_update_software.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.bt_update_software.setIcon(QtGui.QIcon(f"{self.ROOT_DIR}/assets/system/update.png"))
-        self.bt_update_software.setText("VERSION X.X.X")
+        self.bt_update_software.setText(str(git.Repo().tags[-1]))
         self.bt_update_software.setFont(BASIC_FONT_MID)
+        self.bt_update_software.setStyleSheet(f"color:{FONT_COLOR_LIGHT}")
         self.bt_update_software.setIconSize(QtCore.QSize(int(self.size().width()*.3), int(self.size().height()*.3)))
         self.bt_update_software.setSizePolicy(SIZE_POLICY)
         self.bt_update_software.clicked.connect(self.update_software)
@@ -91,8 +92,22 @@ class SettingsInterface(QtWidgets.QDialog):
 
 
     def update_software(self):
-        print("Hello")
 
+        try:
+            repo = git.Repo()
+            repo.git.reset('--hard')
+            repo.git.checkout('main')
+            repo.remotes.origin.pull()
+
+            if self.bt_update_software.text() == str(repo.tags[-1]):
+                QtWidgets.QMessageBox.information(self.parent,"",f"{self.settings['update_program_unnecessary'][self.selected_language]} {str(repo.tags[-1])}")
+            else:
+                QtWidgets.QMessageBox.information(self.parent,"",f"{self.settings['update_program_success'][self.selected_language]} {str(repo.tags[-1])}")
+                self.bt_update_software.setText(str(repo.tags[-1]))
+
+        except Exception as e:
+            print(e)
+            QtWidgets.QMessageBox.information(self.parent,"",f"{self.settings['update_program_error'][self.selected_language]}")
 
 
 
