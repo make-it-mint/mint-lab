@@ -305,7 +305,11 @@ class UI_Template(QtWidgets.QWidget):
         self.change_info_page_bt = QtWidgets.QPushButton()
         self.change_info_page_bt.setSizePolicy(SIZE_POLICY)
         self.change_info_page_bt.setStyleSheet(f"background-color:{BACKGROUND_LGREEN}; color:{FONT_COLOR_LIGHT}")
-        self.change_info_page_bt.setFont(BASIC_FONT_LARGE)
+        if self.screen_size.width() <= THRESHOLD_SCREEN_WIDTH:
+            self.change_info_page_bt.setFont(BASIC_FONT_MID)
+        else:
+            self.change_info_page_bt.setFont(BASIC_FONT_LARGE)
+
         self.change_info_page_bt.clicked.connect(self.change_info_page)
         layout.addWidget(self.change_info_page_bt,1,0)
 

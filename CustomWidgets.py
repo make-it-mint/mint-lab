@@ -17,7 +17,7 @@ class OverViewButton(QtWidgets.QToolButton):
         
         self.icon_button = QtWidgets.QToolButton()
         self.icon_button.setAutoRaise(True)
-        self.icon_button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        self.icon_button.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.setStyleSheet(f"background-color:rgb(255,255,255); margin:10px; border-radius:10px")
 
         if screen_size.width() <= 1024:
@@ -75,12 +75,12 @@ class TopicButton(QtWidgets.QToolButton):
             font = BASIC_FONT_MID
 
         self.icon_label = QtWidgets.QLabel()
-        self.icon_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.icon_label.setAlignment(QtCore.Qt.AlignCenter)
         self.setStyleSheet(f"margin:10px; border-radius:10px")
 
         self.text =QtWidgets.QLabel()
         self.text.setFont(font)
-        self.text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.text.setAlignment(QtCore.Qt.AlignCenter)
 
         self.text.setStyleSheet("color: rgb(230,230,230)")
         self.icon_label.setStyleSheet("")
@@ -125,13 +125,13 @@ class LanguageButton(QtWidgets.QToolButton):
         self.MainLayout.setRowStretch(1, 1)
 
         self.icon_label = QtWidgets.QLabel()
-        self.icon_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.icon_label.setAlignment(QtCore.Qt.AlignCenter)
         self.setStyleSheet(f"margin:10px; border-radius:10px")
         
 
         self.text =QtWidgets.QLabel()
         self.text.setFont(BASIC_FONT_SMALL)
-        self.text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.text.setAlignment(QtCore.Qt.AlignCenter)
 
         self.text.setStyleSheet("")
         self.icon_label.setStyleSheet("")
