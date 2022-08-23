@@ -1,6 +1,6 @@
 {
     "has_keyboard": 1,
-    "selected_language": "en",
+    "selected_language": "de",
     "systems": {
         "rpi": {
             "system_id": 0,
@@ -144,5 +144,15 @@
     "show_details": {
         "de": "zur Online-Doku",
         "en": "to Online-Doc"
+    },
+    "update_program_success": {
+        "de": "Programm erfolgreich aktualisiert. Aktuelle Version:",
+        "en": "Software successfully updated. Current Version: "
+    },"update_program_unnecessary": {
+        "de": "Programm bereits aktuell. Aktuelle Version:",
+        "en": "Software already up-to-date. Current Version: "
+    },"update_program_error": {
+        "de": "Fehler beim Aktualisieren. Internetverbindung oder Consolen Output für Fehlermeldung prüfen.",
+        "en": "Error when updating. Check Internet Connection or console output for error message."
     }
 }
