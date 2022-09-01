@@ -1,4 +1,4 @@
-import os, time, math, multiprocessing, serial
+import os, time, math, threading, serial
 from PyQt5 import QtCore, QtGui, QtWidgets
 from CustomWidgets import OverViewButton, ScrollLabel
 from VirtualKeyboard import Keyboard
@@ -404,23 +404,25 @@ class Running_Experiment(QtCore.QObject):
                 
         elif self.selected_system["system_id"] == 1:
 
-            experiment = multiprocessing.Process(target=self.run_picopi)
+            experiment = threading.Thread(target=self.run_picopi)
             try:
                 experiment.start()
                 time.sleep(1.5)
-                ser = serial.Serial(port=self.selected_system["comport"],baudrate=9600, timeout=self.timeout)
+                ser = serial.Serial(port=self.selected_system["comport"],baudrate=115200, timeout=self.timeout)
                 ser.flushInput()
                 if self.experiment_button: self.experiment_button.setEnabled(True)
                 while self.experiment_is_running:
                     self.value_for_ui.emit(ser.readline().decode("utf-8"))
                     time.sleep(1/self.serial_read_freq)
                 #print("Experiment Stopped by Button")
-                experiment.terminate()
+                if experiment.isAlive():
+                    experiment.kill()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
                 if self.experiment_button: self.experiment_button.setEnabled(True)
             except Exception or KeyboardInterrupt as e:
                 print(e)
-                experiment.terminate()
+                if experiment.isAlive():
+                    experiment.kill()
                 os.system(f'ampy --port {self.selected_system["comport"]} reset')
                 if self.experiment_button: self.experiment_button.setEnabled(True)
 
