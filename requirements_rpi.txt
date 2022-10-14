@@ -1,7 +1,4 @@
-#PyQt6==6.2.3
-PyQt5==5.15.2
 GitPython==3.1.27
-numpy==1.22.3
 pandas==1.4.1
 spidev==3.5
 mfrc522==0.0.7
