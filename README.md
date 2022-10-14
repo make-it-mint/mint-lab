@@ -11,7 +11,7 @@ For more detailed information you can go to our [Website](https://www.make-it-mi
 
 Running on Raspberry Pi 4/400 and Linux
 Tested On:
-- Raspban Bullseye
+- Raspbian Bullseye
 - Ubuntu 20.04 & 22.04
 - Python Version - 3.9.2
 
