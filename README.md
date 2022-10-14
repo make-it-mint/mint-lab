@@ -4,46 +4,35 @@ is the German equivalent to
 **STEM** (**S**cience, **T**echnology, **E**ngineering, **M**athematics)
 
 This is a free to use Software to use with a Raspberry Pi. It contains a number of different Interdisciplinary Educational Experiments created by **MAKE IT MINT** to give people an easy introduction into working with a Raspberry Pi.
-The Experiments featured in the **MINT LAB** are part of a wider range of Interdispciplinary Experiments created by **MAKE IT MINT** that aim to help students better understand how MINT Subjects are connected and should not be viewed independently.
-For more detailed information you can go to our [Website](https://www.make-it-mint.de). !!!WEBSITE STILL UNDER CONSTRUCTION!!!
+The Experiments featured in the **MINT LAB** are part of a wider range of Interdispciplinary Experiments created by **MAKE IT MINT** that aim to help students better understand how MINT topics are connected and should not be viewed independently.
+For more detailed information you can go to our [Website](https://www.make-it-mint.de).
 
 ##Installing MINT LAB
 
-Running on Raspberry Pi 4/400
+Running on Raspberry Pi 4/400 and Linux
 Tested On:
-- OS Version - Bullseye
+- Raspban Bullseye
+- Ubuntu 20.04 & 22.04
 - Python Version - 3.9.2
 
-#### Cloning the Repository
-Clone the Repository by opening a Terminal on your Raspberry Pi an input the following:
-`git clone https://github.com/make-it-mint/mint-lab.git <INSTALLATION_DIRECTORY>`
-
-e.g.: `git clone https://github.com/make-it-mint/mint-lab.git /home/pi/mint-lab`
-
-This clones the repository to your Pi and creates a new directory at `/home/pi/` called `mint-lab` where the repository will be placed. Of course you can choose another place for the repository.
-
-#### Installing required packages
-MINT LAB uses PyQt5 which has to be installed manually once.
-PyQt5 is a library to create User Interfaces.
-It is installed by opening a Terminal and the inputting
-`sudo apt-get install python3-pyqt5`
-
-Since the version of the Python library `numpy` that s used here is higher than the one currently provided by Raspbian, it is necessary to install another package for linear algebra calculations
-`sudo apt-get install libatlas-base-dev` 
 
 #### Starting MINT LAB
-There are multiple options to run Mint LAB after downloading the Repository.
-The `main.py` can be run directly, but it will not check if all requirements are met. The `run_mint_lab_rpi.sh` script will do this and automatically download required Python Libraries.
 
-Here are two options on how to start MINT LAB
+The `"YOUR_SYSTEM"` placeholder can be replaced by one of the following:
+`linux` for Ubuntu or another Linux OS
+`rpi` for Raspberry Pi
+e.g. `run_mint_lab_rpi.sh`
 
-If the instructions above were followed, the `<PATH_TO_REPOSITORY_DIRECTORY>` for the following steps can be substituted by `/home/pi`
+`<PATH_TO_REPOSITORY_DIRECTORY>` should be something similar to
+`/home/pi`
+##### Option 1
+Click the `run_mint_lab_"YOUR_SYSTEM".sh` file that matches your operating system
 
-To run from the file directly, open a Terminal an input the following command:
-`bash <PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab_rpi.sh`
+##### Option 2
+To run from the file directly, open a Terminal, navigate to the rpository an execute the following statement, matching your operating system:
+`./run_mint_lab_"YOUR_SYSTEM".sh`
 
-or
-
+##### Option 3
 Creating and Using a Desktop Icon:
 - Create a new Emtpy File on the Desktop
 - Insert the following content:
@@ -51,7 +40,7 @@ Creating and Using a Desktop Icon:
     [Desktop Entry]
     Name=MINT LAB
     Terminal=true
-    Exec=<PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab_rpi.sh
+    Exec=<PATH_TO_REPOSITORY_DIRECTORY>/run_mint_lab_"YOUR_SYSTEM".sh
     Type=Application
     Icon=<PATH_TO_REPOSITORY_DIRECTORY>/assets/system/logo.png
     ```
@@ -61,8 +50,6 @@ Now you can run it through this Desktop Icon
 
 ## For Developers
 
-You are welcome to create your own Experiments! A guide will be created in the future.
-
-For development purposes `run_mint_lab_linux.sh` creates a virtual environment. The current version is tailored for Linux systems.
-
-You can also run the `main.py` file directly using Python.
+You are welcome to create your own Experiments! 
+There is a directory called **for_developers**. Copy the template for example into the `topics/basics` directory and change the files according to the template.
+A detailed guide will be created in the future.
